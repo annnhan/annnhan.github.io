@@ -128,7 +128,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。<br>这样大提高了前端的开发效率和业务交付能力。<br>但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。</p>
+        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。<br>这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。</p>
 <p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
 <p>其中：</p>
 <ul>
@@ -136,7 +136,7 @@
 <li>jenkins 用来执行项目中 单元测试，编译打包相关 npm 命令，并发送反馈邮件，执行远程部署脚本。</li>
 <li>nodejs 用于提供单元测试，编译打包功能的 npm 命令</li>
 </ul>
-<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，<br>其中我们的 package.json 的 scripts 字段就有如下：</p>
+<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，其中我们的 package.json 的 scripts 字段就有如下：</p>
 <pre><code>&quot;dev&quot;: &quot;node build/dev-server.js&quot;,
 &quot;build&quot;: &quot;node build/build.js&quot;, //打包构建
 &quot;build-server&quot;: &quot;node build/build-server.js&quot;,
@@ -149,14 +149,14 @@
 <li>如果测试服务器是基于 pm2 的 proxy server，还需要重启 server</li>
 </ol>
 <p>这个流程中，每一个步骤都要重复人工操作，很大增加了时间成本，不能保证操作的准确性。对于 unit 或者 build 的结果，没有一个自动的反馈机制，需要人工 check 运行结果，最后部署也是人工登录服务器执行脚本，非常繁琐。</p>
-<h3 id="引入-CI-CD-以后，整个流程变成"><a href="#引入-CI-CD-以后，整个流程变成" class="headerlink" title="引入 CI/CD 以后，整个流程变成"></a>引入 CI/CD 以后，整个流程变成</h3><ol>
+<h3 id="引入-CI-CD-以后，整个流程变成："><a href="#引入-CI-CD-以后，整个流程变成：" class="headerlink" title="引入 CI/CD 以后，整个流程变成："></a>引入 CI/CD 以后，整个流程变成：</h3><ol>
 <li>本地机器上写代码</li>
 <li>提交代码，push 到 git 远程仓库</li>
 <li>git hook 触发 jenkins 的构建 job （自动）</li>
 <li>jenkins job 中拉取项目代码，运行 npm run unit 和 npm run build，如果失败，发送邮件通知相关人。（自动）</li>
 <li>jenkins job 中执行测试服务器的部署脚本 （自动）</li>
 </ol>
-<p>在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。<br>接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。</p>
+<p>在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。</p>
         
           <p class="article-more-link">
             <a href="/frontend-ci-cd/#more">Read More</a>
@@ -165,7 +165,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cj28wi5nh002l7ofyuxthxc7e" data-title="前端项目如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cj28wrdd6002kjzfyu5i409eo" data-title="前端项目如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
@@ -220,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/vue-spa-template/" data-id="cj28wi5qo00777ofyondpa7bv" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cj28wrdgh007ajzfy4cz77gbn" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>
@@ -282,7 +282,7 @@ $ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-nginx/" data-id="cj28wi5oz004r7ofyfxnoq3iu" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-nginx/" data-id="cj28wrdei004fjzfyygw2axc6" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li></ul>
@@ -333,7 +333,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres-googleapis/" data-id="cj28wi5py00667ofyfxd7njl7" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres-googleapis/" data-id="cj28wrdfs0068jzfyx6rmgo4f" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/googleapis/">googleapis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -394,7 +394,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cj28wi5nt00357ofy5zm0v4li" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cj28wrddp003djzfye9hd0uuo" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/loader/">loader</a></li></ul>
@@ -460,7 +460,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/fis-react/" data-id="cj28wi5ng002j7ofycd1w1eed" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/fis-react/" data-id="cj28wrdd4002ijzfyc2werrq1" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fis/">fis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/react/">react</a></li></ul>
@@ -509,7 +509,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/caniuse-cmd/" data-id="cj28wi5lj000v7ofy8izlls9v" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/caniuse-cmd/" data-id="cj28wrdbi000vjzfyizis81tk" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caniuse/">caniuse</a></li></ul>
@@ -576,7 +576,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/imitator/" data-id="cj28wi5oc003t7ofyrihdwia8" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/imitator/" data-id="cj28wrde2003sjzfyo4ub6dhx" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/imitator/">imitator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/mock/">mock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/server/">server</a></li></ul>
@@ -646,7 +646,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/smarty-assign/" data-id="cj28wi5q5006g7ofyzbn4e2s0" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/smarty-assign/" data-id="cj28wrdg0006ijzfyh61cya7p" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/assigin/">assigin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/smarty/">smarty</a></li></ul>
@@ -701,7 +701,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/battery/" data-id="cj28wi5le000o7ofynnx9qcf0" data-title="新的 javascript Battery API" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/battery/" data-id="cj28wrdbf000pjzfytr21b5pu" data-title="新的 javascript Battery API" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AddJS/">AddJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chorme/">chorme</a></li></ul>

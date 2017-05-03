@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://annn.me/"/>
-  <updated>2017-05-03T11:30:04.000Z</updated>
+  <updated>2017-05-03T11:37:40.000Z</updated>
   <id>http://annn.me/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://annn.me/frontend-ci-cd/"/>
     <id>http://annn.me/frontend-ci-cd/</id>
     <published>2017-05-02T16:00:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:37:40.000Z</updated>
     
-    <content type="html"><![CDATA[<p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。<br>这样大提高了前端的开发效率和业务交付能力。<br>但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。</p>
+    <content type="html"><![CDATA[<p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。<br>这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。</p>
 <p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
 <p>其中：</p>
 <ul>
@@ -30,7 +30,7 @@
 <li>jenkins 用来执行项目中 单元测试，编译打包相关 npm 命令，并发送反馈邮件，执行远程部署脚本。</li>
 <li>nodejs 用于提供单元测试，编译打包功能的 npm 命令</li>
 </ul>
-<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，<br>其中我们的 package.json 的 scripts 字段就有如下：</p>
+<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，其中我们的 package.json 的 scripts 字段就有如下：</p>
 <pre><code>&quot;dev&quot;: &quot;node build/dev-server.js&quot;,
 &quot;build&quot;: &quot;node build/build.js&quot;, //打包构建
 &quot;build-server&quot;: &quot;node build/build-server.js&quot;,
@@ -43,14 +43,14 @@
 <li>如果测试服务器是基于 pm2 的 proxy server，还需要重启 server</li>
 </ol>
 <p>这个流程中，每一个步骤都要重复人工操作，很大增加了时间成本，不能保证操作的准确性。对于 unit 或者 build 的结果，没有一个自动的反馈机制，需要人工 check 运行结果，最后部署也是人工登录服务器执行脚本，非常繁琐。</p>
-<h3 id="引入-CI-CD-以后，整个流程变成"><a href="#引入-CI-CD-以后，整个流程变成" class="headerlink" title="引入 CI/CD 以后，整个流程变成"></a>引入 CI/CD 以后，整个流程变成</h3><ol>
+<h3 id="引入-CI-CD-以后，整个流程变成："><a href="#引入-CI-CD-以后，整个流程变成：" class="headerlink" title="引入 CI/CD 以后，整个流程变成："></a>引入 CI/CD 以后，整个流程变成：</h3><ol>
 <li>本地机器上写代码</li>
 <li>提交代码，push 到 git 远程仓库</li>
 <li>git hook 触发 jenkins 的构建 job （自动）</li>
 <li>jenkins job 中拉取项目代码，运行 npm run unit 和 npm run build，如果失败，发送邮件通知相关人。（自动）</li>
 <li>jenkins job 中执行测试服务器的部署脚本 （自动）</li>
 </ol>
-<p>在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。<br>接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。</p>
+<p>在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。</p>
 <a id="more"></a>
 <h3 id="配置项目的-jenkins-job"><a href="#配置项目的-jenkins-job" class="headerlink" title="配置项目的 jenkins job"></a>配置项目的 jenkins job</h3><p>首先，在 jenkins 中需要安装 <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gitlab+Hook+Plugin" target="_blank" rel="external">Gitlab Hook Plugin</a> 这个插件，一支持 gitlab 的 webhook 功能。</p>
 <ol>
@@ -73,13 +73,14 @@
 <li><p>点击最下方的 “保存”，job 创建完毕。</p>
 </li>
 </ol>
-<h3 id="配置-gitlab-webhook"><a href="#配置-gitlab-webhook" class="headerlink" title="配置 gitlab webhook"></a>配置 gitlab webhook</h3><p>进入项目的 gitlab 页面 &gt;&gt; Settings &gt;&gt; Integrations , 添加一条 webhook: URL 中输入” <a href="http://你的jenkins服务器host/gitlab/build_now&quot;，" target="_blank" rel="external">http://你的jenkins服务器host/gitlab/build_now&quot;，</a> Trigger 勾选<br>Push events，点击 “Add webhook”。<br><img src="/assets/img/ci-cd-gitlab-webhook.png" alt=""></p>
-<p>这样，当有代码 push 到git 仓库时，gitlab 会想 jenkins 服务器发送提交 post 请求，触发之前创建好的 jenkins job 运行, 代码从开发到部署测试，是一个持续的过程，同时对整个过程错误提供了反馈机制。<br>再也不用关心代码 push 以后的事情，写代码更加专注和自信了！！</p>
+<h3 id="配置-gitlab-webhook"><a href="#配置-gitlab-webhook" class="headerlink" title="配置 gitlab webhook"></a>配置 gitlab webhook</h3><p>进入项目的 gitlab 页面 &gt;&gt; Settings &gt;&gt; Integrations , 添加一条 webhook: URL 中输入”<a href="http://你的jenkins服务器host/gitlab/build_now&quot;，" target="_blank" rel="external">http://你的jenkins服务器host/gitlab/build_now&quot;，</a> Trigger 勾选Push events，点击 “Add webhook”。<br><img src="/assets/img/ci-cd-gitlab-webhook.png" alt=""></p>
+<p>这样，当有代码 push 到git 仓库时，gitlab 会想 jenkins 服务器发送提交 post 请求，触发之前创建好的 jenkins job 运行, 代码从开发到部署测试，是一个持续的过程，同时对整个过程错误提供了反馈机制。</p>
+<p>从此，前端开发再也不用关心代码 push 以后的事情，写代码更加专注和自信了！！**</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。&lt;br&gt;这样大提高了前端的开发效率和业务交付能力。&lt;br&gt;但是，在代码集成，项目部署阶段，我们还需要引入 &lt;a href=&quot;https://en.wikipedia.org/wiki/Continuous_integration&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CI&lt;/a&gt; / &lt;a href=&quot;https://en.wikipedia.org/wiki/Continuous_delivery&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CD&lt;/a&gt; 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。&lt;/p&gt;
+      &lt;p&gt;近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。&lt;br&gt;这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 &lt;a href=&quot;https://en.wikipedia.org/wiki/Continuous_integration&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CI&lt;/a&gt; / &lt;a href=&quot;https://en.wikipedia.org/wiki/Continuous_delivery&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CD&lt;/a&gt; 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。&lt;/p&gt;
 &lt;p&gt;我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 &lt;a href=&quot;https://about.gitlab.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gitlab&lt;/a&gt; 、 &lt;a href=&quot;https://jenkins.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;jenkins&lt;/a&gt; 让 CI/CD 跑起来。&lt;/p&gt;
 &lt;p&gt;其中：&lt;/p&gt;
 &lt;ul&gt;
@@ -87,7 +88,7 @@
 &lt;li&gt;jenkins 用来执行项目中 单元测试，编译打包相关 npm 命令，并发送反馈邮件，执行远程部署脚本。&lt;/li&gt;
 &lt;li&gt;nodejs 用于提供单元测试，编译打包功能的 npm 命令&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;在我们的前端项目里（如： &lt;a href=&quot;https://github.com/hanan198501/vue-spa-template&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/hanan198501/vue-spa-template&lt;/a&gt; ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，&lt;br&gt;其中我们的 package.json 的 scripts 字段就有如下：&lt;/p&gt;
+&lt;p&gt;在我们的前端项目里（如： &lt;a href=&quot;https://github.com/hanan198501/vue-spa-template&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/hanan198501/vue-spa-template&lt;/a&gt; ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，其中我们的 package.json 的 scripts 字段就有如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;&amp;quot;dev&amp;quot;: &amp;quot;node build/dev-server.js&amp;quot;,
 &amp;quot;build&amp;quot;: &amp;quot;node build/build.js&amp;quot;, //打包构建
 &amp;quot;build-server&amp;quot;: &amp;quot;node build/build-server.js&amp;quot;,
@@ -100,14 +101,14 @@
 &lt;li&gt;如果测试服务器是基于 pm2 的 proxy server，还需要重启 server&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;这个流程中，每一个步骤都要重复人工操作，很大增加了时间成本，不能保证操作的准确性。对于 unit 或者 build 的结果，没有一个自动的反馈机制，需要人工 check 运行结果，最后部署也是人工登录服务器执行脚本，非常繁琐。&lt;/p&gt;
-&lt;h3 id=&quot;引入-CI-CD-以后，整个流程变成&quot;&gt;&lt;a href=&quot;#引入-CI-CD-以后，整个流程变成&quot; class=&quot;headerlink&quot; title=&quot;引入 CI/CD 以后，整个流程变成&quot;&gt;&lt;/a&gt;引入 CI/CD 以后，整个流程变成&lt;/h3&gt;&lt;ol&gt;
+&lt;h3 id=&quot;引入-CI-CD-以后，整个流程变成：&quot;&gt;&lt;a href=&quot;#引入-CI-CD-以后，整个流程变成：&quot; class=&quot;headerlink&quot; title=&quot;引入 CI/CD 以后，整个流程变成：&quot;&gt;&lt;/a&gt;引入 CI/CD 以后，整个流程变成：&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;本地机器上写代码&lt;/li&gt;
 &lt;li&gt;提交代码，push 到 git 远程仓库&lt;/li&gt;
 &lt;li&gt;git hook 触发 jenkins 的构建 job （自动）&lt;/li&gt;
 &lt;li&gt;jenkins job 中拉取项目代码，运行 npm run unit 和 npm run build，如果失败，发送邮件通知相关人。（自动）&lt;/li&gt;
 &lt;li&gt;jenkins job 中执行测试服务器的部署脚本 （自动）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。&lt;br&gt;接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。&lt;/p&gt;
+&lt;p&gt;在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。&lt;/p&gt;
     
     </summary>
     
