@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        CSS3新属性基础学习 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="嗯，这里是是CSS3一些新的属性基本知识：文字阴影，盒阴影，边界半径。这些CSS3属性常用来加强布局和实现良好的效果： RGBA前三个值是RGB颜色值和最后一个值是水平的透明度（0 =透明，1 =不透明）。 RBGA可应用于任何与颜色相关的属性如字体颜色，边框颜色，背景颜色，阴影的颜色，等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS3新属性基础学习">
+<meta property="og:url" content="http://annn.me/css3-new-knowledge-student/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="嗯，这里是是CSS3一些新的属性基本知识：文字阴影，盒阴影，边界半径。这些CSS3属性常用来加强布局和实现良好的效果： RGBA前三个值是RGB颜色值和最后一个值是水平的透明度（0 =透明，1 =不透明）。 RBGA可应用于任何与颜色相关的属性如字体颜色，边框颜色，背景颜色，阴影的颜色，等">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/rgba.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/rgba2.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/text-shadow.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/text-shadow-example2.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/text-shadow-example3.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/border-radius.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/border-radius-corners.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/box-shadow.gif">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/box-shadow2.gif">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS3新属性基础学习">
+<meta name="twitter:description" content="嗯，这里是是CSS3一些新的属性基本知识：文字阴影，盒阴影，边界半径。这些CSS3属性常用来加强布局和实现良好的效果： RGBA前三个值是RGB颜色值和最后一个值是水平的透明度（0 =透明，1 =不透明）。 RBGA可应用于任何与颜色相关的属性如字体颜色，边框颜色，背景颜色，阴影的颜色，等">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2011/09/rgba.gif">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css3-new-knowledge-student" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/css3-new-knowledge-student/" class="article-date">
+  <time datetime="2011-09-25T19:33:06.000Z" itemprop="datePublished">2011-09-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      CSS3新属性基础学习
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>嗯，这里是是CSS3一些新的属性基本知识：文字阴影，盒阴影，边界半径。这些CSS3属性常用来加强布局和实现良好的效果：</p>
+<p>RGBA<br>前三个值是RGB颜色值和最后一个值是水平的透明度（0 =透明，1 =不透明）。<br><a href="/wp-content/uploads/2011/09/rgba.gif"><img src="/wp-content/uploads/2011/09/rgba.gif" alt=""></a></p>
+<p>RBGA可应用于任何与颜色相关的属性如字体颜色，边框颜色，背景颜色，阴影的颜色，等<br><a href="/wp-content/uploads/2011/09/rgba2.gif"><img src="/wp-content/uploads/2011/09/rgba2.gif" alt=""></a></p>
+<a id="more"></a>
+<p>文本阴影<br>文字阴影的结构是按照以下顺序：X -偏移，Y -偏移，模糊，和颜色;<br><a href="/wp-content/uploads/2011/09/text-shadow.gif"><img src="/wp-content/uploads/2011/09/text-shadow.gif" alt=""></a></p>
+<p>设置为负值，X -偏移阴影转移到左侧。设置为负值偏移Y -转移阴影顶端。不要忘记你可以使用阴影的颜色RGBA值。<br><a href="/wp-content/uploads/2011/09/text-shadow-example2.gif"><img src="/wp-content/uploads/2011/09/text-shadow-example2.gif" alt=""></a></p>
+<p>您还可以指定文字阴影的列表（以逗号分隔）。下面的示例使用两个文本阴影声明一个字母的按效果（1px的顶部和底部1px的）。</p>
+<p>text-shadow: 0 1px 0 #fff, 0 -1px 0 #000;<br><a href="/wp-content/uploads/2011/09/text-shadow-example3.gif"><img src="/wp-content/uploads/2011/09/text-shadow-example3.gif" alt=""></a></p>
+<p>边界半径<br>边界半径的简写，是类似的Padding和Margin属性（如边界半径： 20像素 ）。在浏览器的顺序来渲染边界半径，添加“WebKit的“在WebKit浏览器的属性名称的字体和 “- MOZ “火狐。<br><a href="/wp-content/uploads/2011/09/border-radius.gif"><img src="/wp-content/uploads/2011/09/border-radius.gif" alt=""></a></p>
+<p>您可以指定一个不同的值的每个角落。注意Firefox和Webkit的角落有不同的属性名称。<br><a href="/wp-content/uploads/2011/09/border-radius-corners.gif"><img src="/wp-content/uploads/2011/09/border-radius-corners.gif" alt=""></a></p>
+<p>盒阴影<br>框阴影的结构是相同的文字阴影财产：X -偏移，Y偏移，模糊和颜色 。<br><a href="/wp-content/uploads/2011/09/box-shadow.gif"><img src="/wp-content/uploads/2011/09/box-shadow.gif" alt=""></a></p>
+<p>同样，你可以申请一个以上的框阴影。下面的例子是三箱阴影声明。</p>
+<p>-moz-box-shadow: -2px -2px 0 #fff, 2px 2px 0 #bb9595, 2px 4px 15px rgba(0, 0, 0, .3);<br><a href="/wp-content/uploads/2011/09/box-shadow2.gif"><img src="/wp-content/uploads/2011/09/box-shadow2.gif" alt=""></a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/css3-new-knowledge-student/" data-id="cj28wi5mc001u7ofy6nclz5e8" data-title="CSS3新属性基础学习" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/css-sprites-useful-technology-or-potentia-trouble/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS Sprites: 有用的技术, 还是潜在的麻烦?
+        
+      </div>
+    </a>
+  
+  
+    <a href="/ie6-position-element-father-son/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">IE6下position定位子元素溢出，父元素被撑开的解决思路。</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="118"
+     data-title="CSS3新属性基础学习"
+     data-url="http://annn.me/css3-new-knowledge-student">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

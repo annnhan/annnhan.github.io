@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="阿安的Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="安·记">
+<meta property="og:url" content="http://annn.me/page/10/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="阿安的Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安·记">
+<meta name="twitter:description" content="阿安的Blog">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+
+  <!--首页-->
+  
+    
+    <article id="post-ie6-max-width-max-height" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ie6-max-width-max-height/" class="article-date">
+  <time datetime="2011-09-07T18:08:44.000Z" itemprop="datePublished">2011-09-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/ie6-max-width-max-height/">让IE6支持max-width, max-height属性</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>max-width, min-width, max-height 和 min-heigh是CSS2的属性，它工作于IE7以及更高版本和或者Mozilla Firefox、Chrome等支持CSS2的浏览器，但不能与IE 6和更低版本IE浏览器兼容。</p>
+<p>比较常用的解决方案是通过CSS表达式让IE6实现相同的效果。</p>
+<p>例如：如果你有一个或多个图像，显示图像的高度和宽度应该有一些限制。即图像不应该有宽度超过500px（假设），高度不超过200px，那么图像的CSS应为如下：</p>
+<pre><code>img.thumb{
+max-height:200px;
+max-width:500px;
+width:expression(document.body.clientWidth &gt; 500? “500px”: “auto” );/*for ie6*/
+height:expression(document.body.clientHeight &gt; 200? “200px”: “auto” );/*for ie6*/
+}
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/ie6-max-width-max-height/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ie6-max-width-max-height/" data-id="cj28wi5o8003o7ofy2cb0mtlu" data-title="让IE6支持max-width, max-height属性" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-tuozhuai-zhaopian-demo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/tuozhuai-zhaopian-demo/" class="article-date">
+  <time datetime="2011-08-30T06:13:04.000Z" itemprop="datePublished">2011-08-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/tuozhuai-zhaopian-demo/">可拖拽排列的照片墙效果，或是拼图效果？同页面多实例展示</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在蓝色理想上看到这个效果，支持手动拖拽，喜欢的童鞋可以手下，有点小小的遗憾就是没有打开图像，动态调用，都要改，不过稍稍做下优化和调整不是很繁琐。
+        
+          <p class="article-more-link">
+            <a href="/tuozhuai-zhaopian-demo/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/tuozhuai-zhaopian-demo/" data-id="cj28wi5qm00747ofyoade5j4m" data-title="可拖拽排列的照片墙效果，或是拼图效果？同页面多实例展示" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-apple-ceo-steve-jobs" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/apple-ceo-steve-jobs/" class="article-date">
+  <time datetime="2011-08-25T07:54:58.000Z" itemprop="datePublished">2011-08-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/未分类/">未分类</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/apple-ceo-steve-jobs/">随笔：苹果CEO乔布斯的离开是一个特别的时代的终结</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>苹果首席执行官史蒂夫乔布斯的辞职是一个非凡的时代的结束，不仅为苹果，对于一般的全球科技产业也是如此。乔布斯是一个历史悠久的商界人物，其影响远远超出了该公司位于加州的总部Cupertino。<br>
+        
+          <p class="article-more-link">
+            <a href="/apple-ceo-steve-jobs/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/apple-ceo-steve-jobs/" data-id="cj28wi5l3000b7ofy6r4q907q" data-title="随笔：苹果CEO乔布斯的离开是一个特别的时代的终结" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/乔布斯/">乔布斯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/苹果/">苹果</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/辞职/">辞职</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-javascript-classname-firefox-class-css" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-classname-firefox-class-css/" class="article-date">
+  <time datetime="2011-08-24T01:00:38.000Z" itemprop="datePublished">2011-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/javascript-classname-firefox-class-css/">javascript修改className在firefox中无法加载新class的样式问题</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在制作外语版的文章页的项目过程中，我们常常会遇到这样一个需求：每一篇文章的首个字母加粗并大写。这点在CSS中用:first-letter伪类即可实现。但是由于使用的是cms系统，内容部分代码后台动态生成，我们只知道包含内容的一个DIV的ID,假设这个DIV的ID为conBox,我采取了通过JS获取此div#conBox下面第一个p元素，并修改其class为first,为p.first:first-letter伪类添加样式.
+        
+          <p class="article-more-link">
+            <a href="/javascript-classname-firefox-class-css/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/javascript-classname-firefox-class-css/" data-id="cj28wi5om00457ofyzvwq2g5i" data-title="javascript修改className在firefox中无法加载新class的样式问题" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/className/">className</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-html5-form-element" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/html5-form-element/" class="article-date">
+  <time datetime="2011-08-23T18:37:16.000Z" itemprop="datePublished">2011-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/html5-form-element/">HTML5中一些新的“form”元素属性</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>创建表单时，我们常常遇到的一个挑战是无法单独从它的父<code>表单</code>控制<form>元素，而诉诸一些奇怪的方法，形成控制与形式提交其数据。</form></p>
+<p>如果你试图在HTML4或XHTML去去实现，你想从提交表单数据的其余部分一起孤立的控制数据，你必须实现一些花哨的javascript技巧，传递到提交的资料 - 其中有许多明显的缺陷。
+        
+          <p class="article-more-link">
+            <a href="/html5-form-element/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/html5-form-element/" data-id="cj28wi5nv00397ofyjmhtmvbs" data-title="HTML5中一些新的“form”元素属性" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/form/">form</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/html5/">html5</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="archives-archives" class="article article-type-archives" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/archives/" class="article-date">
+  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/archives/">归档</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/archives/" data-id="cj28wi5lc000l7ofygmn6wehk" data-title="归档" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="tags-tags" class="article article-type-tags" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/tags/" class="article-date">
+  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/tags/">标签</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/tags/" data-id="cj28wi5qa006p7ofyfy6p71dp" data-title="标签" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="categories-categories" class="article article-type-categories" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/categories/" class="article-date">
+  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/categories/">文章分类</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/categories/" data-id="cj28wi5ll000y7ofyspu2p1cc" data-title="文章分类" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="links-links" class="article article-type-links" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/links/" class="article-date">
+  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/links/">友情链接</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/links/" data-id="cj28wi5ph005i7ofypul3uu2b" data-title="友情链接" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="custom-about" class="article article-type-custom" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/about/" class="article-date">
+  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/about/">关于我</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Hi，我是阿安</p>
+<p>双子座，宅男，喜欢编程，更爱足球。</p>
+<p>现居北京，曾就职于百度，去哪儿，现任凡普金科前端工程师。</p>
+<p>如果您有事找我，请直奔主题，问在吗的都不在哈。</p>
+<p>QQ：13124048</p>
+<p>E-Mail：hanan321@qq.com</p>
+<p>Weibo：<a href="http://weibo.com/hanan321" target="_blank" rel="external">http://weibo.com/hanan321</a></p>
+<p>Github：<a href="https://github.com/hanan198501" target="_blank" rel="external">https://github.com/hanan198501</a></p>
+<p>知乎：<a href="http://www.zhihu.com/people/hanan" target="_blank" rel="external">http://www.zhihu.com/people/hanan</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/about/" data-id="cj28wi5kn00037ofywts32u3o" data-title="关于我" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/9/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="page-number current">10</span>
+    </nav>
+  
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

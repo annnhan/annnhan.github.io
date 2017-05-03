@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="阿安的Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="安·记">
+<meta property="og:url" content="http://annn.me/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="阿安的Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安·记">
+<meta name="twitter:description" content="阿安的Blog">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+
+  <!--首页-->
+  
+    
+    <article id="post-frontend-ci-cd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/frontend-ci-cd/" class="article-date">
+  <time datetime="2017-05-02T16:00:00.000Z" itemprop="datePublished">2017-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/frontend-ci-cd/">前端项目如何让持续集成/持续部署(CI/CD)跑起来</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。<br>这样大提高了前端的开发效率和业务交付能力。<br>但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。</p>
+<p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
+<p>其中：</p>
+<ul>
+<li>gitlab 用于代码版本管理，并通过其提供的 webhook 功能，触发 jenkins job 的运行。</li>
+<li>jenkins 用来执行项目中 单元测试，编译打包相关 npm 命令，并发送反馈邮件，执行远程部署脚本。</li>
+<li>nodejs 用于提供单元测试，编译打包功能的 npm 命令</li>
+</ul>
+<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，<br>其中我们的 package.json 的 scripts 字段就有如下：</p>
+<pre><code>&quot;dev&quot;: &quot;node build/dev-server.js&quot;,
+&quot;build&quot;: &quot;node build/build.js&quot;, //打包构建
+&quot;build-server&quot;: &quot;node build/build-server.js&quot;,
+&quot;unit&quot;: &quot;karma start test/unit/karma.conf.js --single-run&quot;, // 运行单元测试
+</code></pre><h3 id="如果没有-CI-CD，-我们的前端从开发到提测工作流程可能如下："><a href="#如果没有-CI-CD，-我们的前端从开发到提测工作流程可能如下：" class="headerlink" title="如果没有 CI/CD， 我们的前端从开发到提测工作流程可能如下："></a>如果没有 CI/CD， 我们的前端从开发到提测工作流程可能如下：</h3><ol>
+<li>本地机器上写代码</li>
+<li>在命令行输入 npm run unit，查看单元测试结果</li>
+<li>提交代码，push 到 git 远程仓库</li>
+<li>登录测试服务器，拉取代码，执行 npm run build，构建项目</li>
+<li>如果测试服务器是基于 pm2 的 proxy server，还需要重启 server</li>
+</ol>
+<p>这个流程中，每一个步骤都要重复人工操作，很大增加了时间成本，不能保证操作的准确性。对于 unit 或者 build 的结果，没有一个自动的反馈机制，需要人工 check 运行结果，最后部署也是人工登录服务器执行脚本，非常繁琐。</p>
+<h3 id="引入-CI-CD-以后，整个流程变成"><a href="#引入-CI-CD-以后，整个流程变成" class="headerlink" title="引入 CI/CD 以后，整个流程变成"></a>引入 CI/CD 以后，整个流程变成</h3><ol>
+<li>本地机器上写代码</li>
+<li>提交代码，push 到 git 远程仓库</li>
+<li>git hook 触发 jenkins 的构建 job （自动）</li>
+<li>jenkins job 中拉取项目代码，运行 npm run unit 和 npm run build，如果失败，发送邮件通知相关人。（自动）</li>
+<li>jenkins job 中执行测试服务器的部署脚本 （自动）</li>
+</ol>
+<p>在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。<br>接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。</p>
+        
+          <p class="article-more-link">
+            <a href="/frontend-ci-cd/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cj28wi5nh002l7ofyuxthxc7e" data-title="前端项目如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-vue-spa-template" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/vue-spa-template/" class="article-date">
+  <time datetime="2016-10-29T14:23:09.000Z" itemprop="datePublished">2016-10-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/vue-spa-template/">基于 vue 全家桶的 spa 项目模板</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>Github: <a href="https://github.com/hanan198501/vue-spa-template" target="_blank">https://github.com/hanan198501/vue-spa-template</a></p>
+<p>最近在给团队做前端技术改造，移动端方面主要使用 vue2.0 重构，这是基于 vue-cli 脚手架生成项目模板。我们做了一些改造，<br>加入了 vue-router ，vuex 等配套设施，本地 dev server 中加入了接口 mock 功能，还增加一个 build server 来预览 build 结果页面，前后端通过 spa 的方式实现分离，并相应做了分离后的联调，部署方案。<br>通过这个项目模板，可以快速搭建起用于前后端分离后的单页应用开发环境，项目主要包含：</p>
+<ul>
+<li>基础库: <code>vue.js</code>、<code>vue-router</code>、<code>vuex</code>、<code>whatwg-fetch</code></li>
+<li>编译/打包工具：<code>webpack</code>、<code>babel</code>、<code>node-sass</code></li>
+<li>单元测试工具：<code>karma</code>、<code>mocha</code>、<code>sinon-chai</code></li>
+<li>本地服务器：<code>express</code></li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/vue-spa-template/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cj28wi5qo00777ofyondpa7bv" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-javascript-nginx" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-nginx/" class="article-date">
+  <time datetime="2015-10-01T07:33:41.000Z" itemprop="datePublished">2015-10-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/javascript-nginx/">使用 javascript 配置 nginx</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在上个月的 nginx.conf 2015 大会上， 官方宣布已经支持通过 javascript 代码来配置 nginx，并把这个实现称命名为——nginscript。使用 nginscript，可以很轻易得在 niginx 配置文件中通过 js 语法来实现自定义的服务器配置。</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 下载最新版本的 nginx 并解压
+curl -O http://nginx.org/download/nginx-1.9.5.tar.gz
+tar -xzvf nginx-1.9.5.tar.gz
+
+# 下载 nginscript 模块并解压
+curl -O http://hg.nginx.org/njs/archive/tip.tar.gz
+tar -xzvf tip.tar.gz
+
+# 编译并安装 nginx
+$ cd nginx-1.9.5
+$ ./configure --add-module=刚才解压的nginscript目录
+$ make
+$ make install
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/javascript-nginx/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/javascript-nginx/" data-id="cj28wi5oz004r7ofyfxnoq3iu" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-reres-googleapis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/reres-googleapis/" class="article-date">
+  <time datetime="2015-09-11T05:22:51.000Z" itemprop="datePublished">2015-09-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/reres-googleapis/">无梯子如何正常访问使用了 googleapis 的网站</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>许多国外的网站都使用被墙掉的 googleapis.com 上的静态资源（如 font、js库 等），如果不爬墙，这些资源无法加载，导致网站无法正常访问。</p>
+<p>其实，360提供了一个国内的 googleapis.com 镜像仓库（<a href="http://libs.useso.com/" target="_blank" rel="external">libs.useso.com</a>）。我想，当遇到 googleapis 的请求时，浏览器能自动跳转到360的镜像，就能正常访问了。</p>
+<p>正好，我以前写过一个 chrome 插件 <a href="https://github.com/hanan198501/ReRes" target="_blank" rel="external">ReRes</a>，可以通过它来完成这项工作。</p>
+<p>安装好 ReRes 后，添加一条规则：</p>
+<pre><code>If URL match：^http\:\/\/(.+?)\.googleapis\.com\/(.+?)$
+Response：http://$1.useso.com/$2
+</code></pre><p>当浏览器中的请求匹配到 ^http\:\/\/(.+?).googleapis.com\/(.+?)$ 这个正则时，会自动跳转到 <a href="http://$1.useso.com/$2" target="_blank" rel="external">http://$1.useso.com/$2</a> 这个 url ，其中 $1 和 $2 分别是正则中捕获到的两个分组。</p>
+<p>如此，就可以正常访问使用了 googleapis 的网站。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/reres-googleapis/" data-id="cj28wi5py00667ofyfxd7njl7" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/googleapis/">googleapis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-how-to-realize-cmd-loader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/how-to-realize-cmd-loader/" class="article-date">
+  <time datetime="2015-09-03T09:03:00.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/how-to-realize-cmd-loader/">如何实现一个 CMD 模块加载器</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。<br>关于 cmd 更详细的内容可以移步 <a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="external">https://github.com/cmdjs/specification/blob/master/draft/module.md</a><br>今天，我们一起来学习如何实现一个浏览器端的简单的 cmd loader。</p>
+<h2 id="模块加载流程"><a href="#模块加载流程" class="headerlink" title="模块加载流程"></a>模块加载流程</h2><p>下图展示了一个 cmd loader 的模块加载大体流程：</p>
+<p><img src="/assets/img/cmd.png" alt="cmd loader"></p>
+<ol>
+<li>首先，通过 use 方法来加载入口模块，并接收一个回调函数， 当模块加载完成， 会调用回调函数，并传入对应的模块。use 方法会 check 模块有没有缓存，如果有，则从缓存中获取模块，如果没有，则创建并加载模块。</li>
+<li>获取到模块后，模块可能还没有 load 完成，所以需要在模块上绑定一个 “complete” 事件，模块加载完成会触发这个事件，这时候才调用回调函数。</li>
+<li>创建一个模块时，id就是模块的地址，通过创建 script 标签的方式异步加载模块的代码（factory），factory 加载完成后，会 check factory 中有没有 require 别的子模块:<ul>
+<li>如果有，继续加载其子模块，并在子模块上绑定 “complete” 事件，来触发本身 的 “complete” 事件；</li>
+<li>如果没有则直接触发本身的 “complete” 事件。</li>
+</ul>
+</li>
+<li>如果子模块中还有依赖，则会递归这个过程。</li>
+<li>通过事件由里到外的传递，当所有依赖的模块都 complete 的时候，最外层的入口模块才会触发 “complete” 事件，use 方法中的回调函数才会被调用。</li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/how-to-realize-cmd-loader/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cj28wi5nt00357ofy5zm0v4li" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/loader/">loader</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-fis-react" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/fis-react/" class="article-date">
+  <time datetime="2015-08-23T07:24:00.000Z" itemprop="datePublished">2015-08-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/fis-react/">在 fis 项目中使用 react.js</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>fis 具有非常灵活的插件扩展机制，对于 react 的 jsx 也有现成的 parser 插件可用。<br>通过几条简单的配置，就可以在你的 fis 项目中使用 react 了。 但是在使用过程中，有一些小坑还是需要注意的，在此记录一下。</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><pre><code>npm install fis-parser-react -g
+</code></pre><p>注意，如果你使用的 react 版本是 0.13.x， 则要安装另一个版本的插件：</p>
+<pre><code>npm install fis-parser-react-0.13.x -g
+</code></pre><h2 id="编译配置"><a href="#编译配置" class="headerlink" title="编译配置"></a>编译配置</h2><p>编辑 fis-conf.js 文件， 加入以下内容：</p>
+<pre><code>// 将 jsx 文件作为文本处理
+fis.config.set(&apos;project.fileType.text&apos;, &apos;jsx&apos;);
+
+// 后缀名为 jsx 的文件用 fis-parser-react 插件编译
+// 如果你使用的 react 版本是 0.13.x，将下面第二个参数换成 &apos;react-0.13.x&apos;
+fis.config.set(&apos;modules.parser.jsx&apos;, &apos;react&apos;);
+
+// 将 jsx 文件编译结果输出为 js 文件
+fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
+</code></pre><h2 id="模块化配置"><a href="#模块化配置" class="headerlink" title="模块化配置"></a>模块化配置</h2><p>默认情况，fis 不会将 widget 目录下的 jsx 文件包裹成 cmd 模块， 而是直接输出编译后的 js 文件。<br>但是我们更希望遵循 fis 的目录规范，将 widget 目录下的 jsx 文件也输出为 module， 所以我们还需要配置一下 roadmap.path。<br>编辑 fis-conf.js 文件， 加入以下内容：</p>
+<pre><code>fis.config.set(&apos;roadmap.path&apos;, [{
+    reg: /^\/widget\/(.*)\.jsx$/i,
+    useMap: true,
+    useHash: true,
+    isMod: true,
+    release: &apos;${statics}/${namespace}/widget/$1.js&apos;
+}].concat(fis.config.get(&apos;roadmap.path&apos;, [])));
+</code></pre><p>最后执行 fis release 就可以看到所有的 jsx 都可以被正确编译和引用到了~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/fis-react/" data-id="cj28wi5ng002j7ofycd1w1eed" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fis/">fis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/react/">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-caniuse-cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/caniuse-cmd/" class="article-date">
+  <time datetime="2015-07-28T14:26:00.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/caniuse-cmd/">caniuse 命令行工具</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大名鼎鼎的 <a href="http://caniuse.com/" target="_blank" rel="external">caniuse.com</a> 相信每个前端同学都不陌生.<br>这款查询浏览器兼容性的利器, 现在可以在命令行下使用了. 相比每次打开网站查询, 命令行确实方便许多哦.</p>
+<p>首先,安装 caniuse 命令:</p>
+<pre><code>npm install -g caniuse-cmd
+</code></pre><p>然后在命令行就可以使用 caniuse 这一命令了, 后面跟你要查询的特性就行:</p>
+<p><img src="/assets/img/caniuse1.png" alt="caniuse"></p>
+<p>附项目的github: <a href="https://github.com/sgentle/caniuse-cmd" target="_blank" rel="external">https://github.com/sgentle/caniuse-cmd</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/caniuse-cmd/" data-id="cj28wi5lj000v7ofy8izlls9v" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caniuse/">caniuse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-imitator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/imitator/" class="article-date">
+  <time datetime="2015-07-27T09:53:00.000Z" itemprop="datePublished">2015-07-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/imitator/">使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。<br>使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。</p>
+<p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="external">https://github.com/hanan198501/imitator</a></p>
+<h3 id="为什么会有-imitator？"><a href="#为什么会有-imitator？" class="headerlink" title="为什么会有 imitator？"></a>为什么会有 imitator？</h3><p>最近几个java（前后端都在一个工程里）项目交接过来，没时间重构成fis项目，组里好多前端同学想搞分离开发。<br>我推荐了 nginx，有童鞋反应配置文件相对前端来说还是不够友好，而且有些个性的接口格式无法满足。<br>于是写了 imitator，使用 nodejs 并基于 express.js 实现， 配置文件相当简单， 而且易于订制，前端同学使用起来非常顺手。</p>
+<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><ol>
+<li><p>安装——首先你要先安装 nodejs 和 npm， 然后全局安装imitator。</p>
+<pre><code>npm install imitator -g
+</code></pre></li>
+<li><p>编写配置文件——在你的用户目录(比如我的是/User/hanan)下新建一个名为 Imitatorfile.js 的文件（这是 imitator 的默认配置文件）， 内容如下。</p>
+<pre><code>module.exports = function(imitator) {
+    // 返回一个json
+    imitator(&apos;/json&apos;, {name: &apos;hello world&apos;});
+}
+</code></pre></li>
+<li><p>启动服务——命令行输入以下命令，启动 imitator server.</p>
+<pre><code>imitator
+</code></pre></li>
+<li><p>浏览器访问 127.0.0.1:8888/json ， 将会看到：</p>
+<pre><code>{&quot;name&quot;:&quot;hello world&quot;}
+</code></pre></li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/imitator/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/imitator/" data-id="cj28wi5oc003t7ofyrihdwia8" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/imitator/">imitator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/mock/">mock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/server/">server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-smarty-assign" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/smarty-assign/" class="article-date">
+  <time datetime="2015-06-21T14:23:00.000Z" itemprop="datePublished">2015-06-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/php/">php</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/smarty-assign/">smarty 模板模板中的 assigin 函数</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用Smarty内置函数{assign}，在模板运行时为模板变量赋值，也可以为数组元素赋值，和在赋值时使用一些表达式。{$var=…}是{assign}函数的简写版。该函数有三个属性(var、value和scope)和一个选项标签(nocache)，其中var和value是必须使用的属性，分别用来设置要分配值的变量名和分配的值。而scope是可选属性，用来指定分配的变量范围，可以指定parent、root和global三个值，用来设定变量的有效范围。{assign}函数使用如下所示：</p>
+<pre><code>{assign var=&quot;name&quot; value=&quot;brophp&quot;}  {*为变量$name赋值上brophp的值*}
+{assign &quot;name&quot; &quot;brophp&quot;}            {*这是assign函数属性的简写*}
+{$name=&quot;brophp&quot;}                    {*这是assign函数的简写，也是为变量$name赋值上brophp的值*}
+</code></pre><p>在模板中声明的变量和从PHP中分配给模板中给模板的变量具有相同的使用方式。上例是在模板中声明一个$name变量三中书写方式：第一种是Smarty模板中标准函数的方式;第二种是省略属性名称简写的方式;第三种也是一种简写方法，更像是PHP变量的声明。除了上面简单声明一个变量以外，还可以为变量赋一些相对复杂的值，如使用数组和表达式，如下所示：</p>
+<pre><code>{*定义数组*}
+{assign var=foo value=[1,2,3]}          {*为变量$foo赋上一个索引数组值*}
+{assign var=foo value=[&apos;y&apos;=&gt;&apos;yellow&apos;]}  {*为变量$foo赋上一个关联数组值*}
+{assign var=foo value=[1,[9,8],3]}      {*可以使用嵌套声明多维数组*}
+{assign var=foo value=$x+$y}            {*可以在属性中使用变量*}
+{assign var=&quot;foo&quot; value=&quot;&apos;$foo+$bar&apos;&quot;}  {*可以在属性值的字符串中使用变量及表达式*}
+
+{*短变量分配*}
+{$foo=$bar+2}                       {*短变量分配值的方式*}
+{$foo = strlen($bar)}               {*PHP函数在变量值中使用*}
+{$foo = myfunct(($x+$y)*3)}         {*作为函数参数*}
+{$foo.bar=1}                        {*数组元素赋值*}
+{$foo.bar.baz=1}                    {*多维数组元素的赋值*}
+{$foo[]=1}                          {*为数组添加新元素*}
+{$foo[$x+3]}                        {*变量作为数组索引*}
+{$foo={counter}+3}                  {*在标签里嵌套标签*}
+{$foo=&quot;this is message{counter}&quot;}   {*在引号里使用标签*}
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/smarty-assign/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/smarty-assign/" data-id="cj28wi5q5006g7ofyzbn4e2s0" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/assigin/">assigin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/smarty/">smarty</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-battery" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/battery/" class="article-date">
+  <time datetime="2015-02-24T12:43:00.000Z" itemprop="datePublished">2015-02-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/battery/">新的 javascript Battery API</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>javascript Battery 接口允许你通过 javascript 来获取电池的状态。</p>
+<p><strong>navigator.getBattery()方法</strong></p>
+<p>在新的标准里，电池的状态信息是通过navigator.getBattery()方法获取的。<br>navigator.getBattery()是一个异步方法，会返回一个es6标准的<a href="/ecmascript6-promise/">promise</a>对象。<br>所以我们获取电池状态的回调方法，必须通过该promise对象的then方法来注册：</p>
+<pre><code>navigator.getBattery().then(function(result) {
+    console.log(result);
+});
+</code></pre><p><strong>BatteryManager接口</strong></p>
+<p>上个例子里的result是一个表示电池状态的对象， 它是由BatteryManager接口实现的，具有如下属性：</p>
+        
+          <p class="article-more-link">
+            <a href="/battery/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/battery/" data-id="cj28wi5le000o7ofynnx9qcf0" data-title="新的 javascript Battery API" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AddJS/">AddJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chorme/">chorme</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

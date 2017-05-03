@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        Windows/IIS主机上如何让wordpress使用漂亮的固定链接 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="国外的空间到期了，而且之前用的延迟也比较高，所以就换了一家国内的主机，但是却是IIS的，自己太粗心了没看清楚！于是，以前的固定链接发现无法使用了。不过还好，IDC提供了rewrite功能，我们可以通过下面的办法来解决问题。">
+<meta name="keywords" content="IIS,Rewrite,Windows,WordPress,固定链接,虚拟主机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows&#x2F;IIS主机上如何让wordpress使用漂亮的固定链接">
+<meta property="og:url" content="http://annn.me/windows-iis-wordpress-permalink/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="国外的空间到期了，而且之前用的延迟也比较高，所以就换了一家国内的主机，但是却是IIS的，自己太粗心了没看清楚！于是，以前的固定链接发现无法使用了。不过还好，IDC提供了rewrite功能，我们可以通过下面的办法来解决问题。">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Windows&#x2F;IIS主机上如何让wordpress使用漂亮的固定链接">
+<meta name="twitter:description" content="国外的空间到期了，而且之前用的延迟也比较高，所以就换了一家国内的主机，但是却是IIS的，自己太粗心了没看清楚！于是，以前的固定链接发现无法使用了。不过还好，IDC提供了rewrite功能，我们可以通过下面的办法来解决问题。">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-windows-iis-wordpress-permalink" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/windows-iis-wordpress-permalink/" class="article-date">
+  <time datetime="2012-04-29T05:05:13.000Z" itemprop="datePublished">2012-04-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/发现/">发现</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      Windows/IIS主机上如何让wordpress使用漂亮的固定链接
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>国外的空间到期了，而且之前用的延迟也比较高，所以就换了一家国内的主机，但是却是IIS的，自己太粗心了没看清楚！于是，以前的固定链接发现无法使用了。不过还好，IDC提供了rewrite功能，我们可以通过下面的办法来解决问题。  </p>
+<a id="more"></a>
+<p>我们都知道WordPress程序很强大,对搜索引擎优化很友好,但是有一点可能有些人还不是很清楚,对于WordPress这样一款开源程序来 说,它本身就是在Linux/Apache平台中开发,先天上与其结合得比较紧密,因此,如果可能的话,选择Linux/Apache平台应该是第一选择。尽管WordPress可以在Windows/iis平台中安装使用，但存大许多不足，其实中致命的一点便是IIS本身不支持Mod_Rewrite功能，而这将会给博客的维护、管理、SEO优化带来很多麻烦。  </p>
+<p>由于IIS不支持Mod_Rewrite,因此,Wordpress便无法实现标准的、简洁的Permalinks,而只能采取在Url中包含“index.php“的替代方案(如SEO探索的权益之计中所探讨的那样);所以无法实现真正的伪静态功能。虽然网上有利用404.php页面来实现的方法，但终归没有这种自然的好。今天阿安就给大家分享一下，首先你的主机要装Rewrite组件，现在国内很多WINDOWS主机都有装这个了，如果没有可以联系主机空间商。然后在httpd.ini中加入如下代码：</p>
+<pre><code>[ISAPI_Rewrite]
+# 3600 = 1 hour
+CacheClockRate 3600
+RepeatLimit 32
+#解决中文tag无法访问的问题
+RewriteRule /tag/[^/]+)/([^/]+)/?([0-9]+)?/ /index.php?tag=$1&amp;paged;=$3 [L]
+# Protect httpd.ini and httpd.parse.errors files
+# from accessing through HTTP
+# Rules to ensure that normal content gets through
+RewriteRule /sitemap.xml /sitemap.xml [L]
+RewriteRule /favicon.ico /favicon.ico [L]
+# For file-based wordpress content (i.e. theme), admin, etc.
+RewriteRule /wp-(.*) /wp-$1 [L]
+# For normal wordpress content, via index.php
+RewriteRule ^/$ /index.php [L]
+RewriteRule /(.*) /index.php/$1 [L]
+</code></pre><p>但是修改之后中文tag又不能访问了，别担心，接着看下一步。修改wp-include中的classes-wp.php，之前版本可能是classes.php。</p>
+<pre><code>原代码：
+$pathinfo = $_SERVER[&apos;PATH_INFO&apos;];
+替换为：
+$pathinfo = mb_convert_encoding($_SERVER[&apos;PATH_INFO&apos;], &quot;UTF-8&quot;, &quot;GBK&quot;);
+
+原代码：
+$req_uri = $_SERVER[&apos;REQUEST_URI&apos;];
+替换为：
+$req_uri = mb_convert_encoding($_SERVER[&apos;REQUEST_URI&apos;], &quot;UTF-8&quot;, &quot;GBK&quot;);
+</code></pre><p>修改后，保存下，然后将保存后的文件上传并覆盖原文件即可，这里需要注意文件保存格式。<br>然后在固定链接中设置为自己想要的就可以了。</p>
+<p>附：常用WordPress固定链接格式：<br><strong>1</strong>）/%postname%/<br><strong>2</strong>）/%year%/%monthnum%/%postname%/<br><strong>3</strong>）/post/%post_id%.html<br><strong>4</strong>）/%year%/%monthnum%/%day%/%postname%/<br><strong>5</strong>）/%year%/%monthnum%/%day%/%postname%.html</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/windows-iis-wordpress-permalink/" data-id="cj28wi5rb007u7ofyrmd572iq" data-title="Windows/IIS主机上如何让wordpress使用漂亮的固定链接" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/IIS/">IIS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Rewrite/">Rewrite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WordPress/">WordPress</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/固定链接/">固定链接</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/虚拟主机/">虚拟主机</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/webstorm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          WebStorm：令人眼前一亮的一款前端开发IDE
+        
+      </div>
+    </a>
+  
+  
+    <a href="/jquery-clear-ajax-cache/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">你清楚jquery是如何清除ajax缓存的吗？</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="242"
+     data-title="Windows/IIS主机上如何让wordpress使用漂亮的固定链接"
+     data-url="http://annn.me/windows-iis-wordpress-permalink">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

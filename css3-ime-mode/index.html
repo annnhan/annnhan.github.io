@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        通过ime-mode属性控制文本字段的输入法编辑器的状态 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="ime-mode是CSS3中最新添加的属性，更准确点说，是CSS Basic User Interface Module Level 3 (CSS3 UI)规范新添加的属性，该属性可以控制文本字段的输入法编辑器的状态。IE浏览器从IE5开始就支持该属性，FireFox浏览器从FireFox3.0开始也支持该ime-mode属性。不过chrome、opera、Safari浏览器还没有开始支持该属性。">
+<meta name="keywords" content="css3,ime-mode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过ime-mode属性控制文本字段的输入法编辑器的状态">
+<meta property="og:url" content="http://annn.me/css3-ime-mode/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="ime-mode是CSS3中最新添加的属性，更准确点说，是CSS Basic User Interface Module Level 3 (CSS3 UI)规范新添加的属性，该属性可以控制文本字段的输入法编辑器的状态。IE浏览器从IE5开始就支持该属性，FireFox浏览器从FireFox3.0开始也支持该ime-mode属性。不过chrome、opera、Safari浏览器还没有开始支持该属性。">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过ime-mode属性控制文本字段的输入法编辑器的状态">
+<meta name="twitter:description" content="ime-mode是CSS3中最新添加的属性，更准确点说，是CSS Basic User Interface Module Level 3 (CSS3 UI)规范新添加的属性，该属性可以控制文本字段的输入法编辑器的状态。IE浏览器从IE5开始就支持该属性，FireFox浏览器从FireFox3.0开始也支持该ime-mode属性。不过chrome、opera、Safari浏览器还没有开始支持该属性。">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-css3-ime-mode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/css3-ime-mode/" class="article-date">
+  <time datetime="2012-12-04T01:45:20.000Z" itemprop="datePublished">2012-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      通过ime-mode属性控制文本字段的输入法编辑器的状态
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ime-mode是CSS3中最新添加的属性，更准确点说，是CSS Basic User Interface Module Level 3 (CSS3 UI)规范新添加的属性，该属性可以控制文本字段的输入法编辑器的状态。IE浏览器从IE5开始就支持该属性，FireFox浏览器从FireFox3.0开始也支持该ime-mode属性。不过chrome、opera、Safari浏览器还没有开始支持该属性。</p>
+<p>名称: ime-mode<br>值: auto | normal | active | inactive | disabled | inherit<br>初始值: auto<br>应用元素: text fields（文本字段）<br>继承性: no</p>
+<p><strong>下面是ime-mode各个值的说明：</strong><br>auto : 默认值，不影响当前输入法编辑器的状态<br>normal : 输入法编辑器的状态应该是normal，这个值可以用于用户样式表来覆盖页面的设置。IE浏览器不支持该属性<br>active : 输入法编辑器的状态初始时是激活的；输入将一直使用该输入法直到用户切换输入法。该属性在Linux下不支持<br>inactive : 输入法编辑器的状态初始时是非激活状态；除非用户激活输入法<br>disabled : 禁用输入法编辑器；该输入法编辑器也许不会被用户激活</p>
+<pre><code>&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt; New Document &lt;/title&gt;
+ &lt;style type=&quot;text/css&quot;&gt;
+    input {ime-mode: disabled; }
+ &lt;/style&gt;
+ &lt;/head&gt;
+
+ &lt;body&gt;
+
+&lt;form action=&quot;&quot; name=&quot;form1&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;textfield&quot;&gt;
+&lt;/form&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>上面的例子在IE5+或者FireFox3+浏览器中运行，不允许输入中文。</p>
+<p>这个属性虽然很强大，但是在最新版的chrome、opera、safari浏览器中都不支持该属性，所以在这些浏览器中还需要通过javascript来实现当用户输入中文时无法输入到文本框中。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/css3-ime-mode/" data-id="cj28wi5ma001r7ofyn33cb2e8" data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ime-mode/">ime-mode</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/presentation-top10/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          世界十大经典presentation
+        
+      </div>
+    </a>
+  
+  
+    <a href="/css-fontfamily-chinese/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">避免css中文字体在浏览器中解析成乱码</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="677"
+     data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态"
+     data-url="http://annn.me/css3-ime-mode">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        javascript连连看。 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="之前看到一位朋友说她妈妈喜爱连连看，就想着不如把身边的朋友头像拿来做个连连看游戏吧。次连连看的特点就是不但本人头像可以连，家属，情侣之间也可以联通。寻路径算法是传统的枚举算法，原理如下，每次建立四个点，分别检查是否两两联通，如果两两联通，就说明头尾可以连。首先横向扫描，然后纵向，详细可以看注释。DEMO：/wp-content/uploads/linkgame/linkgame.html">
+<meta name="keywords" content="javascript,连连看">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript连连看。">
+<meta property="og:url" content="http://annn.me/javascript-linkgame/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="之前看到一位朋友说她妈妈喜爱连连看，就想着不如把身边的朋友头像拿来做个连连看游戏吧。次连连看的特点就是不但本人头像可以连，家属，情侣之间也可以联通。寻路径算法是传统的枚举算法，原理如下，每次建立四个点，分别检查是否两两联通，如果两两联通，就说明头尾可以连。首先横向扫描，然后纵向，详细可以看注释。DEMO：/wp-content/uploads/linkgame/linkgame.html">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript连连看。">
+<meta name="twitter:description" content="之前看到一位朋友说她妈妈喜爱连连看，就想着不如把身边的朋友头像拿来做个连连看游戏吧。次连连看的特点就是不但本人头像可以连，家属，情侣之间也可以联通。寻路径算法是传统的枚举算法，原理如下，每次建立四个点，分别检查是否两两联通，如果两两联通，就说明头尾可以连。首先横向扫描，然后纵向，详细可以看注释。DEMO：/wp-content/uploads/linkgame/linkgame.html">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript-linkgame" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-linkgame/" class="article-date">
+  <time datetime="2013-02-04T08:29:12.000Z" itemprop="datePublished">2013-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      javascript连连看。
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前看到一位朋友说她妈妈喜爱连连看，就想着不如把身边的朋友头像拿来做个连连看游戏吧。次连连看的特点就是不但本人头像可以连，家属，情侣之间也可以联通。寻路径算法是传统的枚举算法，原理如下，每次建立四个点，分别检查是否两两联通，如果两两联通，就说明头尾可以连。首先横向扫描，然后纵向，详细可以看注释。<br>DEMO：<a href="/wp-content/uploads/linkgame/linkgame.html">/wp-content/uploads/linkgame/linkgame.html</a><br><a id="more"></a><br>代码如下：</p>
+<pre><code>&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;琼海老乡连连看&lt;/title&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;link media=&quot;all&quot; href=&quot;css/common.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+    body {
+        text-align: center;
+    }
+    .text {text-align: center; margin-top: 60px; color: #fff;}
+    .agin {text-align: center; margin-top: 60px; color: #fff;}
+
+    #game-box {
+        margin: 60px auto;
+        position: relative;
+    }
+
+    #game-box img {
+        float: left;
+        width: 59px;
+        height: 59px;
+        border: 1px solid #000000;
+    }
+
+    #game-box img.hover {
+        border: 1px solid #ffffff;
+    }
+
+    #game-box img.active {
+        border: 1px solid #7fff00;
+    }
+    #game-box div {
+        background-color: #7fff00;
+        position: absolute;
+    }
+&lt;/style&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var byId = function (id) {
+        return document.getElementById(id);
+    }
+    var boxWidth = 61; //格子宽度
+    var gameBox;
+    var mapid = &apos;game-box&apos;;//map element id
+    var arr = &apos;chendongyu,chenshaoding,chenshuai,hanan,lichangmao,lichunfeng,lihaixing,litingmiao,liuliu,lixianjing,moxiyun,wangbo,wangchunyuan,wanghuixiu,wangyuyan,wangzhenfa,wuliyao,wushuzhu,yangzhi,zhongbugui,zhongqing,zhushengbao&apos;.split(&apos;,&apos;);
+    var h = 8;  //高
+    var w = 11; //宽
+    var boxsLength = h*w;
+    var boxArr = {};    //map对象
+    var startBox = &apos;&apos;;  //开始的格子
+    var endBox = &apos;&apos;;    //结束的格子
+    window.onload = init;
+
+    //初始化
+    function init() {
+        byId(&apos;agin&apos;).style.display = &apos;none&apos;;
+        boxsLength = h*w;
+        boxArr = {};
+        startBox = &apos;&apos;;
+        endBox = &apos;&apos;;
+        var str = &apos;&apos;;
+        gameBox = byId(mapid);
+        for (var i = 0; i &lt; h; i++) {
+            for (var j = 0; j &lt; w; j++) {
+                str += &apos;&lt;img class=&quot;&quot; onclick=&quot;choose(this);&quot; id=&quot;t&apos; + i + &apos;_l&apos; + j + &apos;&quot; src=&quot;img/blank.gif&quot;&gt;&apos;
+            }
+        }
+        gameBox.innerHTML = str;
+        gameBox.style.width = w * boxWidth + &apos;px&apos;;
+        pushBoxArr();
+        toHTML();
+    }
+
+    // 随鸡获取坐标
+    function getPosition() {
+        var t, f;
+        (function () {
+            t = parseInt(Math.random() * h);
+            l = parseInt(Math.random() * w);
+            if ((&apos;t&apos; + t + &apos;_l&apos; + l) in boxArr) {
+                arguments.callee();
+            }
+        })();
+        return {t:t, l:l}
+    }
+
+    // 创建随机坐标的格子
+    function CearteBox(name) {
+        var p = getPosition();
+        this.name = name;
+        this.t = p.t;
+        this.l = p.l;
+        this.position = &apos;t&apos; + p.t + &apos;_l&apos; + p.l;
+        this.love = 0;
+        switch (name) {
+            case &apos;hanan&apos;:
+            case &apos;litingmiao&apos;:
+                this.love = 1;
+                break;
+            case &apos;wanghuixiu&apos;:
+            case &apos;wushuzhu&apos;:
+            case &apos;wangbo&apos;:
+                this.love = 2;
+                break;
+            case &apos;lixianjing&apos;:
+            case &apos;zhushengbao&apos;:
+                this.love = 3;
+                break;
+            case &apos;zhongbugui&apos;:
+            case &apos;zhongqing&apos;:
+                this.love = 4;
+                break;
+        }
+    }
+
+    // push boxRrr
+    function pushBoxArr() {
+        var index = 0;
+        var last = arr.length - 1;
+        for (var i = 0; i &lt; h; i++) {
+            for (var j = 0; j &lt; w; j++) {
+                var a = new CearteBox(arr[index]);
+                boxArr[&apos;t&apos; + a.t + &apos;_l&apos; + a.l] = a;
+                if (index === last) {
+                    index = 0;
+                } else {
+                    index += 1;
+                }
+            }
+        }
+    }
+
+    // 初始化html
+    function toHTML() {
+        for (var i in boxArr) {
+            byId(i).src = &apos;img/&apos; + boxArr[i].name + &apos;.jpg&apos;;
+        }
+    }
+
+    // choose
+    function choose(el) {
+        if (el.src.indexOf(&apos;blank&apos;) &gt;= 0) {
+            return false;
+        }else{
+            el.className = &apos;active&apos;;
+            if (startBox == &apos;&apos; || startBox == el.id) {
+                startBox = el.id;
+            } else {
+                endBox = el.id;
+                test(boxArr[startBox], boxArr[endBox]);
+            }
+        }
+    }
+
+    // 判断是不是可连接格子
+    function test(a, b) {
+        var can = function (a, b) {
+            if (a.name == b.name) {
+                return true;
+            } else {
+                if (a.love != 0 &amp;&amp; b.love != 0) {
+                    if (a.love == b.love) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        }(a, b);
+        if (can) {
+            go(a, b);
+        } else {
+            byId(startBox).className = &apos;&apos;;
+            startBox = endBox;
+            endBox = &apos;&apos;;
+        }
+    }
+
+    // 判断是否连通
+    function go(a, b) {
+        var _ap = a.position, _bp = b.position;
+        var a = a, b = b, temp, isKill = false;
+
+        // 建立四个点，判断是否两两相通
+        var pt1, pt2, pt3, pt4;
+        // 上到下扫描
+        if (isKill == false) {
+            //交换位置
+            if (a.t &gt; b.t) {
+                temp = a;
+                a = b;
+                b = temp;
+            }
+            for (var i = -1, len = h; i &lt;= len; i++) {
+                pt1 = a;
+                pt2 = {t:i, l:a.l};
+                pt3 = {t:i, l:b.l};
+                pt4 = b;
+                if( (!isNull(pt2) &amp;&amp; (pt2.t != a.t) ) || ( !isNull(pt3) &amp;&amp; (pt3.t != b.t) ) ){
+                    continue;
+                }
+                else if (link4pt(pt1, pt2, pt3, pt4)){
+                    isKill = true;
+                    kill(a, b);
+                    showLine(pt1, pt2, pt3, pt4);
+                    break;
+                    return;
+                }
+            }
+        }
+        // 左到右扫描
+        if (isKill == false) {
+            //交换位置
+            if (a.l &gt; b.l) {
+                temp = a;
+                a = b;
+                b = temp;
+            }
+            for (var i = -1, len = w; i &lt;= len; i++) {
+                pt1 = a;
+                pt2 = {t:a.t, l:i};
+                pt3 = {t:b.t, l:i};
+                pt4 = b;
+                if( (!isNull(pt2) &amp;&amp; (pt2.l != a.l) ) || ( !isNull(pt3) &amp;&amp; (pt3.l != b.l) ) ){
+                    continue;
+                }
+                else if (link4pt(pt1, pt2, pt3, pt4)){
+                    isKill = true;
+                    kill(a, b);
+                    showLine(pt1, pt2, pt3, pt4);
+                    break;
+                    return;
+                }
+            }
+        }
+
+        //扫描完毕
+        if(isKill == false){
+            endBox = &apos;&apos;;
+            byId(_ap).className = &apos;&apos;;
+            startBox = _bp;
+        }
+    }
+
+    //干掉格子，删除boxArr中相应格子
+    function kill(a, b) {
+        boxArr[a.position] = null;
+        boxArr[b.position] = null;
+        boxsLength -= 2;
+        startBox = &apos;&apos;;
+        endBox = &apos;&apos;;
+    }
+
+    // 显示链接路径
+    function showLine(a, b, c, d) {
+        var line1 =show2pt(a,b);
+        var line2 = show2pt(b,c);
+        var line3 = show2pt(c,d);
+        var hideLine = function () {
+            gameBox.removeChild(line1);
+            gameBox.removeChild(line2);
+            gameBox.removeChild(line3);
+            byId(a.position).src = byId(d.position).src =&apos;img/blank.gif&apos;;
+            byId(a.position).className = byId(d.position).className = &apos;&apos;;
+            if (boxsLength&lt;=0) {
+                alert(&apos;亲，你赢了！好腻害啊。欢迎在北京的琼海老乡加群：58820899&apos;);
+                byId(&apos;agin&apos;).style.display = &apos;block&apos;;
+            }
+        }
+        setTimeout(hideLine, 300);
+
+        function show2pt (a, b){
+            var top, left, width, height, line = document.createElement(&apos;div&apos;);
+            var a = a, b = b, temp;
+            // 交换位置
+            if (a.t &gt; b.t || a.l &gt; b.l) {
+                temp = a;
+                a = b;
+                b = temp;
+            }
+            top = boxWidth * a.t + 30 + &apos;px&apos;;
+            left = boxWidth * a.l + 30 + &apos;px&apos;;
+            // 同行(t相等)
+            if (a.t == b.t) {
+                width = boxWidth * (b.l - a.l) + 1 + &apos;px&apos;;
+                height = &apos;1px&apos;;
+            }
+            // 同列(l相等)
+            if (a.l == b.l) {
+                width = &apos;1px&apos;;
+                height = boxWidth * (b.t - a.t) + 1 + &apos;px&apos;;
+            }
+            line.style.top = top;
+            line.style.left = left;
+            line.style.width = width;
+            line.style.height = height;
+            return gameBox.appendChild(line);
+        }
+    }
+
+    // 单个格子是否空值
+    function isNull (a) {
+        return boxArr[&apos;t&apos; + a.t + &apos;_l&apos; + a.l] ? false : true;
+    }
+
+    // 2点是否连通
+    function link2pt (a, b) {
+        var a = a, b = b, temp, canLink = true;
+        // 交换位置
+        if (a.t &gt; b.t || a.l &gt; b.l) {
+            temp = a;
+            a = b;
+            b = temp;
+        }
+        if (a.t == b.t) {   //同行（t相等），a在b的左边
+            for (var i = a.l + 1, len = b.l - 1; i &lt;= len; i++) {
+                if (boxArr[&apos;t&apos; + a.t + &apos;_l&apos; + i]) {
+                    canLink = false;
+                    break;
+                }
+            }
+        }else if (a.l == b.l) {   //同列（l相等），a在b的上边
+            for (var i = a.t + 1, len = b.t - 1; i &lt;= len; i++  ) {
+                if(boxArr[&apos;t&apos; + i + &apos;_l&apos; + a.l]) {
+                    canLink = false;
+                    break;
+                }
+            }
+        } else {
+            throw (&apos;位置错误：a.t=&apos; + a.t + &apos; b.t=&apos; + b.t + &apos; a.l=&apos; + a.l + &apos; b.l=&apos; + b.l);
+        }
+        return canLink;
+    }
+
+    // 4个点是否两两连通
+    function link4pt (pt1, pt2, pt3, pt4) {
+        return link2pt(pt1, pt2) &amp;&amp; link2pt(pt2, pt3) &amp;&amp; link2pt(pt3, pt4);
+    }
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p style=&quot;display: none;&quot; class=&quot;agin&quot; id=&quot;agin&quot;&gt;&lt;input type=&quot;button&quot; value=&quot;再来一把&quot; onclick=&quot;init()&quot;&gt;&lt;/p&gt;
+&lt;div id=&quot;game-box&quot; class=&quot;clearfix&quot;&gt;
+&lt;/div&gt;
+&lt;p style=&quot;&quot; class=&quot;text&quot;&gt;阿安提示：亲属或情侣之间也可以连哦，你都晓得他们是谁和谁吗？黑喂狗！啊哈哈哈~~ &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/&quot;&gt;前端手记&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/javascript-linkgame/" data-id="cj28wi5oq004b7ofy05n4n5o0" data-title="javascript连连看。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/连连看/">连连看</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/function-of-the-inertia-load/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          利用函数的惰性载入提高javascript代码性能
+        
+      </div>
+    </a>
+  
+  
+    <a href="/jquery1-9-removed-api/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">jQuery1.9中被删除的API</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="737"
+     data-title="javascript连连看。"
+     data-url="http://annn.me/javascript-linkgame">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

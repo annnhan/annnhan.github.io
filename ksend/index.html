@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        命令行推送个人文档至kindle |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="昨天同事发了一本pdf格式的电子书，以往的方式，我都是登陆自己的qq邮箱，然后发pdf作为附件，推送到自己的kindle接收邮箱上。突然觉得，其实nodejs应该有这样的命令行工具，可以一条命令搞定，于是在npm上搜索了一下，果然有一个叫“kindle”的包。但是安装以后，总是推送失败，大概开了下源码，估计是作者使用的nodemailer组件做了不兼容升级导致。 于是，为了以后传文件到kindle">
+<meta name="keywords" content="ksend,kindle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="命令行推送个人文档至kindle">
+<meta property="og:url" content="http://annn.me/ksend/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="昨天同事发了一本pdf格式的电子书，以往的方式，我都是登陆自己的qq邮箱，然后发pdf作为附件，推送到自己的kindle接收邮箱上。突然觉得，其实nodejs应该有这样的命令行工具，可以一条命令搞定，于是在npm上搜索了一下，果然有一个叫“kindle”的包。但是安装以后，总是推送失败，大概开了下源码，估计是作者使用的nodemailer组件做了不兼容升级导致。 于是，为了以后传文件到kindle">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="命令行推送个人文档至kindle">
+<meta name="twitter:description" content="昨天同事发了一本pdf格式的电子书，以往的方式，我都是登陆自己的qq邮箱，然后发pdf作为附件，推送到自己的kindle接收邮箱上。突然觉得，其实nodejs应该有这样的命令行工具，可以一条命令搞定，于是在npm上搜索了一下，果然有一个叫“kindle”的包。但是安装以后，总是推送失败，大概开了下源码，估计是作者使用的nodemailer组件做了不兼容升级导致。 于是，为了以后传文件到kindle">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ksend" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ksend/" class="article-date">
+  <time datetime="2015-01-03T05:24:00.000Z" itemprop="datePublished">2015-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      命令行推送个人文档至kindle
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>昨天同事发了一本pdf格式的电子书，以往的方式，我都是登陆自己的qq邮箱，然后发pdf作为附件，推送到自己的kindle接收邮箱上。<br>突然觉得，其实nodejs应该有这样的命令行工具，可以一条命令搞定，于是在npm上搜索了一下，果然有一个叫“kindle”的包。<br>但是安装以后，总是推送失败，大概开了下源码，估计是作者使用的nodemailer组件做了不兼容升级导致。</p>
+<p>于是，为了以后传文件到kindle时偷个懒，就自己动手写了一个命令行工具，名叫ksend（ <a href="https://github.com/hanan198501/ksend" target="_blank">https://github.com/hanan198501/ksend</a> ），简单好用。 O(∩_∩)O~</p>
+<p><strong>使用指南</strong></p>
+<ol>
+<li><p>安装</p>
+<pre><code>npm install ksend -g
+</code></pre></li>
+<li><p>设置默认发送邮箱，格式: 邮箱地址:密码</p>
+<pre><code>ksend --from yourname@qq.com:yourpassword
+</code></pre></li>
+<li><p>推送，如下示例，推送 a.pdf 至 hanan@kindle.cn 这个kindle接收邮箱：</p>
+<pre><code>ksend -m hanan@kindle.cn a.pdf
+</code></pre><p> 以上命令，参数 -m 表示接收邮箱。自此，完成推送。</p>
+</li>
+</ol>
+<p>如果脚得每次都要敲 -m 接收邮箱 麻烦，可以设置默认接收邮箱：</p>
+<pre><code>ksend --to hanan@kindle.cn
+</code></pre><p>这样，以后只需要如下命令即可推送：</p>
+<pre><code>ksend a.pdf
+</code></pre><p>也可以同时推送多个文档：</p>
+<pre><code>ksend a.pdf b.pdf ../img/photo.jpg /Users/hanan/book/ooxx.txt
+</code></pre><p>查看帮助：</p>
+<pre><code>ksend --help
+</code></pre><p>ps: 记得把发送邮箱添加到您的kindle已认可的发件人电子邮箱列表哦。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ksend/" data-id="cj28wi5pg005f7ofyxdp47e7q" data-title="命令行推送个人文档至kindle" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/kindle/">kindle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ksend/">ksend</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/addjs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用 AddJS 为网页自动添加自定义javascript脚本
+        
+      </div>
+    </a>
+  
+  
+    <a href="/cross-domain-local-storage/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于 postMessage 和 localStorage 的跨域本地存储方案</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="ksend"
+     data-title="命令行推送个人文档至kindle"
+     data-url="http://annn.me/ksend">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

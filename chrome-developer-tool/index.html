@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        Chrome开发人员工具使用技巧 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="转自：http://ued.taobao.com/blog/2012/06/03/debug-with-chrome-dev-tool/ 这篇文章是根据目前 chrome 稳定版(19.0.1084.52 m)写的, 因为 google 也在不断完善chrome developer tool, 所以 chrome 版本不同可能稍有差别. 一些快捷键也是 windows 上的, mac 下的应该大同">
+<meta name="keywords" content="chrome,开发人员工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome开发人员工具使用技巧">
+<meta property="og:url" content="http://annn.me/chrome-developer-tool/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="转自：http://ued.taobao.com/blog/2012/06/03/debug-with-chrome-dev-tool/ 这篇文章是根据目前 chrome 稳定版(19.0.1084.52 m)写的, 因为 google 也在不断完善chrome developer tool, 所以 chrome 版本不同可能稍有差别. 一些快捷键也是 windows 上的, mac 下的应该大同">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-before.jpg">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-after.jpg">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/element-events.jpg">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/breakpoints.jpg">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/dom-event-level3.jpg">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/multifile-find.jpg">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/monitorEvents.jpg">
+<meta property="og:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/eval.jpg">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chrome开发人员工具使用技巧">
+<meta name="twitter:description" content="转自：http://ued.taobao.com/blog/2012/06/03/debug-with-chrome-dev-tool/ 这篇文章是根据目前 chrome 稳定版(19.0.1084.52 m)写的, 因为 google 也在不断完善chrome developer tool, 所以 chrome 版本不同可能稍有差别. 一些快捷键也是 windows 上的, mac 下的应该大同">
+<meta name="twitter:image" content="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-before.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-chrome-developer-tool" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chrome-developer-tool/" class="article-date">
+  <time datetime="2012-06-03T23:07:31.000Z" itemprop="datePublished">2012-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      Chrome开发人员工具使用技巧
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>转自：<a href="http://ued.taobao.com/blog/2012/06/03/debug-with-chrome-dev-tool/" target="_blank" rel="external">http://ued.taobao.com/blog/2012/06/03/debug-with-chrome-dev-tool/</a></p>
+<p>这篇文章是根据目前 chrome 稳定版(19.0.1084.52 m)写的, 因为 google 也在不断完善chrome developer tool, 所以 chrome 版本不同可能稍有差别. 一些快捷键也是 windows 上的, mac 下的应该大同小异.</p>
+<p>常规的断点相关的 breakpoint/conditional-breakpoint/call-stack/watch-expressions 等就不涉及了.</p>
+<h3 id="1-Beautify-javascript"><a href="#1-Beautify-javascript" class="headerlink" title="1. Beautify javascript"></a><strong>1. Beautify javascript</strong></h3><p>js 文件在上线前一般都会压缩下, 压缩的 javascript 几乎没有可读性, 几乎无法设定断点. 在 Scripts 面板下面有个 Pretty print 按钮(这种符号 {}), 点击会将压缩 js 文件格式化缩进规整的文件, 这时候在设定断点可读性就大大提高了.</p>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-before.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-before.jpg" alt=""></a></p>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-after.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-after.jpg" alt=""><a id="more"></a></a></p>
+<h3 id="2-查看元素绑定了哪些事件"><a href="#2-查看元素绑定了哪些事件" class="headerlink" title="2. 查看元素绑定了哪些事件"></a><strong>2. 查看元素绑定了哪些事件</strong></h3><p>在 Elements 面板, 选中一个元素, 然后在右侧的 Event Listeners 下面会按类型出这个元素相关的事件, 也就是在事件捕获和冒泡阶段会经过的这个节点的事件.</p>
+<p>在 Event Listeners 右侧下拉按钮中可以选择 Selected Node Only 只列出这个节点上的事件</p>
+<p>展开事件后会显示出这个事件是在哪个文件中绑定的, 点击文件名会直接跳到绑定事件处理函数所在行, 如果 js 是压缩了的, 可以先 Pretty print 下, 然后再查看绑定的事件.</p>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/element-events.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/element-events.jpg" alt=""></a></p>
+<h3 id="3-Ajax-时中断"><a href="#3-Ajax-时中断" class="headerlink" title="3. Ajax 时中断"></a><strong>3. Ajax 时中断</strong></h3><p>在 Scripts 面板右侧有个 XHR Breakpoints, 点右侧的 + 会添加一个 xhr 断点, 断点是根据 xhr 的 url 匹配中断的, 如果不写匹配规则会在所有 ajax, 这个匹配只是简单的字符串查找, 发送前中断, 在中断后再在 Call Stack 中查看时那个地方发起的 ajax 请求</p>
+<h3 id="4-页面事件中断"><a href="#4-页面事件中断" class="headerlink" title="4. 页面事件中断"></a><strong>4. 页面事件中断</strong></h3><p>除了给设定常规断点外, 还可以在某一特定事件发生时中断(不针对元素) , 在 Scripts 面板右侧, 有个 Event Listener Breakpoints, 这里列出了支持的所有事件, 不仅 click, keyup 等事件, 还支持 Timer(在 setTimeout setInterval 处理函数开始执行时中断), onload, scroll 等事件.</p>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/breakpoints.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/breakpoints.jpg" alt=""></a></p>
+<h3 id="5-javascript-异常时中断"><a href="#5-javascript-异常时中断" class="headerlink" title="5. javascript 异常时中断"></a><strong>5. javascript 异常时中断</strong></h3><p>Pretty print 左侧的按钮是开启 js 抛异常时中断的开关, 有两种模式：在所有异常处中断, 在未捕获的异常处中断. 在异常处中断后就可以查看为什么抛出异常了</p>
+<h3 id="6-DOM-Level-3-Event-事件中断"><a href="#6-DOM-Level-3-Event-事件中断" class="headerlink" title="6. DOM Level 3 Event 事件中断"></a><strong>6. DOM Level 3 Event 事件中断</strong></h3><p>在 Elements 面板, 选中一个元素右键, 有两个选项：Break on subtree modifications, Break on attributes modifications, 这两个对应 DOM Level 3 Event 中的<a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMSubtreeModified" target="_blank" rel="external">DOMSubtreeModified</a> , <a href="http://www.w3.org/TR/DOM-Level-3-Events/#event-type-DOMAttrModified" target="_blank" rel="external">DOMSubtreeModified</a> 事件 在 Scripts 面板 DOM Breakpoints 处会列出所有 level3 的 event 中断</p>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/dom-event-level3.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/dom-event-level3.jpg" alt=""></a></p>
+<h3 id="7-所有-js-文件中查找"><a href="#7-所有-js-文件中查找" class="headerlink" title="7. 所有 js 文件中查找"></a><strong>7. 所有 js 文件中查找</strong></h3><p>在 chrome developer tool 打开的情况下, 按 ctrl + shift + F, 在通过 js 钩子查找代码位置时很有用, 查找支持正则表达式</p>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/multifile-find.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/multifile-find.jpg" alt=""></a></p>
+<h3 id="8-command-line-api"><a href="#8-command-line-api" class="headerlink" title="8. command line api"></a><strong>8. command line api</strong></h3><ul>
+<li>$(id_selector) 这个与页面是否有 jQuery 无关</li>
+</ul>
+<ul>
+<li>$$(css_selector)</li>
+</ul>
+<ul>
+<li>$0, $1, $2, $3, $4</li>
+</ul>
+<pre><code>1. Elements 面板中最近选中的 5 个元素, 最后选择的是 $0
+
+
+2. 这个 5 个变量时先进先出的
+</code></pre><ul>
+<li>copy(str) 复制 str 到剪切板, 在断点时复制变量时有用</li>
+</ul>
+<ul>
+<li>monitorEvents(object[, types])/unmonitorEvents(object[, types])</li>
+</ul>
+<pre><code>1. 当 object 上 types 事件发生时在 console 中输出 event 对象
+</code></pre><ul>
+<li>更多 console api 请 console.log(console) 或 <a href="http://getfirebug.com/wiki/index.php/Console_API#console.trace.28.29" target="_blank" rel="external">点击</a></li>
+</ul>
+<ul>
+<li>更多 command line api <a href="http://getfirebug.com/wiki/index.php/Command_Line_API" target="_blank" rel="external">点击</a></li>
+</ul>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/monitorEvents.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/monitorEvents.jpg" alt=""></a></p>
+<h3 id="9-实时修改-js-代码生效"><a href="#9-实时修改-js-代码生效" class="headerlink" title="9. 实时修改 js 代码生效"></a><strong>9. 实时修改 js 代码生效</strong></h3><ul>
+<li>页面外部 js 文件在 Scripts 面板中可以直接修改, 改完后按 ctrl + S 保存, 会立即生效</li>
+</ul>
+<ul>
+<li>注意</li>
+</ul>
+<pre><code>1. 经测试不支持 html 页面中 js 修改
+
+
+2. 经过 Pretty print 格式化的脚本不支持修改
+</code></pre><h3 id="10-console-中执行的代码可断点"><a href="#10-console-中执行的代码可断点" class="headerlink" title="10. console 中执行的代码可断点"></a><strong>10. console 中执行的代码可断点</strong></h3><p>在 console 中输入代码的最后一行加上 //@ sourceURL=filename.js, 会在 Scripts 面板中有个叫 filename.js 的文件, 然后他就和外部 js 文件一样了</p>
+<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/eval.jpg" target="_blank" rel="external"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/eval.jpg" alt=""></a></p>
+<pre><code>function hello() {
+  alert(&apos;say hi&apos;);
+}
+//@ sourceURL=hello.js
+</code></pre><p>#### </p>
+<h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><ul>
+<li><a href="https://developers.google.com/chrome-developer-tools/docs/overview" target="_blank" rel="external">chrome developer tool doc</a></li>
+</ul>
+<ul>
+<li><a href="http://www.youtube.com/watch?v=N8SS-rUEZPg" target="_blank" rel="external">Google I/O 2011: Chrome Dev Tools Reloaded</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/chrome-developer-tool/" data-id="cj28wi5ls00187ofydjfd50yn" data-title="Chrome开发人员工具使用技巧" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/开发人员工具/">开发人员工具</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/html5-w3c-whatwg/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTML5? 你妈贵姓？W3C？还是WHATWG？
+        
+      </div>
+    </a>
+  
+  
+    <a href="/it-will-only-take-you-few-days-to-code/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如果有人对你说：“这很简单，不会占用你多少时间。”</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="471"
+     data-title="Chrome开发人员工具使用技巧"
+     data-url="http://annn.me/chrome-developer-tool">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

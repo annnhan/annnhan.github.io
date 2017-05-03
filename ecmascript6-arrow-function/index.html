@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        理解ECMAScript6中的箭头函数 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="箭头函数是ECMAScript6中最有趣的部分之一。正如其名字所暗示的一样，它是一种用新的语法，一个“箭头”（=&amp;gt;）来定义的函数。然而，相对于传统的函数，箭头函数在一些重要的用途中会有一些不同的表现：   语法绑定this ——箭头函数中的this的值，在函数定义的时候就绑定了，而不是根据函数执行时机来绑定；  不能new ——箭头函数不能被当做构造函数来用，当通过new来调用时，会报错；">
+<meta name="keywords" content="javascript,ECMAScript6,function,函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解ECMAScript6中的箭头函数">
+<meta property="og:url" content="http://annn.me/ecmascript6-arrow-function/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="箭头函数是ECMAScript6中最有趣的部分之一。正如其名字所暗示的一样，它是一种用新的语法，一个“箭头”（=&amp;gt;）来定义的函数。然而，相对于传统的函数，箭头函数在一些重要的用途中会有一些不同的表现：   语法绑定this ——箭头函数中的this的值，在函数定义的时候就绑定了，而不是根据函数执行时机来绑定；  不能new ——箭头函数不能被当做构造函数来用，当通过new来调用时，会报错；">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/09/arrow-tv.jpg">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解ECMAScript6中的箭头函数">
+<meta name="twitter:description" content="箭头函数是ECMAScript6中最有趣的部分之一。正如其名字所暗示的一样，它是一种用新的语法，一个“箭头”（=&amp;gt;）来定义的函数。然而，相对于传统的函数，箭头函数在一些重要的用途中会有一些不同的表现：   语法绑定this ——箭头函数中的this的值，在函数定义的时候就绑定了，而不是根据函数执行时机来绑定；  不能new ——箭头函数不能被当做构造函数来用，当通过new来调用时，会报错；">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2013/09/arrow-tv.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ecmascript6-arrow-function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ecmascript6-arrow-function/" class="article-date">
+  <time datetime="2013-09-11T11:35:50.000Z" itemprop="datePublished">2013-09-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      理解ECMAScript6中的箭头函数
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/wp-content/uploads/2013/09/arrow-tv.jpg" alt="enter image description here"></p>
+<p>箭头函数是ECMAScript6中最有趣的部分之一。正如其名字所暗示的一样，它是一种用新的语法，一个“箭头”（=&gt;）来定义的函数。然而，相对于传统的函数，箭头函数在一些重要的用途中会有一些不同的表现： </p>
+<ol>
+<li><strong>语法绑定this</strong> ——箭头函数中的this的值，在函数定义的时候就绑定了，而不是根据函数执行时机来绑定； </li>
+<li><strong>不能new</strong> ——箭头函数不能被当做构造函数来用，当通过new来调用时，会报错； </li>
+<li><strong>this不能被修改</strong> ——在箭头函数的整个生命周期内，this始终保持同一个值，无法被修改； </li>
+<li><strong>没有arguments对象</strong> ——在箭头函数内部，不能通过arguments来访问参数，你必须使用已命名的参数，或其他ES6功能。</li>
+</ol>
+<p>存在这些差是有一些原因的：首先，this的绑定是javascript中一种常见的错误来源，在函数内部，很容易把this的指向弄混淆，从而导致意想不到的后果。其次，箭头函数通过限制this为一个固定值来执行，javascript引擎可以更容易地优化这些操作（而不是传统的函数，它可能被用来作为一个构造器或以其他地方）</p>
+<a id="more"></a>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><p>箭头函数的语法取决于你所要完成的功能，但结构大致为：【参数体 =&gt; 函数体】。 首先是箭头函数要接受的参数，紧接着是一个箭头=&gt;，然后是函数体。参数体和函数体可以有多种形式，这个要根据使用情况而定。例如，下面的箭头函数接受一个参数，并将其返回。</p>
+<pre><code>var reflect = value =&gt; value;
+
+// 相当于:
+var reflect = function(value) {
+    return value;
+};
+</code></pre><p>当箭头函数只有一个参数，可以直接放在参数体而无需任何其他语法。箭头右边的表达式求值并返回。即使有没有return语句，这个箭头函数也能将传递进来的第一个参数返回。</p>
+<p>如果箭头函数需要多个参数，必须用圆括号将这些参数括起来，参数之间用逗号分隔。例如：</p>
+<pre><code>var sum = (num1, num2) =&gt; num1 + num2;
+
+// 相当于:
+var sum = function(num1, num2) {
+    return num1 + num2;
+};
+</code></pre><p>sum（）函数只是简单地增加了两个参数，并返回结果。唯一的区别是，参数括在括号里用逗号分开（和传统函数一样一样的）。</p>
+<p>当你想提供一个更传统的函数体，也许里面有多个表达式，那么你需要把函数体放在花括号中，并显式地定义一个返回值，如：</p>
+<pre><code>var sum = (num1, num2) =&gt; { return num1 + num2; }
+
+// 相当于:
+var sum = function(num1, num2) {
+    return num1 + num2;
+};
+</code></pre><p>由于花括号用来表示箭头函数的函数体，当你想返回一个对象字面量时，就必须用圆括号把对象字面量包起来：</p>
+<pre><code>var getTempItem = id =&gt; ({ id: id, name: &quot;Temp&quot; });
+
+// 相当于:
+var getTempItem = function(id) {
+
+    return {
+        id: id,
+        name: &quot;Temp&quot;
+    };
+};
+</code></pre><p>圆括号把对象字面量包起来，表明括号里面的信息是一个对象，而不是函数体。</p>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><p>javascript中最常见的错误来自于函数内部this的绑定问题，由于传统函数中this的值取决于函数执行时候的上下文，它可能会被绑定到你预想之外的对象上，导致错误的执行结果。请看下面的例子：</p>
+<pre><code>var PageHandler = {
+
+    id: &quot;123456&quot;,
+
+    init: function() {
+        document.addEventListener(&quot;click&quot;, function(event) {
+            this.doSomething(event.type);     // error
+        }, false);
+    },
+
+    doSomething: function(type) {
+        console.log(&quot;Handling &quot; + type  + &quot; for &quot; + this.id);
+    }
+};
+</code></pre><p>在这段代码中，对象PageHandler用于处理页面上的交互。PageHandler的init()方法被调用时，又指派一个事件处理函数调用this.doSomething()方法。但是，此段代码并不work。因为事件处理函数中的this指向了全局对象，而不是PageHandler。如果你试图运行此代码，你会得到一个错误，因为全局对象上不存在doSomething方法。</p>
+<p>你可以通过bind()方法，把PageHandler绑定到事件处理函数的this上，例如：</p>
+<pre><code>var PageHandler = {
+
+    id: &quot;123456&quot;,
+
+    init: function() {
+        document.addEventListener(&quot;click&quot;, (function(event) {
+            this.doSomething(event.type);
+        }).bind(this), false);
+    },
+
+    doSomething: function(type) {
+        console.log(&quot;Handling &quot; + type  + &quot; for &quot; + this.id);
+    }
+};
+</code></pre><p>现在的代码如预期般运作，但可能看起来有点怪。通过调用函数的bind(this)，实际上创建了一个绑定PageHandler到当前this的新函数。当然，现在的代码是你所期望的那样，即使你必须创建一个额外的函数来完成工作。</p>
+<p>由于箭头函数可以通过语法绑定来约束this的值，在箭头函数的上下文中，this的值将保持不变，不会根据函数的执行时机做任何更改，例如：</p>
+<pre><code>var PageHandler = {
+
+    id: &quot;123456&quot;,
+
+    init: function() {
+        document.addEventListener(&quot;click&quot;,
+                event =&gt; this.doSomething(event.type), false);
+    },
+
+    doSomething: function(type) {
+        console.log(&quot;Handling &quot; + type  + &quot; for &quot; + this.id);
+    }
+};
+</code></pre><p>这里例子用一个箭头函数来作为事件监听函数，箭头函数中调用了this.doSomething()，其中this的值始终为init()里面的this的值，也就是PageHandler，不会转移到全局对象上。 所以这个版本的例子和使用bind()的例子运行结果是一样的。即使doSomething（）方法没有返回值，它仍是函数体唯一要的执行语句，所以也没有必要包上花括号。</p>
+<p>箭头函数简洁的语法，也使他们成为其他函数的理想参数。例如，如果您想对数组进行排序，ES5中使用自定义的比较，通常这样写：</p>
+<pre><code>var result = arr.sort(function(a, b) {
+    return a - b;
+});
+</code></pre><p>与此相比，更简洁的箭头函数版：</p>
+<pre><code>var result = arr.sort((a, b) =&gt; a - b);
+</code></pre><p>能接受回调函数的数组方法，例如sort(), map(), 和reduce()都可以受益鱼箭头函数，改变成更简洁的代码，从简单的语法实现复杂的流程。</p>
+<h3 id="您还需要知道"><a href="#您还需要知道" class="headerlink" title="您还需要知道"></a>您还需要知道</h3><p>箭头函数虽然有别于传统函数，但都有一些共同的特点。例如： </p>
+<ol>
+<li>typeof运算符返回箭头函数为“function” </li>
+<li>箭头函数仍然是Function的实例，这样的instanceof工作方式相同。 </li>
+<li>call(), apply(), bind()方法在箭头函数上依然可用，虽然没有太大的价值。</li>
+</ol>
+<p><strong>请记住，箭头函数最大的区别是不能用new来调用，否则，将会抛出一个错误</strong></p>
+<h3 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h3><p>目前，箭头函数是ECMAScript6一个有趣的新功能，和一个和可爱凝固的功能。传递函数作为参数已经变得越来越流行，有一个简洁的语法，定义这些功能的方式，这是一个可喜的变化。词汇绑定为开发者解决了一个重大痛点，并为javascript引擎优化提高性能提供额外的奖励。如果你想尝试箭头函数，只要打开刚刚火起来的最新版Firefox，这是第一款实现箭头函数的浏览器。</p>
+<p><em>注：本文翻译自Nicholas C. Zakas的《Understanding ECMAScript 6 arrow functions》其中加入自己的理解并用非原文照搬，如有不对欢迎指正，转载译文请注明出处与译者。</em> <em>原文地址：<a href="http://www.nczonline.net/blog/2013/09/10/understanding-ecmascript-6-arrow-functions" target="_blank" rel="external">http://www.nczonline.net/blog/2013/09/10/understanding-ecmascript-6-arrow-functions</a></em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ecmascript6-arrow-function/" data-id="cj28wi5mp00267ofy3avnqp52" data-title="理解ECMAScript6中的箭头函数" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/函数/">函数</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/fiddler-stave/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Stave——让Fiddler拥有路径映射功能。
+        
+      </div>
+    </a>
+  
+  
+    <a href="/git-use/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">git 使用笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="991"
+     data-title="理解ECMAScript6中的箭头函数"
+     data-url="http://annn.me/ecmascript6-arrow-function">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

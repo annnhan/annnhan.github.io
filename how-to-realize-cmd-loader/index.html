@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        如何实现一个 CMD 模块加载器 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。关于 cmd 更详细的内容可以移步 https://github.com/cmdjs/specificatio">
+<meta name="keywords" content="javascript,cmd,loader">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现一个 CMD 模块加载器">
+<meta property="og:url" content="http://annn.me/how-to-realize-cmd-loader/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。关于 cmd 更详细的内容可以移步 https://github.com/cmdjs/specificatio">
+<meta property="og:image" content="http://annn.me/assets/img/cmd.png">
+<meta property="og:image" content="http://annn.me/assets/img/cmd-modules.png">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何实现一个 CMD 模块加载器">
+<meta name="twitter:description" content="cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。关于 cmd 更详细的内容可以移步 https://github.com/cmdjs/specificatio">
+<meta name="twitter:image" content="http://annn.me/assets/img/cmd.png">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-how-to-realize-cmd-loader" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/how-to-realize-cmd-loader/" class="article-date">
+  <time datetime="2015-09-03T09:03:00.000Z" itemprop="datePublished">2015-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      如何实现一个 CMD 模块加载器
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。<br>关于 cmd 更详细的内容可以移步 <a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="external">https://github.com/cmdjs/specification/blob/master/draft/module.md</a><br>今天，我们一起来学习如何实现一个浏览器端的简单的 cmd loader。</p>
+<h2 id="模块加载流程"><a href="#模块加载流程" class="headerlink" title="模块加载流程"></a>模块加载流程</h2><p>下图展示了一个 cmd loader 的模块加载大体流程：</p>
+<p><img src="/assets/img/cmd.png" alt="cmd loader"></p>
+<ol>
+<li>首先，通过 use 方法来加载入口模块，并接收一个回调函数， 当模块加载完成， 会调用回调函数，并传入对应的模块。use 方法会 check 模块有没有缓存，如果有，则从缓存中获取模块，如果没有，则创建并加载模块。</li>
+<li>获取到模块后，模块可能还没有 load 完成，所以需要在模块上绑定一个 “complete” 事件，模块加载完成会触发这个事件，这时候才调用回调函数。</li>
+<li>创建一个模块时，id就是模块的地址，通过创建 script 标签的方式异步加载模块的代码（factory），factory 加载完成后，会 check factory 中有没有 require 别的子模块:<ul>
+<li>如果有，继续加载其子模块，并在子模块上绑定 “complete” 事件，来触发本身 的 “complete” 事件；</li>
+<li>如果没有则直接触发本身的 “complete” 事件。</li>
+</ul>
+</li>
+<li>如果子模块中还有依赖，则会递归这个过程。</li>
+<li>通过事件由里到外的传递，当所有依赖的模块都 complete 的时候，最外层的入口模块才会触发 “complete” 事件，use 方法中的回调函数才会被调用。</li>
+</ol>
+<a id="more"></a>
+<h2 id="功能划分"><a href="#功能划分" class="headerlink" title="功能划分"></a>功能划分</h2><p>理解了整个过程，那么我们就来开始实现我们的代码，我们暂且给这个加载器命名为 mcmd 吧。首先是加载器的功能模块划分：</p>
+<p><img src="/assets/img/cmd-modules.png" alt="cmd loader"></p>
+<ul>
+<li>mcmd：入口文件，用于定义默认配置，参数，常量等，同时使用或加载其他的功能模块；</li>
+<li>define：实现 cmd 中的 “define” 方法；</li>
+<li>require：实现 cmd 中的 “require” 方法；</li>
+<li>use：实现 cmd 中的 “use” 方法；</li>
+<li>module：模块类，实现模块的创建、加载、事件等功能；</li>
+<li>load：用于获取模块，把模块从新建和从 cache 中获取封装成统一的接口；</li>
+<li>promise：异步任务处理器；</li>
+<li>util：工具类函数；</li>
+</ul>
+<h2 id="构建"><a href="#构建" class="headerlink" title="构建"></a>构建</h2><p>我们使用 commonJS 的方式进行编码，并使用 browserify 配合 gulp 来构建我们的项目。</p>
+<pre><code>var gulp = require(&apos;gulp&apos;);
+var uglify = require(&apos;gulp-uglify&apos;);
+var concat = require(&apos;gulp-concat&apos;);
+var browserify = require(&apos;browserify&apos;);
+var source = require(&apos;vinyl-source-stream&apos;);
+var buffer = require(&apos;vinyl-buffer&apos;)
+
+var pg = require(&apos;./package&apos;);
+var versionName = pg.name + &apos;.&apos; + pg.version
+
+gulp.task(&apos;default&apos;, [&apos;build&apos;]);
+
+gulp.task(&apos;build&apos;, function () {
+    browserify(&apos;./src/mcmd.js&apos;)
+        .bundle()
+        .pipe(source(versionName))
+        .pipe(buffer())
+        .pipe(concat(versionName + &apos;.js&apos;))
+        .pipe(gulp.dest(&apos;./prd&apos;))
+        .pipe(uglify())
+        .pipe(concat(versionName + &apos;.min.js&apos;))
+        .pipe(gulp.dest(&apos;./prd&apos;));
+});
+</code></pre><p>确定好了功能划分和构建方式，下面我们就来实现每一个功能模块：</p>
+<h2 id="入口文件"><a href="#入口文件" class="headerlink" title="入口文件"></a>入口文件</h2><p>将我们的 cmd loader 挂在 window.mcmd 上，把 define 方法也挂在 window.define 上，初始化其他的方法和配置。</p>
+<pre><code>var g = window;
+g.define = require(&apos;./define&apos;);
+g.mcmd = {
+    use: require(&apos;./use&apos;),
+    require: require(&apos;./require&apos;),
+
+    // 模块缓存
+    modules: {},
+
+    // 默认配置
+    config: {
+        root: &apos;/&apos;
+    },
+
+    // 修改配置
+    setConfig: function (obj) {
+        for (var key in obj) {
+            this.config[key] = obj[key];
+        }
+    },
+
+    // 模块状态常量
+    MODULE_STATUS: {
+        PENDDING: 0,
+        LOADING: 1,
+        COMPLETED: 2,
+        ERROR: 3
+    }
+};
+</code></pre><h2 id="use-js"><a href="#use-js" class="headerlink" title="use.js"></a>use.js</h2><p>实现了 mcmd.use 方法，接收两个参数，第一个是id或者id数组，第二个是回调函数。内部会使用 load.js 来获取模块，并通过 promise 来处理获取多个模块的并发异步场景。</p>
+<pre><code>var Promise = require(&apos;./promise&apos;);
+var load = require(&apos;./load&apos;);
+
+module.exports = function use(ids, callback) {
+
+    if (!Array.isArray(ids)) {
+        ids = [ids]
+    }
+
+    Promise.all(ids.map(function (id) {
+        return load(mcmd.config.root + id);
+    })).then(function (list) {
+        if (typeof callback === &apos;function&apos;) {
+            callback.apply(window, list);
+        }
+    }, function (errorInfo) {
+        throw errorInfo;
+    });
+}
+</code></pre><h2 id="load-js"><a href="#load-js" class="headerlink" title="load.js"></a>load.js</h2><p>获取一个模块，并绑定事件，接收两个参数，一个是模块id，一个是回调函数，并返回一个 promise 对象。当模块 complete（加载完成）时，执行回调，同时 resolve 返回的 promise 对象。</p>
+<pre><code>var Promise = require(&apos;./promise&apos;);
+var Module = require(&apos;./module&apos;);
+var util = require(&apos;./util&apos;);
+
+module.exports = function (id, callback) {
+    return new Promise(function (resolve, reject) {
+        var mod =  mcmd.modules[id] || Module.create(id);
+        mod.on(&apos;complete&apos;, function () {
+            var exp = util.getModuleExports(mod);
+            if (typeof callback === &apos;function&apos;) {
+                callback(exp);
+            }
+            resolve(exp);
+        });
+        mod.on(&apos;error&apos;, reject);
+    });
+}
+</code></pre><h2 id="promise-js"><a href="#promise-js" class="headerlink" title="promise.js"></a>promise.js</h2><p>详见： <a href="/ecmascript6-promise">/ecmascript6-promise</a></p>
+<h2 id="module-js"><a href="#module-js" class="headerlink" title="module.js"></a>module.js</h2><p>模块的构造函数，实现了模块的创建，加载，事件传递，状态维护等。</p>
+<pre><code>// 构造函数
+function Module(id) {
+    mcmd.modules[id] = this; // 缓存模块
+    this.id = id;
+    this.status = mcmd.MODULE_STATUS.PENDDING; // 状态
+    this.factory = null;    // 执行代码
+    this.dependences = null;    //依赖
+    this.callbacks = {};    // 绑定的事件回调函数
+    this.load();
+}
+
+// 静态方法创建模块
+Module.create = function (id) {
+    return new Module(id);
+}
+
+// 通过创建 script 标签异步加载模块
+Module.prototype.load = function () {
+    var id = this.id;
+    var script = document.createElement(&apos;script&apos;);
+    script.src = id;
+    script.onerror = function (event) {
+        this.setStatus(mcmd.MODULE_STATUS.ERROR, {
+            id: id,
+            error: (this.error = new Error(&apos;module can not load.&apos;))
+        });
+    }.bind(this);
+    document.head.appendChild(script);
+    this.setStatus(mcmd.MODULE_STATUS.LOADING);
+}
+
+// 事件绑定方法
+Module.prototype.on = function (event, callback) {
+    (this.callbacks[event] || (this.callbacks[event] = [])).push(callback);
+    if (
+        (this.status === mcmd.MODULE_STATUS.LOADING &amp;&amp; event === &apos;load&apos;) ||
+        (this.status === mcmd.MODULE_STATUS.COMPLETED &amp;&amp; event === &apos;complete&apos;)
+    ) {
+        callback(this);
+    }
+    if (this.status === mcmd.MODULE_STATUS.ERROR &amp;&amp; event === &apos;error&apos;) {
+        callback(this, this.error);
+    }
+}
+
+// 事件触发方法
+Module.prototype.fire = function (event, arg) {
+    (this.callbacks[event] || []).forEach(function (callback) {
+        callback(arg || this);
+    }.bind(this));
+}
+
+// 设置状态方法，并抛出相应的事件
+Module.prototype.setStatus = function (status, info) {
+    if (this.status !== status) {
+        this.status = status;
+        switch (status) {
+            case mcmd.MODULE_STATUS.LOADING:
+                this.fire(&apos;load&apos;);
+                break;
+            case mcmd.MODULE_STATUS.COMPLETED:
+                this.fire(&apos;complete&apos;);
+                break;
+            case mcmd.MODULE_STATUS.ERROR:
+                this.fire(&apos;error&apos;, info);
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+module.exports = Module;
+</code></pre><h2 id="define-js"><a href="#define-js" class="headerlink" title="define.js"></a>define.js</h2><p>实现 window.define 方法。接收一个参数 factory（cmd规范中不止一个，为了保持简单，我们只实现一个），即模块的代码包裹函数。通过 getCurrentScript 这个函数获取到当前执行脚本的 script 节点 src ，提取出模块 id ，找到模块对象。然后提取出 factory 中的依赖子模块，如果没有依赖，则直接触发模块的 “complete” 事件， 如果有依赖，则创建依赖的模块，绑定事件并加载，等依赖的模块加载完成后，再触发 “complete” 事件。</p>
+<pre><code>var util = require(&apos;./util&apos;);
+var Promise = require(&apos;./promise&apos;);
+var Module = require(&apos;./module&apos;);
+
+module.exports = function (factory) {
+    var id = getCurrentScript().replace(location.origin, &apos;&apos;);
+    var mod = mcmd.modules[id];
+    var dependences = mod.dependences = getDenpendence(factory.toString());
+    mod.factory = factory;
+    if (dependences) {
+        Promise.all(dependences.map(function (id) {
+            return new Promise(function (resolve, reject) {
+                id = mcmd.config.root + id;
+                var depMode = mcmd.modules[id] || Module.create(id);
+                depMode.on(&apos;complete&apos;, resolve);
+                depMode.on(&apos;error&apos;, reject);
+            });
+        })).then(function () {
+            mod.setStatus(mcmd.MODULE_STATUS.COMPLETED);
+        }, function (error) {
+            mod.setStatus(mcmd.MODULE_STATUS.ERROR, error);
+        });
+    }
+    else {
+        mod.setStatus(mcmd.MODULE_STATUS.COMPLETED);
+    }
+}
+
+// 获取当前执行的script节点
+// 参考 http://www.cnblogs.com/rubylouvre/archive/2013/01/23/2872618.html
+function getCurrentScript() {
+    var doc = document;
+    if(doc.currentScript) {
+        return doc.currentScript.src;
+    }
+    var stack;
+    try {
+        a.b.c();
+    } catch(e) {
+        stack = e.stack;
+        if(!stack &amp;&amp; window.opera){
+            stack = (String(e).match(/of linked script \S+/g) || []).join(&quot; &quot;);
+        }
+    }
+    if(stack) {
+        stack = stack.split( /[@ ]/g).pop();
+        stack = stack[0] == &quot;(&quot; ? stack.slice(1,-1) : stack;
+        return stack.replace(/(:\d+)?:\d+$/i, &quot;&quot;);
+    }
+    var nodes = head.getElementsByTagName(&quot;script&quot;);
+    for(var i = 0, node; node = nodes[i++];) {
+        if(node.readyState === &quot;interactive&quot;) {
+            return node.className = node.src;
+        }
+    }
+}
+
+// 解析依赖，这里只做简单的提取，实际需要考虑更多情况，参考seajs
+function getDenpendence(factory) {
+    var list = factory.match(/require\(.+?\)/g);
+    if (list) {
+        list = list.map(function (dep) {
+            return dep.replace(/(^require\([&apos;&quot;])|([&apos;&quot;]\)$)/g, &apos;&apos;);
+        });
+    }
+    return list;
+}
+</code></pre><h2 id="require-js"><a href="#require-js" class="headerlink" title="require.js"></a>require.js</h2><p>返回模块的 exports 属性， 这里通过封装的 util.getModuleExports 方法获取并返回。</p>
+<pre><code>var util = require(&apos;./util&apos;);
+
+module.exports = function (id) {
+    id = mcmd.config.root + id;
+    var mod = mcmd.modules[id];
+    if (mod) {
+        return util.getModuleExports(mod);
+    }
+    else {
+        throw &apos;can not get module by from:&apos; + id;
+    }
+}
+
+module.exports.async = function (ids, callback) {
+    mcmd.use(ids, callback);
+}
+</code></pre><h2 id="util-js"><a href="#util-js" class="headerlink" title="util.js"></a>util.js</h2><p>这里只有一个 getModuleExports 方法， 接收一个模块，返回模块的接口。当模块的 exports 属性不存在时，说明模块的 factory 没有被执行过。这时我们需要执行下 factory，传入 require， 创建的exports，以及 module 本身作为参数。最后获取模块的暴露的数据并返回。</p>
+<pre><code>module.exports = {
+    getModuleExports: function (mod) {
+        if (!mod.exports) {
+            mod.exports = {};
+            mod.factory(mcmd.require, mod.exports, mod);
+        }
+        return mod.exports;
+    }
+};
+</code></pre><p>这样，整个 cmd loader 就基本完成了。这只是一个非常基础的模块加载器，主要是为了理解 cmd 的原理和实现方式，对于生产环境，推荐使用成熟的 seajs。</p>
+<p>整个 mcmd 项目我都放在了 github 上，大家可以去看看：<a href="https://github.com/hanan198501/mcmd" target="_blank" rel="external">https://github.com/hanan198501/mcmd</a>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cj28wi5nt00357ofy5zm0v4li" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/loader/">loader</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/reres-googleapis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          无梯子如何正常访问使用了 googleapis 的网站
+        
+      </div>
+    </a>
+  
+  
+    <a href="/fis-react/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在 fis 项目中使用 react.js</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="how-to-realize-cmd-loader"
+     data-title="如何实现一个 CMD 模块加载器"
+     data-url="http://annn.me/how-to-realize-cmd-loader">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

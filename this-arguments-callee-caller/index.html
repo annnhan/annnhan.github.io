@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        函数内部对象属性以及相关属性详解：arguments.callee、this、caller |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="在javascript函数内部，有两个特殊的对象：arguments和this。其中，arguments是一个类数组对象，它包含了传入函数中的所有参数。虽然arguments对象主要用于保存函数参数，但它还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。请看下面这个非常经典的阶乘函数。 function factorail(n){     if(n&amp;lt;">
+<meta name="keywords" content="javascript,arguments,callee,caller,this,函数对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数内部对象属性以及相关属性详解：arguments.callee、this、caller">
+<meta property="og:url" content="http://annn.me/this-arguments-callee-caller/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="在javascript函数内部，有两个特殊的对象：arguments和this。其中，arguments是一个类数组对象，它包含了传入函数中的所有参数。虽然arguments对象主要用于保存函数参数，但它还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。请看下面这个非常经典的阶乘函数。 function factorail(n){     if(n&amp;lt;">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数内部对象属性以及相关属性详解：arguments.callee、this、caller">
+<meta name="twitter:description" content="在javascript函数内部，有两个特殊的对象：arguments和this。其中，arguments是一个类数组对象，它包含了传入函数中的所有参数。虽然arguments对象主要用于保存函数参数，但它还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。请看下面这个非常经典的阶乘函数。 function factorail(n){     if(n&amp;lt;">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-this-arguments-callee-caller" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/this-arguments-callee-caller/" class="article-date">
+  <time datetime="2012-09-03T01:42:04.000Z" itemprop="datePublished">2012-09-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      函数内部对象属性以及相关属性详解：arguments.callee、this、caller
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>在javascript函数内部，有两个特殊的对象：arguments和this。其中，arguments是一个类数组对象，它包含了传入函数中的所有参数。虽然arguments对象主要用于保存函数参数，但它还有一个名叫callee的属性，该属性是一个指针，指向拥有这个arguments对象的函数。</strong>请看下面这个非常经典的阶乘函数。</p>
+<pre><code>function factorail(n){
+    if(n&lt;=1){
+        return 1;
+    }else{
+        return n*factorail(n-1);
+    }
+}
+</code></pre><a id="more"></a>
+<p>定义阶乘一般要用到递归算法，如上代码所示，如果函数有名字，而且名字不改变得情况下，这样定义没有问题。但是，这个函数的运行与函数名factorail紧紧耦合在一起了，为了消除这种紧密耦合的现象，可以向下面这样使用arguments.callee。</p>
+<pre><code>function factorail(n){
+    if(n&lt;=1){
+        return 1;
+    }else{
+        return n*arguments.callee(n-1);
+    }
+}
+</code></pre><p>在这个重写后的factorail()函数的函数体内，木有在引用函数名factorail，而是通过arguments.callee指向其本身。这样，无论引用函数时候使用什么函数名，都可以完成递归调用。例如：</p>
+<pre><code>var trueFactorail = factorail;
+factorail = function(){return 0}
+alert(trueFactorail(5)); //120
+alert(factorail(5)); //0
+</code></pre><p>在此，变量trueFactorail现获得了factorail的值，实际上是在以一个位置保存了该函数的指针，然后，我们再将一个返回0的函数赋值给变量factorail。如果像原来的fancrorail()那样不使用arguments.callee，调用truefactorail就会返回0，可是在接触了函数内部代码与函数名的耦合状态以后，trueFactorail仍然能完成正常计算阶乘；至于factorail(),它现在只是一个返回0的函数。</p>
+<p><strong>函数内部另一个特殊的对象是this，其引用的是函数据以执行的环境对象——或者也可以说是this值（当网页在全局作用域中调用函数时，this对象引用的就是window）。</strong>来看下面的例子。</p>
+<pre><code>window.color = &quot;red&quot;;
+var o = {color:&quot;blue&quot;};
+function sayColor(){
+   alert(this.color);
+}
+sayColor();//red
+o.sayColor = sayColor;
+o.sayColor();//blue
+</code></pre><p>上面这个函数dayColor()是在全局作用域中定义的，它引用了this对象，由于在调用函数之前，this的值并不确定，因此，this可能会在代码执行过程中引用不同的对象。当在全局作用域中调用sayColor()，时，this引用的是全局对象window；换句话说，this.color求值会转换成window.color求值，于是就返回了”red”。而当吧函数sayColor()赋值给对象o，并调用o.sayColor()时，this引用的是对象o，因此对this.color求值会转换成o.color求值，结果就返回了”blue”。</p>
+<p><strong>ECMAScript5还规范化了另一个函数对象的属性：</strong>caller<strong>。除了Opera早期的版本不支持，其他浏览器都支持这个ECMAScript3没有定义的属性。caller属性中保存了调用当前函数的函数的引用，如果是在全局作用域中调用当前函数，它的值为null。</strong>例如：</p>
+<pre><code>function outer(){
+    inner();
+}
+function inner(){
+    alert(inner.caller);
+}
+outer();
+</code></pre><p>以上代码会导致警告框显示outer()函数的源代码。因为outer()调用了inner()，所以inner.caller就指向outer()。为了实现更松散的耦合，也通过arguments.callee来访问相同的信息。</p>
+<pre><code>function outer(){
+    inner();
+}
+function inner(){
+    alert(arguments.callee.caller);
+}
+outer();
+</code></pre><p>IE、Firefox、Chrome、Safari的所有版本以及Opera9.6都支持caller属性。</p>
+<p><em>参考资料：《javascript高级程序设计》第三版</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/this-arguments-callee-caller/" data-id="cj28wi5qe006u7ofyacelui11" data-title="函数内部对象属性以及相关属性详解：arguments.callee、this、caller" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/arguments/">arguments</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/callee/">callee</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caller/">caller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/this/">this</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/函数对象/">函数对象</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/background-color-opacity-content/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          背景透明，内容不透明CSS代码生成器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JS解小学奥数题：abcde*a=eeeeee</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="502"
+     data-title="函数内部对象属性以及相关属性详解：arguments.callee、this、caller"
+     data-url="http://annn.me/this-arguments-callee-caller">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

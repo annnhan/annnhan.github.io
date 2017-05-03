@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="阿安的Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="安·记">
+<meta property="og:url" content="http://annn.me/page/5/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="阿安的Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安·记">
+<meta name="twitter:description" content="阿安的Blog">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+
+  <!--首页-->
+  
+    
+    <article id="post-function-of-the-inertia-load" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/function-of-the-inertia-load/" class="article-date">
+  <time datetime="2013-03-24T04:50:20.000Z" itemprop="datePublished">2013-03-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/function-of-the-inertia-load/">利用函数的惰性载入提高javascript代码性能</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在javascript代码中，因为各浏览器之间的行为的差异，我们经常会在函数中包含了大量的if语句，以检查浏览器特性，解决不同浏览器的兼容问题。例如，我们最常见的为dom节点添加事件的函数：</p>
+<pre><code>function addEvent (type, element, fun) {
+    if (element.addEventListener) {
+        element.addEventListener(type, fun, false);
+    }
+    else if(element.attachEvent){
+        element.attachEvent(&apos;on&apos; + type, fun);
+    }
+    else{
+        element[&apos;on&apos; + type] = fun;
+    }
+}
+</code></pre><p>每次调用addEvent函数的时候，它都要对浏览器所支持的能力进行检查，首先检查是否支持addEventListener方法，如果不支持，再检查是否支持attachEvent方法，如果还不支持，就用dom 0级的方法添加事件。这个过程，在addEvent函数每次调用的时候都要走一遍，其实，如果浏览器支持其中的一种方法，那么他就会一直支持了，就没有必要再进行其他分支的检测了，也就是说，if语句不必每次都执行，代码可以运行的更快一些。解决的方案就是称之为惰性载入的技巧。<br>
+        
+          <p class="article-more-link">
+            <a href="/function-of-the-inertia-load/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/function-of-the-inertia-load/" data-id="cj28wi5nj002o7ofyx8vk7ce0" data-title="利用函数的惰性载入提高javascript代码性能" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-javascript-linkgame" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-linkgame/" class="article-date">
+  <time datetime="2013-02-04T08:29:12.000Z" itemprop="datePublished">2013-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/javascript-linkgame/">javascript连连看。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>之前看到一位朋友说她妈妈喜爱连连看，就想着不如把身边的朋友头像拿来做个连连看游戏吧。次连连看的特点就是不但本人头像可以连，家属，情侣之间也可以联通。寻路径算法是传统的枚举算法，原理如下，每次建立四个点，分别检查是否两两联通，如果两两联通，就说明头尾可以连。首先横向扫描，然后纵向，详细可以看注释。<br>DEMO：<a href="/wp-content/uploads/linkgame/linkgame.html">/wp-content/uploads/linkgame/linkgame.html</a><br>
+        
+          <p class="article-more-link">
+            <a href="/javascript-linkgame/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/javascript-linkgame/" data-id="cj28wi5oq004b7ofy05n4n5o0" data-title="javascript连连看。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/连连看/">连连看</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-jquery1-9-removed-api" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/jquery1-9-removed-api/" class="article-date">
+  <time datetime="2013-02-03T21:03:09.000Z" itemprop="datePublished">2013-02-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/jquery1-9-removed-api/">jQuery1.9中被删除的API</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>jQuery1.9删除了一些在1.8中已经过时的api,想要把那些不够安全的、缺乏效率的、用处不大的，以及带有误导的特性统统去掉。如果你想升级你的jquery版本，但又使用了如下被删除的api的话，可以引入<a href="http://code.jquery.com/jquery-migrate-1.1.0.js" target="_blank" rel="external">Migrate</a>迁移插件，被删除的api可以在Migrate插件中修复。</p>
+<p><strong>.toggle(function, function, … )</strong><br>toggle()方法可实现点击一个元素来执行指定函数。此方法被删除以减少混乱和提高潜在的模块化程度。</p>
+<p><strong>jQuery.browser()</strong><br>jQuery.browser()通过UA信息来检测浏览器。此方法在1.3版本中已不赞成使用，并在1.9版本中被删除，jquery团队更建议通过特性检测来时您的代码兼容浏览器。</p>
+<p><strong>.live()</strong><br>live()方法可以为未来生成的元素添加事件，此方法在1.7版本中已不赞成使用，并在1.9版本中被删除，您可以使用on()方法来代替。</p>
+<p><strong>.die()</strong><br>die()方法可以移除live()添加的事件，此方法在1.7版本中已不赞成使用，并在1.9版本中被删除，您可以使用off()方法来代替。</p>
+<p><strong>.sub()</strong><br>sub()方法可以可创建一个新的jQuery副本，不影响原有的jQuery对像，但用例的数量已经不足以证明它存在的价值。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/jquery1-9-removed-api/" data-id="cj28wi5p2004x7ofy4csb6t2m" data-title="jQuery1.9中被删除的API" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-onhashchange-improve-anchor-links" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/onhashchange-improve-anchor-links/" class="article-date">
+  <time datetime="2013-01-22T03:48:59.000Z" itemprop="datePublished">2013-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/onhashchange-improve-anchor-links/">通过onhashchange优化“锚链接”</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>锚链接是大家再熟悉不过的了，它允许用户通过一个链接跳转到当前页面的指定内容。一般创建一个锚链接的方法就像下面这样，用户点击a标签，浏览器将跳转的id为content的div来显示其内容。。</p>
+<pre><code>&lt;a href=&quot;#content&quot;&gt;跳到id为content的标签&lt;/a&gt;
+
+
+
+&lt;div id=&quot;content&quot;&gt;
+
+&lt;/div&gt;
+</code></pre><p><strong>存在的问题：</strong><br>当用户没有鼠标，而是使用tab键+回车键的方式触发锚链接时，页面焦点仍然停留在a标签，并没有相应转到<div id="content">上。这种情况带来的问题是：如果用户继续按tab键，焦点会转移到a标签的下一个可获取焦点的元素，这可能是挨着a标签的另一个链接，反正不是<div id="content">的下一个可获取焦点的元素。而屏幕可视区域就有可能回滚回其他地方。按照常理，用户更希望按下tab键，焦点应该跳转到<div id="content">的下一个可获取焦点的元素。<br>
+        
+          <p class="article-more-link">
+            <a href="/onhashchange-improve-anchor-links/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cj28wi5pq005x7ofyg8ybh55u" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Link/">Link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/focus/">focus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/onhashchange/">onhashchange</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-retina-css4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/retina-css4/" class="article-date">
+  <time datetime="2013-01-07T03:01:37.000Z" itemprop="datePublished">2013-01-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/retina-css4/">Retina屏幕与CSS4</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>随着越来越多Retina技术的普及，越来越多的设备开始配置了Retina屏幕。w3c也在css4草案中加入了适配Retina屏幕的属性image-set，目前支持此属性的浏览器有chrome和safari。记得在今年冬天的webrebiuld交流会上，QQ的前端大湿曾经介绍过，并且在QQ.com的logo中用到了此属性。<br>在不支持image-set的浏览器：他会支持background-image图像，也就是说不支持image-set的浏览器下，他们解析background-image中的背景图像；<br>支持image-set的浏览器下：在普通显屏下，此时浏览器会选择image-set中的@1x背景图像，在Retina屏幕下，此时浏览器会选择image-set中的@2x背景图像。<br>写法：</p>
+<pre><code>{
+    background-image: url(default.png);
+    background-image: -webkit-image-set(url(no-retina.png) 1x, url(retina.png) 2x);
+}
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/retina-css4/" data-id="cj28wi5q2006c7ofym5cmdvnb" data-title="Retina屏幕与CSS4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-presentation-top10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/presentation-top10/" class="article-date">
+  <time datetime="2013-01-03T02:05:56.000Z" itemprop="datePublished">2013-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/发现/">发现</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/presentation-top10/">世界十大经典presentation</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. Steve Jobs【1984年介绍Macintosh的演说】
+</strong>斯蒂夫·乔布斯，苹果CEO，无人不知的IT教父级人物，他的演说也是超一流，他很多的演说奉为经典，尤其是在运用幻灯片演说绝对的一流，就连PPT演说大师Garr对斯蒂夫·乔布斯佩服的五体投地。看看1984年的Steve Jobs是如何进行Macintonsh介绍演说的。<br><a href="http://video.google.com/videoplay?docid=8631701936876784775" target="_blank" rel="external">http://video.google.com/videoplay?docid=8631701936876784775</a><br>
+        
+          <p class="article-more-link">
+            <a href="/presentation-top10/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/presentation-top10/" data-id="cj28wi5pw00647ofytn0ggcbg" data-title="世界十大经典presentation" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/presentation/">presentation</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-css3-ime-mode" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/css3-ime-mode/" class="article-date">
+  <time datetime="2012-12-04T01:45:20.000Z" itemprop="datePublished">2012-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/css3-ime-mode/">通过ime-mode属性控制文本字段的输入法编辑器的状态</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ime-mode是CSS3中最新添加的属性，更准确点说，是CSS Basic User Interface Module Level 3 (CSS3 UI)规范新添加的属性，该属性可以控制文本字段的输入法编辑器的状态。IE浏览器从IE5开始就支持该属性，FireFox浏览器从FireFox3.0开始也支持该ime-mode属性。不过chrome、opera、Safari浏览器还没有开始支持该属性。</p>
+<p>名称: ime-mode<br>值: auto | normal | active | inactive | disabled | inherit<br>初始值: auto<br>应用元素: text fields（文本字段）<br>继承性: no</p>
+<p><strong>下面是ime-mode各个值的说明：</strong><br>auto : 默认值，不影响当前输入法编辑器的状态<br>normal : 输入法编辑器的状态应该是normal，这个值可以用于用户样式表来覆盖页面的设置。IE浏览器不支持该属性<br>active : 输入法编辑器的状态初始时是激活的；输入将一直使用该输入法直到用户切换输入法。该属性在Linux下不支持<br>inactive : 输入法编辑器的状态初始时是非激活状态；除非用户激活输入法<br>disabled : 禁用输入法编辑器；该输入法编辑器也许不会被用户激活</p>
+<pre><code>&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt; New Document &lt;/title&gt;
+ &lt;style type=&quot;text/css&quot;&gt;
+    input {ime-mode: disabled; }
+ &lt;/style&gt;
+ &lt;/head&gt;
+
+ &lt;body&gt;
+
+&lt;form action=&quot;&quot; name=&quot;form1&quot; method=&quot;post&quot;&gt;
+    &lt;input type=&quot;text&quot; name=&quot;textfield&quot;&gt;
+&lt;/form&gt;
+ &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>上面的例子在IE5+或者FireFox3+浏览器中运行，不允许输入中文。</p>
+<p>这个属性虽然很强大，但是在最新版的chrome、opera、safari浏览器中都不支持该属性，所以在这些浏览器中还需要通过javascript来实现当用户输入中文时无法输入到文本框中。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/css3-ime-mode/" data-id="cj28wi5ma001r7ofyn33cb2e8" data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ime-mode/">ime-mode</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-css-fontfamily-chinese" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/css-fontfamily-chinese/" class="article-date">
+  <time datetime="2012-12-03T10:03:46.000Z" itemprop="datePublished">2012-12-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/css-fontfamily-chinese/">避免css中文字体在浏览器中解析成乱码</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>许多童鞋在写CSS的时候，设置中文字体常常使用中文字符，例如font-family:”黑体”，这样我们在浏览器中看到的是什么样子的呢 ？</p>
+<p><a href="/wp-content/uploads/2012/12/111.jpg"><img src="/wp-content/uploads/2012/12/111.jpg" alt=""></a><br>如果不想自己写的界面在浏览器字体声明上有异常，建议在书写css样式规则的时候避免中文字符，使用Unicode编码集，对中文字符进行转码。常见的中文字符集转码如下表：</p>
+<p>中文名<br>UNICODE</p>
+<p>新细明体</p>
+<p>\65B0\7EC6\660E\4F53</p>
+<p>细明体</p>
+<p>\7EC6\660E\4F53</p>
+<p>标楷体</p>
+<p>\6807\6977\4F53</p>
+<p>黑体</p>
+<p>\9ED1\4F53</p>
+<p>宋体</p>
+<p>\5B8B\4F53</p>
+<p>新宋体</p>
+<p>\65B0\5B8B\4F53</p>
+<p>仿宋</p>
+<p>\4EFF\5B8B</p>
+<p>楷体</p>
+<p>\6977\4F53</p>
+<p>仿宋_GB2312</p>
+<p>\4EFF\5B8B_GB2312</p>
+<p>楷体_GB2312</p>
+<p>\6977\4F53_GB2312</p>
+<p>微软正黑体</p>
+<p>\5FAE\x8F6F\6B63\9ED1\4F53</p>
+<p>微软雅黑</p>
+<p>\5FAE\8F6F\96C5\9ED1</p>
+<p>如果你不知道某个中文字体的Unicode编码，可以使用通过JS如下方法进行转化：</p>
+<pre><code>function toUnicode (str) {return escape(str).toLocaleLowerCase().replace(/%u/gi, &apos;\\&apos;);}
+console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1&apos;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/css-fontfamily-chinese/" data-id="cj28wi5m2001j7ofy9rrd7lek" data-title="避免css中文字体在浏览器中解析成乱码" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chinese/">chinese</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/font-family/">font-family</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-chrome-useragent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/chrome-useragent/" class="article-date">
+  <time datetime="2012-11-27T07:25:20.000Z" itemprop="datePublished">2012-11-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/发现/">发现</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/chrome-useragent/">发现一个小咪咪，chrome自带了修改user Agent的功能了。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="/wp-content/uploads/2012/11/chrome-useragent.jpg"><img src="/wp-content/uploads/2012/11/chrome-useragent.jpg" alt=""></a><br>在chrome23的开发者工具中，发现了居然可以自定义user Agent，还有可视区域尺寸，这样更方便移动开发调试啦。。<br>妈妈再也不用担心我的移动开发！~~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/chrome-useragent/" data-id="cj28wi5lp00157ofyn3um5qsw" data-title="发现一个小咪咪，chrome自带了修改user Agent的功能了。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/useragent/">useragent</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-webstorm-phpstorm-remote-host" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/webstorm-phpstorm-remote-host/" class="article-date">
+  <time datetime="2012-11-24T23:56:40.000Z" itemprop="datePublished">2012-11-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/webstorm-phpstorm-remote-host/">使用WebStorm/Phpstorm实现remote host远程开发</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果你的开发环境是在远程主机上，webstorm可以提供通过ftp/ftps/sftp等方式实现远程同步开发。这样我们可以就抛弃ftp、winscp等工具，通过webstorm编辑远程文件以及部署，本文基于WebStorm5.04编写， Intellij IDEA或者PHPStorm使用方法基本相同，可参考之。并且还要感谢因特里基友群群主大猫的帮助。</p>
+<p>1、首先我们来创建一个基于远程主机的project，点击file&gt;new project from existing sources，打开了创建project的对话框，我们选择第四项，例如我们的远程主机通过ftp/sftp/ftps等方式传输文件，点击next。</p>
+<p><img src="/wp-content/uploads/webstorm/1.jpg" alt="">
+        
+          <p class="article-more-link">
+            <a href="/webstorm-phpstorm-remote-host/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/webstorm-phpstorm-remote-host/" data-id="cj28wi5qt007h7ofy9e4ifpdi" data-title="使用WebStorm/Phpstorm实现remote host远程开发" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/host/">host</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/phpstorm/">phpstorm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/remote/">remote</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+    </nav>
+  
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

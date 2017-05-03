@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        如何实现一个ECMAScript 6 的promise补丁 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="Promise最先是CommonJS工作组提出的一种规范之一，目的是为了解决js异步编程过程中，回调嵌套过深的问题。ECMAScript 6 规范化了Promise对象的语言接口，使其成了js的原生对象之一。 如果你还不了解ECMAScript 6 中的Promise对象，建议阅读http://es6.ruanyifeng.com/#docs/promise。ECMAScript 6 中的Prom">
+<meta name="keywords" content="javascript,ecmascript,promise">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何实现一个ECMAScript 6 的promise补丁">
+<meta property="og:url" content="http://annn.me/ecmascript6-promise/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="Promise最先是CommonJS工作组提出的一种规范之一，目的是为了解决js异步编程过程中，回调嵌套过深的问题。ECMAScript 6 规范化了Promise对象的语言接口，使其成了js的原生对象之一。 如果你还不了解ECMAScript 6 中的Promise对象，建议阅读http://es6.ruanyifeng.com/#docs/promise。ECMAScript 6 中的Prom">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何实现一个ECMAScript 6 的promise补丁">
+<meta name="twitter:description" content="Promise最先是CommonJS工作组提出的一种规范之一，目的是为了解决js异步编程过程中，回调嵌套过深的问题。ECMAScript 6 规范化了Promise对象的语言接口，使其成了js的原生对象之一。 如果你还不了解ECMAScript 6 中的Promise对象，建议阅读http://es6.ruanyifeng.com/#docs/promise。ECMAScript 6 中的Prom">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ecmascript6-promise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ecmascript6-promise/" class="article-date">
+  <time datetime="2014-06-04T12:38:00.000Z" itemprop="datePublished">2014-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      如何实现一个ECMAScript 6 的promise补丁
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Promise最先是CommonJS工作组提出的一种规范之一，目的是为了解决js异步编程过程中，回调嵌套过深的问题。ECMAScript 6 规范化了Promise对象的语言接口，使其成了js的原生对象之一。</p>
+<p>如果你还不了解ECMAScript 6 中的Promise对象，建议阅读<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank">http://es6.ruanyifeng.com/#docs/promise</a>。ECMAScript 6 中的Promise对象与一些常用的promise库（如jquery，when.js）中的实现略有不同，本文讨论的实现，以ECMAScript 6 为准。<br>下面，我们来一起学习，如何在不支持ES6的浏览器上简单实现Promise，如有不对的地方，还请多多指正。</p>
+<h4 id="首先，我们来看看Promise构造函数。"><a href="#首先，我们来看看Promise构造函数。" class="headerlink" title="首先，我们来看看Promise构造函数。"></a>首先，我们来看看Promise构造函数。</h4><pre><code>var Promise = function (fun) {
+        var me = this,
+            resolve = function (val) {
+                me.resolve(val);
+            },
+            reject = function (val) {
+                me.reject(val);
+            }
+        me._st = &apos;pending&apos;;
+        me._rsq = null;
+        me._rjq = null;
+        (typeof fun === &apos;function&apos;) &amp;&amp; fun(resolve, reject);
+    },
+    fn = Promise.prototype;
+</code></pre><p>构造函数接受一个异步的回调函数，并调用，回调函数的2个参数，分别为异步操作成功和失败时候要调用的改变Promise实例状态的方法。<br>_st用于存放当前实例的状态，初始值为”pending”，异步操作成功为”resolve”，失败为”reject”。_rsq用于存放异步操作成功的回调，_rjq用于存放异步操作失败的回调。<br>同时，把Promise.prototype挂在变量fn上，接下我们只要给fn添加方法就可以了。</p>
+<a id="more"></a>
+<h4 id="then和-catch方法"><a href="#then和-catch方法" class="headerlink" title=".then和.catch方法"></a>.then和.catch方法</h4><pre><code>fn.then = function (resolve, reject) {
+    var pms = new Promise();
+    this._rsq = function (val) {
+        var ret = resolve ? resolve(val) : val;
+        if (ret instanceof Promise) {
+            ret.then(function (val) {
+                pms.resolve(val);
+            });
+        }
+        else{
+            pms.resolve(ret);
+        }
+    };
+    this._rjq = function (val) {
+        pms.reject(reject(val));
+    };
+    return pms;
+}
+fn.catch = function (reject) {
+    return this.then(null, reject);
+}
+</code></pre><p>.then方法接受2个参数，成功回调和失败回调。then方法内部new了一个新的Promise对象pms并返回，从而实现链式调用。<br>并且给实例的_rsq和_rjq分别挂了2个函数，是成功和失败的回调函数的调用，并把返回值传给pms的resolve和reject方法，这样我们就完成了参数的传递功能。<br>注意，成功回调函数可能也会返回一个promise对象，因此，我们要对此情况做而外处理，给它新挂一个then调用，用于触发pms的成功回掉。<br>而.catch方法只是.then(null, reject)的一个别名，内部调一下即可。</p>
+<h4 id="resolve和-reject方法"><a href="#resolve和-reject方法" class="headerlink" title=".resolve和.reject方法"></a>.resolve和.reject方法</h4><pre><code>fn.resolve = function (val) {
+    if (this._st === &apos;resolved&apos; || this._st === &apos;pending&apos;) {
+        this._st = &apos;resolved&apos;;
+        this._rsq &amp;&amp; this._rsq(val);
+    }
+}
+
+fn.reject = function (val) {
+    if (this._st === &apos;rejected&apos; || this._st === &apos;pending&apos;) {
+        this._st = &apos;rejected&apos;;
+        this._rsq &amp;&amp; this._rjq(val);
+    }
+}
+
+
+.resolve方法接受一个参数，为上个回调函数的返回值，或者是上个异步操作函数的reslve函数的参数值。如果实例的状态为resolved或者pending的时候，才调用.\_rsq方法。
+.reject同理。
+
+
+#### Promise.all静态方法
+
+
+Promise.all = function (arr) {
+    var pms = new Promise();
+    var len = arr.length,
+        i = 0,
+        res = 0;
+    while (i &lt; len) {
+        arr[i].then(
+            function () {
+                if (++res === len) {
+                    pms.resolve();
+                }
+            },
+            function (val) {
+                pms.reject(val);
+            }
+        );
+        i++;
+    }
+    return pms;
+}
+</code></pre><p>Promise.all接受一个有promise对象的数组，并内部new了一个promise对象pms返回。当数组中所有的对象状态都成功的时候，执行pms.resolve()，即返回的promise对象状态变成resloved，<br>若数组有一个失败，则pms.reject(val)。</p>
+<h4 id="Promise-resolve静态方法，这个好像没啥好讲的。"><a href="#Promise-resolve静态方法，这个好像没啥好讲的。" class="headerlink" title="Promise.resolve静态方法，这个好像没啥好讲的。"></a>Promise.resolve静态方法，这个好像没啥好讲的。</h4><pre><code>Promise.resolve = function (obj) {
+    var pms = new Promise();
+    if (obj &amp;&amp; typeof obj.then === &apos;function&apos;) {
+        for (var i in pms) {
+            obj[i] = pms[i];
+        }
+        return obj;
+    }
+    else {
+        setTimeout(function () {
+            pms.resolve(obj);
+        });
+        return pms;
+    }
+}
+</code></pre><p>完整的代码，我放在<a href="https://github.com/hanan198501/promise" target="_blank" rel="external">https://github.com/hanan198501/promise</a>了，大家可以上去看看，也欢迎关注我的github。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ecmascript6-promise/" data-id="cj28wi5mr00297ofy39du9xqo" data-title="如何实现一个ECMAScript 6 的promise补丁" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ecmascript/">ecmascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/promise/">promise</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/open-window-in-chrome/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          如何绕过chrome的弹窗拦截机制
+        
+      </div>
+    </a>
+  
+  
+    <a href="/blog-move-to-github/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Blog迁移到Github</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="ecmascript6-promise"
+     data-title="如何实现一个ECMAScript 6 的promise补丁"
+     data-url="http://annn.me/ecmascript6-promise">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

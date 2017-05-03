@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        前端项目如何让持续集成/持续部署(CI/CD)跑起来 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 CI / CD 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。 我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概">
+<meta name="keywords" content="CD,gitlab,jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端项目如何让持续集成&#x2F;持续部署(CI&#x2F;CD)跑起来">
+<meta property="og:url" content="http://annn.me/frontend-ci-cd/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 CI / CD 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。 我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概">
+<meta property="og:image" content="http://annn.me/assets/img/ci-cd-creact-job.png">
+<meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-general.png">
+<meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-code.png">
+<meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-trigger.png">
+<meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-build.png">
+<meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-after.png">
+<meta property="og:image" content="http://annn.me/assets/img/ci-cd-gitlab-webhook.png">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端项目如何让持续集成&#x2F;持续部署(CI&#x2F;CD)跑起来">
+<meta name="twitter:description" content="近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 CI / CD 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。 我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概">
+<meta name="twitter:image" content="http://annn.me/assets/img/ci-cd-creact-job.png">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-frontend-ci-cd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/frontend-ci-cd/" class="article-date">
+  <time datetime="2017-05-02T16:00:00.000Z" itemprop="datePublished">2017-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      前端项目如何让持续集成/持续部署(CI/CD)跑起来
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。<br>这样大提高了前端的开发效率和业务交付能力。<br>但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。</p>
+<p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
+<p>其中：</p>
+<ul>
+<li>gitlab 用于代码版本管理，并通过其提供的 webhook 功能，触发 jenkins job 的运行。</li>
+<li>jenkins 用来执行项目中 单元测试，编译打包相关 npm 命令，并发送反馈邮件，执行远程部署脚本。</li>
+<li>nodejs 用于提供单元测试，编译打包功能的 npm 命令</li>
+</ul>
+<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，<br>其中我们的 package.json 的 scripts 字段就有如下：</p>
+<pre><code>&quot;dev&quot;: &quot;node build/dev-server.js&quot;,
+&quot;build&quot;: &quot;node build/build.js&quot;, //打包构建
+&quot;build-server&quot;: &quot;node build/build-server.js&quot;,
+&quot;unit&quot;: &quot;karma start test/unit/karma.conf.js --single-run&quot;, // 运行单元测试
+</code></pre><h3 id="如果没有-CI-CD，-我们的前端从开发到提测工作流程可能如下："><a href="#如果没有-CI-CD，-我们的前端从开发到提测工作流程可能如下：" class="headerlink" title="如果没有 CI/CD， 我们的前端从开发到提测工作流程可能如下："></a>如果没有 CI/CD， 我们的前端从开发到提测工作流程可能如下：</h3><ol>
+<li>本地机器上写代码</li>
+<li>在命令行输入 npm run unit，查看单元测试结果</li>
+<li>提交代码，push 到 git 远程仓库</li>
+<li>登录测试服务器，拉取代码，执行 npm run build，构建项目</li>
+<li>如果测试服务器是基于 pm2 的 proxy server，还需要重启 server</li>
+</ol>
+<p>这个流程中，每一个步骤都要重复人工操作，很大增加了时间成本，不能保证操作的准确性。对于 unit 或者 build 的结果，没有一个自动的反馈机制，需要人工 check 运行结果，最后部署也是人工登录服务器执行脚本，非常繁琐。</p>
+<h3 id="引入-CI-CD-以后，整个流程变成"><a href="#引入-CI-CD-以后，整个流程变成" class="headerlink" title="引入 CI/CD 以后，整个流程变成"></a>引入 CI/CD 以后，整个流程变成</h3><ol>
+<li>本地机器上写代码</li>
+<li>提交代码，push 到 git 远程仓库</li>
+<li>git hook 触发 jenkins 的构建 job （自动）</li>
+<li>jenkins job 中拉取项目代码，运行 npm run unit 和 npm run build，如果失败，发送邮件通知相关人。（自动）</li>
+<li>jenkins job 中执行测试服务器的部署脚本 （自动）</li>
+</ol>
+<p>在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。<br>接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。</p>
+<a id="more"></a>
+<h3 id="配置项目的-jenkins-job"><a href="#配置项目的-jenkins-job" class="headerlink" title="配置项目的 jenkins job"></a>配置项目的 jenkins job</h3><p>首先，在 jenkins 中需要安装 <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gitlab+Hook+Plugin" target="_blank" rel="external">Gitlab Hook Plugin</a> 这个插件，一支持 gitlab 的 webhook 功能。</p>
+<ol>
+<li><p>在 jenkins 左边栏点击 “新建”， 输入 job 名称，选择 “构建一个自由风格的软件项目” 一项。点击 “OK”<br><img src="/assets/img/ci-cd-creact-job.png" alt=""></p>
+</li>
+<li><p>进入 job 配置页面，点击 “General” 选项，配置名称和描述<br><img src="/assets/img/ci-cd-job-general.png" alt=""></p>
+</li>
+<li><p>点击 “源码管理” 选项，配置项目的 git 仓库地址的需要构建的分支信息<br><img src="/assets/img/ci-cd-job-code.png" alt=""></p>
+</li>
+<li><p>点击 “构建触发器” 选项，配置 job 构建时机，勾选 “Poll SCM”，”日程表” 留空。即可通过 gitlab webhook 来触发 job 构建<br><img src="/assets/img/ci-cd-job-trigger.png" alt=""></p>
+</li>
+<li><p>点击 “构建” 选项，再点击 “增加构建步骤”， 选择 “Execute shell”，配置构建命令。 如下，这里配置了 <code>cnpm install</code>、<code>npm run unit</code>、<code>npm run build</code>, 分别做安装依赖、单元测试、编译打包三件事。<br><img src="/assets/img/ci-cd-job-build.png" alt=""></p>
+</li>
+<li><p>点击 “构建后操作” 选项，添加两个构建后操作步骤：</p>
+<ul>
+<li>“E-mail Notification”，配置构建失败的邮件通知人；</li>
+<li>“Send build artifacts over ssh”, 执行预先写好的远程服务器的部署脚本<br><img src="/assets/img/ci-cd-job-after.png" alt=""></li>
+</ul>
+</li>
+<li><p>点击最下方的 “保存”，job 创建完毕。</p>
+</li>
+</ol>
+<h3 id="配置-gitlab-webhook"><a href="#配置-gitlab-webhook" class="headerlink" title="配置 gitlab webhook"></a>配置 gitlab webhook</h3><p>进入项目的 gitlab 页面 &gt;&gt; Settings &gt;&gt; Integrations , 添加一条 webhook: URL 中输入” <a href="http://你的jenkins服务器host/gitlab/build_now&quot;，" target="_blank" rel="external">http://你的jenkins服务器host/gitlab/build_now&quot;，</a> Trigger 勾选<br>Push events，点击 “Add webhook”。<br><img src="/assets/img/ci-cd-gitlab-webhook.png" alt=""></p>
+<p>这样，当有代码 push 到git 仓库时，gitlab 会想 jenkins 服务器发送提交 post 请求，触发之前创建好的 jenkins job 运行, 代码从开发到部署测试，是一个持续的过程，同时对整个过程错误提供了反馈机制。<br>再也不用关心代码 push 以后的事情，写代码更加专注和自信了！！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cj28wi5nh002l7ofyuxthxc7e" data-title="前端项目如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/vue-spa-template/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于 vue 全家桶的 spa 项目模板</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="frontend-ci-cd"
+     data-title="前端项目如何让持续集成/持续部署(CI/CD)跑起来"
+     data-url="http://annn.me/frontend-ci-cd">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

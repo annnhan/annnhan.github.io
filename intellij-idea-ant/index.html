@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        在Intellij IDEA中使用Ant |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：http://book.36ria.com/ant/index.html，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij I">
+<meta name="keywords" content="Ant,build.xml,Intellij IDEA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Intellij IDEA中使用Ant">
+<meta property="og:url" content="http://annn.me/intellij-idea-ant/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：http://book.36ria.com/ant/index.html，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij I">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/04/1.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/04/ant-build.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/04/message-ant-build.jpg">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在Intellij IDEA中使用Ant">
+<meta name="twitter:description" content="Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：http://book.36ria.com/ant/index.html，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij I">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2013/04/1.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-intellij-idea-ant" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/intellij-idea-ant/" class="article-date">
+  <time datetime="2013-04-07T09:22:59.000Z" itemprop="datePublished">2013-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      在Intellij IDEA中使用Ant
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：<a href="http://book.36ria.com/ant/index.html" target="_blank" rel="external">http://book.36ria.com/ant/index.html</a>，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij IDEA中使用Ant是非常方便的，本文主要介绍windows下在Intellij IDEA中使用Ant进行前端构建的方法，如果你使用其他操作系统，也可以参考。</p>
+<p><strong>1、</strong>首先，确保你的系统已经安装了Java运行环境，如果你的机子已经安装jdk，那么请跳过这一步，如果没有，请移步至<a href="http://willerce.com/post/jdk" target="_blank" rel="external">http://willerce.com/post/jdk</a>。参照此教程安装好jdk。</p>
+<p><strong>2、</strong>配置project structure。点击File&gt;Project Structure(快捷键ctrl+alt+shift+s)，在Project SDK这一项中，如果显示的是“No SDK”，说明还木有设置运行环境，我们点击New，选择你的jdk安装目录，比如我的是C:\Program Files (x86)\Java\jdk1.6.0_10。设置好以后，会显示jdk的版本信息，如下图。</p>
+<p><img src="/wp-content/uploads/2013/04/1.jpg" alt="Intellij IDEA Project Structure"></p>
+<p><a id="more"></a><strong>3、</strong>在你需要的地方写好build.xml配置文件，点右边栏的Ant Build标签（有个小蚂蚁的图标，看到没？），在弹出的Ant Build面板中点击+号，可以引入一个build.xml配置文件，你可以引入多个，点击-号可以删除选中的配置文件。引入配置文件之后，选中需要运行的任务，可以是Project，也可以是Target，再点击上面的播放按钮就可以Run了。比起命令行，是不是很直观呢？</p>
+<p><img src="/wp-content/uploads/2013/04/ant-build.jpg" alt=""></p>
+<p><strong>4、</strong>现在我们来用下面这个build.xml作为栗子，运行看看结果如何。</p>
+<pre><code>&lt;project default=&quot;build&quot; name=&quot;61&quot;&gt;
+
+
+    &lt;dirname property=&quot;base.dir&quot; file=&quot;${ant.file}&quot;&gt;&lt;/dirname&gt;
+
+
+    &lt;property name=&quot;css.path&quot; location=&quot;${base.dir}/css&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;css.dest&quot; location=&quot;${base.dir}/build/css&quot;&gt;&lt;/property&gt;
+
+
+    &lt;property name=&quot;js.path&quot; location=&quot;${base.dir}/js&quot;&gt;&lt;/property&gt;
+    &lt;property name=&quot;js.dest&quot; location=&quot;${base.dir}/build/js&quot;&gt;&lt;/property&gt;
+
+
+    &lt;property name=&quot;yuicps.path&quot; location=&quot;D:\Program Files\yui-compressor\yuicompressor.jar&quot;&gt;&lt;/property&gt;
+
+
+    &lt;property name=&quot;compiler.path&quot; location=&quot;D:\Program Files\closure-compiler\compiler.jar&quot;&gt;&lt;/property&gt;
+
+    &lt;target depends=&quot;min-css, min-js, copy&quot; name=&quot;build&quot;&gt;
+        &lt;echo&gt;操作完成&lt;/echo&gt;
+    &lt;/target&gt;
+
+    &lt;target name=&quot;min-css&quot;&gt;
+        &lt;echo&gt;开始使用YUI-Compressor压缩css&lt;/echo&gt;
+        &lt;apply dest=&quot;${css.dest}&quot; executable=&quot;java&quot;&gt;
+            &lt;fileset dir=&quot;${css.path}&quot; includes=&quot;*.css&quot;&gt;&lt;/fileset&gt;
+            &lt;arg line=&quot;-jar&quot;&gt;&lt;/arg&gt;
+            &lt;arg path=&quot;${yuicps.path}&quot;&gt;&lt;/arg&gt;
+            &lt;arg line=&quot;--charset utf-8&quot;&gt;&lt;/arg&gt;
+            &lt;arg value=&quot;--type&quot;&gt;&lt;/arg&gt;
+            &lt;arg value=&quot;css&quot;&gt;&lt;/arg&gt;
+            &lt;arg value=&quot;-o&quot;&gt;&lt;/arg&gt;
+            &lt;targetfile&gt;&lt;/targetfile&gt;
+            &lt;mapper from=&quot;*.css&quot; type=&quot;glob&quot; to=&quot;*-min.css&quot;&gt;&lt;/mapper&gt;
+        &lt;/apply&gt;
+    &lt;/target&gt;
+
+    &lt;target name=&quot;min-js&quot;&gt;
+        &lt;echo&gt;开始使用Closure-Compiler压缩JS&lt;/echo&gt;
+        &lt;apply dest=&quot;${js.dest}&quot; executable=&quot;java&quot;&gt;
+            &lt;fileset dir=&quot;${js.path}&quot; includes=&quot;*.js&quot;&gt;&lt;/fileset&gt;
+            &lt;arg line=&quot;-jar&quot;&gt;&lt;/arg&gt;
+            &lt;arg path=&quot;${compiler.path}&quot;&gt;&lt;/arg&gt;
+            &lt;arg value=&quot;--warning_level&quot;&gt;&lt;/arg&gt;
+            &lt;arg value=&quot;QUIET&quot;&gt;&lt;/arg&gt;
+            &lt;arg value=&quot;--js&quot;&gt;&lt;/arg&gt;
+            &lt;srcfile&gt;&lt;/srcfile&gt;
+            &lt;arg value=&quot;--js_output_file&quot;&gt;&lt;/arg&gt;
+            &lt;targetfile&gt;&lt;/targetfile&gt;
+            &lt;mapper from=&quot;^(.*[^-min])\.js$&quot; type=&quot;regexp&quot; to=&quot;\1-min.js&quot;&gt;&lt;/mapper&gt;
+        &lt;/apply&gt;
+    &lt;/target&gt;
+
+    &lt;target name=&quot;copy&quot;&gt;
+        &lt;echo&gt;开始同步其他文件&lt;/echo&gt;
+        &lt;copy todir=&quot;${base.dir}/build&quot; overwrite=&quot;true&quot;&gt;
+            &lt;fileset dir=&quot;${base.dir}&quot; includes=&quot;*.html&quot;&gt;&lt;/fileset&gt;
+        &lt;/copy&gt;
+        &lt;copy todir=&quot;${base.dir}/build/img&quot; overwrite=&quot;true&quot;&gt;
+            &lt;fileset dir=&quot;${base.dir}/img&quot;&gt;&lt;/fileset&gt;
+        &lt;/copy&gt;
+    &lt;/target&gt;
+
+&lt;/project&gt;
+</code></pre><p><strong>5、</strong>在Message面板可以看到运行结果：3个target都顺利工作了。</p>
+<p><img src="/wp-content/uploads/2013/04/message-ant-build.jpg" alt=""></p>
+<p>这就是Intellij IDEA中Ant的基本用法，其他更多技巧阿安也在学习中，欢迎大家指教。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/intellij-idea-ant/" data-id="cj28wi5oe003v7ofyaa5qvckt" data-title="在Intellij IDEA中使用Ant" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Ant/">Ant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Intellij-IDEA/">Intellij IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/build-xml/">build.xml</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/vim/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          vim备忘
+        
+      </div>
+    </a>
+  
+  
+    <a href="/days-with-my-father/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Days with my father.</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="773"
+     data-title="在Intellij IDEA中使用Ant"
+     data-url="http://annn.me/intellij-idea-ant">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        通过ReRes让chrome拥有路径映射的autoResponse功能。 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="前端开发过程中，经常会有需要对远程环境调试的需求。比如，修改线上bug，开发环境不在本地等等。我们需要把远程css文件或者js映射到本地的文件上，通过修改本地文件进行调试和开发。通常我们可以通过以下方法来实现映射： 1.修改host文件——只能把域名映射到IP 2.使用Apache或者nginx搭建反向代理——需要装环境，配置相对繁琐 3.使用Fiddler中的AutoRespnose功能——不支">
+<meta name="keywords" content="ReRes,request,response">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过ReRes让chrome拥有路径映射的autoResponse功能。">
+<meta property="og:url" content="http://annn.me/reres/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="前端开发过程中，经常会有需要对远程环境调试的需求。比如，修改线上bug，开发环境不在本地等等。我们需要把远程css文件或者js映射到本地的文件上，通过修改本地文件进行调试和开发。通常我们可以通过以下方法来实现映射： 1.修改host文件——只能把域名映射到IP 2.使用Apache或者nginx搭建反向代理——需要装环境，配置相对繁琐 3.使用Fiddler中的AutoRespnose功能——不支">
+<meta property="og:image" content="http://t3.qpic.cn/mblogpic/3fac61954487ae4ca6aa/460">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过ReRes让chrome拥有路径映射的autoResponse功能。">
+<meta name="twitter:description" content="前端开发过程中，经常会有需要对远程环境调试的需求。比如，修改线上bug，开发环境不在本地等等。我们需要把远程css文件或者js映射到本地的文件上，通过修改本地文件进行调试和开发。通常我们可以通过以下方法来实现映射： 1.修改host文件——只能把域名映射到IP 2.使用Apache或者nginx搭建反向代理——需要装环境，配置相对繁琐 3.使用Fiddler中的AutoRespnose功能——不支">
+<meta name="twitter:image" content="http://t3.qpic.cn/mblogpic/3fac61954487ae4ca6aa/460">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-reres" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/reres/" class="article-date">
+  <time datetime="2014-01-01T11:12:24.000Z" itemprop="datePublished">2014-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      通过ReRes让chrome拥有路径映射的autoResponse功能。
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前端开发过程中，经常会有需要对远程环境调试的需求。比如，修改线上bug，开发环境不在本地等等。我们需要把远程css文件或者js映射到本地的文件上，通过修改本地文件进行调试和开发。通常我们可以通过以下方法来实现映射：</p>
+<p>1.修改host文件——只能把域名映射到IP</p>
+<p>2.使用Apache或者nginx搭建反向代理——需要装环境，配置相对繁琐</p>
+<p>3.使用Fiddler中的AutoRespnose功能——不支持目录映射，mac、linux无法使用</p>
+<p>以上方式，或者功能缺失，或者需要额外安装软件，或者配置繁琐、或者不支持多平台。<strong>我理想中的请求映射工具应该是这样的：简单，打开浏览器就能用、支持目录映射和文件映射、跨平台。</strong> ReRes就是居于这个目标写出来的，您可以把请求映射到其他的url，也可以映射到你本机的文件或者目录。ReRes支持单个url映射，也支持目录映射。</p>
+<p><strong>现在就开始使用ReRes</strong></p>
+<a id="more"></a>
+<p>首先从chrome商店安装ReRes： <a href="https://chrome.google.com/webstore/detail/reres/gieocpkbblidnocefjakldecahgeeica?hl=zh-CN&amp;gl=CN" target="_blank" rel="external">https://chrome.google.com/webstore/detail/reres/gieocpkbblidnocefjakldecahgeeica?hl=zh-CN&amp;gl=CN</a></p>
+<p>安装后，在地址栏输入<code>chrome://extensions/</code>进入扩展页，找到ReRes，勾选“允许访问文件网址”，这样才能让ReRes支持本地映射，如下：</p>
+<p><img src="http://t3.qpic.cn/mblogpic/3fac61954487ae4ca6aa/460" alt=""></p>
+<p>至此，ReRes就可以使用了。下面是一些基本功能的使用操作方法：</p>
+<p><strong>添加规则</strong></p>
+<p>点击“添加规则”按钮，输入以下信息，然后保存：</p>
+<ul>
+<li><em><strong>If URL match</strong>： 一个正则表达式，当请求的URL与之匹配时，规则生效。注意:不要填开头的<strong>/</strong>和结束的<strong>/gi</strong>，如<strong>/.*/gi</strong>请写成<strong>.</strong></em></li>
+</ul>
+<ul>
+<li><strong>Response</strong>： 映射的响应地址，映射的响应地址，这个地址会替换掉url中与上面正则匹配的部分。线上地址以<strong>http://</strong>开头，本地地址以<strong>file:///</strong>开头，比如<strong><a href="http://cssha.com" target="_blank" rel="external">http://cssha.com</a></strong>或<strong>file:///D:/a.js</strong></li>
+</ul>
+<p><strong>启动/禁用</strong></p>
+<p>勾选/取消对应规则前面的勾选框即可。</p>
+<p><strong>编辑规则</strong></p>
+<p>鼠标移到响应规则上，点击“编辑”。</p>
+<p><strong>删除规则</strong></p>
+<p>鼠标移到响应规则上，点击“删除”。</p>
+<p><strong>批量导入规则</strong></p>
+<p>点击“管理规则”按钮进入管理页，点击顶部“导入”按钮，即可导入规则列表文件。规则列表文件是一个json文件，其格式如下：</p>
+<pre><code>[
+    {
+        &quot;req&quot;:&quot;^https?:\\/\\/.*test.com&quot;,
+        &quot;res&quot;:&quot;http://qunar.com&quot;,
+        &quot;checked&quot;:false
+    },
+    {
+        &quot;req&quot;:&quot;.*hanan.com&quot;,
+        &quot;res&quot;:&quot;http://cssha.com&quot;,
+        &quot;checked&quot;:true
+    }
+]
+</code></pre><p>其中相关字段含义如下：</p>
+<ul>
+<li><strong>req</strong>：请求所匹配的正则表达式（对应于If URL match输入框的内容）</li>
+</ul>
+<ul>
+<li><strong>res</strong>：映射的响应地址（对应Response输入框的内容）</li>
+</ul>
+<ul>
+<li><strong>checked</strong>：是否启用</li>
+</ul>
+<p><strong>本插件源码托管在<a href="https://github.com/hanan198501/ReRes" target="_blank" rel="external">https://github.com/hanan198501/ReRes</a>，开发过程中采用了以下开源项目，感谢支持：</strong></p>
+<ul>
+<li>LESS</li>
+</ul>
+<ul>
+<li>Bootstrap</li>
+</ul>
+<ul>
+<li>AngularJS</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/reres/" data-id="cj28wi5q000697ofyvmaaaglc" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/response/">response</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/pingru-meitang/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          一位92岁老人一生中最美好、最痛苦、最意外的事情……
+        
+      </div>
+    </a>
+  
+  
+    <a href="/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">通过Visual Event查看页面元素的绑定事件</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="1039"
+     data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。"
+     data-url="http://annn.me/reres">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

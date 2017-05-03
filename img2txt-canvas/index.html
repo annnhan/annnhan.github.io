@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        基于canvas将图片转化成字符画 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="keywords" content="html5,canvas,字符画">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于canvas将图片转化成字符画">
+<meta property="og:url" content="http://annn.me/img2txt-canvas/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/04/img2txt.jpg">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于canvas将图片转化成字符画">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2013/04/img2txt.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-img2txt-canvas" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/img2txt-canvas/" class="article-date">
+  <time datetime="2013-04-11T19:26:29.000Z" itemprop="datePublished">2013-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      基于canvas将图片转化成字符画
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/wp-content/uploads/2013/04/img2txt.jpg" alt="img2txt"><br><a id="more"></a><br>字符画大家一定非常熟悉了，那么如何把一张现有的图片转成字符画呢？HTML5让这个可能变成了现实，通过canvas，可以很轻松实现这个功能。其实原理很简单：扫描图片相应位置的像素点，再计算出其灰度值，根据灰度值的大小，分别用字符#*+“和空格来填充。下面是源码：</p>
+<p>HTML：一个canvas元素#cv，一个字符画容器#txt 。</p>
+<pre><code>&lt;canvas id=&quot;cv&quot;&gt;fuck ie&lt;/canvas&gt;
+&lt;div id=&quot;txt&quot;&gt;&lt;/div&gt;
+</code></pre><p>css：由于每一行用p来填充，所以p的height和font-size大小应该一致都是12px，这样可以避免每行出现空隙。</p>
+<pre><code>* {margin: 0;padding: 0;}
+body {font-size: 12px; margin: 10px; font-family: simsun; background: #fff;}
+p { height: 12px;}
+p.ts { margin: 10px 0 0 0; width: 500px; float: left;}
+span {width: 12px;}
+#cv, #txt {float: left;}
+#cv { margin-right: 5px;}
+</code></pre><p>javascript：请看注释和下面的解释。</p>
+<pre><code>var cv = document.getElementById(&apos;cv&apos;);
+var c = cv.getContext(&apos;2d&apos;);
+var txtDiv = document.getElementById(&apos;txt&apos;);
+var fileBtn = document.getElementById(&quot;up-button&quot;);
+var img = new Image();
+img.src = &apos;a.jpg&apos;;
+img.onload = init; // 图片加载完开始转换
+fileBtn.onchange = getImg;
+
+// 根据灰度生成相应字符
+function toText(g) {
+    if (g &lt;= 30) {
+        return &apos;#&apos;;
+    } else if (g &gt; 30 &amp;&amp; g &lt;= 60) {
+        return &apos;&amp;&apos;;
+    } else if (g &gt; 60 &amp;&amp; g &lt;= 120) {
+        return &apos;$&apos;;
+    }  else if (g &gt; 120 &amp;&amp; g &lt;= 150) {
+        return &apos;*&apos;;
+    } else if (g &gt; 150 &amp;&amp; g &lt;= 180) {
+        return &apos;o&apos;;
+    } else if (g &gt; 180 &amp;&amp; g &lt;= 210) {
+        return &apos;!&apos;;
+    } else if (g &gt; 210 &amp;&amp; g &lt;= 240) {
+        return &apos;;&apos;;
+    }  else {
+        return &apos; &apos;;
+    }
+}
+
+
+// 根据rgb值计算灰度
+function getGray(r, g, b) {
+    return 0.299 * r + 0.578 * g + 0.114 * b;
+}
+
+// 转换
+function init() {
+    txtDiv.style.width = img.width + &apos;px&apos;;
+    cv.width = img.width;
+    cv.height = img.height;
+    c.drawImage(img, 0, 0);
+    var imgData = c.getImageData(0, 0, img.width, img.height);
+    var imgDataArr = imgData.data;
+    var imgDataWidth = imgData.width;
+    var imgDataHeight = imgData.height;
+    var html = &apos;&apos;;
+    for (h = 0; h &lt; imgDataHeight; h += 12) {
+        var p = &apos;&lt;p&gt;&apos;;
+        for (w = 0; w &lt; imgDataWidth; w += 6) {
+            var index = (w + imgDataWidth * h) * 4;
+            var r = imgDataArr[index + 0];
+            var g = imgDataArr[index + 1];
+            var b = imgDataArr[index + 2];
+            var gray = getGray(r, g, b);
+            p += toText(gray);
+        }
+        p += &apos;&lt;/p&gt;&apos;;
+        html += p;
+    }
+    txtDiv.innerHTML = html;
+}
+
+// 获取图片
+function getImg(file) {
+    var reader = new FileReader();
+    reader.readAsDataURL(fileBtn.files[0]);
+    reader.onload = function () {
+        img.src = reader.result;
+    }
+}
+</code></pre><p><strong>如何取到相应像素点的灰度？</strong><br>getImageData方法返回一个对象，每个像素点的rgba值都保存在其data属性下面，这是一个一位数组，也就是说，rgba分别对应一个值，然后接着就是一下像素点的rgba，假设getImageData.data的值为[1,2,3,4,5,6,7,8]，那么getImageData对象范围就包含了2个像素点，第一个像素点的rgba值分别是1,2,3,4，第二个像素点的就是45,6,7,8。因此，我们在取每个像素点的rgba值的时候其index应该在像素点的索引值上乘以4，然后通过getGray()计算灰度。</p>
+<p><strong>如何对应到字符？</strong><br>再考虑一下每个字符串的宽度是6px，高度是12px，所以我们不可能每个像素点都要对应一个字符，那样生成的图案将非常之大。我们只能根据图片宽高，来定义一个间隔，横向间隔6px，纵向间隔12px取一次像素，这样可以保证生成的字符画大小和原图保持一致。</p>
+<p>最后请看demo：<br><a href="/img2txt/">/img2txt/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/img2txt-canvas/" data-id="cj28wi5oa003q7ofyv3i5hvpd" data-title="基于canvas将图片转化成字符画" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/字符画/">字符画</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/video2txt-canvas/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于canvas将视频转化成字符动画
+        
+      </div>
+    </a>
+  
+  
+    <a href="/vim/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">vim备忘</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="813"
+     data-title="基于canvas将图片转化成字符画"
+     data-url="http://annn.me/img2txt-canvas">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

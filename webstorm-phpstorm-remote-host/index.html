@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        使用WebStorm/Phpstorm实现remote host远程开发 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="如果你的开发环境是在远程主机上，webstorm可以提供通过ftp/ftps/sftp等方式实现远程同步开发。这样我们可以就抛弃ftp、winscp等工具，通过webstorm编辑远程文件以及部署，本文基于WebStorm5.04编写， Intellij IDEA或者PHPStorm使用方法基本相同，可参考之。并且还要感谢因特里基友群群主大猫的帮助。 1、首先我们来创建一个基于远程主机的proje">
+<meta name="keywords" content="WebStorm,host,phpstorm,remote">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用WebStorm&#x2F;Phpstorm实现remote host远程开发">
+<meta property="og:url" content="http://annn.me/webstorm-phpstorm-remote-host/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="如果你的开发环境是在远程主机上，webstorm可以提供通过ftp/ftps/sftp等方式实现远程同步开发。这样我们可以就抛弃ftp、winscp等工具，通过webstorm编辑远程文件以及部署，本文基于WebStorm5.04编写， Intellij IDEA或者PHPStorm使用方法基本相同，可参考之。并且还要感谢因特里基友群群主大猫的帮助。 1、首先我们来创建一个基于远程主机的proje">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/1.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/2.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/3.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/4.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/5.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/6.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/7.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/8.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/webstorm/9.jpg">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用WebStorm&#x2F;Phpstorm实现remote host远程开发">
+<meta name="twitter:description" content="如果你的开发环境是在远程主机上，webstorm可以提供通过ftp/ftps/sftp等方式实现远程同步开发。这样我们可以就抛弃ftp、winscp等工具，通过webstorm编辑远程文件以及部署，本文基于WebStorm5.04编写， Intellij IDEA或者PHPStorm使用方法基本相同，可参考之。并且还要感谢因特里基友群群主大猫的帮助。 1、首先我们来创建一个基于远程主机的proje">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/webstorm/1.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webstorm-phpstorm-remote-host" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/webstorm-phpstorm-remote-host/" class="article-date">
+  <time datetime="2012-11-24T23:56:40.000Z" itemprop="datePublished">2012-11-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      使用WebStorm/Phpstorm实现remote host远程开发
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>如果你的开发环境是在远程主机上，webstorm可以提供通过ftp/ftps/sftp等方式实现远程同步开发。这样我们可以就抛弃ftp、winscp等工具，通过webstorm编辑远程文件以及部署，本文基于WebStorm5.04编写， Intellij IDEA或者PHPStorm使用方法基本相同，可参考之。并且还要感谢因特里基友群群主大猫的帮助。</p>
+<p>1、首先我们来创建一个基于远程主机的project，点击file&gt;new project from existing sources，打开了创建project的对话框，我们选择第四项，例如我们的远程主机通过ftp/sftp/ftps等方式传输文件，点击next。</p>
+<p><img src="/wp-content/uploads/webstorm/1.jpg" alt=""><a id="more"></a></p>
+<p>2、设置project name与本地路径，deployment option这项选择custom，设置完毕next。</p>
+<p><img src="/wp-content/uploads/webstorm/2.jpg" alt=""></p>
+<p>3、设置deployment option，注意Upload changed files automatically to default server，此项可以设置本地文件上传到远程主机的时机，我选择on explicit save action(ctrl+s)，这样就可以通过快捷键ctrl+s来上传文件，然后next。</p>
+<p><img src="/wp-content/uploads/webstorm/3.jpg" alt=""></p>
+<p>4、配置远程主机，就不解释啦~ 配置好了next。</p>
+<p><img src="/wp-content/uploads/webstorm/4.jpg" alt=""></p>
+<p>5、指定远程主机的根目录，我们点击project root即可，然后next。</p>
+<p><img src="/wp-content/uploads/webstorm/5.jpg" alt=""></p>
+<p>6、配置访问路径，完了finish。</p>
+<p><img src="/wp-content/uploads/webstorm/6.jpg" alt=""></p>
+<p>7、到此，我们的远程project就算创建完毕了，webstorm会从远程主机下载文件到本地路径，如下图，左边栏为本地project文件，右边栏remote host为远程主机的文件，看看是不是一一对应起来了？ 这样我们在本地修改一个文件，再按ctrl+s就可以自动上传到远程主机了。</p>
+<p><img src="/wp-content/uploads/webstorm/7.jpg" alt=""></p>
+<p>通过tool&gt;deployment，我们可以对进行更多远程部署相关的操作和设置。</p>
+<p><img src="/wp-content/uploads/webstorm/8.jpg" alt=""></p>
+<p>结合Live edit，可以实现远程无刷新编辑调试。</p>
+<p><img src="/wp-content/uploads/webstorm/9.jpg" alt=""></p>
+<p>下面是一个官方的演示视频链接，演示了如何在webstorm上进行远程开发，以及更详细的功能展现：<a href="http://www.jetbrains.com/webstorm/demos/ftp_sync.html" target="_blank" rel="external">http://www.jetbrains.com/webstorm/demos/ftp_sync.html</a></p>
+<p>本文源地址为：<a href="/webstorm-phpstorm-remote-host">/webstorm-phpstorm-remote-host</a> # 转载请注明出处。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/webstorm-phpstorm-remote-host/" data-id="cj28wi5qt007h7ofy9e4ifpdi" data-title="使用WebStorm/Phpstorm实现remote host远程开发" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/host/">host</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/phpstorm/">phpstorm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/remote/">remote</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/chrome-useragent/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          发现一个小咪咪，chrome自带了修改user Agent的功能了。
+        
+      </div>
+    </a>
+  
+  
+    <a href="/absolute-img-ie-hack/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">IE坑：position:absolute的元素无法处于img元素上方</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="650"
+     data-title="使用WebStorm/Phpstorm实现remote host远程开发"
+     data-url="http://annn.me/webstorm-phpstorm-remote-host">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

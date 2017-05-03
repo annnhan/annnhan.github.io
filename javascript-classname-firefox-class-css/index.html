@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        javascript修改className在firefox中无法加载新class的样式问题 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="在制作外语版的文章页的项目过程中，我们常常会遇到这样一个需求：每一篇文章的首个字母加粗并大写。这点在CSS中用:first-letter伪类即可实现。但是由于使用的是cms系统，内容部分代码后台动态生成，我们只知道包含内容的一个DIV的ID,假设这个DIV的ID为conBox,我采取了通过JS获取此div#conBox下面第一个p元素，并修改其class为first,为p.first:first-">
+<meta name="keywords" content="javascript,className">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript修改className在firefox中无法加载新class的样式问题">
+<meta property="og:url" content="http://annn.me/javascript-classname-firefox-class-css/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="在制作外语版的文章页的项目过程中，我们常常会遇到这样一个需求：每一篇文章的首个字母加粗并大写。这点在CSS中用:first-letter伪类即可实现。但是由于使用的是cms系统，内容部分代码后台动态生成，我们只知道包含内容的一个DIV的ID,假设这个DIV的ID为conBox,我采取了通过JS获取此div#conBox下面第一个p元素，并修改其class为first,为p.first:first-">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript修改className在firefox中无法加载新class的样式问题">
+<meta name="twitter:description" content="在制作外语版的文章页的项目过程中，我们常常会遇到这样一个需求：每一篇文章的首个字母加粗并大写。这点在CSS中用:first-letter伪类即可实现。但是由于使用的是cms系统，内容部分代码后台动态生成，我们只知道包含内容的一个DIV的ID,假设这个DIV的ID为conBox,我采取了通过JS获取此div#conBox下面第一个p元素，并修改其class为first,为p.first:first-">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript-classname-firefox-class-css" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-classname-firefox-class-css/" class="article-date">
+  <time datetime="2011-08-24T01:00:38.000Z" itemprop="datePublished">2011-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      javascript修改className在firefox中无法加载新class的样式问题
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在制作外语版的文章页的项目过程中，我们常常会遇到这样一个需求：每一篇文章的首个字母加粗并大写。这点在CSS中用:first-letter伪类即可实现。但是由于使用的是cms系统，内容部分代码后台动态生成，我们只知道包含内容的一个DIV的ID,假设这个DIV的ID为conBox,我采取了通过JS获取此div#conBox下面第一个p元素，并修改其class为first,为p.first:first-letter伪类添加样式.<a id="more"></a></p>
+<p>代码如下：</p>
+<pre><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;/meta&gt;
+&lt;title&gt;show&lt;/title&gt;
+&lt;link href=&quot;css/style.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;&lt;/link&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div id=&quot;conBox&quot;&gt;
+                &lt;p&gt;Face aux milliers de voyous qui dévastent chaque nuit depuis s&lt;/p&gt;
+                &lt;p&gt;Barbra Streisand est née à Brooklyn le 24 avril 1942. Rêvant très tô&lt;/p&gt;
+                &lt;p&gt;Barbra Streisand décroche ensuite le rôle principal dans la comédi&lt;/p&gt;
+                &lt;p&gt;La chanteuse entame également une cars de séduction dans les années 90, pui&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var p = document.getElementById(&quot;conBox&quot;).getElementsByTagName(&quot;p&quot;);
+    for (var i=0;i&lt;p.length;i++){
+        p[0].className = &quot;first&quot;;
+        }
+&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>其中css/style.css的内容为：</p>
+<pre><code>#conBox{ margin:10px;  line-height:200%;}
+p.first:first-letter {text-transform:uppercase; color:#F35F8F; font-size:30px; font-weight:bold;}
+</code></pre><p>需要注意的是，当样式写在单独的css文件中并在在html的部分引入，或者直接把样式写入html页内。这样可兼容firefox chrome ie6 7 8.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/javascript-classname-firefox-class-css/" data-id="cj28wi5om00457ofyzvwq2g5i" data-title="javascript修改className在firefox中无法加载新class的样式问题" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/className/">className</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/apple-ceo-steve-jobs/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          随笔：苹果CEO乔布斯的离开是一个特别的时代的终结
+        
+      </div>
+    </a>
+  
+  
+    <a href="/html5-form-element/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTML5中一些新的“form”元素属性</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="59"
+     data-title="javascript修改className在firefox中无法加载新class的样式问题"
+     data-url="http://annn.me/javascript-classname-firefox-class-css">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

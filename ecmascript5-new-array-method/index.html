@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        ECMAScript 5中新增的数组方法 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="ECMAScript 5中定义了9个新的数组方法，用于遍历、映射、过滤、检测、简化和搜索数组。 在开始介绍之前，很有必要对这几个新增的数组方法做一个概述。首先，大多数方法的第一个参数接收一个函数，并且对数组的每个元素（或者一些元素）调用一次该函数。如果是稀疏数组，对不存在的元素不调用传递的函数。在大多数情况下，调用提供的函数使用3个参数：数组元素、数组元素的索引值和数组本身。通常，知需要第一个参数">
+<meta name="keywords" content="ECMAScript,every,filter,forEach,javascript,map,reduce,reduceRight,some">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ECMAScript 5中新增的数组方法">
+<meta property="og:url" content="http://annn.me/ecmascript5-new-array-method/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="ECMAScript 5中定义了9个新的数组方法，用于遍历、映射、过滤、检测、简化和搜索数组。 在开始介绍之前，很有必要对这几个新增的数组方法做一个概述。首先，大多数方法的第一个参数接收一个函数，并且对数组的每个元素（或者一些元素）调用一次该函数。如果是稀疏数组，对不存在的元素不调用传递的函数。在大多数情况下，调用提供的函数使用3个参数：数组元素、数组元素的索引值和数组本身。通常，知需要第一个参数">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ECMAScript 5中新增的数组方法">
+<meta name="twitter:description" content="ECMAScript 5中定义了9个新的数组方法，用于遍历、映射、过滤、检测、简化和搜索数组。 在开始介绍之前，很有必要对这几个新增的数组方法做一个概述。首先，大多数方法的第一个参数接收一个函数，并且对数组的每个元素（或者一些元素）调用一次该函数。如果是稀疏数组，对不存在的元素不调用传递的函数。在大多数情况下，调用提供的函数使用3个参数：数组元素、数组元素的索引值和数组本身。通常，知需要第一个参数">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ecmascript5-new-array-method" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ecmascript5-new-array-method/" class="article-date">
+  <time datetime="2012-10-27T07:57:58.000Z" itemprop="datePublished">2012-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      ECMAScript 5中新增的数组方法
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ECMAScript 5中定义了9个新的数组方法，用于遍历、映射、过滤、检测、简化和搜索数组。</p>
+<p>在开始介绍之前，很有必要对这几个新增的数组方法做一个概述。首先，大多数方法的第一个参数接收一个函数，并且对数组的每个元素（或者一些元素）调用一次该函数。如果是稀疏数组，对不存在的元素不调用传递的函数。在大多数情况下，调用提供的函数使用3个参数：数组元素、数组元素的索引值和数组本身。通常，知需要第一个参数，可忽略后面2个参数。大多数ECMAScript 5数组方法的第一个参数是一个函数，第二个参数是可选的。如果有第二个参数，则第一个参数（被调用的函数）会被看做是第二个参数的方法。也就是说，第一个参数（被调用的函数）的this关键字指向的是第二个参数。被调用的函数的返回值非常重要，但是不同的方法处理返回值的方式也不一样。ECMAScript 5中的数组方法都不会修改原始数组本身，但是，方法所传递的调用函数是可以改变原始数组本身的。<a id="more"></a></p>
+<p><strong>forEach()</strong><br>forEach()方法从头到尾遍历数组，为每个元素调用指定的函数。如上所述，调用的函数作为forEach()方法的第一个参数然后forEach()方法使用三个参数调用该函数：数组元素、数组元素的索引值和数组本身。如果你只关心数组元素的值，可编写只有一个参数的函数——额外的2个参数将被忽略：</p>
+<pre><code>var arr = [1, 2, 3, 4, 5];
+
+//计算数组元素的和
+var sum = 0;
+arr.forEach(function(v){
+    sum += v;
+});
+console.log(sum); //15
+
+//每个元素的值自加1
+arr.forEach(function(v, i, a){
+    a[i] = v + 1;
+});
+console.log(arr); //[2, 3, 4, 5, 6]
+</code></pre><p>注意，forEach()方法无法在所有元素都传递给调用函数之前终止，也就是说，它始终都会遍历完，没有类似与for循环中的break语句。如果要提前终止，必须把forEach()方法放在一个try块中，并却抛出一个异常。如果forEach()方法抛出foreach.break异常，循环会提前终止。</p>
+<p><strong>map()</strong><br>map()方法将调用数组的每个元素传递给指定函数，并返回一个数组，它包含该函数的返回值。例如：</p>
+<pre><code>var arr = [1, 2, 3, 4, 5];
+var b = arr.map(function(x){
+    return x * x;
+});
+console.log(b) //[1, 4, 9, 16, 25]
+</code></pre><p>传递给map()的函数的调用方式跟跟传递给forEach()的函数的调用方式一样。但是传递map()的函数应该有一个返回值。注意，map()安徽的是新数组，他不修改原始数组本身，如果袁术数组是稀疏数组，返回的数组也是稀疏数组：它具有相同的长度，相同的缺失元素。</p>
+<p><strong>filter()</strong><br>filter()方法返回的数组元素是原始数组的一个子集。传递的函数是用来逻辑判断的：该函数返回true或者false。如果返回值为true或是能转化true的值，那么传递给判断函数的元素就是filter()返回的子集的成员，它将被添加到作为filter()方法的返回值的数组中，例如：</p>
+<pre><code>var arr = [1, 2, 3, 4, 5];
+var b = arr.filter(function(x){
+    return x &gt; 3;
+});
+var c = arr.filter(function(x, i){
+    return i % 2 == 0;
+});
+console.log(b) //[4, 5]
+console.log(c) //[1, 3, 5]
+</code></pre><p>注意，filter()方法会跳过稀疏数组中的缺失元素，它返回的数组总是稠密的。我们可以利用这点来压缩稀疏数组中的空缺：</p>
+<pre><code>var arr = [1, , , , 5];
+var b = arr.filter(function(){
+    return true;
+});
+console.log(b) //[1, 5]
+</code></pre><p>甚至，压缩空缺并删除undefined和null元素，可以这样使用：</p>
+<pre><code>var arr = [1, , , , undefined, null, 5];
+var b = arr.filter(function(x){
+    return x !== undefined &amp;&amp; x !== null;
+});
+console.log(b) //[1, 5]
+</code></pre><p><strong>every()和some()</strong><br>every()和some()是数组的逻辑判断，它们对数组元素运用指定函数进行判定，返回一个布尔值。<br>every()方法就像数学中的“针对所有”的量词∀：当且仅当数组中所有元素调用判定函数都返回true时，every()方法才返回true，否则，返回false。<br>some()方法就像数学中的“存在”的量词∃：当数组中至少有一个元素调用判定函数返回true时，some()方法就返回true,当且仅当数组中所有元素调用判定函数都返回false时，some()方法才返回false。</p>
+<pre><code>var arr = [1, 2, 3, 4, 5];
+var b = arr.every(function(x){
+    return x &lt; 10;
+});
+var c = arr.every(function(x){
+    return x % 2 == 0;
+});
+var d = arr.some(function(x){
+    return x &gt; 10;
+});
+var e = arr.some(function(x){
+    return x % 2 == 0;
+});
+console.log(b) //true
+console.log(c) //false
+console.log(d) //false
+console.log(e) //true
+</code></pre><p>注意，一旦every()和some()确定该返回什么值，他们就回通知遍历数组。some()在判定函数第一次返回true的时候就返回true;但是如果判定函数一直返回false，它就会遍历整个数组。every()相反，在判定函数第一次返回false的时候就返回false;但是如果判定函数一直返回true，它就会遍历整个数组。根据数学逻辑，空数组调用时候，some()返回false，every()返回true。</p>
+<p><strong>reduce()和reduceRight()</strong><br>reduce()和reduceRight()方法使用知道的函数将数组进行组合，生成单个值。这在函数式编程当中是非常常见的操作，也可以称之为“注入”和“折叠”。例如：</p>
+<pre><code>var arr = [1, 2, 3, 4, 5];
+var b = arr.reduce(function(x, y){ //数组求和
+    return x + y;
+}, 0);
+var c = arr.reduce(function(x, y){ //数组求积
+    return x * y;
+}, 1);
+var d = arr.reduce(function(x, y){ //求最大值
+    return x &gt; y ? x : y;
+});
+console.log(b) //15
+console.log(c) //120
+console.log(d) //5
+</code></pre><p>reduce()需要2个参数，第一个是执行简化操作的函数，简化函数的任务就是定义一个方法将两个值化简成一个值，并返回简化后的值。第2个（可选）参数是传递给简化函数的一个初始值。reduce()所使用的函数的第一个参数是目前位置简化操作的累计结果，如果是第一次调用，那么第一个参数是一个初始值，它是就是传递给reduce()函数的第2个参数，如果没有指定其初始值，它将使用数组的第一个元素作为初始值。这意味着在上面的求和和求积的例子中，也可以省略第二个参数（初始值参数）。</p>
+<p>reduceRight()的工作原理和reduce()一样，不同的是它按照数组元素的索引值从高到低（从左到右）处理数组。如果简化操作是从左到右，你可能想使用它，例如：</p>
+<pre><code>var arr = [2, 3, 4];
+var b = arr.reduceRight(function(x, y){ //乘方操作，顺序为2^(3^4)
+    return Math.pow(y, x);
+});
+</code></pre><p><strong>indexOf()和lastIndexOf()</strong><br>类似于string类型的indexOf()和lastIndexOf()，搜索整个数组中具有给定值的元素，如果找到，返回第一个找到的元素的索引，如果没有找到，返回-1。indexOf()从头到尾搜索，lastIndexOf()则相反。</p>
+<pre><code>var arr = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;, &apos;d&apos;, &apos;e&apos;];
+console.log(arr.indexOf(&apos;b&apos;)) //1
+console.log(arr.lastIndexOf(&apos;e&apos;)) //4
+</code></pre><p><em>参考资料——《javascript权威指南》</em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ecmascript5-new-array-method/" data-id="cj28wi5mf001w7ofysaarr1g4" data-title="ECMAScript 5中新增的数组方法" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ECMAScript/">ECMAScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/every/">every</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/filter/">filter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/forEach/">forEach</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/map/">map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/reduce/">reduce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/reduceRight/">reduceRight</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/some/">some</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/euclidean/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          欧几里德算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/aptana3-chinese-zencoding-svn-jquery/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="587"
+     data-title="ECMAScript 5中新增的数组方法"
+     data-url="http://annn.me/ecmascript5-new-array-method">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

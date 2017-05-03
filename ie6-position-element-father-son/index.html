@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        IE6下position定位子元素溢出，父元素被撑开的解决思路。 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="在一些被常规的页面布局当中，我们常常需要通过position定位HTML元素来实现我们想要的效果。但是在这个办法在IE6中常常会出现各种问题。例如，我们想让一个子元素溢出其父元素之外显示，而影响父元素本身和其他兄弟元素的样式，我们可以这样写：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE6下position定位子元素溢出，父元素被撑开的解决思路。">
+<meta property="og:url" content="http://annn.me/ie6-position-element-father-son/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="在一些被常规的页面布局当中，我们常常需要通过position定位HTML元素来实现我们想要的效果。但是在这个办法在IE6中常常会出现各种问题。例如，我们想让一个子元素溢出其父元素之外显示，而影响父元素本身和其他兄弟元素的样式，我们可以这样写：">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/1.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2011/09/2.jpg">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IE6下position定位子元素溢出，父元素被撑开的解决思路。">
+<meta name="twitter:description" content="在一些被常规的页面布局当中，我们常常需要通过position定位HTML元素来实现我们想要的效果。但是在这个办法在IE6中常常会出现各种问题。例如，我们想让一个子元素溢出其父元素之外显示，而影响父元素本身和其他兄弟元素的样式，我们可以这样写：">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2011/09/1.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ie6-position-element-father-son" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ie6-position-element-father-son/" class="article-date">
+  <time datetime="2011-09-25T18:59:20.000Z" itemprop="datePublished">2011-09-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      IE6下position定位子元素溢出，父元素被撑开的解决思路。
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在一些被常规的页面布局当中，我们常常需要通过position定位HTML元素来实现我们想要的效果。但是在这个办法在IE6中常常会出现各种问题。例如，我们想让一个子元素溢出其父元素之外显示，而影响父元素本身和其他兄弟元素的样式，我们可以这样写：<a id="more"></a></p>
+<pre><code>&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+&lt;meta content=&quot;text/html; charset=utf-8&quot; http-equiv=&quot;Content-Type&quot;&gt;&lt;/meta&gt;
+&lt;title&gt;无标题文档&lt;/title&gt;
+&lt;/head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+body{ text-align:center;}
+.father{ width:300px; height:300px; background:#96F; margin:0 auto; _overflow:hidden; }
+.son{ width:400px; height:200px; background:#09F; position:relative; right:100px; top:0px;}
+&lt;/style&gt;
+&lt;body&gt;
+&lt;div class=&quot;father&quot;&gt;
+    &lt;div class=&quot;son&quot;&gt;子元素&lt;/div&gt;
+    父元素
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>运用position:relative，在IE7+,chrome,firfox中能很好的实现溢出效果，如下图：<br><a href="/wp-content/uploads/2011/09/1.jpg"><img src="/wp-content/uploads/2011/09/1.jpg" alt=""></a></p>
+<p>但是在IE6中，父元素却被子元素撑开了了，width值变成了400px; 在这个情况下，子元素right:100px属性作用使其向左移动100px,这点IE6和其他浏览器效果其实一样，由于被撑开，子元素右边出现了100PX和父元素之间的空隙。如下图：<br><a href="/wp-content/uploads/2011/09/2.jpg"><img src="/wp-content/uploads/2011/09/2.jpg" alt=""></a></p>
+<p>所以,我们给父元素添加一个overflow:hidden属性,防止在IE6被子元素撑开,但是,在IE7+,chrome,firfox中溢出部分被hidden掉了，IE6却没有。因此我们还得出一个结论：IE6下父元素的overflow:hidden对于具有position:relative属性的子元素无效，但是可以防止被子元素撑开。所以，可以这样写父元素的hack:</p>
+<pre><code>.father{ width:300px; height:300px; background:#96F; margin:0 auto; _overflow:hidden; }
+</code></pre><p>在verflow:hidden前加个只有IE6才能识别的下划线，就OK了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ie6-position-element-father-son/" data-id="cj28wi5o2003k7ofy9ktvhtbw" data-title="IE6下position定位子元素溢出，父元素被撑开的解决思路。" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/css3-new-knowledge-student/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CSS3新属性基础学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/ie6-max-width-max-height/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">让IE6支持max-width, max-height属性</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="104"
+     data-title="IE6下position定位子元素溢出，父元素被撑开的解决思路。"
+     data-url="http://annn.me/ie6-position-element-father-son">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        HTML5中一些新的“form”元素属性 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="创建表单时，我们常常遇到的一个挑战是无法单独从它的父表单控制元素，而诉诸一些奇怪的方法，形成控制与形式提交其数据。 如果你试图在HTML4或XHTML去去实现，你想从提交表单数据的其余部分一起孤立的控制数据，你必须实现一些花哨的javascript技巧，传递到提交的资料 - 其中有许多明显的缺陷。">
+<meta name="keywords" content="form,html5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML5中一些新的“form”元素属性">
+<meta property="og:url" content="http://annn.me/html5-form-element/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="创建表单时，我们常常遇到的一个挑战是无法单独从它的父表单控制元素，而诉诸一些奇怪的方法，形成控制与形式提交其数据。 如果你试图在HTML4或XHTML去去实现，你想从提交表单数据的其余部分一起孤立的控制数据，你必须实现一些花哨的javascript技巧，传递到提交的资料 - 其中有许多明显的缺陷。">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTML5中一些新的“form”元素属性">
+<meta name="twitter:description" content="创建表单时，我们常常遇到的一个挑战是无法单独从它的父表单控制元素，而诉诸一些奇怪的方法，形成控制与形式提交其数据。 如果你试图在HTML4或XHTML去去实现，你想从提交表单数据的其余部分一起孤立的控制数据，你必须实现一些花哨的javascript技巧，传递到提交的资料 - 其中有许多明显的缺陷。">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-html5-form-element" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/html5-form-element/" class="article-date">
+  <time datetime="2011-08-23T18:37:16.000Z" itemprop="datePublished">2011-08-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      HTML5中一些新的“form”元素属性
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>创建表单时，我们常常遇到的一个挑战是无法单独从它的父<code>表单</code>控制<form>元素，而诉诸一些奇怪的方法，形成控制与形式提交其数据。</form></p>
+<p>如果你试图在HTML4或XHTML去去实现，你想从提交表单数据的其余部分一起孤立的控制数据，你必须实现一些花哨的javascript技巧，传递到提交的资料 - 其中有许多明显的缺陷。<a id="more"></a></p>
+<h2 id="一个更好的办法"><a href="#一个更好的办法" class="headerlink" title="一个更好的办法"></a>一个更好的办法</h2><p>HTML5现在推出了一个新<code>的</code>形式，可让您对任何<form>页面上的元素相关联的属性孤立开进行控制。大家阅读这种技术的HTML5 规范，我们展示一下HTM5这里是如何做到这一点的呢 ：</form></p>
+<pre><code>&lt;a href=&quot;/wp-content/uploads/2011/08/2011-08-24_101639.jpg&quot;&gt;&lt;img src=&quot;/wp-content/uploads/2011/08/2011-08-24_101639.jpg&quot; title=&quot;2011-08-24_101639&quot; height=&quot;264&quot; width=&quot;502&quot; alt=&quot;&quot; class=&quot;alignnone size-full wp-image-52&quot;&gt;&lt;/img&gt;&lt;/a&gt;
+
+
+
+
+注意两件事:
+
+
+
+
+textarea元素在form元素之外，是兄弟关系；
+
+
+
+
+textarea元素有一个form属性与form元素的ID相同，我希望把他们相关联。
+</code></pre><h2 id="它覆盖了默认行为"><a href="#它覆盖了默认行为" class="headerlink" title="它覆盖了默认行为"></a>它覆盖了默认行为</h2><p>有了这个属性，你实际上可以覆盖默认的form所控制行为。例如，如果有两种形式在页面上，可以“stolen”形式＃2的形式控制，并使其＃1的形式提交。</p>
+<p>即使控件嵌套里面的表单元素的＃2提交行为会发生。而作为一个结果，形式＃2将<em>不会</em>提交“stolen”的形式控制的数据。所以<code>form</code>属性将覆盖自然会发生。</p>
+<p>这技术的工作原理与表单的提交按钮的方式相同 。您可以以外的形式提交按钮，和它关联使用的<code>形式</code>属性，它会以同样的方式工作。</p>
+<h2 id="浏览器支持吗？"><a href="#浏览器支持吗？" class="headerlink" title="浏览器支持吗？"></a>浏览器支持吗？</h2><p>我已经设置了其属性<code>方法</code> “获取” 的形式，这将导致在查询字符串发送到相同的页面提交的值。如果您使用的浏览器支持该功能，那么你应该会看到三个值追加到URL。如果您使用的是nonsupporting浏览器，然后你会看到只有两个值。``</p>
+<p>我找不到太多的来源，讨论此功能的浏览器支持，但根据WHATWG的规范，浏览器支持如下：</p>
+<p>Opera 9.5+</p>
+<p>Safari 5.1+ (according to Elliot)</p>
+<p>Firefox 4+</p>
+<p>Chrome 10+</p>
+<p>在笔者各人看来，要使用此功能，就必须有一个与IE浏览器的数字低的观众，或其他功能检测，然后通过javascript支持得到相同的结果 。我没有看到一个具体polyfill HTML5的Polyfills页，但它可能是HTML5的形式实现polyfills方法之一，我只是不费心去研究这些。工作将是一个有趣的事情，因为这是一个非常有用的功能 。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/html5-form-element/" data-id="cj28wi5nv00397ofyjmhtmvbs" data-title="HTML5中一些新的“form”元素属性" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/form/">form</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/html5/">html5</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/javascript-classname-firefox-class-css/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          javascript修改className在firefox中无法加载新class的样式问题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/archives/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">归档</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="51"
+     data-title="HTML5中一些新的“form”元素属性"
+     data-url="http://annn.me/html5-form-element">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

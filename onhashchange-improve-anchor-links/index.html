@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        通过onhashchange优化“锚链接” |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="锚链接是大家再熟悉不过的了，它允许用户通过一个链接跳转到当前页面的指定内容。一般创建一个锚链接的方法就像下面这样，用户点击a标签，浏览器将跳转的id为content的div来显示其内容。。 &amp;lt;a href=&amp;quot;#content&amp;quot;&amp;gt;跳到id为content的标签&amp;lt;/a&amp;gt;    &amp;lt;div id=&amp;quot;content&amp;quot;&amp;gt;  &amp;lt;/">
+<meta name="keywords" content="javascript,focus,Link,onhashchange">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过onhashchange优化“锚链接”">
+<meta property="og:url" content="http://annn.me/onhashchange-improve-anchor-links/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="锚链接是大家再熟悉不过的了，它允许用户通过一个链接跳转到当前页面的指定内容。一般创建一个锚链接的方法就像下面这样，用户点击a标签，浏览器将跳转的id为content的div来显示其内容。。 &amp;lt;a href=&amp;quot;#content&amp;quot;&amp;gt;跳到id为content的标签&amp;lt;/a&amp;gt;    &amp;lt;div id=&amp;quot;content&amp;quot;&amp;gt;  &amp;lt;/">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通过onhashchange优化“锚链接”">
+<meta name="twitter:description" content="锚链接是大家再熟悉不过的了，它允许用户通过一个链接跳转到当前页面的指定内容。一般创建一个锚链接的方法就像下面这样，用户点击a标签，浏览器将跳转的id为content的div来显示其内容。。 &amp;lt;a href=&amp;quot;#content&amp;quot;&amp;gt;跳到id为content的标签&amp;lt;/a&amp;gt;    &amp;lt;div id=&amp;quot;content&amp;quot;&amp;gt;  &amp;lt;/">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-onhashchange-improve-anchor-links" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/onhashchange-improve-anchor-links/" class="article-date">
+  <time datetime="2013-01-22T03:48:59.000Z" itemprop="datePublished">2013-01-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      通过onhashchange优化“锚链接”
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>锚链接是大家再熟悉不过的了，它允许用户通过一个链接跳转到当前页面的指定内容。一般创建一个锚链接的方法就像下面这样，用户点击a标签，浏览器将跳转的id为content的div来显示其内容。。</p>
+<pre><code>&lt;a href=&quot;#content&quot;&gt;跳到id为content的标签&lt;/a&gt;
+
+
+
+&lt;div id=&quot;content&quot;&gt;
+
+&lt;/div&gt;
+</code></pre><p><strong>存在的问题：</strong><br>当用户没有鼠标，而是使用tab键+回车键的方式触发锚链接时，页面焦点仍然停留在a标签，并没有相应转到<div id="content">上。这种情况带来的问题是：如果用户继续按tab键，焦点会转移到a标签的下一个可获取焦点的元素，这可能是挨着a标签的另一个链接，反正不是<div id="content">的下一个可获取焦点的元素。而屏幕可视区域就有可能回滚回其他地方。按照常理，用户更希望按下tab键，焦点应该跳转到<div id="content">的下一个可获取焦点的元素。<br><a id="more"></a><br><strong>解决思路</strong><br>如果用户触发锚链接时候，焦点也跟着跳转到相应的目标元素，那么问题就可以解决了。在锚链接被触发时候， location.hash会储存a标签的href；这其实也就是目标元素的id，因此我们可以在onhashchange事件被触发的时候，获取相应元素，然后调用focus()方法，使其获取焦点。但是，如果获取到的是个span、div、p等非表单元素，focus()方法却不能起作用。解决的办法是在调用focus()之前，设置其tabIndex属性成一个整数，这样非表单元素也能获得焦点了。</div></div></div></p>
+<pre><code>var fixedJumpLink = function () {
+            var el, hash = location.hash.substr(1);
+            if (hash == &apos;&apos;) {
+                return;
+            }
+            el = document.getElementById(hash);
+            if (!/^(a|input|button|select|textarea)$/i.test(el.tagName)) {//判断元素tagName
+                el.tabIndex = -1;
+            }
+            el.focus();
+        }
+window.onhashchange = fixedJumpLink;
+</code></pre><p><strong>兼容浏览器</strong><br>在版本低于IE8的浏览器中，onhashchange事件是不被支持的，我的办法是定时检查location.hash，如果location.hash发生变化，则调用fixedJumpLink函数，已达到兼容低版本IE浏览器的目的。</p>
+<pre><code>var fixedJumpLink = function () {
+    var el, hash = location.hash.substr(1);
+    if (hash == &apos;&apos;) {
+        return;
+    }
+    el = document.getElementById(hash);
+    if (!/^(a|input|button|select|textarea)$/i.test(el.tagName)) {
+        el.tabIndex = -1;
+    }
+    el.focus();
+}
+
+//浏览器版本是否低于IE8
+var lessThenIE8 = function () {
+    var UA = navigator.userAgent,
+        isIE = UA.indexOf(&apos;MSIE&apos;) &gt; -1,
+        v = isIE ? /\d+/.exec(UA.split(&apos;;&apos;)[1]) : &apos;no ie&apos;;
+    return v &lt; 8;
+}();
+
+if (lessThenIE8) {
+    var oldHash = location.hash.substr(1);
+    (function () {
+        var newHash = location.hash.substr(1);
+        if (oldHash != newHash) {
+            oldHash = newHash;
+            fixedJumpLink();
+        }
+        setTimeout(arguments.callee, 0);
+    })();
+} else {
+    window.onhashchange = fixedJumpLink;
+}
+</code></pre><p>demo:<br><a href="/wp-content/uploads/2013/01/fixedhotlink.html">/wp-content/uploads/2013/01/fixedhotlink.html</a></p>
+<p>参考文章：<br><a href="http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/" target="_blank" rel="external">http://www.nczonline.net/blog/2013/01/15/fixing-skip-to-content-links/</a><br><a href="http://msdn.microsoft.com/en-us/library/ms534654%28VS.85%29.aspx" target="_blank" rel="external">http://msdn.microsoft.com/en-us/library/ms534654%28VS.85%29.aspx</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cj28wi5pq005x7ofyg8ybh55u" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Link/">Link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/focus/">focus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/onhashchange/">onhashchange</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/jquery1-9-removed-api/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          jQuery1.9中被删除的API
+        
+      </div>
+    </a>
+  
+  
+    <a href="/retina-css4/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Retina屏幕与CSS4</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="702"
+     data-title="通过onhashchange优化“锚链接”"
+     data-url="http://annn.me/onhashchange-improve-anchor-links">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

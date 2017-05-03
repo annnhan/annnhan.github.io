@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        vim备忘 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="虽然平时写代码的时候都是用Intellij IDEA，但也偶尔通过ssh+vim远程修改文件，特此记录，以备时需。 标签命令 :tabe fn     在一个新的标签页中编辑文件fn gt           切换到下一个标签页 gT           切换到上一个标签页 :tabr        切换到第一个标签页 :tabl        切换到最后一个标签页 :tabm [N]    把当">
+<meta name="keywords" content="vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim备忘">
+<meta property="og:url" content="http://annn.me/vim/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="虽然平时写代码的时候都是用Intellij IDEA，但也偶尔通过ssh+vim远程修改文件，特此记录，以备时需。 标签命令 :tabe fn     在一个新的标签页中编辑文件fn gt           切换到下一个标签页 gT           切换到上一个标签页 :tabr        切换到第一个标签页 :tabl        切换到最后一个标签页 :tabm [N]    把当">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim备忘">
+<meta name="twitter:description" content="虽然平时写代码的时候都是用Intellij IDEA，但也偶尔通过ssh+vim远程修改文件，特此记录，以备时需。 标签命令 :tabe fn     在一个新的标签页中编辑文件fn gt           切换到下一个标签页 gT           切换到上一个标签页 :tabr        切换到第一个标签页 :tabl        切换到最后一个标签页 :tabm [N]    把当">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-vim" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/vim/" class="article-date">
+  <time datetime="2013-04-08T01:17:40.000Z" itemprop="datePublished">2013-04-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      vim备忘
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然平时写代码的时候都是用Intellij IDEA，但也偶尔通过ssh+vim远程修改文件，特此记录，以备时需。</p>
+<p><strong>标签命令</strong></p>
+<pre><code>:tabe fn     在一个新的标签页中编辑文件fn
+gt           切换到下一个标签页
+gT           切换到上一个标签页
+:tabr        切换到第一个标签页
+:tabl        切换到最后一个标签页
+:tabm [N]    把当前tab移动到第N个tab之后
+</code></pre><p><strong>窗口命令</strong></p>
+<pre><code>ctrl+w s     水平分割窗口
+ctrl+w w     切换窗口
+ctrl+w q     退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口)
+ctrl+w v     垂直分割窗口
+:sp fn       分割窗口，并将fn加载到新的窗口中
+</code></pre><p><a id="more"></a><strong>其他</strong><br>vim在保存之前不会对文件做实际的修改，只是加载到缓冲区中，对文件的编辑其实是对缓冲区的编辑，直到:w时才会存入物理文件。</p>
+<pre><code>:e file      把file加载到新的缓冲区中
+:bn          跳转到下一个缓冲区
+:bd          删除缓冲区(关闭文件)
+:sp fn       分割窗口，并将fn加载到新的窗口中
+</code></pre><p><strong>退出编辑器</strong></p>
+<pre><code>:w           将缓冲区写入文件，即保存修改
+:wq          保存修改并退出
+:x           保存修改并退出
+:q           退出，如果对缓冲区进行过修改，则会提示
+:q!          强制退出，放弃修改
+</code></pre><p><strong>查找替换</strong></p>
+<pre><code>/pattern     向后搜索字符串pattern
+?pattern     向前搜索字符串pattern
+n            下一个匹配(如果是/搜索，则是向下的下一个，?搜索则是向上的下一个)
+N            上一个匹配(同上)
+:%s/old/new/g     搜索整个文件，将所有的old替换为new
+:%s/old/new/gc    搜索整个文件，将所有的old替换为new，每次都要你确认是否替换
+</code></pre><p><strong>复制粘贴</strong></p>
+<pre><code>dd           删除光标所在行
+dw           删除一个字(word)
+x            删除当前字符
+X            删除前一个字符
+D            删除到行末
+yy           复制一行，此命令前可跟数字，标识复制多行，如6yy，表示从当前行开始复制6行
+yw           复制一个字
+y$           复制到行末
+p            粘贴粘贴板的内容到当前行的下面
+P            粘贴粘贴板的内容到当前行的上面
+]p           有缩进的粘贴，vim会自动调节代码的缩进
+&quot;a           将内容放入/存入a寄存器，可以支持多粘贴板
+</code></pre><p><strong>移动光标</strong></p>
+<pre><code>h,j,k,l      左，下，上，右
+ctrl-f       上翻一页
+ctrl-b       下翻一页
+%            跳到与当前括号匹配的括号处，如当前在{，则跳转到与之匹配的}处
+w            跳到下一个字首，按标点或单词分割
+W            跳到下一个字首，长跳，如end-of-line被认为是一个字
+e            跳到下一个字尾
+E            跳到下一个字尾，长跳
+b            跳到上一个字
+B            跳到上一个字，长跳
+0            跳至行首，不管有无缩进，就是跳到第0个字符
+^            跳至行首的第一个字符
+$            跳至行尾
+gg           跳至文件的第一行
+gd           跳至当前光标所在的变量的声明处
+[N]G         跳到第N行，如0G，就等价于gg，100G就是第100行
+fx           在当前行中找x字符，找到了就跳转至
+;            重复上一个f命令，而不用重复的输入fx
+tx           与fx类似，但是只是跳转到x的前一个字符处
+Fx           跟fx的方向相反
+),(          跳转到上/下一个语句
+*            查找光标所在处的单词，向下查找
+#            查找光标所在处的单词，向上查找
+`.           跳转至上次编辑位置
+</code></pre><p><strong>在屏幕上移动</strong></p>
+<pre><code>H            移动光标到当前屏幕上最上边的一行
+M            移动光标到当前屏幕上中间的一行
+L            移动光标到当前屏幕上最下边的一行
+</code></pre><p><strong>书签</strong></p>
+<pre><code>ma           把当前位置存成标签a
+`a           跳转到标签a处
+</code></pre><p><strong>编辑</strong></p>
+<pre><code>r            替换一个字符
+J            将下一行和当前行连接为一行
+cc           删除当前行并进入编辑模式
+cw           删除当前字，并进入编辑模式
+c$           擦除从当前位置至行末的内容，并进入编辑模式
+s            删除当前字符并进入编辑模式
+S            删除光标所在行并进入编辑模式
+xp           交换当前字符和下一个字符
+u            撤销
+ctrl+r       重做
+.            重复上一个编辑命令
+~            切换大小写，当前字符
+g~iw         切换当前字的大小写
+gUiw         将当前字变成大写
+guiw         将当前字变成小写
+&gt;&gt;           将当前行右移一个单位
+&lt;&lt;           将当前行左移一个单位(一个tab符)
+==           自动缩进当前行
+</code></pre><p><strong>插入模式</strong></p>
+<pre><code>i            从当前光标处进入插入模式
+I            进入插入模式，并置光标于行首
+a            追加模式，置光标于当前光标之后
+A            追加模式，置光标于行末
+o            在当前行之下新加一行，并进入插入模式
+O            在当前行之上新加一行，并进入插入模式
+Esc          退出插入模式
+</code></pre><p><strong>可视模式-标记文本</strong></p>
+<pre><code>v            进入可视模式，单字符模式
+V            进入可视模式，行模式
+ctrl+v       进入可视模式，列模式，类似于UE的列模式
+o            跳转光标到选中块的另一个端点
+U            将选中块中的内容转成大写
+O            跳转光标到块的另一个端点
+aw           选中一个字
+ab           选中括号中的所有内容，包括括号本身
+aB           选中{}括号中的所有内容
+ib           选中括号中的内容，不含括号
+iB           选中{}中的内容，不含{}
+</code></pre><p><strong>可视模式-操作标记文本</strong></p>
+<pre><code>&gt;            块右移
+&lt;            块左移
+y            复制块
+d            删除块
+~            切换块中内容的大小写
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/vim/" data-id="cj28wi5r9007s7ofyegw3jouv" data-title="vim备忘" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/img2txt-canvas/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于canvas将图片转化成字符画
+        
+      </div>
+    </a>
+  
+  
+    <a href="/intellij-idea-ant/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">在Intellij IDEA中使用Ant</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="795"
+     data-title="vim备忘"
+     data-url="http://annn.me/vim">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

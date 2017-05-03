@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        基于 postMessage 和 localStorage 的跨域本地存储方案 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="HTML5 的 postMessage 为解决跨域页面通信提供了一套可控的机制， 而 localStorage 则提供了易用简洁的本地存储方案？这两者结合起来，能否实现跨域本地存储呢 ？ 答案是可以的。假设有 a.com 和 b.com 两个页面。我们想通过 a 页面去修改 b 页面的本地数据。 我们需要做如下步奏：  在 a 页面创建一个 iframe ，嵌入 b 页面 a 页面通过 postM">
+<meta name="keywords" content="cross,domain,local,postMessage,storage">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于 postMessage 和 localStorage 的跨域本地存储方案">
+<meta property="og:url" content="http://annn.me/cross-domain-local-storage/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="HTML5 的 postMessage 为解决跨域页面通信提供了一套可控的机制， 而 localStorage 则提供了易用简洁的本地存储方案？这两者结合起来，能否实现跨域本地存储呢 ？ 答案是可以的。假设有 a.com 和 b.com 两个页面。我们想通过 a 页面去修改 b 页面的本地数据。 我们需要做如下步奏：  在 a 页面创建一个 iframe ，嵌入 b 页面 a 页面通过 postM">
+<meta property="og:image" content="http://annn.me/assets/img/cross-localstorage.png">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于 postMessage 和 localStorage 的跨域本地存储方案">
+<meta name="twitter:description" content="HTML5 的 postMessage 为解决跨域页面通信提供了一套可控的机制， 而 localStorage 则提供了易用简洁的本地存储方案？这两者结合起来，能否实现跨域本地存储呢 ？ 答案是可以的。假设有 a.com 和 b.com 两个页面。我们想通过 a 页面去修改 b 页面的本地数据。 我们需要做如下步奏：  在 a 页面创建一个 iframe ，嵌入 b 页面 a 页面通过 postM">
+<meta name="twitter:image" content="http://annn.me/assets/img/cross-localstorage.png">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-cross-domain-local-storage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/cross-domain-local-storage/" class="article-date">
+  <time datetime="2014-09-07T12:38:00.000Z" itemprop="datePublished">2014-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      基于 postMessage 和 localStorage 的跨域本地存储方案
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>HTML5 的 postMessage 为解决跨域页面通信提供了一套可控的机制， 而 localStorage 则提供了易用简洁的本地存储方案？<br>这两者结合起来，能否实现跨域本地存储呢 ？</p>
+<p>答案是可以的。假设有 a.com 和 b.com 两个页面。我们想通过 a 页面去修改 b 页面的本地数据。 我们需要做如下步奏：</p>
+<ul>
+<li>在 a 页面创建一个 iframe ，嵌入 b 页面</li>
+<li>a 页面通过 postMessage 传递指定格式的消息给 b 页面</li>
+<li>b 页面解析 a 页面传递过来的消息内容，调用localStorage API 操作本地数据</li>
+<li>b 页面包装 localStorage 的操作结果，并通过 postMessage 传递给 a 页面</li>
+<li>a 页面解析 b 页面传递回来的消息内容，得到 localStorage 的操作结果</li>
+</ul>
+<p>整个过程如下图：</p>
+<p><img style="mergin:5px;" src="/assets/img/cross-localstorage.png" alt=""></p>
+<a id="more"></a>
+<p>OK，清楚了整个过程，我们就可以封装出相应的组件：CSClient.js 和 csHub.js，来完成这个过程，下面我们来简单实现一下。</p>
+<p>先来看CSClient.js，作用于 a 页面，用于创建跨域存储实例，它提供了 get、set、del 这三个方法来操作跨域的数据：</p>
+<pre><code>function CSClient(url) {
+    this.id = this._getId();
+    this._init(url);
+    this._origin = this._getOrigin(url);
+    this._callbacks = {
+        _get: {},
+        _set: {},
+        _del: {}
+    }
+    this._bindEvent();
+}
+
+CSClient.prototype._getId = function () {
+    id = 0;
+    return function () {
+        return ++id;
+    }
+}();
+
+CSClient.prototype._init = function (url) {
+    var frame = document.createElement(&apos;iframe&apos;);
+    frame.style.display = &apos;none&apos;;
+    frame.src = url;
+    document.body.appendChild(frame);
+    this._hub = frame.contentWindow;
+}
+
+CSClient.prototype._getOrigin = function(url) {
+    var uri, origin;
+    uri = document.createElement(&apos;a&apos;);
+    uri.href = url;
+    origin = uri.protocol + &apos;//&apos; + uri.host;
+    return origin;
+};
+
+CSClient.prototype._parseMessage = function (method, key, value) {
+    return JSON.stringify({
+        method: method,
+        key: key,
+        value: value
+    });
+}
+
+
+CSClient.prototype._bindEvent = function () {
+    var _this = this;
+    window.addEventListener(&apos;message&apos;, function (event) {
+        var data = JSON.parse(event.data);
+        var error = data.error;
+        var result = data.result  &amp;&amp; JSON.parse(data.result) || null;
+        try {
+            _this._callbacks[&apos;_&apos; + data.method][data.key](error, result);
+        }
+        catch (e){
+            console.log(e);
+        }
+    }, false);
+}
+
+CSClient.prototype.get = function (key, callback) {
+    this._hub.postMessage(this._parseMessage(&apos;get&apos;, key), this._origin);
+    this._callbacks._get[key] = callback;
+}
+
+CSClient.prototype.set = function (key, value, callback) {
+    this._hub.postMessage(this._parseMessage(&apos;set&apos;, key, value), this._origin);
+    this._callbacks._set[key] = callback;
+}
+
+CSClient.prototype.del = function (key, callback) {
+    this._hub.postMessage(this._parseMessage(&apos;del&apos;, key), this._origin);
+    this._callbacks._del[key] = callback;
+}
+</code></pre><p>使用方法如下：</p>
+<pre><code>var key = document.querySelector(&apos;#key&apos;);
+var value = document.querySelector(&apos;#value&apos;);
+var btn = document.querySelectorAll(&apos;button&apos;);
+var storage = new CSClient(&apos;http://b.com&apos;);
+
+btn[0].onclick = function (e) {
+    storage.get(key.value, function (err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(result);
+    })
+}
+
+btn[1].onclick = function (e) {
+    storage.set(key.value, value.value, function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(&apos;set ok&apos;);
+    })
+}
+
+btn[2].onclick = function (e) {
+    storage.del(key.value, function (err) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(&apos;del ok&apos;);
+    })
+}
+</code></pre><p>接着看 csHub.js，作用于 b 页面，用于设置跨域存储的权限、接受 client 的消息、操作本地数据。只有拥有权限的 origin ，才能操作本页面的本地数据。</p>
+<pre><code>var csHub = window.csHub = {
+    init: function (origin) {
+        this.originRule = origin;
+    },
+
+    get: function (key) {
+        return JSON.stringify(window.localStorage.getItem(key));
+    },
+
+    set: function (key, value) {
+        window.localStorage.setItem(key, JSON.stringify(value));
+    },
+
+    del: function (key) {
+        window.localStorage.removeItem(key);
+    }
+};
+
+window.addEventListener(&apos;message&apos;, function (event) {
+    var message = JSON.parse(event.data), result, err = null;
+    if (csHub.originRule.test(event.origin)) {
+        try {
+            result = csHub[message.method](message.key, message.value);
+        }
+        catch (e) {
+            err = {
+                message: e.message,
+                stack: e.stack
+            };
+        }
+        window.parent.postMessage(JSON.stringify({
+            error: err,
+            method: message.method,
+            key: message.key,
+            result: result
+        }), event.origin);
+    }
+}, false);
+</code></pre><p>使用方法如下：</p>
+<pre><code>csHub.init(/a.com$/);
+</code></pre><p>以上代码都比较简单， 主要为了演示如何实现跨域存储。如果你想在项目中使用此方案。推荐使用<a href="https://github.com/zendesk/cross-storage" target="_blank" rel="external">https://github.com/zendesk/cross-storage</a>这个库。<br>这个库实现了更灵活的权限机制，使用 ES6 的 promises 规范简化了操作接口， 并对浏览器的差异化做了处理，兼容到了 ie8+ 与其他现代浏览器。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/cross-domain-local-storage/" data-id="cj28wi5m8001p7ofycfyhuyfy" data-title="基于 postMessage 和 localStorage 的跨域本地存储方案" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cross/">cross</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/domain/">domain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/local/">local</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/postMessage/">postMessage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/storage/">storage</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/ksend/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          命令行推送个人文档至kindle
+        
+      </div>
+    </a>
+  
+  
+    <a href="/open-window-in-chrome/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何绕过chrome的弹窗拦截机制</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="cross-domain-local-storage"
+     data-title="基于 postMessage 和 localStorage 的跨域本地存储方案"
+     data-url="http://annn.me/cross-domain-local-storage">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

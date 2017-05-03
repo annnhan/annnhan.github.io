@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        git 使用笔记 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="公司的项目从svn迁移到git了， 只是一份简易的使用指南和笔记，不是很高深。 下载与安装OSX版：https://code.google.com/p/git-osx-installer/downloads/list?can=3LINUX版：http://git-scm.com/book/en/Getting-Started-Installing-GitWINDOWS版：https://code.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git 使用笔记">
+<meta property="og:url" content="http://annn.me/git-use/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="公司的项目从svn迁移到git了， 只是一份简易的使用指南和笔记，不是很高深。 下载与安装OSX版：https://code.google.com/p/git-osx-installer/downloads/list?can=3LINUX版：http://git-scm.com/book/en/Getting-Started-Installing-GitWINDOWS版：https://code.">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/09/trees.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/09/branches.png">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git 使用笔记">
+<meta name="twitter:description" content="公司的项目从svn迁移到git了， 只是一份简易的使用指南和笔记，不是很高深。 下载与安装OSX版：https://code.google.com/p/git-osx-installer/downloads/list?can=3LINUX版：http://git-scm.com/book/en/Getting-Started-Installing-GitWINDOWS版：https://code.">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2013/09/trees.png">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-git-use" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/git-use/" class="article-date">
+  <time datetime="2013-09-06T20:11:00.000Z" itemprop="datePublished">2013-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      git 使用笔记
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>公司的项目从svn迁移到git了， 只是一份简易的使用指南和笔记，不是很高深。</p>
+<p><strong>下载与安装</strong><br>OSX版：<a href="https://code.google.com/p/git-osx-installer/downloads/list?can=3" target="_blank" rel="external">https://code.google.com/p/git-osx-installer/downloads/list?can=3</a><br>LINUX版：<a href="http://git-scm.com/book/en/Getting-Started-Installing-Git" target="_blank" rel="external">http://git-scm.com/book/en/Getting-Started-Installing-Git</a><br>WINDOWS版：<a href="https://code.google.com/p/msysgit/downloads/list?can=3" target="_blank" rel="external">https://code.google.com/p/msysgit/downloads/list?can=3</a></p>
+<p><strong>创建新仓库</strong><br>创建新文件夹，打开，然后执行</p>
+<pre><code>git init
+</code></pre><p><strong>克隆仓库</strong><br>克隆本地仓库</p>
+<pre><code>git clone /path/to/repository
+</code></pre><p>克隆远程仓库</p>
+<pre><code>git clone username@host:/path/to/repository
+</code></pre><p><strong>工作流</strong><br>本地仓库由 git 维护的三棵“树”组成。第一个是<code>工作目录</code>，它持有实际文件；第二个是<code>缓存区（Index）</code>，它像个缓存区域，临时保存改动；最后是<code>HEAD</code>，指向最近一次提交后的结果。<br><img src="/wp-content/uploads/2013/09/trees.png" alt="trees"></p>
+<p><strong>添加与提交</strong><br>把计划要改动的文件添加到缓存区，这样git就会跟踪改动</p>
+<pre><code>git add filename
+</code></pre><p>使用如下命令提交改动</p>
+<pre><code>git commit -m &quot;提交的信息&quot;
+</code></pre><p>现在，改动已经提交到了HEAD，但是还没有到达远程仓库。</p>
+<p><strong>推送至远程仓库</strong><br>把本地仓库的改动推送至远程仓库</p>
+<pre><code>git push origin &lt;branch&gt;
+</code></pre><p>如果还没有克隆现有仓库，并欲将的仓库连接到某个远程服务器，可以使用如下命令添加：</p>
+<pre><code>git remote add origin &lt;server&gt;
+</code></pre><p>如此就能够将改动推送到所添加的服务器上去了。</p>
+<p><strong>分支</strong><br>分支是用来将特性开发绝缘开来的。在创建仓库的时候，master是“默认的”。在其他分支上进行开发，完成后再将它们合并到主分支上。<br><img src="/wp-content/uploads/2013/09/branches.png" alt="enter image description here"><br>创建一个叫做“feature_x”的分支，并切换过去：</p>
+<pre><code>git checkout -b feature_x
+</code></pre><p>切换回主分支：</p>
+<pre><code>git checkout master
+</code></pre><p>再把新建的分支删掉：</p>
+<pre><code>git branch -d feature_x
+</code></pre><p>除非将分支推送到远端仓库，不然该分支就是不为他人所见的：</p>
+<pre><code>git push origin &lt;branch&gt;
+</code></pre><p><strong>更新与合并</strong><br>要更新本地仓库至最新改动，执行：</p>
+<pre><code>git pull
+</code></pre><p>要合并其他分支到当前分支（例如 master），执行：</p>
+<pre><code>git merge &lt;branch&gt;
+</code></pre><p>两种情况下，git都会尝试去自动合并改动。不幸的是，自动合并并非次次都能成功，并可能导致 冲突（conflicts）。 这时候就需要修改这些文件来人肉合并这些冲突（conflicts）了。改完之后，需要执行如下命令以将它们标记为合并成功：</p>
+<pre><code>git add &lt;filename&gt;
+</code></pre><p>在合并改动之前，也可以使用如下命令查看diff信息：</p>
+<pre><code>git diff &lt;source_branch&gt; &lt;target_branch&gt;
+</code></pre><p><strong>标签</strong><br>在软件发布时创建标签，是被推荐的。这是个旧有概念，在SVN中也有。可以执行如下命令以创建一个叫做 1.0.0 的标签：</p>
+<pre><code>git tag 1.0.0 1b2e1d63ff
+</code></pre><p>1b2e1d63ff为想要标记的提交ID的前10位字符，当然也可以是少几位，只要它是唯一的。使用如下命令获取提交ID：</p>
+<pre><code>git log
+</code></pre><p><strong>替换本地改动</strong><br>假如做错事了，可以使用如下命令替换掉本地改动：</p>
+<pre><code>git checkout -- &lt;filename&gt;
+</code></pre><p>此命令会使用HEAD中的最新内容替换掉工作目录中的文件。已添加到缓存区的改动，以及新文件，都不受影响。 假如你想要丢弃所有的本地改动与提交，可以到服务器上获取最新的版本并将本地主分支指向到它：</p>
+<pre><code>git fetch origin
+git reset --hard origin/master
+</code></pre><p><strong>有用的贴士</strong><br>内建的图形化 git：</p>
+<pre><code>gitk
+</code></pre><p>彩色的 git 输出：</p>
+<pre><code>git config color.ui true
+</code></pre><p>显示历史记录时，只显示一行注释信息：</p>
+<pre><code>git config format.pretty oneline
+</code></pre><p>交互地添加文件至缓存区：</p>
+<pre><code>git add -i
+</code></pre><p>推荐图书： Pro Git: <a href="http://www.ppurl.com/?s=Pro+Git" target="_blank" rel="external">http://www.ppurl.com/?s=Pro+Git</a></p>
+<p>转自：<a href="http://rogerdudler.github.io/git-guide/index.html" target="_blank" rel="external">http://rogerdudler.github.io/git-guide/index.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/git-use/" data-id="cj28wi5np002y7ofyfaf8nrur" data-title="git 使用笔记" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/ecmascript6-arrow-function/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          理解ECMAScript6中的箭头函数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/mustache-array-index/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Mustache.js模板引擎无法获得数组内元素索引的解决办法</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="979"
+     data-title="git 使用笔记"
+     data-url="http://annn.me/git-use">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

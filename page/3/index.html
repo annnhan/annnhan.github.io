@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="阿安的Blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="安·记">
+<meta property="og:url" content="http://annn.me/page/3/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="阿安的Blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="安·记">
+<meta name="twitter:description" content="阿安的Blog">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+
+  <!--首页-->
+  
+    
+    <article id="post-create-start-program-in-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/create-start-program-in-ubuntu/" class="article-date">
+  <time datetime="2014-02-23T23:54:53.000Z" itemprop="datePublished">2014-02-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/create-start-program-in-ubuntu/">ubuntu下创建启动器程序的方法。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>python的开发工具pycharm每次打开都要在终端下执行sh文件，非常蛋疼，于是我想把它锁定到启动器。但是，在终端下打开的pycharm锁定到启动器以后，如果关闭了，下次点击启动器里的图标，还是无法打开。</p>
+<p>Google了一下，原来需要创建一个启动器图标程序才行，ubuntu的启动器程序都是放在/usr/share/applications文件夹下的文件， 那我们就在这个文件夹下面创建一个pycharm.desktop，内容如下：</p>
+<pre><code>[Desktop Entry]
+Version=1.0
+Type=Application
+Name=pycharm
+Icon=/usr/local/pycharm/pycharm-3.1.1/bin/pycharm.png
+Exec=&quot;/usr/local/pycharm/pycharm-3.1.1/bin/pycharm.sh&quot; %f
+Comment=Develop with pleasure!
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-pycharm
+</code></pre><p>然后双击打开，再锁定到启动器就好了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cj28wi5lz001f7ofy6cxtsmpw" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/pycharm/">pycharm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ubuntu/">ubuntu</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-pingru-meitang" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/pingru-meitang/" class="article-date">
+  <time datetime="2014-01-17T11:02:21.000Z" itemprop="datePublished">2014-01-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/发现/">发现</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/pingru-meitang/">一位92岁老人一生中最美好、最痛苦、最意外的事情……</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一位90多岁的老人，述说关于他一生中最美好、最痛苦、以及最意外的三件事情的视频。</p>
+<p>这三件事都与他的妻子息息相关。</p>
+<p>海并不深，想念一个人比海还要深……</p>
+<embed src="http://player.youku.com/player.php/sid/XNjEyOTU3NjE2/v.swf" allowfullscreen="true" quality="high" width="580" height="400" align="middle" allowscriptaccess="always" type="application/x-shockwave-flash">
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/pingru-meitang/" data-id="cj28wi5pt00617ofy9a4tl1fg" data-title="一位92岁老人一生中最美好、最痛苦、最意外的事情……" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-reres" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/reres/" class="article-date">
+  <time datetime="2014-01-01T11:12:24.000Z" itemprop="datePublished">2014-01-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/reres/">通过ReRes让chrome拥有路径映射的autoResponse功能。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前端开发过程中，经常会有需要对远程环境调试的需求。比如，修改线上bug，开发环境不在本地等等。我们需要把远程css文件或者js映射到本地的文件上，通过修改本地文件进行调试和开发。通常我们可以通过以下方法来实现映射：</p>
+<p>1.修改host文件——只能把域名映射到IP</p>
+<p>2.使用Apache或者nginx搭建反向代理——需要装环境，配置相对繁琐</p>
+<p>3.使用Fiddler中的AutoRespnose功能——不支持目录映射，mac、linux无法使用</p>
+<p>以上方式，或者功能缺失，或者需要额外安装软件，或者配置繁琐、或者不支持多平台。<strong>我理想中的请求映射工具应该是这样的：简单，打开浏览器就能用、支持目录映射和文件映射、跨平台。</strong> ReRes就是居于这个目标写出来的，您可以把请求映射到其他的url，也可以映射到你本机的文件或者目录。ReRes支持单个url映射，也支持目录映射。</p>
+<p><strong>现在就开始使用ReRes</strong></p>
+        
+          <p class="article-more-link">
+            <a href="/reres/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/reres/" data-id="cj28wi5q000697ofyvmaaaglc" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/response/">response</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" class="article-date">
+  <time datetime="2013-12-15T19:33:46.000Z" itemprop="datePublished">2013-12-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/">通过Visual Event查看页面元素的绑定事件</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>WEB标准提倡结构、表现和行为相 分离，现在越来越多采用这种表现和行为的方式，但它也为我们开发调试带来一些问题，网页载入一堆javascript，，我们很难搞清楚最后在哪些元素的哪个动作绑定了事件，尤其是javascript加载事件的方式五花八门，可以透过jQuery、element.click = function() { }、element.addEventListener()…，很难由单一处找出所有事件。而理不清事件来龙去脉，要追踪某个点击动作背后的行为就变得有些困难，直到我们遇到以下两种利器。</p>
+<p>chrome开发者工具有查看HTML元素绑定事件的功能，如下图所示：<br><img src="/wp-content/uploads/2013/12/1.png" alt="chrome event view"></p>
+<p>但这种方式查看事件的方法还是有点困难，直到遇到它chrome的插件 <a href="https://www.google.com.hk/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=3&amp;ved=0CD0QFjAC&amp;url=https://chrome.google.com/webstore/detail/visual-event/pbmmieigblcbldgdokdjpioljjninaim&amp;ei=VrWWUun0OYq9iAfkuIDYCA&amp;usg=AFQjCNGK4984AckpmU9aFs0UWArMx-nymQ" target="_blank" rel="external">Chrome Web Store - Visual Event</a><br>Visual Event的运作原理，在于其熟知主要javascript库(例如: jQuery、YUI、ExtJS)事件机制，可深入其中撷取事件，并将其标注在对象元素上。目前支持的JS库包括:</p>
+<p>DOM 0 events<br>jQuery 1.2+<br>YUI 2<br>MooTools 1.2+<br>Prototype 1.6+<br>Glow</p>
+<p>在启用Visual Event后，有绑定事件元素将被标上蓝色区块，滑鼠停留时会显示事件的细节。如下图所示：<br><img src="/wp-content/uploads/2013/12/2.png" alt="Visual Event"></p>
+        
+          <p class="article-more-link">
+            <a href="/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" data-id="cj28wi5mi001z7ofy18a1ot3f" data-title="通过Visual Event查看页面元素的绑定事件" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Event/">Event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/事件/">事件</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-fiddler-stave" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/fiddler-stave/" class="article-date">
+  <time datetime="2013-12-03T22:01:12.000Z" itemprop="datePublished">2013-12-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/fiddler-stave/">Stave——让Fiddler拥有路径映射功能。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Stave是一个基于Fiddler调试工具的插件，Fiddler在前端开发中应用得越来越广泛。其中的AutoResponder——用本地文件映射网络文件是大家最喜欢用的功能，这对调试线上代码、处理线上bug都十分有用。不过，AutoResponder只能针对单个文件做映射， 在文件数目较多的时候，使用起来不是很方便，以前，我只能在本地搭一个nginx做反向代理来实现，有了Stave， 就完全可以抛弃nginx了，Stave最大亮点在于能够实现针对路径映射， 这样在多文件调试的时候赶脚非常不错。<br> <a href="/wp-content/uploads/2013/12/Stave.jpg"><img src="/wp-content/uploads/2013/12/Stave.jpg" alt="Stave"></a></p>
+<p>下载地址： <a href="https://code.google.com/p/stave/" target="_blank" rel="external">https://code.google.com/p/stave/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/fiddler-stave/" data-id="cj28wi5na002e7ofy2z9zncvl" data-title="Stave——让Fiddler拥有路径映射功能。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fiddler/">fiddler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/stave/">stave</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/调试工具/">调试工具</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-ecmascript6-arrow-function" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ecmascript6-arrow-function/" class="article-date">
+  <time datetime="2013-09-11T11:35:50.000Z" itemprop="datePublished">2013-09-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/ecmascript6-arrow-function/">理解ECMAScript6中的箭头函数</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/wp-content/uploads/2013/09/arrow-tv.jpg" alt="enter image description here"></p>
+<p>箭头函数是ECMAScript6中最有趣的部分之一。正如其名字所暗示的一样，它是一种用新的语法，一个“箭头”（=&gt;）来定义的函数。然而，相对于传统的函数，箭头函数在一些重要的用途中会有一些不同的表现： </p>
+<ol>
+<li><strong>语法绑定this</strong> ——箭头函数中的this的值，在函数定义的时候就绑定了，而不是根据函数执行时机来绑定； </li>
+<li><strong>不能new</strong> ——箭头函数不能被当做构造函数来用，当通过new来调用时，会报错； </li>
+<li><strong>this不能被修改</strong> ——在箭头函数的整个生命周期内，this始终保持同一个值，无法被修改； </li>
+<li><strong>没有arguments对象</strong> ——在箭头函数内部，不能通过arguments来访问参数，你必须使用已命名的参数，或其他ES6功能。</li>
+</ol>
+<p>存在这些差是有一些原因的：首先，this的绑定是javascript中一种常见的错误来源，在函数内部，很容易把this的指向弄混淆，从而导致意想不到的后果。其次，箭头函数通过限制this为一个固定值来执行，javascript引擎可以更容易地优化这些操作（而不是传统的函数，它可能被用来作为一个构造器或以其他地方）</p>
+        
+          <p class="article-more-link">
+            <a href="/ecmascript6-arrow-function/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ecmascript6-arrow-function/" data-id="cj28wi5mp00267ofy3avnqp52" data-title="理解ECMAScript6中的箭头函数" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/函数/">函数</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-git-use" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/git-use/" class="article-date">
+  <time datetime="2013-09-06T20:11:00.000Z" itemprop="datePublished">2013-09-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/git-use/">git 使用笔记</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>公司的项目从svn迁移到git了， 只是一份简易的使用指南和笔记，不是很高深。</p>
+<p><strong>下载与安装</strong><br>OSX版：<a href="https://code.google.com/p/git-osx-installer/downloads/list?can=3" target="_blank" rel="external">https://code.google.com/p/git-osx-installer/downloads/list?can=3</a><br>LINUX版：<a href="http://git-scm.com/book/en/Getting-Started-Installing-Git" target="_blank" rel="external">http://git-scm.com/book/en/Getting-Started-Installing-Git</a><br>WINDOWS版：<a href="https://code.google.com/p/msysgit/downloads/list?can=3" target="_blank" rel="external">https://code.google.com/p/msysgit/downloads/list?can=3</a></p>
+<p><strong>创建新仓库</strong><br>创建新文件夹，打开，然后执行</p>
+<pre><code>git init
+</code></pre><p><strong>克隆仓库</strong><br>克隆本地仓库</p>
+<pre><code>git clone /path/to/repository
+</code></pre><p>克隆远程仓库</p>
+<pre><code>git clone username@host:/path/to/repository
+</code></pre><p><strong>工作流</strong><br>本地仓库由 git 维护的三棵“树”组成。第一个是<code>工作目录</code>，它持有实际文件；第二个是<code>缓存区（Index）</code>，它像个缓存区域，临时保存改动；最后是<code>HEAD</code>，指向最近一次提交后的结果。<br><img src="/wp-content/uploads/2013/09/trees.png" alt="trees"></p>
+<p><strong>添加与提交</strong><br>把计划要改动的文件添加到缓存区，这样git就会跟踪改动</p>
+<pre><code>git add filename
+</code></pre><p>使用如下命令提交改动</p>
+<pre><code>git commit -m &quot;提交的信息&quot;
+</code></pre><p>现在，改动已经提交到了HEAD，但是还没有到达远程仓库。</p>
+<p><strong>推送至远程仓库</strong><br>把本地仓库的改动推送至远程仓库</p>
+<pre><code>git push origin &lt;branch&gt;
+</code></pre><p>如果还没有克隆现有仓库，并欲将的仓库连接到某个远程服务器，可以使用如下命令添加：</p>
+<pre><code>git remote add origin &lt;server&gt;
+</code></pre><p>如此就能够将改动推送到所添加的服务器上去了。</p>
+<p><strong>分支</strong><br>分支是用来将特性开发绝缘开来的。在创建仓库的时候，master是“默认的”。在其他分支上进行开发，完成后再将它们合并到主分支上。<br><img src="/wp-content/uploads/2013/09/branches.png" alt="enter image description here"><br>创建一个叫做“feature_x”的分支，并切换过去：</p>
+<pre><code>git checkout -b feature_x
+</code></pre><p>切换回主分支：</p>
+<pre><code>git checkout master
+</code></pre><p>再把新建的分支删掉：</p>
+<pre><code>git branch -d feature_x
+</code></pre><p>除非将分支推送到远端仓库，不然该分支就是不为他人所见的：</p>
+<pre><code>git push origin &lt;branch&gt;
+</code></pre><p><strong>更新与合并</strong><br>要更新本地仓库至最新改动，执行：</p>
+<pre><code>git pull
+</code></pre><p>要合并其他分支到当前分支（例如 master），执行：</p>
+<pre><code>git merge &lt;branch&gt;
+</code></pre><p>两种情况下，git都会尝试去自动合并改动。不幸的是，自动合并并非次次都能成功，并可能导致 冲突（conflicts）。 这时候就需要修改这些文件来人肉合并这些冲突（conflicts）了。改完之后，需要执行如下命令以将它们标记为合并成功：</p>
+<pre><code>git add &lt;filename&gt;
+</code></pre><p>在合并改动之前，也可以使用如下命令查看diff信息：</p>
+<pre><code>git diff &lt;source_branch&gt; &lt;target_branch&gt;
+</code></pre><p><strong>标签</strong><br>在软件发布时创建标签，是被推荐的。这是个旧有概念，在SVN中也有。可以执行如下命令以创建一个叫做 1.0.0 的标签：</p>
+<pre><code>git tag 1.0.0 1b2e1d63ff
+</code></pre><p>1b2e1d63ff为想要标记的提交ID的前10位字符，当然也可以是少几位，只要它是唯一的。使用如下命令获取提交ID：</p>
+<pre><code>git log
+</code></pre><p><strong>替换本地改动</strong><br>假如做错事了，可以使用如下命令替换掉本地改动：</p>
+<pre><code>git checkout -- &lt;filename&gt;
+</code></pre><p>此命令会使用HEAD中的最新内容替换掉工作目录中的文件。已添加到缓存区的改动，以及新文件，都不受影响。 假如你想要丢弃所有的本地改动与提交，可以到服务器上获取最新的版本并将本地主分支指向到它：</p>
+<pre><code>git fetch origin
+git reset --hard origin/master
+</code></pre><p><strong>有用的贴士</strong><br>内建的图形化 git：</p>
+<pre><code>gitk
+</code></pre><p>彩色的 git 输出：</p>
+<pre><code>git config color.ui true
+</code></pre><p>显示历史记录时，只显示一行注释信息：</p>
+<pre><code>git config format.pretty oneline
+</code></pre><p>交互地添加文件至缓存区：</p>
+<pre><code>git add -i
+</code></pre><p>推荐图书： Pro Git: <a href="http://www.ppurl.com/?s=Pro+Git" target="_blank" rel="external">http://www.ppurl.com/?s=Pro+Git</a></p>
+<p>转自：<a href="http://rogerdudler.github.io/git-guide/index.html" target="_blank" rel="external">http://rogerdudler.github.io/git-guide/index.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/git-use/" data-id="cj28wi5np002y7ofyfaf8nrur" data-title="git 使用笔记" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-mustache-array-index" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/mustache-array-index/" class="article-date">
+  <time datetime="2013-08-02T08:10:50.000Z" itemprop="datePublished">2013-08-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/mustache-array-index/">Mustache.js模板引擎无法获得数组内元素索引的解决办法</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>公司某项目前端模板用的是Mustache.js！！！ 然后偶遇到个需求是需要渲染数组的时候输出其元素的索引值，比如以下数据：</p>
+<pre><code>var data = 
+{
+    title: &apos;Mustache.js模板引擎无法获得数组内元素索引的解决办法&apos;,
+    authors: [
+       { id: 20000, name: &apos;阿安&apos; },
+       { id: 20001, name: &apos;阿狗&apos; }
+    ]
+}
+</code></pre><p>这样却没有办法输出数组authors里面的元素的索引，只能输出里面元素的属性值，由于短期内更换一个模板引擎对于项目来说不太现实，只能采取其他办法。那就是对authors数组进行处理，给里面的每个元素增加一个index属性，其值就是元素自身的索引。</p>
+<pre><code>for(var i = 0, len = data.authors.length; i &lt; len; i++){
+    data.authors[i].index = i;
+}
+</code></pre><p>最后再渲染的时候输出就可以了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/mustache-array-index/" data-id="cj28wi5pj005l7ofy70kuhrtb" data-title="Mustache.js模板引擎无法获得数组内元素索引的解决办法" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-themes-for-chrome-developer-tools" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/themes-for-chrome-developer-tools/" class="article-date">
+  <time datetime="2013-06-25T07:38:51.000Z" itemprop="datePublished">2013-06-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/themes-for-chrome-developer-tools/">为你的chrome开发者工具换个主题风格吧</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/wp-content/uploads/2013/06/chrome-tool-theme.jpg" alt="chrome-tool-theme"></p>
+<p>是不是觉得chrome的开发者工具样式不够炫呢？ 其实，这个样式是可以定制的（如上图），我们可以通过修改一个css文件来个性化我们的chrome开发者工具，这个css文件名为Custom.css，在不同的系统里它存放的位置如下：</p>
+<p><strong>Mac:</strong></p>
+<pre><code>&lt;code&gt;~/Library/Application\ Support/Google/Chrome/Default/User\ StyleSheets/Custom.css
+&lt;/code&gt;
+</code></pre><p><strong>Ubuntu (Chromium):</strong></p>
+<pre><code>&lt;code&gt;~/.config/chromium/Default/User\ StyleSheets/Custom.css
+&lt;/code&gt;
+</code></pre><p><strong>PC:</strong></p>
+<pre><code>&lt;code&gt;%APPDATA%\..\Local\Google\Chrome\User Data\Default\User StyleSheets\Custom.css
+&lt;/code&gt;
+</code></pre><p><strong>PC (Windows XP):</strong></p>
+<pre><code>&lt;code&gt;C:\Documents and Settings\YourUsername\Local Settings\Application Data\Google\Chrome\User Data\Default\User StyleSheets\Custom.css
+&lt;/code&gt;
+</code></pre><p>当然，知道了自定义样式的css文件是哪个，我们可能不想自己去写，有没有现成的样式可用呢？ 当然！下面这个网站提供了一些常用的开发工具主题，包括sublime text2、vim、chrome developer tools等，我们可以直接在上面选择自己喜欢的样式，然后替换掉Custom.css即可，你也可以在此基础上进行一番修改，写一个你喜欢的主题样式出来。 地址： <a href="http://devthemez.com/themes/chrome-developer-tools" target="_blank" rel="external">http://devthemez.com/themes/chrome-developer-tools</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/themes-for-chrome-developer-tools/" data-id="cj28wi5qc006r7ofy5xrlbgci" data-title="为你的chrome开发者工具换个主题风格吧" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-javascript-wheel" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-wheel/" class="article-date">
+  <time datetime="2013-06-22T00:05:43.000Z" itemprop="datePublished">2013-06-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/javascript-wheel/">整理一下最近用到的优秀javascript轮子</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>1. Masonry</strong><br><a href="/wp-content/uploads/2013/06/masonry.png"><img src="/wp-content/uploads/2013/06/masonry.png" alt="masonry"></a><br>Masonry是一个网格布局的javascript库。它可以是对页面元素进行重新布局，以填充页面中的空白位置，通过Masonry，我们也实现多种流行的页面布局，例如瀑布流、 metro等效果。<br>url : <a href="http://masonry.desandro.com/" target="_blank" rel="external">http://masonry.desandro.com/</a></p>
+        
+          <p class="article-more-link">
+            <a href="/javascript-wheel/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/javascript-wheel/" data-id="cj28wi5ou004i7ofygvztlpku" data-title="整理一下最近用到的优秀javascript轮子" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+    </nav>
+  
+
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

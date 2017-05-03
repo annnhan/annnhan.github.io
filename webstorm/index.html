@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        WebStorm：令人眼前一亮的一款前端开发IDE |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="从最初的dreamweaver,到Notpad++,再到aptana，每一款IDE总让我我感觉少了点什么东西。WebStorm却让我眼前一亮，虽然公司项目所用的开发环境是eclipse+aptana（主要是方便团队协作和工程调试），但是其他时间我都会学习使用WebStorm，现在4.0版本已经出来了，让我们来看看它都有哪些强大之处吧：">
+<meta name="keywords" content="WebStorm,IDE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebStorm：令人眼前一亮的一款前端开发IDE">
+<meta property="og:url" content="http://annn.me/webstorm/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="从最初的dreamweaver,到Notpad++,再到aptana，每一款IDE总让我我感觉少了点什么东西。WebStorm却让我眼前一亮，虽然公司项目所用的开发环境是eclipse+aptana（主要是方便团队协作和工程调试），但是其他时间我都会学习使用WebStorm，现在4.0版本已经出来了，让我们来看看它都有哪些强大之处吧：">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/webstorm.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/JS_completion.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/JS_go_to_definition.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/JS_go_to_symbol.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/unsupportedJSLangLevelAfter.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/coffeeScript_thumb.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/nodeJSDebugging_thumb.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/nodeJSModuleAwareCompletion.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/tests-run-results_thumb.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/server-state-ready.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/editor-covered-lines-2.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/project-view-coverage.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/JS_inspection.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/JS_inspection_quick-fix.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/resultOfRunningJSLint.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/JS_breakpoint.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/PHP-batch.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/IDE_lang_mix.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/Spelling.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/duplicates_thumb.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/canvas-attributes.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/canvas-javascript-api.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/HTML_inspection_quick-fix.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/CSS_inspection_quick-fix_result.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/CSS_inspection_quick-fix.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/zencoding1.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/CSS_show_content.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/CSS_show_applied_style.png">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2012/04/new-project-dialog.png">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebStorm：令人眼前一亮的一款前端开发IDE">
+<meta name="twitter:description" content="从最初的dreamweaver,到Notpad++,再到aptana，每一款IDE总让我我感觉少了点什么东西。WebStorm却让我眼前一亮，虽然公司项目所用的开发环境是eclipse+aptana（主要是方便团队协作和工程调试），但是其他时间我都会学习使用WebStorm，现在4.0版本已经出来了，让我们来看看它都有哪些强大之处吧：">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2012/04/webstorm.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-webstorm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/webstorm/" class="article-date">
+  <time datetime="2012-04-30T04:07:55.000Z" itemprop="datePublished">2012-04-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      WebStorm：令人眼前一亮的一款前端开发IDE
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="/wp-content/uploads/2012/04/webstorm.jpg"><img src="/wp-content/uploads/2012/04/webstorm.jpg" alt=""></a></p>
+<p>从最初的dreamweaver,到Notpad++,再到aptana，每一款IDE总让我我感觉少了点什么东西。WebStorm却让我眼前一亮，虽然公司项目所用的开发环境是eclipse+aptana（主要是方便团队协作和工程调试），但是其他时间我都会学习使用WebStorm，现在4.0版本已经出来了，让我们来看看它都有哪些强大之处吧：<br><a id="more"></a></p>
+<h4 id="浏览器支持细节提示"><a href="#浏览器支持细节提示" class="headerlink" title="浏览器支持细节提示"></a>浏览器支持细节提示</h4><p>关键字，标签，变量，参数和功能的javascript代码完成是基于支持DOM的流行的浏览器（IE，火狐等）标准，可以显示在不同浏览器之下的支持细节。</p>
+<p><a href="/wp-content/uploads/2012/04/JS_completion.png"><img src="/wp-content/uploads/2012/04/JS_completion.png" alt=""></a></p>
+<h4 id="智能的代码导航和搜索提示"><a href="#智能的代码导航和搜索提示" class="headerlink" title="智能的代码导航和搜索提示"></a>智能的代码导航和搜索提示</h4><p><a href="/wp-content/uploads/2012/04/JS_go_to_definition.png"><img src="/wp-content/uploads/2012/04/JS_go_to_definition.png" alt="">
+</a><img src="/wp-content/uploads/2012/04/JS_go_to_symbol.png" alt=""></p>
+<h4 id="ECMAScript的Harmony支持"><a href="#ECMAScript的Harmony支持" class="headerlink" title="ECMAScript的Harmony支持"></a>ECMAScript的Harmony支持</h4><p>WebStorm支持最新的ECMAScript版本，你可以尝试新的功能，每个javascript引擎的实现增加了别人所不具备的一些不错的功能，当您使用的目前选定的javascript版本不支持，WebStorm将通知您，并建议速战速决：</p>
+<p><a href="/wp-content/uploads/2012/04/unsupportedJSLangLevelAfter.png"><img src="/wp-content/uploads/2012/04/unsupportedJSLangLevelAfter.png" alt=""></a></p>
+<h4 id="支持CoffeeScript"><a href="#支持CoffeeScript" class="headerlink" title="支持CoffeeScript"></a>支持CoffeeScript</h4><p>CoffeeScript是一种编程语言，编译javascript和增强其简洁性和可读性，同时还增加了一些复杂的功能，像阵列的理解和模式匹配。WebStorm提供您：</p>
+<ul>
+<li>代码导航和完成</li>
+</ul>
+<ul>
+<li>重命名重构</li>
+</ul>
+<ul>
+<li>语法高亮</li>
+</ul>
+<ul>
+<li>错误检查</li>
+</ul>
+<ul>
+<li>查找使用实例</li>
+</ul>
+<p><a href="/wp-content/uploads/2012/04/coffeeScript_thumb.png"><img src="/wp-content/uploads/2012/04/coffeeScript_thumb.png" alt=""></a></p>
+<h4 id="支持Node-js"><a href="#支持Node-js" class="headerlink" title="支持Node.js"></a>支持Node.js</h4><p>WebStorm允许你调试和验证您的服务器端javascript - Node.js的应用。</p>
+<p><a href="/wp-content/uploads/2012/04/nodeJSDebugging_thumb.png"><img src="/wp-content/uploads/2012/04/nodeJSDebugging_thumb.png" alt=""></a></p>
+<p>编辑CommonJS的模块结构，并提出适当的自动完成选项：</p>
+<p><a href="/wp-content/uploads/2012/04/nodeJSModuleAwareCompletion.png"><img src="/wp-content/uploads/2012/04/nodeJSModuleAwareCompletion.png" alt=""></a></p>
+<h4 id="javascript的重构"><a href="#javascript的重构" class="headerlink" title="javascript的重构"></a>javascript的重构</h4><p>为javascript提供的重构功能，让您可以轻松地修改代码结构，以及撤消修改。</p>
+<ul>
+<li>移动/复制</li>
+</ul>
+<ul>
+<li>安全删除</li>
+</ul>
+<ul>
+<li>提取到嵌入的脚本文件</li>
+</ul>
+<ul>
+<li>重命名</li>
+</ul>
+<ul>
+<li>提取变量/函数</li>
+</ul>
+<ul>
+<li>内联变量/函数</li>
+</ul>
+<h4 id="javascript单元测试"><a href="#javascript单元测试" class="headerlink" title="javascript单元测试"></a>javascript单元测试</h4><p>如果你是一个javascript开发人员，你可能知道，您的应用程序的质量和正确性是至关重要的。那么，一致性测试和回归测试正好是你的痛苦少一点。支持JsTestDriver插件。</p>
+<p><a href="/wp-content/uploads/2012/04/tests-run-results_thumb.png"><img src="/wp-content/uploads/2012/04/tests-run-results_thumb.png" alt=""></a></p>
+<p><a href="/wp-content/uploads/2012/04/server-state-ready.png"><img src="/wp-content/uploads/2012/04/server-state-ready.png" alt=""></a></p>
+<p>WebStorm为单元测试提供了一个清晰的画面。从现在开始，JsTestDriver用户可以测量代码覆盖率。</p>
+<p>在IDE线行使你的单元测试：</p>
+<p><a href="/wp-content/uploads/2012/04/editor-covered-lines-2.png"><img src="/wp-content/uploads/2012/04/editor-covered-lines-2.png" alt=""></a></p>
+<p>你还可以看到文件和目录在项目视图的测试覆盖率统计：</p>
+<p><a href="/wp-content/uploads/2012/04/project-view-coverage.png"><img src="/wp-content/uploads/2012/04/project-view-coverage.png" alt=""></a></p>
+<h4 id="代码检查和快速修复"><a href="#代码检查和快速修复" class="headerlink" title="代码检查和快速修复"></a>代码检查和快速修复</h4><p>为了确保更好的代码质量，WebStorm可以捕捉动态的javascript代码中的常见错误…</p>
+<p><img src="/wp-content/uploads/2012/04/JS_inspection.png" alt=""></p>
+<p>…，并为他们提供了快速修复。</p>
+<p><a href="/wp-content/uploads/2012/04/JS_inspection_quick-fix.png"><img src="/wp-content/uploads/2012/04/JS_inspection_quick-fix.png" alt=""></a></p>
+<h4 id="支持JSLint-JSHint"><a href="#支持JSLint-JSHint" class="headerlink" title="支持JSLint / JSHint"></a>支持JSLint / JSHint</h4><p>javascript代码质量工具集成在IDE中。</p>
+<p><a href="/wp-content/uploads/2012/04/resultOfRunningJSLint.png"><img src="/wp-content/uploads/2012/04/resultOfRunningJSLint.png" alt=""></a></p>
+<h4 id="基于Mozilla-Firefox的javascript调试器"><a href="#基于Mozilla-Firefox的javascript调试器" class="headerlink" title="基于Mozilla Firefox的javascript调试器"></a>基于Mozilla Firefox的javascript调试器</h4><ul>
+<li>HTML和javascript断点</li>
+</ul>
+<ul>
+<li>定制断点属性：暂停模式，条件，通过计数</li>
+</ul>
+<ul>
+<li>帧，变量和javascript调试器</li>
+</ul>
+<ul>
+<li>javascript表达式的运行评价</li>
+</ul>
+<p><a href="/wp-content/uploads/2012/04/JS_breakpoint.png"><img src="/wp-content/uploads/2012/04/JS_breakpoint.png" alt=""></a></p>
+<h4 id="批量代码分析"><a href="#批量代码分析" class="headerlink" title="批量代码分析"></a>批量代码分析</h4><p>无需通过点击所有文件或部署到服务器。整个源代码树的启动代码分析，可以在一个单一的视图中看到所有的结果。</p>
+<p><a href="/wp-content/uploads/2012/04/PHP-batch.png"><img src="/wp-content/uploads/2012/04/PHP-batch.png" alt=""></a></p>
+<h4 id="语言混合编辑"><a href="#语言混合编辑" class="headerlink" title="语言混合编辑"></a>语言混合编辑</h4><p>支持任何代码中的“外部”和“内部”的语言 - 享受以外的javascript代码块，或在javascript字符串文字编码的CSS，HTML，SQL等。</p>
+<p><a href="/wp-content/uploads/2012/04/IDE_lang_mix.png"><img src="/wp-content/uploads/2012/04/IDE_lang_mix.png" alt=""></a></p>
+<h4 id="拼写检查"><a href="#拼写检查" class="headerlink" title="拼写检查"></a>拼写检查</h4><p>集成拼写检查验证在标签的文本，代码串，评论，以避免您的网页上的拼写错误和错别字。以确保代码的可读性更好，甚至变量名，CSS类和ID拼写检查。</p>
+<p><a href="/wp-content/uploads/2012/04/Spelling.png"><img src="/wp-content/uploads/2012/04/Spelling.png" alt=""></a></p>
+<h4 id="智能重复代码检测"><a href="#智能重复代码检测" class="headerlink" title="智能重复代码检测"></a>智能重复代码检测</h4><p><a href="/wp-content/uploads/2012/04/duplicates_thumb.png"><img src="/wp-content/uploads/2012/04/duplicates_thumb.png" alt=""></a></p>
+<h4 id="支持HTML5"><a href="#支持HTML5" class="headerlink" title="支持HTML5"></a>支持HTML5</h4><p><a href="/wp-content/uploads/2012/04/canvas-attributes.png"><img src="/wp-content/uploads/2012/04/canvas-attributes.png" alt=""></a></p>
+<p>WebStorm也明白你的代码和每个元素的类型，并显示新的HTML5元素支持的方法：</p>
+<p><a href="/wp-content/uploads/2012/04/canvas-javascript-api.png"><img src="/wp-content/uploads/2012/04/canvas-javascript-api.png" alt=""></a></p>
+<p>只需按Ctrl +空格，WebStorm会显示所有可能的自动完成选项。</p>
+<h4 id="验证和快速修复"><a href="#验证和快速修复" class="headerlink" title="验证和快速修复"></a>验证和快速修复</h4><p>WebStorm可以修复检测下列问题，并给你更合理的建议建议：</p>
+<ul>
+<li>无效的CSS选择器的格式</li>
+</ul>
+<ul>
+<li>无效的CSS属性</li>
+</ul>
+<ul>
+<li>未使用的CSS类定义</li>
+</ul>
+<ul>
+<li>无效的本地锚和更多…</li>
+</ul>
+<ul>
+<li>缺少必需的属性</li>
+</ul>
+<ul>
+<li>无效的属性或非法值</li>
+</ul>
+<ul>
+<li>错误的引用文件中的链接</li>
+</ul>
+<ul>
+<li>重复的属性</li>
+</ul>
+<p><a href="/wp-content/uploads/2012/04/HTML_inspection_quick-fix.png"><img src="/wp-content/uploads/2012/04/HTML_inspection_quick-fix.png" alt=""></a></p>
+<p>每当你看到一个灯泡，打ALT +回车，看看WebStorm有什么建议：</p>
+<p><a href="/wp-content/uploads/2012/04/CSS_inspection_quick-fix_result.png"><img src="/wp-content/uploads/2012/04/CSS_inspection_quick-fix_result.png" alt=""></a><a href="/wp-content/uploads/2012/04/CSS_inspection_quick-fix.png"><img src="/wp-content/uploads/2012/04/CSS_inspection_quick-fix.png" alt=""></a></p>
+<h4 id="支持Zen-Coding"><a href="#支持Zen-Coding" class="headerlink" title="支持Zen Coding"></a>支持Zen Coding</h4><p>WebStorm内置了zen coding，可以使你编写代码更有效率。输入div.feature&gt; H4 + P， 按 Tab ，你会得到</p>
+<p><a href="/wp-content/uploads/2012/04/zencoding1.jpg"><img src="/wp-content/uploads/2012/04/zencoding1.jpg" alt=""></a></p>
+<h4 id="显示内容"><a href="#显示内容" class="headerlink" title="显示内容"></a>显示内容</h4><p>鼠标移到HTML中的CSS选择器，可以立即显示这个选择器的实际的样式；引用调用一个图像文件的时，你会看到图片预览。<br><a href="/wp-content/uploads/2012/04/CSS_show_content.png"><img src="/wp-content/uploads/2012/04/CSS_show_content.png" alt=""></a></p>
+<h4 id="应用样式"><a href="#应用样式" class="headerlink" title="应用样式"></a>应用样式</h4><p>此命令将打开的标签应用到通过CSS样式的树视图里的样式。</p>
+<p><a href="/wp-content/uploads/2012/04/CSS_show_applied_style.png"><img src="/wp-content/uploads/2012/04/CSS_show_applied_style.png" alt=""></a></p>
+<h4 id="HTML5的样板和其他Web应用程序模板"><a href="#HTML5的样板和其他Web应用程序模板" class="headerlink" title="HTML5的样板和其他Web应用程序模板"></a>HTML5的样板和其他Web应用程序模板</h4><p>当你创建一个新项目的时候，WebStorm提供一些知名的项目模板，根据自己的需要使用：</p>
+<p><a href="/wp-content/uploads/2012/04/new-project-dialog.png"><img src="/wp-content/uploads/2012/04/new-project-dialog.png" alt=""></a></p>
+<h4 id="FTP和远程文件同步化"><a href="#FTP和远程文件同步化" class="headerlink" title="FTP和远程文件同步化"></a>FTP和远程文件同步化</h4><p>你可以使用简单的配置和直观的用户界面，从远程主机的FTP，或安装网络驱动器打开文件。</p>
+<p>可以使用自动同步功能保存本地编辑项目文件和部署到远程服务器。</p>
+<p>在Web服务器的配置标记的目录排除，包括从转让和设置索引|目录。</p>
+<h4 id="集成版本控制系统"><a href="#集成版本控制系统" class="headerlink" title="集成版本控制系统"></a>集成版本控制系统</h4><p>WebStorm支持最流行的版本控制系统：</p>
+<ul>
+<li>Subversion</li>
+</ul>
+<ul>
+<li>Mercurial</li>
+</ul>
+<ul>
+<li>Git</li>
+</ul>
+<ul>
+<li>Perforce</li>
+</ul>
+<ul>
+<li>CVS</li>
+</ul>
+<ul>
+<li>TFS</li>
+</ul>
+<p>至此，我们已经大概了解WebStorm提供的一些最令人兴奋的功能。但这些只是冰山的一角。如果想有更多体验，不放自己下载一试。</p>
+<p>官方下载地址：</p>
+<p><a href="http://www.jetbrains.com/webstorm/download/index.html" target="_blank" rel="external">http://www.jetbrains.com/webstorm/download/index.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/webstorm/" data-id="cj28wi5qw007l7ofysqmh9bw6" data-title="WebStorm：令人眼前一亮的一款前端开发IDE" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/IDE/">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/webstorm-function-operating-guide/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          WebStorm功能特点以及使用指南
+        
+      </div>
+    </a>
+  
+  
+    <a href="/windows-iis-wordpress-permalink/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Windows/IIS主机上如何让wordpress使用漂亮的固定链接</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="294"
+     data-title="WebStorm：令人眼前一亮的一款前端开发IDE"
+     data-url="http://annn.me/webstorm">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        图像混合（溶图）算法的javascript实现 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="photoshop中的图层混合功能大家一定很熟悉。此功能可以根据指定模式，将2个图层进行混合，实现不同色彩风格的图像效果，也就是我们通常所说的溶图。 实现图像混合的原理其实很简单，就是将两张图像的重叠，分别取相同位置的两个像素点上的RGB值，通过特定的公式计算出新的RGB值，这样，不公的公式，将产生不同的色彩效果。利用canvas提供的api，我们可以在支持canvas的浏览器上实现图像混合，例">
+<meta name="keywords" content="javascript,algorithm,blending,image">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像混合（溶图）算法的javascript实现">
+<meta property="og:url" content="http://annn.me/javascript-image-blending-algorithm/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="photoshop中的图层混合功能大家一定很熟悉。此功能可以根据指定模式，将2个图层进行混合，实现不同色彩风格的图像效果，也就是我们通常所说的溶图。 实现图像混合的原理其实很简单，就是将两张图像的重叠，分别取相同位置的两个像素点上的RGB值，通过特定的公式计算出新的RGB值，这样，不公的公式，将产生不同的色彩效果。利用canvas提供的api，我们可以在支持canvas的浏览器上实现图像混合，例">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/变暗.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/排除.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/差值.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/实色混合.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/点光.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/线性光.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/亮光.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/强光.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/柔光.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/叠加.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/线性减淡.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/颜色减淡.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/滤色.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/变亮.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/线性加深.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/颜色加深.jpg">
+<meta property="og:image" content="http://annn.me/wp-content/uploads/2013/05/正片叠底.jpg">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="图像混合（溶图）算法的javascript实现">
+<meta name="twitter:description" content="photoshop中的图层混合功能大家一定很熟悉。此功能可以根据指定模式，将2个图层进行混合，实现不同色彩风格的图像效果，也就是我们通常所说的溶图。 实现图像混合的原理其实很简单，就是将两张图像的重叠，分别取相同位置的两个像素点上的RGB值，通过特定的公式计算出新的RGB值，这样，不公的公式，将产生不同的色彩效果。利用canvas提供的api，我们可以在支持canvas的浏览器上实现图像混合，例">
+<meta name="twitter:image" content="http://annn.me/wp-content/uploads/2013/05/变暗.jpg">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-javascript-image-blending-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/javascript-image-blending-algorithm/" class="article-date">
+  <time datetime="2013-05-06T08:07:21.000Z" itemprop="datePublished">2013-05-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      图像混合（溶图）算法的javascript实现
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/wp-content/uploads/2013/05/变暗.jpg" alt="变暗"></p>
+<p>photoshop中的图层混合功能大家一定很熟悉。此功能可以根据指定模式，将2个图层进行混合，实现不同色彩风格的图像效果，也就是我们通常所说的溶图。 实现图像混合的原理其实很简单，就是将两张图像的重叠，分别取相同位置的两个像素点上的RGB值，通过特定的公式计算出新的RGB值，这样，不公的公式，将产生不同的色彩效果。利用canvas提供的api，我们可以在支持canvas的浏览器上实现图像混合，例如，以下代码将实现上图“变暗”的效果：</p>
+<pre><code>//传入2个canvas
+function blend (cv1, cv2) {
+    var c2d1 = cv1.getContext(&apos;2d&apos;);
+    var c2d2 = cv2.getContext(&apos;2d&apos;);
+    var imgData1 = c2d1.getImageData(0, 0, cv1.width, cv1.height);
+    var data1 = imgData1.data;
+    var data2 = c2d2.getImageData(0, 0, cv2.width, cv2.height).data;
+
+    //计算函数，传入2个RGB对象进行计算
+    var darken = function (a, b) {
+        var r = {};
+        for (var i in a) {
+            r[i] = a[i] &lt; b[i] ? a[i] : b[i]; //变暗效果公式
+        }
+        return r;
+    }
+
+    //遍历像素点
+    for (var i = 0, len = data1.length; i &lt; len; i += 4) {
+
+        //计算新的RGB
+        var newRGB = darken(
+            {r: data1[i], g: data1[i + 1], b: data1[i + 2]},
+            {r: data2[i], g: data2[i + 1], b: data2[i + 2]}
+        );
+
+        //覆盖掉data1
+        data1[i] = newRGB.r;
+        data1[i + 1] = newRGB.g;
+        data1[i + 2] = newRGB.b;
+    }
+
+    //将新的像素数据写入canvas
+    c2d1.putImageData(imgData1, 0, 0);
+
+    //返回生成的图像url
+    return cv1.toDataURL(&apos;image/png&apos;);
+}
+</code></pre><p>假设a[i]代表第一个像素点的RGB值中的一个值，相对应于b[i]（代表另一个像素点的RGB值中的一个值），变暗效果的公式是a[i] &lt; b[i] ? a[i] : b[i]，这个公式很简单，就是比较2个值得大小。</p>
+<a id="more"></a>
+<p>除此之外，还有其他效果的算法可以供我们使用：</p>
+<p><strong>排除</strong></p>
+<pre><code>a[i] + b[i] - 2 * a[i] * b[i] / 255
+</code></pre><p><img src="/wp-content/uploads/2013/05/排除.jpg" alt="排除"></p>
+<p><strong>差值</strong></p>
+<pre><code>Math.abs(a[i] - b[i])
+</code></pre><p><img src="/wp-content/uploads/2013/05/差值.jpg" alt="差值"></p>
+<p><strong>实色混合</strong></p>
+<pre><code>(b[i] &lt; 128 ?
+    (b[i] == 0 ? 2 * b[i] : Math.max(0, (255 - ((255 - a[i]) &lt;&lt; 8 ) / (2 * b[i])))) 
+:
+    ((2 * (b[i] - 128)) == 255 ? (2 * (b[i] - 128)) : Math.min(255, ((a[i] &lt;&lt; 8 ) / (255 - (2 * (b[i] - 128)) )))))
+    &lt; 128 ? 
+        0 : 255;
+</code></pre><p><img src="/wp-content/uploads/2013/05/实色混合.jpg" alt="实色混合"></p>
+<p><strong>点光</strong></p>
+<pre><code>Math.max(0, Math.max(2 * b[i] - 255, Math.min(b[i], 2 * a[i])))
+</code></pre><p><img src="/wp-content/uploads/2013/05/点光.jpg" alt="点光"></p>
+<p><strong>线性光</strong></p>
+<pre><code>Math.min(255, Math.max(0, (b[i] + 2 * a[i]) - 1))
+</code></pre><p><img src="/wp-content/uploads/2013/05/线性光.jpg" alt="线性光"></p>
+<p><strong>亮光</strong></p>
+<pre><code>b[i] &lt; 128 ?
+    (b[i] == 0 ? 2 * b[i] : Math.max(0, (255 - ((255 - a[i]) &lt;&lt; 8 ) / (2 * b[i])))) 
+:
+    ((2 * (b[i] - 128)) == 255 ? (2 * (b[i] - 128)) : Math.min(255, ((a[i] &lt;&lt; 8 ) / (255 - (2 * (b[i] - 128)) ))))
+</code></pre><p><img src="/wp-content/uploads/2013/05/亮光.jpg" alt="亮光"></p>
+<p><strong>强光</strong></p>
+<pre><code>(a[i] &lt; 128) ? (2 * a[i] * b[i] / 255) : (255 - 2 * (255 - a[i]) * (255 - b[i]) / 255)
+</code></pre><p><img src="/wp-content/uploads/2013/05/强光.jpg" alt="强光"></p>
+<p><strong>柔光</strong></p>
+<pre><code>b[i] &lt; 128 ? 
+    (2 * (( a[i] &gt;&gt; 1) + 64)) * (b[i] / 255) 
+: 
+(255 - ( 2 * (255 - ( (a[i] &gt;&gt; 1) + 64 ) ) * ( 255 - b[i] ) / 255 ))
+</code></pre><p><img src="/wp-content/uploads/2013/05/柔光.jpg" alt="柔光"></p>
+<p><strong>叠加</strong></p>
+<pre><code>(b[i] &lt; 128) ? (2 * a[i] * b[i] / 255) : (255 - 2 * (255 - a[i]) * (255 - b[i]) / 255)
+</code></pre><p><img src="/wp-content/uploads/2013/05/叠加.jpg" alt="叠加"></p>
+<p><strong>线性减淡</strong></p>
+<pre><code>Math.min(255, (a[i] + b[i]))
+</code></pre><p><img src="/wp-content/uploads/2013/05/线性减淡.jpg" alt="线性减淡"></p>
+<p><strong>颜色减淡</strong></p>
+<pre><code>(b[i] == 255) ? b[i] : Math.min(255, ((a[i] &lt;&lt; 8 ) / (255 - b[i])))
+</code></pre><p><img src="/wp-content/uploads/2013/05/颜色减淡.jpg" alt="颜色减淡"></p>
+<p><strong>滤色</strong></p>
+<pre><code>255 - (((255 - a[i]) * (255 - b[i])) &gt;&gt; 8)
+</code></pre><p><img src="/wp-content/uploads/2013/05/滤色.jpg" alt="滤色"></p>
+<p><strong>变亮</strong></p>
+<pre><code>(b[i] &gt; a[i]) ? b[i] : a[i]
+</code></pre><p><img src="/wp-content/uploads/2013/05/变亮.jpg" alt="变亮"></p>
+<p><strong>线性加深</strong></p>
+<pre><code>(a[i] + b[i] &lt; 255) ? 0 : (a[i] + b[i] - 255)
+</code></pre><p><img src="/wp-content/uploads/2013/05/线性加深.jpg" alt="线性加深"></p>
+<p><strong>颜色加深</strong></p>
+<pre><code>b[i] == 0 ? b[i] : Math.max(0, Math.max(0, (255 - ((255 - a[i]) &lt;&lt; 8 ) / b[i])))
+</code></pre><p><img src="/wp-content/uploads/2013/05/颜色加深.jpg" alt="颜色加深"></p>
+<p><strong>正片叠底</strong></p>
+<pre><code>a[i] * b[i] / 255
+</code></pre><p><img src="/wp-content/uploads/2013/05/正片叠底.jpg" alt="正片叠底"></p>
+<p>demo：<a href="/imageblend/">/imageblend/</a></p>
+<p>参考文章：<a href="http://jswidget.com/blog/category/photoshop/" target="_blank" rel="external">http://jswidget.com/blog/category/photoshop/</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/javascript-image-blending-algorithm/" data-id="cj28wi5ol00437ofy9px5ae9s" data-title="图像混合（溶图）算法的javascript实现" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/algorithm/">algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/blending/">blending</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/image/">image</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2013html5dw/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTML5守望者/暨开发者日——第二季攻城师嘉年华，共享·共赢·共行动
+        
+      </div>
+    </a>
+  
+  
+    <a href="/879/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">请给生命让道！</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="891"
+     data-title="图像混合（溶图）算法的javascript实现"
+     data-url="http://annn.me/javascript-image-blending-algorithm">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

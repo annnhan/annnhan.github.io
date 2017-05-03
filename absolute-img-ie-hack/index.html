@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        IE坑：position:absolute的元素无法处于img元素上方 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="上周在做一个焦点图小时候遇到一个IE bug。当一个绝对定位元素在没有background，没有内容，并和一个img元素重叠的情况下，不管z-index如何设置，都会位于img下方。 此bug出现于IE中，其他浏览器均正常显示。经过反复折腾以后，发现只要设置background或者添加内容就可以。但是如果你是需要一个透明的div浮在img上面，解决方案是设置background为一张不存在的图片。">
+<meta name="keywords" content="absolute,hack,ie,img">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IE坑：position:absolute的元素无法处于img元素上方">
+<meta property="og:url" content="http://annn.me/absolute-img-ie-hack/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="上周在做一个焦点图小时候遇到一个IE bug。当一个绝对定位元素在没有background，没有内容，并和一个img元素重叠的情况下，不管z-index如何设置，都会位于img下方。 此bug出现于IE中，其他浏览器均正常显示。经过反复折腾以后，发现只要设置background或者添加内容就可以。但是如果你是需要一个透明的div浮在img上面，解决方案是设置background为一张不存在的图片。">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IE坑：position:absolute的元素无法处于img元素上方">
+<meta name="twitter:description" content="上周在做一个焦点图小时候遇到一个IE bug。当一个绝对定位元素在没有background，没有内容，并和一个img元素重叠的情况下，不管z-index如何设置，都会位于img下方。 此bug出现于IE中，其他浏览器均正常显示。经过反复折腾以后，发现只要设置background或者添加内容就可以。但是如果你是需要一个透明的div浮在img上面，解决方案是设置background为一张不存在的图片。">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-absolute-img-ie-hack" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/absolute-img-ie-hack/" class="article-date">
+  <time datetime="2012-11-23T05:44:39.000Z" itemprop="datePublished">2012-11-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      IE坑：position:absolute的元素无法处于img元素上方
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>上周在做一个焦点图小时候遇到一个IE bug。当一个绝对定位元素在没有background，没有内容，并和一个img元素重叠的情况下，不管z-index如何设置，都会位于img下方。 此bug出现于IE中，其他浏览器均正常显示。经过反复折腾以后，发现只要设置background或者添加内容就可以。但是如果你是需要一个透明的div浮在img上面，解决方案是设置background为一张不存在的图片。比如：{background:url(about:blank);}</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/absolute-img-ie-hack/" data-id="cj28wi5kd00017ofy8jk8lgjq" data-title="IE坑：position:absolute的元素无法处于img元素上方" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/absolute/">absolute</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/hack/">hack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ie/">ie</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/img/">img</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/webstorm-phpstorm-remote-host/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用WebStorm/Phpstorm实现remote host远程开发
+        
+      </div>
+    </a>
+  
+  
+    <a href="/js3d-threejs/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">js 3d！ 给three.js跪了~</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="646"
+     data-title="IE坑：position:absolute的元素无法处于img元素上方"
+     data-url="http://annn.me/absolute-img-ie-hack">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

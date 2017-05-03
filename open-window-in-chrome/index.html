@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        如何绕过chrome的弹窗拦截机制 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="在chrome的安全机制里面，非用户触发的window.open方法，是会被拦截的。举个例子： var btn = $(&amp;apos;#btn&amp;apos;); btn.click(function () {      //不会被拦截     window.open(&amp;apos;http://cssha.com&amp;apos;) }); 上面的代码中，window.open是用户触发的时候，是不会被拦截的">
+<meta name="keywords" content="chrome,javascript,window">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何绕过chrome的弹窗拦截机制">
+<meta property="og:url" content="http://annn.me/open-window-in-chrome/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="在chrome的安全机制里面，非用户触发的window.open方法，是会被拦截的。举个例子： var btn = $(&amp;apos;#btn&amp;apos;); btn.click(function () {      //不会被拦截     window.open(&amp;apos;http://cssha.com&amp;apos;) }); 上面的代码中，window.open是用户触发的时候，是不会被拦截的">
+<meta property="og:updated_time" content="2017-05-03T11:30:04.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何绕过chrome的弹窗拦截机制">
+<meta name="twitter:description" content="在chrome的安全机制里面，非用户触发的window.open方法，是会被拦截的。举个例子： var btn = $(&amp;apos;#btn&amp;apos;); btn.click(function () {      //不会被拦截     window.open(&amp;apos;http://cssha.com&amp;apos;) }); 上面的代码中，window.open是用户触发的时候，是不会被拦截的">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-open-window-in-chrome" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/open-window-in-chrome/" class="article-date">
+  <time datetime="2014-07-04T12:38:00.000Z" itemprop="datePublished">2014-07-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      如何绕过chrome的弹窗拦截机制
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在chrome的安全机制里面，非用户触发的window.open方法，是会被拦截的。举个例子：</p>
+<pre><code>var btn = $(&apos;#btn&apos;);
+btn.click(function () {
+
+    //不会被拦截
+    window.open(&apos;http://cssha.com&apos;)
+});
+</code></pre><p>上面的代码中，window.open是用户触发的时候，是不会被拦截的，可以正常打开新窗口。再看下面这个：</p>
+<pre><code>var btn = $(&apos;#btn&apos;);
+btn.click(function () {
+
+    $.ajax({
+        url: &apos;ooxx&apos;,
+        success: function (url) {
+
+            //会被拦截
+            window.open(url);
+        }
+    })
+});
+</code></pre><p>上面的代码中，用户没有直接出发window.open，而是发出一个ajax请求，window.open方法被放在了ajax的回调函数里，这样的情况是会被拦截的。</p>
+<p>那么，当用户点击按钮，发出ajax请求，如何在ajax请求完成后再打开新窗口，又不被拦截呢？ 接着往下看：</p>
+<pre><code>var btn = $(&apos;#btn&apos;);
+btn.click(function () {
+
+    //打开一个不被拦截的新窗口
+    var newWindow = window.open();
+
+    $.ajax({
+        url: &apos;ooxx&apos;,
+        success: function (url) {
+
+            //修改新窗口的url
+            newWindow.location.href = url;
+        }
+    })
+});
+</code></pre><p>上面的代码中，用户安点击按钮的时候，先打开一个空白页，再发ajax请求，在ajax回调里面修改新窗口的.location.href，这样就不会被拦截啦啦啦啦~~~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/open-window-in-chrome/" data-id="cj28wi5po005t7ofykhigj7b1" data-title="如何绕过chrome的弹窗拦截机制" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/window/">window</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/cross-domain-local-storage/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          基于 postMessage 和 localStorage 的跨域本地存储方案
+        
+      </div>
+    </a>
+  
+  
+    <a href="/ecmascript6-promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何实现一个ECMAScript 6 的promise补丁</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <!-- 多说评论框 start -->
+<div id="js-duoshuo-box"
+     class="ds-thread"
+     data-thread-key="open-window-in-chrome"
+     data-title="如何绕过chrome的弹窗拦截机制"
+     data-url="http://annn.me/open-window-in-chrome">
+</div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    var duoshuoQuery = {short_name:"hanan"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+        || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
