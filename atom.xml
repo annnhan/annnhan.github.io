@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://annn.me/"/>
-  <updated>2017-05-03T11:37:40.000Z</updated>
+  <updated>2017-05-03T11:39:12.000Z</updated>
   <id>http://annn.me/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>前端项目如何让持续集成/持续部署(CI/CD)跑起来</title>
+    <title>前端开发如何让持续集成/持续部署(CI/CD)跑起来</title>
     <link href="http://annn.me/frontend-ci-cd/"/>
     <id>http://annn.me/frontend-ci-cd/</id>
     <published>2017-05-02T16:00:00.000Z</published>
-    <updated>2017-05-03T11:37:40.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。<br>这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的事件。</p>
 <p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
@@ -128,7 +128,7 @@
     <link href="http://annn.me/vue-spa-template/"/>
     <id>http://annn.me/vue-spa-template/</id>
     <published>2016-10-29T14:23:09.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>Github: <a href="https://github.com/hanan198501/vue-spa-template" target="_blank">https://github.com/hanan198501/vue-spa-template</a></p>
 <p>最近在给团队做前端技术改造，移动端方面主要使用 vue2.0 重构，这是基于 vue-cli 脚手架生成项目模板。我们做了一些改造，<br>加入了 vue-router ，vuex 等配套设施，本地 dev server 中加入了接口 mock 功能，还增加一个 build server 来预览 build 结果页面，前后端通过 spa 的方式实现分离，并相应做了分离后的联调，部署方案。<br>通过这个项目模板，可以快速搭建起用于前后端分离后的单页应用开发环境，项目主要包含：</p>
@@ -287,7 +287,7 @@ npm run dev -- --proxy=172.16.36.90/:8083
     <link href="http://annn.me/javascript-nginx/"/>
     <id>http://annn.me/javascript-nginx/</id>
     <published>2015-10-01T07:33:41.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>在上个月的 nginx.conf 2015 大会上， 官方宣布已经支持通过 javascript 代码来配置 nginx，并把这个实现称命名为——nginscript。使用 nginscript，可以很轻易得在 niginx 配置文件中通过 js 语法来实现自定义的服务器配置。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 下载最新版本的 nginx 并解压
@@ -402,7 +402,7 @@ $ make install
     <link href="http://annn.me/reres-googleapis/"/>
     <id>http://annn.me/reres-googleapis/</id>
     <published>2015-09-11T05:22:51.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>许多国外的网站都使用被墙掉的 googleapis.com 上的静态资源（如 font、js库 等），如果不爬墙，这些资源无法加载，导致网站无法正常访问。</p>
 <p>其实，360提供了一个国内的 googleapis.com 镜像仓库（<a href="http://libs.useso.com/" target="_blank" rel="external">libs.useso.com</a>）。我想，当遇到 googleapis 的请求时，浏览器能自动跳转到360的镜像，就能正常访问了。</p>
@@ -437,7 +437,7 @@ Response：http://$1.useso.com/$2
     <link href="http://annn.me/how-to-realize-cmd-loader/"/>
     <id>http://annn.me/how-to-realize-cmd-loader/</id>
     <published>2015-09-03T09:03:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。<br>关于 cmd 更详细的内容可以移步 <a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="external">https://github.com/cmdjs/specification/blob/master/draft/module.md</a><br>今天，我们一起来学习如何实现一个浏览器端的简单的 cmd loader。</p>
 <h2 id="模块加载流程"><a href="#模块加载流程" class="headerlink" title="模块加载流程"></a>模块加载流程</h2><p>下图展示了一个 cmd loader 的模块加载大体流程：</p>
@@ -768,7 +768,7 @@ module.exports.async = function (ids, callback) {
     <link href="http://annn.me/fis-react/"/>
     <id>http://annn.me/fis-react/</id>
     <published>2015-08-23T07:24:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>fis 具有非常灵活的插件扩展机制，对于 react 的 jsx 也有现成的 parser 插件可用。<br>通过几条简单的配置，就可以在你的 fis 项目中使用 react 了。 但是在使用过程中，有一些小坑还是需要注意的，在此记录一下。</p>
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><pre><code>npm install fis-parser-react -g
@@ -818,7 +818,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/caniuse-cmd/"/>
     <id>http://annn.me/caniuse-cmd/</id>
     <published>2015-07-28T14:26:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>大名鼎鼎的 <a href="http://caniuse.com/" target="_blank" rel="external">caniuse.com</a> 相信每个前端同学都不陌生.<br>这款查询浏览器兼容性的利器, 现在可以在命令行下使用了. 相比每次打开网站查询, 命令行确实方便许多哦.</p>
 <p>首先,安装 caniuse 命令:</p>
@@ -846,7 +846,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/imitator/"/>
     <id>http://annn.me/imitator/</id>
     <published>2015-07-27T09:53:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。<br>使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。</p>
 <p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="external">https://github.com/hanan198501/imitator</a></p>
@@ -1048,7 +1048,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/smarty-assign/"/>
     <id>http://annn.me/smarty-assign/</id>
     <published>2015-06-21T14:23:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>使用Smarty内置函数{assign}，在模板运行时为模板变量赋值，也可以为数组元素赋值，和在赋值时使用一些表达式。{$var=…}是{assign}函数的简写版。该函数有三个属性(var、value和scope)和一个选项标签(nocache)，其中var和value是必须使用的属性，分别用来设置要分配值的变量名和分配的值。而scope是可选属性，用来指定分配的变量范围，可以指定parent、root和global三个值，用来设定变量的有效范围。{assign}函数使用如下所示：</p>
 <pre><code>{assign var=&quot;name&quot; value=&quot;brophp&quot;}  {*为变量$name赋值上brophp的值*}
@@ -1135,7 +1135,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/battery/"/>
     <id>http://annn.me/battery/</id>
     <published>2015-02-24T12:43:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>javascript Battery 接口允许你通过 javascript 来获取电池的状态。</p>
 <p><strong>navigator.getBattery()方法</strong></p>
@@ -1251,7 +1251,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/addjs/"/>
     <id>http://annn.me/addjs/</id>
     <published>2015-02-24T07:24:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>addJS是一个chrome插件。view in <a href="https://github.com/hanan198501/addjs" target="_blank" rel="external">github</a>。</p>
 <p>在浏览网站的时候，常常会想自己写js操作一下页面的内容(比如：抓图片，提取下载链接，屏蔽广告什么的)。于是，就有了这个插件。</p>
@@ -1332,7 +1332,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/ksend/"/>
     <id>http://annn.me/ksend/</id>
     <published>2015-01-03T05:24:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>昨天同事发了一本pdf格式的电子书，以往的方式，我都是登陆自己的qq邮箱，然后发pdf作为附件，推送到自己的kindle接收邮箱上。<br>突然觉得，其实nodejs应该有这样的命令行工具，可以一条命令搞定，于是在npm上搜索了一下，果然有一个叫“kindle”的包。<br>但是安装以后，总是推送失败，大概开了下源码，估计是作者使用的nodemailer组件做了不兼容升级导致。</p>
 <p>于是，为了以后传文件到kindle时偷个懒，就自己动手写了一个命令行工具，名叫ksend（ <a href="https://github.com/hanan198501/ksend" target="_blank">https://github.com/hanan198501/ksend</a> ），简单好用。 O(∩_∩)O~</p>
@@ -1380,7 +1380,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/cross-domain-local-storage/"/>
     <id>http://annn.me/cross-domain-local-storage/</id>
     <published>2014-09-07T12:38:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>HTML5 的 postMessage 为解决跨域页面通信提供了一套可控的机制， 而 localStorage 则提供了易用简洁的本地存储方案？<br>这两者结合起来，能否实现跨域本地存储呢 ？</p>
 <p>答案是可以的。假设有 a.com 和 b.com 两个页面。我们想通过 a 页面去修改 b 页面的本地数据。 我们需要做如下步奏：</p>
@@ -1584,7 +1584,7 @@ window.addEventListener(&apos;message&apos;, function (event) {
     <link href="http://annn.me/open-window-in-chrome/"/>
     <id>http://annn.me/open-window-in-chrome/</id>
     <published>2014-07-04T12:38:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>在chrome的安全机制里面，非用户触发的window.open方法，是会被拦截的。举个例子：</p>
 <pre><code>var btn = $(&apos;#btn&apos;);
@@ -1653,7 +1653,7 @@ btn.click(function () {
     <link href="http://annn.me/ecmascript6-promise/"/>
     <id>http://annn.me/ecmascript6-promise/</id>
     <published>2014-06-04T12:38:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>Promise最先是CommonJS工作组提出的一种规范之一，目的是为了解决js异步编程过程中，回调嵌套过深的问题。ECMAScript 6 规范化了Promise对象的语言接口，使其成了js的原生对象之一。</p>
 <p>如果你还不了解ECMAScript 6 中的Promise对象，建议阅读<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank">http://es6.ruanyifeng.com/#docs/promise</a>。ECMAScript 6 中的Promise对象与一些常用的promise库（如jquery，when.js）中的实现略有不同，本文讨论的实现，以ECMAScript 6 为准。<br>下面，我们来一起学习，如何在不支持ES6的浏览器上简单实现Promise，如有不对的地方，还请多多指正。</p>
@@ -1794,7 +1794,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/blog-move-to-github/"/>
     <id>http://annn.me/blog-move-to-github/</id>
     <published>2014-04-01T12:38:00.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>由于Wordpress主机到期，而且wp的markdown插件非常坑爹，经常把本来些的好好的md格式转得乱七八糟。于是花了一天时间，把Blog搬到github来了。使用了<a href="http://jekyllbootstrap.com" target="_blank" rel="external">Jekyll Bootstrap</a>框架，下面是折腾过程中的一些体会：</p>
 <ul>
@@ -1827,7 +1827,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/webstorm8/"/>
     <id>http://annn.me/webstorm8/</id>
     <published>2014-03-27T00:00:27.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="支持AngularJS"><a href="#支持AngularJS" class="headerlink" title="支持AngularJS"></a>支持AngularJS</h3><p>智能提示AngularJS指令（包括自定义指令），controller 和 application names以及花括号里边的数据绑定。 <img src="http://www.jetbrains.com/webstorm/whatsnew/screenshots/80/angularJSSupport.png" alt=""></p>
 <a id="more"></a>
@@ -1859,7 +1859,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/grunt-cptpl/"/>
     <id>http://annn.me/grunt-cptpl/</id>
     <published>2014-03-15T23:25:43.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="view-on-Github：https-github-com-hanan198501-grunt-cptpl"><a href="#view-on-Github：https-github-com-hanan198501-grunt-cptpl" class="headerlink" title="view on Github：https://github.com/hanan198501/grunt-cptpl"></a>view on Github：<a href="https://github.com/hanan198501/grunt-cptpl" target="_blank" rel="external">https://github.com/hanan198501/grunt-cptpl</a></h4><p>grunt-cptpl插件可以将您的文本模板文件编译成javascript文件。在前端开发的时候，模板文本我们一般存放在一个隐藏dom节点，再通过javascript去获取这个节点的内容，将其编译。或者在写javascript的时候，我们手动通过拼接字符串的方式储存模板文本。grunt-cptpl使前端开发也可以像后端一样，把模板文本存放在单独的文件中，使我们的开发工作从繁琐的dom操作和拼串中解放出来，提高我们的开发效率。最主要的，模板文件作为单独文件存放，可以使我们的项目代码逻辑更加清晰，更具可维护性。</p>
 <h5 id="grunt-cptpl都做了啥？"><a href="#grunt-cptpl都做了啥？" class="headerlink" title="grunt-cptpl都做了啥？"></a>grunt-cptpl都做了啥？</h5><p>grunt-cptpl会读取每个模板文件的文本内容，用指定模板引擎的预编译方法将其包裹起来，生成一个新的javascript文件。这个javascript文件文件里面的内容，其实就是模板引擎的预编译方法调用，传入的参数为模板文件的文本内容。这样我们就有了一个编译好的模板函数，要渲染的时候把数据传给它就好了。</p>
@@ -2002,7 +2002,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/popup-mask-ie6-bug/"/>
     <id>http://annn.me/popup-mask-ie6-bug/</id>
     <published>2014-03-12T02:02:08.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>我们在写一个popup组件时候，通常会加上一个元素作为mask层，用于遮盖住popup元素以外的页面内容。 而IE6下有个著名的bug就是select元素无法被遮盖，通常的做法，在IE6我们会在mask和和popup里面添加一个iframe来解决，一般的，iframe的css会是这样：</p>
 <pre><code>#iframe {
@@ -2043,7 +2043,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/review-css-3d/"/>
     <id>http://annn.me/review-css-3d/</id>
     <published>2014-03-07T20:26:07.000Z</published>
-    <updated>2017-05-03T11:30:04.000Z</updated>
+    <updated>2017-05-03T11:39:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近开始折腾一些CSS3的东西，发现以前走马观花看过的CSS 3D相关的属性几乎忘记的差不多了，今天就来通过一个小立方体的效果来温习下：</p>
 <p>首先，我们来实现HTML布局，用一个div#arana作为“展台元素”，存放整个立方体容器div#box，div#box里面有6个子节点div.face，代表这个立方体的6个面。</p>
