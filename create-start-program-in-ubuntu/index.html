@@ -144,7 +144,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cj28wxl5z001dthfyf278f8e7" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cj2fuxbbm001ajtfy1t86mql4" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/pycharm/">pycharm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ubuntu/">ubuntu</a></li></ul>
@@ -178,27 +178,20 @@ StartupWMClass=jetbrains-pycharm
 
 <section id="comments">
   <div id="disqus_thread">
-    <!-- 多说评论框 start -->
-<div id="js-duoshuo-box"
-     class="ds-thread"
-     data-thread-key="1100"
-     data-title="ubuntu下创建启动器程序的方法。"
-     data-url="http://annn.me/create-start-program-in-ubuntu">
-</div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    var duoshuoQuery = {short_name:"hanan"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+    <div id="comments-containet"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'annnhan',
+    repo: window.githubRepository || 'gitment',
+    oauth: {
+      client_id: '0a05c848f85cc4fdc815',
+      client_secret: '6bfdb7c41012f8b3d28935e7e08b8e6c1504a325',
+    },
+  })
+  gitment.render('comments-containet')
 </script>
-<!-- 多说公共JS代码 end -->
   </div>
 </section>
 </section>

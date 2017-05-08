@@ -163,7 +163,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/get-miss-number/" data-id="cj28wxl77002tthfy1neceod5" data-title="一组数字，从1到n，从中减少了3个数，顺序打乱，放在n-3的数组里,找出丢失数字。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/get-miss-number/" data-id="cj2fuxbcu002vjtfyc9y6kagi" data-title="一组数字，从1到n，从中减少了3个数，顺序打乱，放在n-3的数组里,找出丢失数字。" class="article-share-link">Share</a>
       
       
     </footer>
@@ -195,27 +195,20 @@ console.log(&apos;计算结果: &apos; + mis);
 
 <section id="comments">
   <div id="disqus_thread">
-    <!-- 多说评论框 start -->
-<div id="js-duoshuo-box"
-     class="ds-thread"
-     data-thread-key="536"
-     data-title="一组数字，从1到n，从中减少了3个数，顺序打乱，放在n-3的数组里,找出丢失数字。"
-     data-url="http://annn.me/get-miss-number">
-</div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    var duoshuoQuery = {short_name:"hanan"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+    <div id="comments-containet"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'annnhan',
+    repo: window.githubRepository || 'gitment',
+    oauth: {
+      client_id: '0a05c848f85cc4fdc815',
+      client_secret: '6bfdb7c41012f8b3d28935e7e08b8e6c1504a325',
+    },
+  })
+  gitment.render('comments-containet')
 </script>
-<!-- 多说公共JS代码 end -->
   </div>
 </section>
 </section>

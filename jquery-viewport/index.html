@@ -156,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jquery-viewport/" data-id="cj28wxl8p004vthfy6m8zf66y" data-title="jQuery.viewport插件实现不同场景的数据异步加载" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jquery-viewport/" data-id="cj2fuxbeh0053jtfyhyv030z2" data-title="jQuery.viewport插件实现不同场景的数据异步加载" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,27 +188,20 @@
 
 <section id="comments">
   <div id="disqus_thread">
-    <!-- 多说评论框 start -->
-<div id="js-duoshuo-box"
-     class="ds-thread"
-     data-thread-key="757"
-     data-title="jQuery.viewport插件实现不同场景的数据异步加载"
-     data-url="http://annn.me/jquery-viewport">
-</div>
-<!-- 多说评论框 end -->
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-    var duoshuoQuery = {short_name:"hanan"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0]
-        || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
+    <div id="comments-containet"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'annnhan',
+    repo: window.githubRepository || 'gitment',
+    oauth: {
+      client_id: '0a05c848f85cc4fdc815',
+      client_secret: '6bfdb7c41012f8b3d28935e7e08b8e6c1504a325',
+    },
+  })
+  gitment.render('comments-containet')
 </script>
-<!-- 多说公共JS代码 end -->
   </div>
 </section>
 </section>
