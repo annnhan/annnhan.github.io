@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://annn.me/intellij-idea-webstorm-keymap/</loc>
+    <loc>http://annn.me/intellij-idea-ant/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -16,14 +16,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/absolute-img-ie-hack/</loc>
+    <loc>http://annn.me/about/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/about/</loc>
+    <loc>http://annn.me/absolute-img-ie-hack/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -44,14 +44,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/apple-ceo-steve-jobs/</loc>
+    <loc>http://annn.me/amundsen-scott/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/amundsen-scott/</loc>
+    <loc>http://annn.me/apple-ceo-steve-jobs/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -135,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/cross-domain-local-storage/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/create-start-program-in-ubuntu/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
@@ -156,14 +149,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/css-sprites-useful-technology-or-potentia-trouble/</loc>
+    <loc>http://annn.me/cross-domain-local-storage/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/days-with-my-father/</loc>
+    <loc>http://annn.me/css-sprites-useful-technology-or-potentia-trouble/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -191,14 +184,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/ecmascript6-promise/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/ecmascript6-arrow-function/</loc>
+    <loc>http://annn.me/days-with-my-father/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -212,7 +198,49 @@
   </url>
   
   <url>
+    <loc>http://annn.me/ecmascript6-arrow-function/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/euclidean/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/ecmascript6-promise/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/engineer-pm/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/function-of-the-inertia-load/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/fiddler-stave/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/get-ajax-chinese-garbled/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -233,20 +261,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/fiddler-stave/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/euclidean/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/get-miss-number/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
@@ -254,35 +268,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/function-of-the-inertia-load/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/get-ajax-chinese-garbled/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/git-use/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/html5-form-element/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/html5-w3c-whatwg/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -303,28 +289,21 @@
   </url>
   
   <url>
+    <loc>http://annn.me/html5-w3c-whatwg/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/html5-form-element/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/ie10-for-windows7/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/ie6-position-element-father-son/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/ie6-iframe-crash/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/img2txt-canvas/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -338,6 +317,20 @@
   </url>
   
   <url>
+    <loc>http://annn.me/ie6-iframe-crash/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/ie6-position-element-father-son/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/imitator/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
@@ -345,14 +338,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/intellij-idea-ant/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/2013html5dw/</loc>
+    <loc>http://annn.me/img2txt-canvas/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -366,7 +352,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/javascript-image-blending-algorithm/</loc>
+    <loc>http://annn.me/2013html5dw/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/intellij-idea-webstorm-keymap/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -380,7 +373,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/javascript-linkgame/</loc>
+    <loc>http://annn.me/javascript-image-blending-algorithm/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -394,7 +387,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/javascript-nginx/</loc>
+    <loc>http://annn.me/javascript-minesweeping/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/javascript-linkgame/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -408,14 +408,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/javascript-minesweeping/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/javascript-verse/</loc>
+    <loc>http://annn.me/javascript-nginx/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -429,7 +422,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/jquery-viewport/</loc>
+    <loc>http://annn.me/javascript-verse/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -437,6 +430,13 @@
   
   <url>
     <loc>http://annn.me/jquery-clear-ajax-cache/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/jquery-viewport/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -464,14 +464,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/js3d-threejs/</loc>
+    <loc>http://annn.me/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/</loc>
+    <loc>http://annn.me/js3d-threejs/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -506,7 +506,21 @@
   </url>
   
   <url>
+    <loc>http://annn.me/onbeforeunload-onunload-return/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/onhashchange-improve-anchor-links/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/pingru-meitang/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -520,21 +534,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/onbeforeunload-onunload-return/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/popup-mask-ie6-bug/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/pingru-meitang/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -555,14 +555,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/retina-css4/</loc>
+    <loc>http://annn.me/reres/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/review-css-3d/</loc>
+    <loc>http://annn.me/retina-css4/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -576,7 +576,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/reres/</loc>
+    <loc>http://annn.me/review-css-3d/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -597,21 +597,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/tags/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/themes-for-chrome-developer-tools/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/this-arguments-callee-caller/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/tags/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -632,14 +625,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/vim/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/waterfall/</loc>
+    <loc>http://annn.me/themes-for-chrome-developer-tools/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -653,21 +639,14 @@
   </url>
   
   <url>
+    <loc>http://annn.me/vim/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/vue-spa-template/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/webstorm-function-operating-guide/</loc>
-    
-    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/webstorm8/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -681,6 +660,20 @@
   </url>
   
   <url>
+    <loc>http://annn.me/webstorm-function-operating-guide/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/waterfall/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/webstorm/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
@@ -688,7 +681,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/windows-iis-wordpress-permalink/</loc>
+    <loc>http://annn.me/webstorm8/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     
@@ -696,6 +689,13 @@
   
   <url>
     <loc>http://annn.me/windows-nginx-php/</loc>
+    
+    <lastmod>2017-05-03T11:42:04.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/windows-iis-wordpress-permalink/</loc>
     
     <lastmod>2017-05-03T11:42:04.000Z</lastmod>
     

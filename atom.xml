@@ -1781,11 +1781,11 @@ Promise.all = function (arr) {
       <category term="javascript" scheme="http://annn.me/categorie/javascript/"/>
     
     
+      <category term="javascript" scheme="http://annn.me/tag/javascript/"/>
+    
       <category term="ecmascript" scheme="http://annn.me/tag/ecmascript/"/>
     
       <category term="promise" scheme="http://annn.me/tag/promise/"/>
-    
-      <category term="javascript" scheme="http://annn.me/tag/javascript/"/>
     
   </entry>
   
