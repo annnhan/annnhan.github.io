@@ -37,13 +37,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/apple-ceo-steve-jobs/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/amundsen-scott/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -52,6 +45,13 @@
   
   <url>
     <loc>http://annn.me/animat/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/apple-ceo-steve-jobs/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -86,13 +86,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/caniuse-cmd/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/blog-move-to-github/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -100,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/categories/</loc>
+    <loc>http://annn.me/caniuse-cmd/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -114,6 +107,13 @@
   </url>
   
   <url>
+    <loc>http://annn.me/categories/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/chrome-developer-tool/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -121,14 +121,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/cnhacker-the-philippines/</loc>
+    <loc>http://annn.me/chrome-useragent/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/chrome-useragent/</loc>
+    <loc>http://annn.me/cnhacker-the-philippines/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -156,14 +156,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/css3-ime-mode/</loc>
+    <loc>http://annn.me/css-sprites-useful-technology-or-potentia-trouble/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/css-sprites-useful-technology-or-potentia-trouble/</loc>
+    <loc>http://annn.me/css3-ime-mode/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -226,13 +226,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/fis-react/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/fiddler-stave/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -240,7 +233,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/function-of-the-inertia-load/</loc>
+    <loc>http://annn.me/fis-react/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -254,14 +247,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/get-ajax-chinese-garbled/</loc>
+    <loc>http://annn.me/function-of-the-inertia-load/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/git-use/</loc>
+    <loc>http://annn.me/get-ajax-chinese-garbled/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -282,6 +275,20 @@
   </url>
   
   <url>
+    <loc>http://annn.me/git-use/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/how-to-realize-cmd-loader/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/html5-form-element/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -290,13 +297,6 @@
   
   <url>
     <loc>http://annn.me/html5-w3c-whatwg/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/how-to-realize-cmd-loader/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -324,14 +324,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/img2txt-canvas/</loc>
+    <loc>http://annn.me/ie6-position-element-father-son/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/ie6-position-element-father-son/</loc>
+    <loc>http://annn.me/img2txt-canvas/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -373,13 +373,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/javascript-image-blending-algorithm/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/javascript-linkgame/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -388,6 +381,27 @@
   
   <url>
     <loc>http://annn.me/javascript-methods-string/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/javascript-image-blending-algorithm/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/javascript-object-clone/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/javascript-wheel/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -408,27 +422,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/javascript-object-clone/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/javascript-verse/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/javascript-wheel/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/jquery-clear-ajax-cache/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -443,14 +436,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/jquery1-9-removed-api/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/js-iframe/</loc>
+    <loc>http://annn.me/javascript-verse/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -471,6 +457,13 @@
   </url>
   
   <url>
+    <loc>http://annn.me/jquery1-9-removed-api/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
@@ -478,7 +471,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/ksend/</loc>
+    <loc>http://annn.me/js-iframe/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -486,6 +479,13 @@
   
   <url>
     <loc>http://annn.me/links/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/ksend/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -506,14 +506,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/onbeforeunload-onunload-return/</loc>
-    
-    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/onhashchange-improve-anchor-links/</loc>
+    <loc>http://annn.me/pingru-meitang/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -527,7 +520,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/pingru-meitang/</loc>
+    <loc>http://annn.me/onbeforeunload-onunload-return/</loc>
+    
+    <lastmod>2017-11-06T09:20:09.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/onhashchange-improve-anchor-links/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -569,7 +569,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/review-css-3d/</loc>
+    <loc>http://annn.me/so-kawayi/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -583,14 +583,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/smarty-assign/</loc>
+    <loc>http://annn.me/review-css-3d/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/so-kawayi/</loc>
+    <loc>http://annn.me/smarty-assign/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
@@ -653,14 +653,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/webstorm-function-operating-guide/</loc>
+    <loc>http://annn.me/waterfall/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/waterfall/</loc>
+    <loc>http://annn.me/webstorm-function-operating-guide/</loc>
     
     <lastmod>2017-11-06T09:20:09.000Z</lastmod>
     
