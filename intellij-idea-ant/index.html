@@ -26,10 +26,11 @@
 <meta property="og:url" content="http://annn.me/intellij-idea-ant/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：http://book.36ria.com/ant/index.html，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij I">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://annn.me/wp-content/uploads/2013/04/1.jpg">
 <meta property="og:image" content="http://annn.me/wp-content/uploads/2013/04/ant-build.jpg">
 <meta property="og:image" content="http://annn.me/wp-content/uploads/2013/04/message-ant-build.jpg">
-<meta property="og:updated_time" content="2018-03-16T08:44:28.000Z">
+<meta property="og:updated_time" content="2018-03-16T08:56:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在Intellij IDEA中使用Ant">
 <meta name="twitter:description" content="Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：http://book.36ria.com/ant/index.html，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij I">
@@ -132,8 +133,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：<a href="http://book.36ria.com/ant/index.html" target="_blank" rel="external">http://book.36ria.com/ant/index.html</a>，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij IDEA中使用Ant是非常方便的，本文主要介绍windows下在Intellij IDEA中使用Ant进行前端构建的方法，如果你使用其他操作系统，也可以参考。</p>
-<p><strong>1、</strong>首先，确保你的系统已经安装了Java运行环境，如果你的机子已经安装jdk，那么请跳过这一步，如果没有，请移步至<a href="http://willerce.com/post/jdk" target="_blank" rel="external">http://willerce.com/post/jdk</a>。参照此教程安装好jdk。</p>
+        <p>Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：<a href="http://book.36ria.com/ant/index.html" target="_blank" rel="noopener">http://book.36ria.com/ant/index.html</a>，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij IDEA中使用Ant是非常方便的，本文主要介绍windows下在Intellij IDEA中使用Ant进行前端构建的方法，如果你使用其他操作系统，也可以参考。</p>
+<p><strong>1、</strong>首先，确保你的系统已经安装了Java运行环境，如果你的机子已经安装jdk，那么请跳过这一步，如果没有，请移步至<a href="http://willerce.com/post/jdk" target="_blank" rel="noopener">http://willerce.com/post/jdk</a>。参照此教程安装好jdk。</p>
 <p><strong>2、</strong>配置project structure。点击File&gt;Project Structure(快捷键ctrl+alt+shift+s)，在Project SDK这一项中，如果显示的是“No SDK”，说明还木有设置运行环境，我们点击New，选择你的jdk安装目录，比如我的是C:\Program Files (x86)\Java\jdk1.6.0_10。设置好以后，会显示jdk的版本信息，如下图。</p>
 <p><img src="/wp-content/uploads/2013/04/1.jpg" alt="Intellij IDEA Project Structure"></p>
 <p><a id="more"></a><strong>3、</strong>在你需要的地方写好build.xml配置文件，点右边栏的Ant Build标签（有个小蚂蚁的图标，看到没？），在弹出的Ant Build面板中点击+号，可以引入一个build.xml配置文件，你可以引入多个，点击-号可以删除选中的配置文件。引入配置文件之后，选中需要运行的任务，可以是Project，也可以是Target，再点击上面的播放按钮就可以Run了。比起命令行，是不是很直观呢？</p>
@@ -211,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/intellij-idea-ant/" data-id="cjetp6e2m003w5ef5secy8wjh" data-title="在Intellij IDEA中使用Ant" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/intellij-idea-ant/" data-id="cjetpmlk1003t57f5k817xv82" data-title="在Intellij IDEA中使用Ant" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Ant/">Ant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Intellij-IDEA/">Intellij IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/build-xml/">build.xml</a></li></ul>

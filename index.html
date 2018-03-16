@@ -23,6 +23,7 @@
 <meta property="og:url" content="http://annn.me/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="阿安的Blog">
+<meta property="og:locale" content="zh-cn">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安·记">
 <meta name="twitter:description" content="阿安的Blog">
@@ -178,7 +179,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-in-javascript/" data-id="cjetp6e2j003p5ef5q5ck0glw" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-in-javascript/" data-id="cjetpmlk3003w57f5lhoeajtx" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li></ul>
@@ -217,15 +218,15 @@ print-range(1, 5);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的时间。</p>
-<p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
+        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="noopener">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="noopener">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的时间。</p>
+<p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="noopener">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="noopener">jenkins</a> 让 CI/CD 跑起来。</p>
 <p>其中：</p>
 <ul>
 <li>gitlab 用于代码版本管理，并通过其提供的 webhook 功能，触发 jenkins job 的运行。</li>
 <li>jenkins 用来执行项目中 单元测试，编译打包相关 npm 命令，并发送反馈邮件，执行远程部署脚本。</li>
 <li>nodejs 用于提供单元测试，编译打包功能的 npm 命令</li>
 </ul>
-<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，其中我们的 package.json 的 scripts 字段就有如下：</p>
+<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="noopener">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，其中我们的 package.json 的 scripts 字段就有如下：</p>
 <pre><code>&quot;dev&quot;: &quot;node build/dev-server.js&quot;,
 &quot;build&quot;: &quot;node build/build.js&quot;, //打包构建
 &quot;build-server&quot;: &quot;node build/build-server.js&quot;,
@@ -254,7 +255,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjetp6e22002k5ef5ih53akoo" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjetpmlj5002m57f5vj5x6b10" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
@@ -309,7 +310,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/vue-spa-template/" data-id="cjetp6e3z007h5ef5cuspp1o5" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cjetpmlmf007d57f5oz3a09of" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>
@@ -371,7 +372,7 @@ $ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-nginx/" data-id="cjetp6e2u004k5ef5ihtc8w6p" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-nginx/" data-id="cjetpmlkc004a57f5bm3r0t27" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li></ul>
@@ -411,18 +412,18 @@ $ make install
     <div class="article-entry" itemprop="articleBody">
       
         <p>许多国外的网站都使用被墙掉的 googleapis.com 上的静态资源（如 font、js库 等），如果不爬墙，这些资源无法加载，导致网站无法正常访问。</p>
-<p>其实，360提供了一个国内的 googleapis.com 镜像仓库（<a href="http://libs.useso.com/" target="_blank" rel="external">libs.useso.com</a>）。我想，当遇到 googleapis 的请求时，浏览器能自动跳转到360的镜像，就能正常访问了。</p>
-<p>正好，我以前写过一个 chrome 插件 <a href="https://github.com/hanan198501/ReRes" target="_blank" rel="external">ReRes</a>，可以通过它来完成这项工作。</p>
+<p>其实，360提供了一个国内的 googleapis.com 镜像仓库（<a href="http://libs.useso.com/" target="_blank" rel="noopener">libs.useso.com</a>）。我想，当遇到 googleapis 的请求时，浏览器能自动跳转到360的镜像，就能正常访问了。</p>
+<p>正好，我以前写过一个 chrome 插件 <a href="https://github.com/hanan198501/ReRes" target="_blank" rel="noopener">ReRes</a>，可以通过它来完成这项工作。</p>
 <p>安装好 ReRes 后，添加一条规则：</p>
 <pre><code>If URL match：^http\:\/\/(.+?)\.googleapis\.com\/(.+?)$
 Response：http://$1.useso.com/$2
-</code></pre><p>当浏览器中的请求匹配到 ^http\:\/\/(.+?).googleapis.com\/(.+?)$ 这个正则时，会自动跳转到 <a href="http://$1.useso.com/$2" target="_blank" rel="external">http://$1.useso.com/$2</a> 这个 url ，其中 $1 和 $2 分别是正则中捕获到的两个分组。</p>
+</code></pre><p>当浏览器中的请求匹配到 ^http\:\/\/(.+?).googleapis.com\/(.+?)$ 这个正则时，会自动跳转到 http://$1.useso.com/$2 这个 url ，其中 $1 和 $2 分别是正则中捕获到的两个分组。</p>
 <p>如此，就可以正常访问使用了 googleapis 的网站。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres-googleapis/" data-id="cjetp6e3h00695ef599zg72kn" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres-googleapis/" data-id="cjetpmllo006257f5slasz3e8" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/googleapis/">googleapis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -461,7 +462,7 @@ Response：http://$1.useso.com/$2
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。<br>关于 cmd 更详细的内容可以移步 <a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="external">https://github.com/cmdjs/specification/blob/master/draft/module.md</a><br>今天，我们一起来学习如何实现一个浏览器端的简单的 cmd loader。</p>
+        <p>cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。<br>关于 cmd 更详细的内容可以移步 <a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="noopener">https://github.com/cmdjs/specification/blob/master/draft/module.md</a><br>今天，我们一起来学习如何实现一个浏览器端的简单的 cmd loader。</p>
 <h2 id="模块加载流程"><a href="#模块加载流程" class="headerlink" title="模块加载流程"></a>模块加载流程</h2><p>下图展示了一个 cmd loader 的模块加载大体流程：</p>
 <p><img src="/assets/img/cmd.png" alt="cmd loader"></p>
 <ol>
@@ -483,7 +484,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cjetp6e2800335ef52xw9glqp" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cjetpmlja002y57f5f448b9zr" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/loader/">loader</a></li></ul>
@@ -549,7 +550,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/fis-react/" data-id="cjetp6e21002h5ef547qqevx1" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/fis-react/" data-id="cjetpmlj2002h57f5t9o6yjhb" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fis/">fis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/react/">react</a></li></ul>
@@ -588,17 +589,17 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>大名鼎鼎的 <a href="http://caniuse.com/" target="_blank" rel="external">caniuse.com</a> 相信每个前端同学都不陌生.<br>这款查询浏览器兼容性的利器, 现在可以在命令行下使用了. 相比每次打开网站查询, 命令行确实方便许多哦.</p>
+        <p>大名鼎鼎的 <a href="http://caniuse.com/" target="_blank" rel="noopener">caniuse.com</a> 相信每个前端同学都不陌生.<br>这款查询浏览器兼容性的利器, 现在可以在命令行下使用了. 相比每次打开网站查询, 命令行确实方便许多哦.</p>
 <p>首先,安装 caniuse 命令:</p>
 <pre><code>npm install -g caniuse-cmd
 </code></pre><p>然后在命令行就可以使用 caniuse 这一命令了, 后面跟你要查询的特性就行:</p>
 <p><img src="/assets/img/caniuse1.png" alt="caniuse"></p>
-<p>附项目的github: <a href="https://github.com/sgentle/caniuse-cmd" target="_blank" rel="external">https://github.com/sgentle/caniuse-cmd</a></p>
+<p>附项目的github: <a href="https://github.com/sgentle/caniuse-cmd" target="_blank" rel="noopener">https://github.com/sgentle/caniuse-cmd</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/caniuse-cmd/" data-id="cjetp6e1e000v5ef5z2zy9ys3" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/caniuse-cmd/" data-id="cjetpmli9000s57f5rmubanqr" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caniuse/">caniuse</a></li></ul>
@@ -638,7 +639,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <div class="article-entry" itemprop="articleBody">
       
         <p>imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。<br>使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。</p>
-<p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="external">https://github.com/hanan198501/imitator</a></p>
+<p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="noopener">https://github.com/hanan198501/imitator</a></p>
 <h3 id="为什么会有-imitator？"><a href="#为什么会有-imitator？" class="headerlink" title="为什么会有 imitator？"></a>为什么会有 imitator？</h3><p>最近几个java（前后端都在一个工程里）项目交接过来，没时间重构成fis项目，组里好多前端同学想搞分离开发。<br>我推荐了 nginx，有童鞋反应配置文件相对前端来说还是不够友好，而且有些个性的接口格式无法满足。<br>于是写了 imitator，使用 nodejs 并基于 express.js 实现， 配置文件相当简单， 而且易于订制，前端同学使用起来非常顺手。</p>
 <h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><ol>
 <li><p>安装——首先你要先安装 nodejs 和 npm， 然后全局安装imitator。</p>
@@ -665,7 +666,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/imitator/" data-id="cjetp6e2k003s5ef51nj2uhqg" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/imitator/" data-id="cjetpmlk0003r57f52tzv9i7u" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/imitator/">imitator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/mock/">mock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/server/">server</a></li></ul>
@@ -735,7 +736,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/smarty-assign/" data-id="cjetp6e3n006p5ef5o70k0ukz" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/smarty-assign/" data-id="cjetpmlly006h57f5h2ngv79s" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/assigin/">assigin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/smarty/">smarty</a></li></ul>

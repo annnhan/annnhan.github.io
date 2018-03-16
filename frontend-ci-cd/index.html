@@ -26,6 +26,7 @@
 <meta property="og:url" content="http://annn.me/frontend-ci-cd/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 CI / CD 等现代化的软件开发实践，来减少风险，重复过程，节省我们的时间。 我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://annn.me/assets/img/ci-cd-creact-job.png">
 <meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-general.png">
 <meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-code.png">
@@ -33,7 +34,7 @@
 <meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-build.png">
 <meta property="og:image" content="http://annn.me/assets/img/ci-cd-job-after.png">
 <meta property="og:image" content="http://annn.me/assets/img/ci-cd-gitlab-webhook.png">
-<meta property="og:updated_time" content="2018-03-16T08:44:29.000Z">
+<meta property="og:updated_time" content="2018-03-16T08:56:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端开发如何让持续集成&#x2F;持续部署(CI&#x2F;CD)跑起来">
 <meta name="twitter:description" content="近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 CI / CD 等现代化的软件开发实践，来减少风险，重复过程，节省我们的时间。 我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概">
@@ -136,15 +137,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的时间。</p>
-<p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
+        <p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="noopener">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="noopener">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的时间。</p>
+<p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="noopener">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="noopener">jenkins</a> 让 CI/CD 跑起来。</p>
 <p>其中：</p>
 <ul>
 <li>gitlab 用于代码版本管理，并通过其提供的 webhook 功能，触发 jenkins job 的运行。</li>
 <li>jenkins 用来执行项目中 单元测试，编译打包相关 npm 命令，并发送反馈邮件，执行远程部署脚本。</li>
 <li>nodejs 用于提供单元测试，编译打包功能的 npm 命令</li>
 </ul>
-<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="external">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，其中我们的 package.json 的 scripts 字段就有如下：</p>
+<p>在我们的前端项目里（如： <a href="https://github.com/hanan198501/vue-spa-template" target="_blank" rel="noopener">https://github.com/hanan198501/vue-spa-template</a> ），一般使用 karma 来运行单元测试，使用 webpack 来进行打包构建， 使用 npm script 来执行这些任务，其中我们的 package.json 的 scripts 字段就有如下：</p>
 <pre><code>&quot;dev&quot;: &quot;node build/dev-server.js&quot;,
 &quot;build&quot;: &quot;node build/build.js&quot;, //打包构建
 &quot;build-server&quot;: &quot;node build/build-server.js&quot;,
@@ -166,7 +167,7 @@
 </ol>
 <p>在 CI/CD 流程中，只有步骤1和步骤2需要人工操作，其他步骤都是自动运行，是一个非常标准化的流程，减少了人工操作的风险，省去了重复性工作，增强了项目的可见性。接下来我们将通过配置 jenkins 和 gitlab webhook 来实现这个流程。</p>
 <a id="more"></a>
-<h3 id="配置项目的-jenkins-job"><a href="#配置项目的-jenkins-job" class="headerlink" title="配置项目的 jenkins job"></a>配置项目的 jenkins job</h3><p>首先，在 jenkins 中需要安装 <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gitlab+Hook+Plugin" target="_blank" rel="external">Gitlab Hook Plugin</a> 这个插件，以支持 gitlab 的 webhook 功能。</p>
+<h3 id="配置项目的-jenkins-job"><a href="#配置项目的-jenkins-job" class="headerlink" title="配置项目的 jenkins job"></a>配置项目的 jenkins job</h3><p>首先，在 jenkins 中需要安装 <a href="https://wiki.jenkins-ci.org/display/JENKINS/Gitlab+Hook+Plugin" target="_blank" rel="noopener">Gitlab Hook Plugin</a> 这个插件，以支持 gitlab 的 webhook 功能。</p>
 <ol>
 <li><p>在 jenkins 左边栏点击 “新建”， 输入 job 名称，选择 “构建一个自由风格的软件项目” 一项。点击 “OK”<br><img src="/assets/img/ci-cd-creact-job.png" alt=""></p>
 </li>
@@ -187,14 +188,14 @@
 <li><p>点击最下方的 “保存”，job 创建完毕。</p>
 </li>
 </ol>
-<h3 id="配置-gitlab-webhook"><a href="#配置-gitlab-webhook" class="headerlink" title="配置 gitlab webhook"></a>配置 gitlab webhook</h3><p>进入项目的 gitlab 页面 &gt;&gt; Settings &gt;&gt; Integrations , 添加一条 webhook: URL 中输入”<a href="http://你的jenkins服务器host/gitlab/build_now&quot;，" target="_blank" rel="external">http://你的jenkins服务器host/gitlab/build_now&quot;，</a> Trigger 勾选Push events，点击 “Add webhook”。<br><img src="/assets/img/ci-cd-gitlab-webhook.png" alt=""></p>
+<h3 id="配置-gitlab-webhook"><a href="#配置-gitlab-webhook" class="headerlink" title="配置 gitlab webhook"></a>配置 gitlab webhook</h3><p>进入项目的 gitlab 页面 &gt;&gt; Settings &gt;&gt; Integrations , 添加一条 webhook: URL 中输入”http://你的jenkins服务器host/gitlab/build_now”， Trigger 勾选Push events，点击 “Add webhook”。<br><img src="/assets/img/ci-cd-gitlab-webhook.png" alt=""></p>
 <p>这样，当有代码 push 到git 仓库时，gitlab 会想 jenkins 服务器发送提交 post 请求，触发之前创建好的 jenkins job 运行, 代码从开发到部署测试，是一个持续的过程，同时对整个过程错误提供了反馈机制。</p>
 <p>从此，前端开发再也不用关心代码 push 以后的事情，写代码更加专注和自信了！！**</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjetp6e22002k5ef5ih53akoo" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjetpmlj5002m57f5vj5x6b10" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>

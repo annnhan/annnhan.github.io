@@ -26,10 +26,11 @@
 <meta property="og:url" content="http://annn.me/aptana3-chinese-zencoding-svn-jquery/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="最近老是换机器，每次安装Aptana时候都要网上找插件地址或者安装方法，于是记录一下，以便以后偷懒。 1、汉化打开http://www.eclipse.org/babel/downloads.php，复制Babel Language Pack Update Site for Helios下面的地址，如下图中的http://download.eclipse.org/technology/babel/">
+<meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="http://annn.me/wp-content/uploads/2012/09/chinese-aptana-300x155.jpg">
 <meta property="og:image" content="http://annn.me/wp-content/uploads/2012/09/aptana-jquery1-300x186.png">
 <meta property="og:image" content="http://annn.me/wp-content/uploads/2012/09/aptana-jquery2-300x208.gif">
-<meta property="og:updated_time" content="2018-03-16T08:44:28.000Z">
+<meta property="og:updated_time" content="2018-03-16T08:56:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。">
 <meta name="twitter:description" content="最近老是换机器，每次安装Aptana时候都要网上找插件地址或者安装方法，于是记录一下，以便以后偷懒。 1、汉化打开http://www.eclipse.org/babel/downloads.php，复制Babel Language Pack Update Site for Helios下面的地址，如下图中的http://download.eclipse.org/technology/babel/">
@@ -133,15 +134,15 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>最近老是换机器，每次安装Aptana时候都要网上找插件地址或者安装方法，于是记录一下，以便以后偷懒。</p>
-<p><strong>1、汉化</strong><br>打开<a href="http://www.eclipse.org/babel/downloads.php，复制Babel" target="_blank" rel="external">http://www.eclipse.org/babel/downloads.php，复制Babel</a> Language Pack Update Site for Helios下面的地址，如下图中的<a href="http://download.eclipse.org/technology/babel/update-site/R0.10.0/helios。" target="_blank" rel="external">http://download.eclipse.org/technology/babel/update-site/R0.10.0/helios。</a><br><a href="/wp-content/uploads/2012/09/chinese-aptana.jpg"><img src="/wp-content/uploads/2012/09/chinese-aptana-300x155.jpg" alt=""></a><br>然后Help &gt; Install New Software，粘贴，一路Next。<a id="more"></a></p>
-<p><strong>2、添加zen-coding插件</strong><br>复制<a href="http://zen-coding.ru/eclipse/updates/" target="_blank" rel="external">http://zen-coding.ru/eclipse/updates/</a> 或者 <a href="http://media.chikuyonok.ru/eclipse/updates/；" target="_blank" rel="external">http://media.chikuyonok.ru/eclipse/updates/；</a><br>然后Help &gt; Install New Software，粘贴，一路Next。。</p>
-<p><strong>3、添加svn插件</strong><br>在help菜单里点击“Install New Software”；<br>点击Add按钮，在Add Site窗口，name输入：SVN ，location输入：<a href="http://subclipse.tigris.org/update_1.4.x，点击ok按钮；" target="_blank" rel="external">http://subclipse.tigris.org/update_1.4.x，点击ok按钮；</a><br>选择Subclipse选项下的：<br>Subclipse – Required、<br>Subversion Client Adapter – Required、<br>Subversion Native Library、<br>Adapter (JavaHL) – Strongly Recommended<br>还有Subclipse SVNKit选项和Option选项,一路Next。</p>
+<p><strong>1、汉化</strong><br>打开<a href="http://www.eclipse.org/babel/downloads.php，复制Babel" target="_blank" rel="noopener">http://www.eclipse.org/babel/downloads.php，复制Babel</a> Language Pack Update Site for Helios下面的地址，如下图中的<a href="http://download.eclipse.org/technology/babel/update-site/R0.10.0/helios。" target="_blank" rel="noopener">http://download.eclipse.org/technology/babel/update-site/R0.10.0/helios。</a><br><a href="/wp-content/uploads/2012/09/chinese-aptana.jpg"><img src="/wp-content/uploads/2012/09/chinese-aptana-300x155.jpg" alt=""></a><br>然后Help &gt; Install New Software，粘贴，一路Next。<a id="more"></a></p>
+<p><strong>2、添加zen-coding插件</strong><br>复制<a href="http://zen-coding.ru/eclipse/updates/" target="_blank" rel="noopener">http://zen-coding.ru/eclipse/updates/</a> 或者 <a href="http://media.chikuyonok.ru/eclipse/updates/；" target="_blank" rel="noopener">http://media.chikuyonok.ru/eclipse/updates/；</a><br>然后Help &gt; Install New Software，粘贴，一路Next。。</p>
+<p><strong>3、添加svn插件</strong><br>在help菜单里点击“Install New Software”；<br>点击Add按钮，在Add Site窗口，name输入：SVN ，location输入：<a href="http://subclipse.tigris.org/update_1.4.x，点击ok按钮；" target="_blank" rel="noopener">http://subclipse.tigris.org/update_1.4.x，点击ok按钮；</a><br>选择Subclipse选项下的：<br>Subclipse – Required、<br>Subversion Client Adapter – Required、<br>Subversion Native Library、<br>Adapter (JavaHL) – Strongly Recommended<br>还有Subclipse SVNKit选项和Option选项,一路Next。</p>
 <p><strong>4、添加jquery提示</strong><br>aptana 3 相比之前的aptana 2，在代码提示的选择上有一点改变。以前是直接到插件中心下载，然后再到editor里面打对勾的，现在应该找不到了（确切的说是换地方也换名称了） aptana studio 3使用的是PortableGit的方式进行插件扩展，如果要装插件，则需要先安装aptana 3 的PortableGit。一般安装完aptana 3 首次打开时也会提示你安装的。 如果不打算安装PortableGit，也可以直接下载。<br>下面是PortableGit下安装jquery代码提示插件的方法：依次点击 Commands &gt; Bundle Development &gt; Install Bundle &gt; jQuery。 这时会开始下载jquery插件包进行安装。<br><a href="/wp-content/uploads/2012/09/aptana-jquery1.png"><img src="/wp-content/uploads/2012/09/aptana-jquery1-300x186.png" alt=""></a><br>然后选择 project——propretis，点击apply。<br><a href="/wp-content/uploads/2012/09/aptana-jquery2.gif"><img src="/wp-content/uploads/2012/09/aptana-jquery2-300x208.gif" alt=""></a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/aptana3-chinese-zencoding-svn-jquery/" data-id="cjetp6e17000d5ef5llf0l3rm" data-title="Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/aptana3-chinese-zencoding-svn-jquery/" data-id="cjetpmli1000e57f5r3hei46m" data-title="Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/aptana/">aptana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/svn/">svn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/zen-coding/">zen-coding</a></li></ul>

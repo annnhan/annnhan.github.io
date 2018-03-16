@@ -26,7 +26,8 @@
 <meta property="og:url" content="http://annn.me/vue-spa-template/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="项目简介Github: https://github.com/annnhan/vue-spa-template 最近在给团队做前端技术改造，移动端方面主要使用 vue2.0 重构，这是基于 vue-cli 脚手架生成项目模板。我们做了一些改造，加入了 vue-router ，vuex 等配套设施，本地 dev server 中加入了接口 mock 功能，还增加一个 build server 来预览">
-<meta property="og:updated_time" content="2018-03-16T08:44:29.000Z">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-03-16T08:56:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基于 vue 全家桶的 spa 项目模板">
 <meta name="twitter:description" content="项目简介Github: https://github.com/annnhan/vue-spa-template 最近在给团队做前端技术改造，移动端方面主要使用 vue2.0 重构，这是基于 vue-cli 脚手架生成项目模板。我们做了一些改造，加入了 vue-router ，vuex 等配套设施，本地 dev server 中加入了接口 mock 功能，还增加一个 build server 来预览">
@@ -180,7 +181,7 @@
             └── Hello.spec.js
 </code></pre><h2 id="环境安装"><a href="#环境安装" class="headerlink" title="环境安装"></a>环境安装</h2><p>本项目依赖 node.js， 使用前先安装 node.js 和 cnpm（显著提升依赖包的下载速度）。</p>
 <ol>
-<li>自行下载并安装 node.js： <a href="https://nodejs.org/en/download/" target="_blank" rel="external">https://nodejs.org/en/download/</a></li>
+<li>自行下载并安装 node.js： <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a></li>
 <li><p>然后安装 cnpm 命令：</p>
 <pre><code>npm install -g cnpm --registry=https://registry.npm.taobao.org
 </code></pre></li>
@@ -231,7 +232,7 @@ npm run unit
 <h2 id="联调方式"><a href="#联调方式" class="headerlink" title="联调方式"></a>联调方式</h2><p>前后端分离后，由于服务端和前端的开发环境处于2台不同的机器上，前端的异步请求需要代理到后端机器中。<br>联调的时候，只需通过 proxy 参数运行 dev 脚本即可，所有 mock 目录下定义的接口将会转发到 proxy 参数指定的机器：</p>
 <pre><code># 172.16.36.90：8083 为后端机器的环境地址
 npm run dev -- --proxy=172.16.36.90/:8083
-</code></pre><p>这样，如果 mock 目录下有定义了接口 /api/hello ，将会转发到 <a href="http://172.16.36.90/:8083/api/hello" target="_blank" rel="external">http://172.16.36.90/:8083/api/hello</a></p>
+</code></pre><p>这样，如果 mock 目录下有定义了接口 /api/hello ，将会转发到 <a href="http://172.16.36.90/:8083/api/hello" target="_blank" rel="noopener">http://172.16.36.90/:8083/api/hello</a></p>
 <h2 id="部署方案"><a href="#部署方案" class="headerlink" title="部署方案"></a>部署方案</h2><p>分离后前后端代码会存放在2个单独的 git 仓库中，构建过程也是分开的。后端构建时，需要依赖前端的构建结果。具体流程如下：</p>
 <ol>
 <li>pull 前端项目代码</li>
@@ -242,21 +243,21 @@ npm run dev -- --proxy=172.16.36.90/:8083
 </ol>
 <p>提测时，此过程可以借助 jenkins 配置。上线时，需要运维同学配合修改上线脚本。</p>
 <h2 id="相关资源"><a href="#相关资源" class="headerlink" title="相关资源"></a>相关资源</h2><ul>
-<li>vue.js 官网：<a href="https://vuejs.org/" target="_blank" rel="external">https://vuejs.org/</a></li>
-<li>vue.js 中文网： <a href="http://vuefe.cn/" target="_blank" rel="external">http://vuefe.cn/</a></li>
-<li>vue-router 文档：<a href="http://router.vuejs.org/zh-cn/index.html" target="_blank" rel="external">http://router.vuejs.org/zh-cn/index.html/</a></li>
-<li>vuex 文档：<a href="http://vuex.vuejs.org/" target="_blank" rel="external">http://vuex.vuejs.org/</a></li>
-<li>webpack 文档：<a href="https://webpack.github.io/docs/" target="_blank" rel="external">https://webpack.github.io/docs/</a></li>
-<li>ES2015 入门教程：<a href="http://es6.ruanyifeng.com/" target="_blank" rel="external">http://es6.ruanyifeng.com/</a></li>
-<li>scss 文档：<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" target="_blank" rel="external">http://sass-lang.com/documentation/file.SASS_REFERENCE.html</a></li>
-<li>mocha 文档: <a href="http://mochajs.org/" target="_blank" rel="external">http://mochajs.org/</a></li>
-<li>express 中文官网：<a href="http://expressjs.com/zh-cn/" target="_blank" rel="external">http://expressjs.com/zh-cn/</a></li>
+<li>vue.js 官网：<a href="https://vuejs.org/" target="_blank" rel="noopener">https://vuejs.org/</a></li>
+<li>vue.js 中文网： <a href="http://vuefe.cn/" target="_blank" rel="noopener">http://vuefe.cn/</a></li>
+<li>vue-router 文档：<a href="http://router.vuejs.org/zh-cn/index.html" target="_blank" rel="noopener">http://router.vuejs.org/zh-cn/index.html/</a></li>
+<li>vuex 文档：<a href="http://vuex.vuejs.org/" target="_blank" rel="noopener">http://vuex.vuejs.org/</a></li>
+<li>webpack 文档：<a href="https://webpack.github.io/docs/" target="_blank" rel="noopener">https://webpack.github.io/docs/</a></li>
+<li>ES2015 入门教程：<a href="http://es6.ruanyifeng.com/" target="_blank" rel="noopener">http://es6.ruanyifeng.com/</a></li>
+<li>scss 文档：<a href="http://sass-lang.com/documentation/file.SASS_REFERENCE.html" target="_blank" rel="noopener">http://sass-lang.com/documentation/file.SASS_REFERENCE.html</a></li>
+<li>mocha 文档: <a href="http://mochajs.org/" target="_blank" rel="noopener">http://mochajs.org/</a></li>
+<li>express 中文官网：<a href="http://expressjs.com/zh-cn/" target="_blank" rel="noopener">http://expressjs.com/zh-cn/</a></li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/vue-spa-template/" data-id="cjetp6e3z007h5ef5cuspp1o5" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cjetpmlmf007d57f5oz3a09of" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>

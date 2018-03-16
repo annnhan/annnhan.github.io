@@ -26,7 +26,8 @@
 <meta property="og:url" content="http://annn.me/imitator/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。 github: https://github.com/hanan198501/imitator 为什么会有 imitator？最近几个java（前后端都在一个工程里）项目交接">
-<meta property="og:updated_time" content="2018-03-16T08:44:29.000Z">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-03-16T08:56:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射">
 <meta name="twitter:description" content="imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。 github: https://github.com/hanan198501/imitator 为什么会有 imitator？最近几个java（前后端都在一个工程里）项目交接">
@@ -129,7 +130,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。<br>使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。</p>
-<p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="external">https://github.com/hanan198501/imitator</a></p>
+<p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="noopener">https://github.com/hanan198501/imitator</a></p>
 <h3 id="为什么会有-imitator？"><a href="#为什么会有-imitator？" class="headerlink" title="为什么会有 imitator？"></a>为什么会有 imitator？</h3><p>最近几个java（前后端都在一个工程里）项目交接过来，没时间重构成fis项目，组里好多前端同学想搞分离开发。<br>我推荐了 nginx，有童鞋反应配置文件相对前端来说还是不够友好，而且有些个性的接口格式无法满足。<br>于是写了 imitator，使用 nodejs 并基于 express.js 实现， 配置文件相当简单， 而且易于订制，前端同学使用起来非常顺手。</p>
 <h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><ol>
 <li><p>安装——首先你要先安装 nodejs 和 npm， 然后全局安装imitator。</p>
@@ -278,12 +279,12 @@
     // 当请求匹配到 /file 时 ，返回文件 ./myfile.txt 的内容
     imitator(&apos;/file&apos;, imitator.file(&apos;./myfile.txt&apos;));
 }
-</code></pre><h3 id="配置文件-Imitatorfile-js-参考"><a href="#配置文件-Imitatorfile-js-参考" class="headerlink" title="配置文件(Imitatorfile.js)参考"></a>配置文件(Imitatorfile.js)参考</h3><p>详见：<a href="https://github.com/hanan198501/imitator/blob/master/test/Imitatorfile.js" target="_blank" rel="external">https://github.com/hanan198501/imitator/blob/master/test/Imitatorfile.js</a></p>
+</code></pre><h3 id="配置文件-Imitatorfile-js-参考"><a href="#配置文件-Imitatorfile-js-参考" class="headerlink" title="配置文件(Imitatorfile.js)参考"></a>配置文件(Imitatorfile.js)参考</h3><p>详见：<a href="https://github.com/hanan198501/imitator/blob/master/test/Imitatorfile.js" target="_blank" rel="noopener">https://github.com/hanan198501/imitator/blob/master/test/Imitatorfile.js</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/imitator/" data-id="cjetp6e2k003s5ef51nj2uhqg" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/imitator/" data-id="cjetpmlk0003r57f52tzv9i7u" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/imitator/">imitator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/mock/">mock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/server/">server</a></li></ul>

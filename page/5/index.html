@@ -23,6 +23,7 @@
 <meta property="og:url" content="http://annn.me/page/5/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="阿安的Blog">
+<meta property="og:locale" content="zh-cn">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安·记">
 <meta name="twitter:description" content="阿安的Blog">
@@ -129,9 +130,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>viewport是我同事<a href="http://www.jsbug.com/" target="_blank" rel="external">@吕哥</a>写的实现不同场景的图片异步加载的jq插件。想象一下，当服务器返回列表的数据项（或图片）非常多，而其数据项不用在页面回应时全部加载给浏览器，可以按需加载。那么通过将列表 viewport化，你就可以设置并知道知道哪些数据项被显示出来的时机，完成数据异步加载的操作。</p>
+        <p>viewport是我同事<a href="http://www.jsbug.com/" target="_blank" rel="noopener">@吕哥</a>写的实现不同场景的图片异步加载的jq插件。想象一下，当服务器返回列表的数据项（或图片）非常多，而其数据项不用在页面回应时全部加载给浏览器，可以按需加载。那么通过将列表 viewport化，你就可以设置并知道知道哪些数据项被显示出来的时机，完成数据异步加载的操作。</p>
 <p>viewport非常适合应用于海量图片的查看器（神马轮播图，相册之类的），或者瀑布流的布局当中，此插件可以被绑定到 window 对象或任意以 block 方式显示的对象上，如：$(window).viewport() 或 $(“#container”).viewport()。</p>
-<p>两个demo:<br><a href="http://www.jsbug.com/tools/wall/" target="_blank" rel="external">http://www.jsbug.com/lab/samples/viewport/index.html#sample1</a><br><a href="http://www.jsbug.com/tools/wall/" target="_blank" rel="external">http://www.jsbug.com/tools/wall/</a></p>
+<p>两个demo:<br><a href="http://www.jsbug.com/tools/wall/" target="_blank" rel="noopener">http://www.jsbug.com/lab/samples/viewport/index.html#sample1</a><br><a href="http://www.jsbug.com/tools/wall/" target="_blank" rel="noopener">http://www.jsbug.com/tools/wall/</a></p>
 <p><strong>参数说明</strong></p>
 <ol>
 <li>id：可选，字符串类型。每个容器都可以执行 viewport 方法多次，也就是说，任何容器都可以被视口化多次，且同一容器的各视口间互不影响。</li>
@@ -154,12 +155,12 @@
 <ol>
 <li>thresholdBorderReaching：可选，此参数主要用来影响 onViewChange 回调中的 detail 参数，默认为 0。</li>
 </ol>
-<p>更详细的用法以及demo详见：<a href="http://www.jsbug.com/lab/samples/viewport/index.html" target="_blank" rel="external">http://www.jsbug.com/lab/samples/viewport/index.html</a></p>
+<p>更详细的用法以及demo详见：<a href="http://www.jsbug.com/lab/samples/viewport/index.html" target="_blank" rel="noopener">http://www.jsbug.com/lab/samples/viewport/index.html</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jquery-viewport/" data-id="cjetp6e3000505ef5z89he6uh" data-title="jQuery.viewport插件实现不同场景的数据异步加载" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jquery-viewport/" data-id="cjetpmll0005057f5acxndfo6" data-title="jQuery.viewport插件实现不同场景的数据异步加载" class="article-share-link">Share</a>
       
       
     </footer>
@@ -217,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/function-of-the-inertia-load/" data-id="cjetp6e23002m5ef51u1i9vja" data-title="利用函数的惰性载入提高javascript代码性能" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/function-of-the-inertia-load/" data-id="cjetpmlj6002o57f5ao4quj9o" data-title="利用函数的惰性载入提高javascript代码性能" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -265,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-linkgame/" data-id="cjetp6e2t004g5ef55hpj2ziy" data-title="javascript连连看。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-linkgame/" data-id="cjetpmlkf004e57f5vubc2esv" data-title="javascript连连看。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/连连看/">连连看</a></li></ul>
@@ -304,7 +305,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>jQuery1.9删除了一些在1.8中已经过时的api,想要把那些不够安全的、缺乏效率的、用处不大的，以及带有误导的特性统统去掉。如果你想升级你的jquery版本，但又使用了如下被删除的api的话，可以引入<a href="http://code.jquery.com/jquery-migrate-1.1.0.js" target="_blank" rel="external">Migrate</a>迁移插件，被删除的api可以在Migrate插件中修复。</p>
+        <p>jQuery1.9删除了一些在1.8中已经过时的api,想要把那些不够安全的、缺乏效率的、用处不大的，以及带有误导的特性统统去掉。如果你想升级你的jquery版本，但又使用了如下被删除的api的话，可以引入<a href="http://code.jquery.com/jquery-migrate-1.1.0.js" target="_blank" rel="noopener">Migrate</a>迁移插件，被删除的api可以在Migrate插件中修复。</p>
 <p><strong>.toggle(function, function, … )</strong><br>toggle()方法可实现点击一个元素来执行指定函数。此方法被删除以减少混乱和提高潜在的模块化程度。</p>
 <p><strong>jQuery.browser()</strong><br>jQuery.browser()通过UA信息来检测浏览器。此方法在1.3版本中已不赞成使用，并在1.9版本中被删除，jquery团队更建议通过特性检测来时您的代码兼容浏览器。</p>
 <p><strong>.live()</strong><br>live()方法可以为未来生成的元素添加事件，此方法在1.7版本中已不赞成使用，并在1.9版本中被删除，您可以使用on()方法来代替。</p>
@@ -314,7 +315,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jquery1-9-removed-api/" data-id="cjetp6e3100535ef5bzsnd6sr" data-title="jQuery1.9中被删除的API" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jquery1-9-removed-api/" data-id="cjetpmlkw004y57f55w2j7jju" data-title="jQuery1.9中被删除的API" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -370,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cjetp6e3b005t5ef5vj5vvl6a" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cjetpmllk005v57f548lynvkb" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Link/">Link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/focus/">focus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/onhashchange/">onhashchange</a></li></ul>
@@ -418,7 +419,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/retina-css4/" data-id="cjetp6e3l006i5ef59p7fjtp9" data-title="Retina屏幕与CSS4" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/retina-css4/" data-id="cjetpmllw006d57f5xjjpncpz" data-title="Retina屏幕与CSS4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -456,7 +457,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><strong>1. Steve Jobs【1984年介绍Macintosh的演说】
-</strong>斯蒂夫·乔布斯，苹果CEO，无人不知的IT教父级人物，他的演说也是超一流，他很多的演说奉为经典，尤其是在运用幻灯片演说绝对的一流，就连PPT演说大师Garr对斯蒂夫·乔布斯佩服的五体投地。看看1984年的Steve Jobs是如何进行Macintonsh介绍演说的。<br><a href="http://video.google.com/videoplay?docid=8631701936876784775" target="_blank" rel="external">http://video.google.com/videoplay?docid=8631701936876784775</a><br>
+</strong>斯蒂夫·乔布斯，苹果CEO，无人不知的IT教父级人物，他的演说也是超一流，他很多的演说奉为经典，尤其是在运用幻灯片演说绝对的一流，就连PPT演说大师Garr对斯蒂夫·乔布斯佩服的五体投地。看看1984年的Steve Jobs是如何进行Macintonsh介绍演说的。<br><a href="http://video.google.com/videoplay?docid=8631701936876784775" target="_blank" rel="noopener">http://video.google.com/videoplay?docid=8631701936876784775</a><br>
         
           <p class="article-more-link">
             <a href="/presentation-top10/#more">Read More</a>
@@ -465,7 +466,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/presentation-top10/" data-id="cjetp6e3g00665ef540uo0rwn" data-title="世界十大经典presentation" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/presentation-top10/" data-id="cjetpmlls006757f59ap5abwe" data-title="世界十大经典presentation" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/presentation/">presentation</a></li></ul>
@@ -528,7 +529,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/css3-ime-mode/" data-id="cjetp6e1o001n5ef5zohnr49n" data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/css3-ime-mode/" data-id="cjetpmlio001n57f5sp5pxljb" data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ime-mode/">ime-mode</a></li></ul>
@@ -601,7 +602,7 @@ console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/css-fontfamily-chinese/" data-id="cjetp6e1m001j5ef5c1ifcaf3" data-title="避免css中文字体在浏览器中解析成乱码" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/css-fontfamily-chinese/" data-id="cjetpmlik001f57f5k9czj059" data-title="避免css中文字体在浏览器中解析成乱码" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chinese/">chinese</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/font-family/">font-family</a></li></ul>
@@ -645,7 +646,7 @@ console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/chrome-useragent/" data-id="cjetp6e26002w5ef55jl34e9i" data-title="发现一个小咪咪，chrome自带了修改user Agent的功能了。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/chrome-useragent/" data-id="cjetpmlid001257f565tdp78e" data-title="发现一个小咪咪，chrome自带了修改user Agent的功能了。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/useragent/">useragent</a></li></ul>

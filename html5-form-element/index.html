@@ -26,7 +26,8 @@
 <meta property="og:url" content="http://annn.me/html5-form-element/index.html">
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="创建表单时，我们常常遇到的一个挑战是无法单独从它的父表单控制元素，而诉诸一些奇怪的方法，形成控制与形式提交其数据。 如果你试图在HTML4或XHTML去去实现，你想从提交表单数据的其余部分一起孤立的控制数据，你必须实现一些花哨的javascript技巧，传递到提交的资料 - 其中有许多明显的缺陷。">
-<meta property="og:updated_time" content="2018-03-16T08:44:28.000Z">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-03-16T08:56:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTML5中一些新的“form”元素属性">
 <meta name="twitter:description" content="创建表单时，我们常常遇到的一个挑战是无法单独从它的父表单控制元素，而诉诸一些奇怪的方法，形成控制与形式提交其数据。 如果你试图在HTML4或XHTML去去实现，你想从提交表单数据的其余部分一起孤立的控制数据，你必须实现一些花哨的javascript技巧，传递到提交的资料 - 其中有许多明显的缺陷。">
@@ -148,9 +149,9 @@ textarea元素在form元素之外，是兄弟关系；
 
 textarea元素有一个form属性与form元素的ID相同，我希望把他们相关联。
 </code></pre><h2 id="它覆盖了默认行为"><a href="#它覆盖了默认行为" class="headerlink" title="它覆盖了默认行为"></a>它覆盖了默认行为</h2><p>有了这个属性，你实际上可以覆盖默认的form所控制行为。例如，如果有两种形式在页面上，可以“stolen”形式＃2的形式控制，并使其＃1的形式提交。</p>
-<p>即使控件嵌套里面的表单元素的＃2提交行为会发生。而作为一个结果，形式＃2将<em>不会</em>提交“stolen”的形式控制的数据。所以<code>form</code>属性将覆盖自然会发生。</p>
+<p>即使控件嵌套里面的表单元素的＃2提交行为会发生。而作为一个结果，形式＃2将_不会_提交“stolen”的形式控制的数据。所以<code>form</code>属性将覆盖自然会发生。</p>
 <p>这技术的工作原理与表单的提交按钮的方式相同 。您可以以外的形式提交按钮，和它关联使用的<code>形式</code>属性，它会以同样的方式工作。</p>
-<h2 id="浏览器支持吗？"><a href="#浏览器支持吗？" class="headerlink" title="浏览器支持吗？"></a>浏览器支持吗？</h2><p>我已经设置了其属性<code>方法</code> “获取” 的形式，这将导致在查询字符串发送到相同的页面提交的值。如果您使用的浏览器支持该功能，那么你应该会看到三个值追加到URL。如果您使用的是nonsupporting浏览器，然后你会看到只有两个值。``</p>
+<h2 id="浏览器支持吗？"><a href="#浏览器支持吗？" class="headerlink" title="浏览器支持吗？"></a>浏览器支持吗？</h2><p>我已经设置了其属性<code>方法</code> “获取” 的形式，这将导致在查询字符串发送到相同的页面提交的值。如果您使用的浏览器支持该功能，那么你应该会看到三个值追加到URL。如果您使用的是nonsupporting浏览器，然后你会看到只有两个值。<code></code></p>
 <p>我找不到太多的来源，讨论此功能的浏览器支持，但根据WHATWG的规范，浏览器支持如下：</p>
 <p>Opera 9.5+</p>
 <p>Safari 5.1+ (according to Elliot)</p>
@@ -161,7 +162,7 @@ textarea元素有一个form属性与form元素的ID相同，我希望把他们�
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/html5-form-element/" data-id="cjetp6e2900365ef5jwekasjz" data-title="HTML5中一些新的“form”元素属性" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/html5-form-element/" data-id="cjetpmljc003557f5iyxy4scg" data-title="HTML5中一些新的“form”元素属性" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/form/">form</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/html5/">html5</a></li></ul>
