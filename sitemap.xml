@@ -16,13 +16,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/about/</loc>
-    
-    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/absolute-img-ie-hack/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
@@ -30,7 +23,21 @@
   </url>
   
   <url>
+    <loc>http://annn.me/about/</loc>
+    
+    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/addjs/</loc>
+    
+    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/apple-ceo-steve-jobs/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -45,13 +52,6 @@
   
   <url>
     <loc>http://annn.me/animat/</loc>
-    
-    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/apple-ceo-steve-jobs/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -100,14 +100,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/categories/</loc>
+    <loc>http://annn.me/chrome-activex/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/chrome-activex/</loc>
+    <loc>http://annn.me/categories/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -149,14 +149,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/css-fontfamily-chinese/</loc>
+    <loc>http://annn.me/css-sprites-useful-technology-or-potentia-trouble/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/css-sprites-useful-technology-or-potentia-trouble/</loc>
+    <loc>http://annn.me/css-fontfamily-chinese/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -198,14 +198,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/ecmascript6-promise/</loc>
+    <loc>http://annn.me/ecmascript6-arrow-function/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/ecmascript6-arrow-function/</loc>
+    <loc>http://annn.me/ecmascript6-promise/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -275,13 +275,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/grunt-cptpl/</loc>
-    
-    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/how-to-realize-cmd-loader/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
@@ -289,7 +282,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/html5-form-element/</loc>
+    <loc>http://annn.me/grunt-cptpl/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -304,6 +297,13 @@
   
   <url>
     <loc>http://annn.me/ie10-for-windows7/</loc>
+    
+    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/html5-form-element/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -331,7 +331,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/img2txt-canvas/</loc>
+    <loc>http://annn.me/imitator/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -345,7 +345,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/imitator/</loc>
+    <loc>http://annn.me/img2txt-canvas/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -359,13 +359,6 @@
   </url>
   
   <url>
-    <loc>http://annn.me/intellij-idea-webstorm-keymap/</loc>
-    
-    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://annn.me/it-will-only-take-you-few-days-to-code/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
@@ -373,7 +366,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/javascript-classname-firefox-class-css/</loc>
+    <loc>http://annn.me/intellij-idea-webstorm-keymap/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -381,6 +374,13 @@
   
   <url>
     <loc>http://annn.me/javascript-image-blending-algorithm/</loc>
+    
+    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://annn.me/javascript-classname-firefox-class-css/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -492,6 +492,13 @@
   </url>
   
   <url>
+    <loc>http://annn.me/links/</loc>
+    
+    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/mustache-array-index/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
@@ -506,7 +513,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/links/</loc>
+    <loc>http://annn.me/onbeforeunload-onunload-return/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -520,14 +527,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/onbeforeunload-onunload-return/</loc>
+    <loc>http://annn.me/open-window-in-chrome/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/open-window-in-chrome/</loc>
+    <loc>http://annn.me/popup-mask-ie6-bug/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -542,13 +549,6 @@
   
   <url>
     <loc>http://annn.me/presentation-top10/</loc>
-    
-    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/popup-mask-ie6-bug/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -583,7 +583,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/rhinoceros-book/</loc>
+    <loc>http://annn.me/so-kawayi/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -597,14 +597,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/so-kawayi/</loc>
+    <loc>http://annn.me/tags/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/tags/</loc>
+    <loc>http://annn.me/rhinoceros-book/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -625,14 +625,14 @@
   </url>
   
   <url>
-    <loc>http://annn.me/tuozhuai-zhaopian-demo/</loc>
+    <loc>http://annn.me/through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://annn.me/through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background/</loc>
+    <loc>http://annn.me/tuozhuai-zhaopian-demo/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -674,6 +674,13 @@
   </url>
   
   <url>
+    <loc>http://annn.me/webstorm-phpstorm-remote-host/</loc>
+    
+    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://annn.me/webstorm8/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
@@ -688,7 +695,7 @@
   </url>
   
   <url>
-    <loc>http://annn.me/webstorm-phpstorm-remote-host/</loc>
+    <loc>http://annn.me/windows-iis-wordpress-permalink/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
@@ -696,13 +703,6 @@
   
   <url>
     <loc>http://annn.me/windows-nginx-php/</loc>
-    
-    <lastmod>2018-03-16T09:52:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://annn.me/windows-iis-wordpress-permalink/</loc>
     
     <lastmod>2018-03-16T09:52:57.000Z</lastmod>
     
