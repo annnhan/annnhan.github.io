@@ -1,0 +1,95 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>背景透明，内容不透明CSS代码生成器</title>
+	<script>
+	if(window.top!=window){
+		window.top.location.href = window.location.href;
+	}
+	</script>
+</head>
+<body>
+<style type="text/css">
+#hananBackgroundColorOpacity{margin:10px;} 
+#hananBackgroundColorOpacity span{margin-left:10px; color:#8a8c8e;}
+#hananBackgroundColorOpacity textarea{width:650px; height:120px; padding:5px; color:#fff; background:#000;}
+#hananBackgroundColorOpacity strong{color:#000;}
+#hananBackgroundColorOpacity h3{color:#000; border-bottom:1px solid #ccc; line-height:57px;}
+#hananBackgroundColorOpacity h3 img{ float:right;}
+#hananBackgroundColorOpacity h3 .c{ clear:both; height:0px;margin:0;padding:0;}
+#hananBackgroundColorOpacity .hanan_introduction,#hananBackgroundColorOpacity .hanan_introduction a{  font-size:12px; color:#6E6E6E; }
+#hananBackgroundColorOpacity img{border:none;}
+</style>
+<div id="hananBackgroundColorOpacity">
+	<h3><a href="http://www.cssha.com/"><img src="http://www.cssha.com/wp-content/uploads/2012/04/logo1.gif" alt="" /></a> 背景透明，内容不透明CSS代码生成器
+	<div class="c"></div>
+	</h3>
+	<p class="hanan_introduction ">
+		说明：为页面元素添加背景透明，内容不透明的效果，兼容IE6/7/8/9/10、Chrome、Firefox、Safari、Opera。
+	</p>
+	<p>选择器：<input id="hananDomChooser" type="text" value="" /><span>id或者class等CSS选择器,比如:<strong>#abc</strong></span></p>
+	<p>颜色值：<input id="hananColorValue" type="text" value="" /><span>16进制颜色值,不带#号,比如:<strong>#c77eb5</strong>,请填:<strong>c77eb5</strong></span></p>
+	<p>透明度：<input id="hananOpacity" type="text" value="" /><span><strong>0</strong>到<strong>1</strong>之间,比如:<strong>0.5</strong></span></p>
+	<p><input id="hananGetCssCodeButon" type="button" value="生成CSS代码" /></p>
+	<p>
+		CSS代码：<br/>
+		<textarea id="hananCssCode" type="text"/></textarea>
+	</p>
+	<p class="hanan_introduction ">
+		实现原理参考：<a href="http://www.cssha.com/through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background" target="_blank">http://www.cssha.com/through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background</a>
+	</p>
+</div>
+<script type="text/javascript">
+// <![CDATA[
+function hananColorToRGB(col,opa){
+	var c = col
+	var R = parseInt(c.substring(0,2),16), G = parseInt(c.substring(2,4),16), B = parseInt(c.substring(4),16);
+	return 'rgba(' + R + ',' + G + ',' + B + ','+ opa +')' ;
+}
+function smallToBig(col){
+	var str = '';
+	if(col.length==6){
+		str = col;
+	}else{
+		var _r = col.substring(0,1), _g = col.substring(1,2), _b = col.substring(2);
+		_r += _r;
+		_g += _g;
+		_b += _b;
+		str = _r + _g + _b;
+	}
+	return str;
+}
+function hananGetCssCode(){
+	var chooser = document.getElementById('hananDomChooser').value;
+	var col = smallToBig(document.getElementById('hananColorValue').value);
+	var opa = document.getElementById('hananOpacity').value;
+	var rgb = hananColorToRGB(col,opa);
+	var iecol = parseInt((opa*255)).toString(16) + col;
+	if(chooser=='' || col=='' || opa==''){
+		alert('选择器、颜色值、透明度都要填完哦亲！');
+	}else{
+		document.getElementById('hananCssCode').value = chooser +'{background:' + rgb + ';filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#' + iecol + ',endColorstr=#' + iecol + ');zoom:1;}'+
+	'\r\n:root ' + chooser +'{filter:none\\9;}/*for IE9*/';
+	}
+}
+window.onload = function (){
+	document.getElementById('hananGetCssCodeButon').onclick = function(){
+		hananGetCssCode();
+	}
+}
+// ]]>
+</script>
+<!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3e1fabf44865ddfe8b31fa9d84cbe4c9' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<!--//百度统计-->
+
+<!--cnzz统计-->
+<span style="display:none"><script src="http://s95.cnzz.com/stat.php?id=3377831&web_id=3377831" language="JavaScript"></script></span>
+<!--//cnzz统计-->
+
+</body>
+</html>
