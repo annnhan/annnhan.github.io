@@ -143,7 +143,7 @@
 <li>我们的语言使用普通的 J avaScript 带来了新的例子。</li>
 </ul>
 <p>在两者之间，我会争论为什么 Lisp 是一种优秀的编程语言。 但是，我们将要使用的语言不是 Lisp。它有一个更丰富的语法（每个人都知道的经典中缀符号），除宏之外，它的功能与 Scheme相当。<br>可悲的是，宏是 Lisp 的最终堡垒，其他语言无法克服（除非它们被称为 Lisp 方言）。</p>
-<h3 id="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"><a href="#但首先，让我们想想我们的要实现的编程语言应该是什么样子。" class="headerlink" title="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"></a>但首先，让我们想想我们的要实现的编程语言应该是什么样子。</h3><p>在此之前，我们应该清楚自己想要实现的目标。把语法的严格描述放在一起是一个好主意，但是我会在本教程中使语法更加简单，所以下面是示例的λ语言：</p>
+<h3 id="首先，让我们想想我们的要实现的编程语言应该是什么样子。"><a href="#首先，让我们想想我们的要实现的编程语言应该是什么样子。" class="headerlink" title="首先，让我们想想我们的要实现的编程语言应该是什么样子。"></a>首先，让我们想想我们的要实现的编程语言应该是什么样子。</h3><p>我们应该想清楚自己想要实现的目标。把语法的严格描述放在一起是一个好主意，但是我会在本教程中使语法更加简单，下面的示例就是我们要实现 “λ” 语言：</p>
 <pre><code># this is a comment
 
 println(&quot;Hello World!&quot;);
@@ -164,7 +164,7 @@ print-range = λ(a, b)             # `λ` is synonym to `lambda`
                   } else println(&quot;&quot;);        # newline
                 };
 print-range(1, 5);
-</code></pre><p><em>请注意，标识符名称可以包含负号字符（print-range）。这是个人品味的问题：我总是在操作符旁边放置空格，我不喜欢很多 camelCaseNames，而且短划线比下划线更好。编写自己的语言的好处是，你可以随心所欲地做到这一点。:)</em></p>
+</code></pre><p><em>请注意，标识符名称可以包含负号字符（print-range）。这是个人品味的问题：我总是在操作符旁边放置空格，我不喜欢太多的 camelCaseNames，而且我觉得短划线比下划线更好。编写自己的语言的好处是，你可以随心所欲地做到这一点。:)</em></p>
 <p>输出是：</p>
 <pre><code>Hello World!
 14
@@ -179,7 +179,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjetr15vf003t8ff5hqta4gp5" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjetrmamh003rx2f5dqjv8idr" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li></ul>
@@ -255,7 +255,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjetr15us002j8ff5y3h1pnfk" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjetrmaly002jx2f5jvqeqjy8" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
@@ -310,7 +310,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/vue-spa-template/" data-id="cjetr15wu007c8ff5orgp51jv" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cjetrmanx007cx2f5ycel7ydk" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>
@@ -372,7 +372,7 @@ $ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-nginx/" data-id="cjetr15vq004e8ff54qca8dvu" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-nginx/" data-id="cjetrmamw004hx2f5ol83lzgb" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li></ul>
@@ -423,7 +423,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres-googleapis/" data-id="cjetr15wd00678ff506mpp2if" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres-googleapis/" data-id="cjetrmanh0067x2f54c7e2tzv" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/googleapis/">googleapis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -484,7 +484,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cjetr15v100358ff5515sly5b" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cjetrmam50031x2f5unup4p49" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/loader/">loader</a></li></ul>
@@ -550,7 +550,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/fis-react/" data-id="cjetr15ur002h8ff5ou488l3u" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/fis-react/" data-id="cjetrmalx002hx2f5lxu8n03u" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fis/">fis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/react/">react</a></li></ul>
@@ -599,7 +599,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/caniuse-cmd/" data-id="cjetr15tr000s8ff5yp1iaqpu" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/caniuse-cmd/" data-id="cjetrmakw000sx2f5bucvqc21" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caniuse/">caniuse</a></li></ul>
@@ -666,7 +666,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/imitator/" data-id="cjetr15ve003r8ff5ftrwl1vz" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/imitator/" data-id="cjetrmamk003tx2f5saj6lwgg" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/imitator/">imitator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/mock/">mock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/server/">server</a></li></ul>
@@ -736,7 +736,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/smarty-assign/" data-id="cjetr15wk006j8ff5qo4tscam" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/smarty-assign/" data-id="cjetrmanm006jx2f5plqj9yn8" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/assigin/">assigin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/smarty/">smarty</a></li></ul>
