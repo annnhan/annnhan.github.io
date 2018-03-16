@@ -103,6 +103,61 @@
   <!--首页-->
   
     
+    <article id="post-battery" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/battery/" class="article-date">
+  <time datetime="2015-02-24T12:43:00.000Z" itemprop="datePublished">2015-02-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/battery/">新的 javascript Battery API</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>javascript Battery 接口允许你通过 javascript 来获取电池的状态。</p>
+<p><strong>navigator.getBattery()方法</strong></p>
+<p>在新的标准里，电池的状态信息是通过navigator.getBattery()方法获取的。<br>navigator.getBattery()是一个异步方法，会返回一个es6标准的<a href="/ecmascript6-promise/">promise</a>对象。<br>所以我们获取电池状态的回调方法，必须通过该promise对象的then方法来注册：</p>
+<pre><code>navigator.getBattery().then(function(result) {
+    console.log(result);
+});
+</code></pre><p><strong>BatteryManager接口</strong></p>
+<p>上个例子里的result是一个表示电池状态的对象， 它是由BatteryManager接口实现的，具有如下属性：</p>
+        
+          <p class="article-more-link">
+            <a href="/battery/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/battery/" data-id="cjetozalx000ou4f5dcc55ktx" data-title="新的 javascript Battery API" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AddJS/">AddJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chorme/">chorme</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-addjs" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/addjs/" class="article-date">
@@ -144,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/addjs/" data-id="cj9nzgxzk00053af5g288akme" data-title="使用 AddJS 为网页自动添加自定义javascript脚本" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/addjs/" data-id="cjetozalo0006u4f5lucutpny" data-title="使用 AddJS 为网页自动添加自定义javascript脚本" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AddJS/">AddJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chorme/">chorme</a></li></ul>
@@ -211,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ksend/" data-id="cj9nzgy21005d3af5ydua7muj" data-title="命令行推送个人文档至kindle" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ksend/" data-id="cjetozanx005hu4f5hoccyfjo" data-title="命令行推送个人文档至kindle" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/kindle/">kindle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ksend/">ksend</a></li></ul>
@@ -269,7 +324,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/cross-domain-local-storage/" data-id="cj9nzgy0i001g3af5zssy4p9r" data-title="基于 postMessage 和 localStorage 的跨域本地存储方案" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/cross-domain-local-storage/" data-id="cjetozam8001iu4f5paz8fn95" data-title="基于 postMessage 和 localStorage 的跨域本地存储方案" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cross/">cross</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/domain/">domain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/local/">local</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/postMessage/">postMessage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/storage/">storage</a></li></ul>
@@ -350,7 +405,7 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/open-window-in-chrome/" data-id="cj9nzgy25005r3af5xy3ofuti" data-title="如何绕过chrome的弹窗拦截机制" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/open-window-in-chrome/" data-id="cjetozao3005zu4f5kbr0wmjj" data-title="如何绕过chrome的弹窗拦截机制" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/window/">window</a></li></ul>
@@ -414,7 +469,7 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ecmascript6-promise/" data-id="cj9nzgy0s00263af5ronw76t1" data-title="如何实现一个ECMAScript 6 的promise补丁" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ecmascript6-promise/" data-id="cjetozamj0024u4f557q9fura" data-title="如何实现一个ECMAScript 6 的promise补丁" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ecmascript/">ecmascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/promise/">promise</a></li></ul>
@@ -466,7 +521,7 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/blog-move-to-github/" data-id="cj9nzgy06000p3af55o3okqjz" data-title="Blog迁移到Github" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/blog-move-to-github/" data-id="cjetozalz000pu4f55fvc5f97" data-title="Blog迁移到Github" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jekyll/">jekyll</a></li></ul>
@@ -514,7 +569,7 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/webstorm8/" data-id="cj9nzgy39007q3af5c2pfojvg" data-title="WebStorm 8 新功能一览" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/webstorm8/" data-id="cjetozaro00fzu4f5gokq80gx" data-title="WebStorm 8 新功能一览" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li></ul>
@@ -563,7 +618,7 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/grunt-cptpl/" data-id="cj9nzgy14002z3af5rulnupso" data-title="发布grunt-cptpl插件" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/grunt-cptpl/" data-id="cjetozamv0030u4f59gs4qyze" data-title="发布grunt-cptpl插件" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/grunt/">grunt</a></li></ul>
@@ -623,7 +678,7 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/popup-mask-ie6-bug/" data-id="cj9nzgy2900613af58ek0qg5l" data-title="popup组件中mask层的IE6 bug和兼容办法" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/popup-mask-ie6-bug/" data-id="cjetozaoi0063u4f54lkfrduq" data-title="popup组件中mask层的IE6 bug和兼容办法" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/iframe/">iframe</a></li></ul>
@@ -635,117 +690,9 @@ btn.click(function () {
 
 
   
-    
-    <article id="post-review-css-3d" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/review-css-3d/" class="article-date">
-  <time datetime="2014-03-07T20:26:07.000Z" itemprop="datePublished">2014-03-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/review-css-3d/">重温CSS 3D</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近开始折腾一些CSS3的东西，发现以前走马观花看过的CSS 3D相关的属性几乎忘记的差不多了，今天就来通过一个小立方体的效果来温习下：</p>
-<p>首先，我们来实现HTML布局，用一个div#arana作为“展台元素”，存放整个立方体容器div#box，div#box里面有6个子节点div.face，代表这个立方体的6个面。</p>
-<pre><code>&lt;div id=&quot;arena&quot;&gt;
-    &lt;div id=&quot;box&quot;&gt;
-        &lt;div class=&quot;face&quot;&gt;1&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;2&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;3&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;4&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;5&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;6&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>最外层的div#arena的作用类似于一个“展台”，我们可以想象，在“展台”上，我们需要拜访一台摄像机，来拍摄这个立方体。那么，这个摄像机，我们称之为“视点”，视点和立方体的距离，就是div#arana的-webkit-perspective属性值， 它和我们在画画的时候“透视点”的概念有点像，只不过，“透视点”在屏幕的后方，而“视点”在屏幕的前方。在立方体旋转，偏移的时候，我们还需要知道一个“基点”，3D变换的元素， 都会基于这个点来变化，“基点”通过-webkit-perspective-origin属性来定义，的默认值是50% 50%，分别代表“基点”距离元素本身左边和顶部的距离。</p>
-<pre><code>#arena {
-    -webkit-perspective: 400;
-    -webkit-perspective-origin: 50% 50%;
-}
-</code></pre><p>第二个容器div#box实际上就是我们的立方体，通过-webkit–transition属性，定义了立方体在变化时候的过度动画效果。-webkit-transform-style属性用于定义3d元素的透视效果，它有2个值：其两个参数，flat|preserve-3d. 前者flat为默认值，表示平面的；后者preserve-3d表示3D透视。这个属性应该用在作为立方体的容器元素上，而不是它里面的6个作为6个面的子元素。</p>
-<pre><code>#box {
-    position: relative;
-    margin: 100px auto;
-    height: 200px;
-    width: 200px;
-    -webkit-transition: -webkit-transform 2s linear;
-    -webkit-transform-style: preserve-3d;
-}
-</code></pre><p>定义6个“面”元素共同的普通css属性，注意，这里通过position: absolute使6面的“基点”位置保持一致。</p>
-<pre><code>.face {
-    color: #FFF;
-    font-size: 30px;
-    font-weight: bold;
-    position: absolute;
-    background: rgba(50, 50, 50, 0.7);
-    width: 160px;
-    height: 160px;
-    padding: 20px;
-    border: 1px solid #333;
-}
-</code></pre><p>通过-webkit-transform属性分别设置六个面的偏移和旋转位置，使其刚好围成一个立方体。-webkit-transform属性有多种方法（函数），rotateX()、rotateY()、rotateZ()分别用于设置元素基于XYZ轴的旋转角度。translateX()、translateY()、translateZ()则分别用于设置元素偏离XYZ轴的距离。</p>
-<pre><code>.face:nth-child(1) {-webkit-transform: translateZ(100px);}
-.face:nth-child(2) {-webkit-transform: rotateY(90deg) translateZ(100px);}
-.face:nth-child(3) {-webkit-transform: rotateY(180deg) translateZ(100px);}
-.face:nth-child(4) {-webkit-transform: rotateY(270deg) translateZ(100px);}
-.face:nth-child(5) {-webkit-transform: rotateX(90deg) translateZ(100px);}
-.face:nth-child(6) {-webkit-transform: rotateX(270deg) translateZ(100px);}
-</code></pre><p>最后，我们通过js绑定keyup事件，来改变div#box的-webkit-transform值来达到旋转的目的。</p>
-<pre><code>var xAngle = 0, yAngle = 0;
-document.addEventListener(&apos;keydown&apos;, function(e){
-    switch (e.keyCode) {
-        case 65: // left
-            yAngle -= 90;
-            break;
-        case 87: // up
-            xAngle += 90;
-            break;
-        case 68: // right
-            yAngle += 90;
-            break;
-        case 83: // down
-            xAngle -= 90;
-            break;
-    };
-    var box = document.getElementById(&apos;box&apos;);
-    box.style.webkitTransform = &quot;rotateX(&quot;+xAngle+&quot;deg) rotateY(&quot;+yAngle+&quot;deg)&quot;;
-}, false);
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/review-css-3d/" data-id="cj9nzgy2p006d3af5zbgebzzj" data-title="重温CSS 3D" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -756,7 +703,7 @@ document.addEventListener(&apos;keydown&apos;, function(e){
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 阿安<br>
+      &copy; 2018 阿安<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

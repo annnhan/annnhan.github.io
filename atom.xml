@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://annn.me/"/>
-  <updated>2017-11-06T09:20:09.000Z</updated>
+  <updated>2018-03-16T08:39:05.000Z</updated>
   <id>http://annn.me/</id>
   
   <author>
@@ -16,11 +16,144 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>如何使用 JavaScript 实现一门编程语言</title>
+    <link href="http://annn.me/implement-a-programming-language-in-javascript/"/>
+    <id>http://annn.me/implement-a-programming-language-in-javascript/</id>
+    <published>2018-03-15T16:00:00.000Z</published>
+    <updated>2018-03-16T08:39:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！</p>
+<p>我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！</p>
+<p>目标受众是普通的 JavaScript / NodeJS 程序员。</p>
+<p>我们要学什么？</p>
+<ul>
+<li>什么是解析器，以及如何编写解析器。</li>
+<li>如何编写解释器。</li>
+<li>为什么它们很重要。</li>
+<li>编写一个编译器。</li>
+<li>如何将代码转换为延续传递样式。</li>
+<li>一些基本的优化技术。</li>
+<li>我们的语言使用普通的 J avaScript 带来了新的例子。</li>
+</ul>
+<p>在两者之间，我会争论为什么 Lisp 是一种优秀的编程语言。 但是，我们将要使用的语言不是 Lisp。它有一个更丰富的语法（每个人都知道的经典中缀符号），除宏之外，它的功能与 Scheme相当。<br>可悲的是，宏是 Lisp 的最终堡垒，其他语言无法克服（除非它们被称为 Lisp 方言）。</p>
+<h3 id="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"><a href="#但首先，让我们想想我们的要实现的编程语言应该是什么样子。" class="headerlink" title="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"></a>但首先，让我们想想我们的要实现的编程语言应该是什么样子。</h3><p>在此之前，我们应该清楚自己想要实现的目标。把语法的严格描述放在一起是一个好主意，但是我会在本教程中使语法更加简单，所以下面是示例的λ语言：</p>
+<pre><code># this is a comment
+
+println(&quot;Hello World!&quot;);
+
+println(2 + 3 * 4);
+
+# functions are introduced with `lambda` or `λ`
+fib = lambda (n) if n &lt; 2 then n else fib(n - 1) + fib(n - 2);
+
+println(fib(15));
+
+print-range = λ(a, b)             # `λ` is synonym to `lambda`
+                if a &lt;= b then {  # `then` here is optional as you can see below
+                  print(a);
+                  if a + 1 &lt;= b {
+                    print(&quot;, &quot;);
+                    print-range(a + 1, b);
+                  } else println(&quot;&quot;);        # newline
+                };
+print-range(1, 5);
+</code></pre><p><em>请注意，标识符名称可以包含负号字符（print-range）。这是个人品味的问题：我总是在操作符旁边放置空格，我不喜欢很多 camelCaseNames，而且短划线比下划线更好。编写自己的语言的好处是，你可以随心所欲地做到这一点。:)</em></p>
+<p>输出是：</p>
+<pre><code>Hello World!
+14
+610
+1, 2, 3, 4, 5
+</code></pre><a id="more"></a>
+<p>该语言看起来有点像 JavaScript，但它不同。首先，没有声明，只有表达。表达式返回一个值，可以用来代替任何其他表达式。分号需要在“序列”中分隔表达式。花括号{和}创建这样一个序列，它本身就是一个表达式。它的值是最后一个表达式返回的值。以下是一个有效的程序：</p>
+<pre><code>a = {
+  fib(10);  # has no side-effects, but it&apos;s computed anyway
+  fib(15)   # the last semicolon can be missing
+};
+print(a); # prints 610
+</code></pre><p>函数被引入其中一个关键字 lambda 或 λ（它们是同义词）。在关键字之后，必须有一个（可能为空的）用逗号分隔的变量名列表（可能为空），就像在 JavaScript 中一样 —— 这些是参数名称。函数体是一个单一的表达式，但它可以是一个包裹在{ … }中的序列。<br>没有 return 语句 - 在函数返回最后一个表达式给出的返回值。</p>
+<p>没有 var。要引入新变量，可以使用 JSer 称之为 “立即执行函数” 的方式。就像在 JavaScript 中一样，使用 a lambda，声明变量作为参数。变量具有函数作用域范围，函数是闭包。</p>
+<p>甚至 if 本身就是一种表达。在 JavaScript 中，您可以使用三元运算符获得该效果：</p>
+<pre><code>a = foo() ? bar() : baz();           // JavaScript
+a = if foo() then bar() else baz();  # λanguage
+</code></pre><p>当分支以一个花括号开始时， then 关键字是可选，你可以在 print-range 上面看到，否则它是必需的。<br>当替代分支存在时，else 关键字是必须的。再次，then 的 else 的分支主题为一个单一的表达式，但也可以花括号 “{}” 包含多个通过 “;” 分隔的表达式。<br>当 else 分支不存在并且 if 条件结果为 false，if 表达式的结果是 false。因此，false 是一个关键词，它表示我们的语言中唯一的 falsy 值：</p>
+<pre><code>if foo() then print(&quot;OK&quot;);
+</code></pre><p>当 foo() 的结果不是 false 是，这点程序将会打印 “OK”。还有一个用于表示”真”的关键字 true，不是所非 false（当使用 JavaScript中 === 运算符的时候）的值都被理解成 true （其中包括数字 0 和空字符串 “”）。</p>
+<p>还要注意，使用括号包裹 if 条件没有意义。不过，虽然它们是多余的，你添加它们也没有错误。</p>
+<p>整个程序被解析，就好像它被嵌入大括号中一样，因此，除了最后一个表达式，您需要在每个表达式后面放置一个分号。</p>
+<p>好了，这是就我们的小 λ 语言。它不一定是很完善的的。它的语法看起来很可爱，但也有陷阱。它有很多缺失的功能，如对象或数组; 我们并不关注这些缺失，因为对我们的旅程并不重要。只要你掌握了这个教程的所有内容，你可以轻松实现这些缺失的功能。</p>
+<p><strong>在下一节中，我们将为这个语言编写一个解析器。</strong></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！&lt;/p&gt;
+&lt;p&gt;我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！&lt;/p&gt;
+&lt;p&gt;目标受众是普通的 JavaScript / NodeJS 程序员。&lt;/p&gt;
+&lt;p&gt;我们要学什么？&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;什么是解析器，以及如何编写解析器。&lt;/li&gt;
+&lt;li&gt;如何编写解释器。&lt;/li&gt;
+&lt;li&gt;为什么它们很重要。&lt;/li&gt;
+&lt;li&gt;编写一个编译器。&lt;/li&gt;
+&lt;li&gt;如何将代码转换为延续传递样式。&lt;/li&gt;
+&lt;li&gt;一些基本的优化技术。&lt;/li&gt;
+&lt;li&gt;我们的语言使用普通的 J avaScript 带来了新的例子。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在两者之间，我会争论为什么 Lisp 是一种优秀的编程语言。 但是，我们将要使用的语言不是 Lisp。它有一个更丰富的语法（每个人都知道的经典中缀符号），除宏之外，它的功能与 Scheme相当。&lt;br&gt;可悲的是，宏是 Lisp 的最终堡垒，其他语言无法克服（除非它们被称为 Lisp 方言）。&lt;/p&gt;
+&lt;h3 id=&quot;但首先，让我们想想我们的要实现的编程语言应该是什么样子。&quot;&gt;&lt;a href=&quot;#但首先，让我们想想我们的要实现的编程语言应该是什么样子。&quot; class=&quot;headerlink&quot; title=&quot;但首先，让我们想想我们的要实现的编程语言应该是什么样子。&quot;&gt;&lt;/a&gt;但首先，让我们想想我们的要实现的编程语言应该是什么样子。&lt;/h3&gt;&lt;p&gt;在此之前，我们应该清楚自己想要实现的目标。把语法的严格描述放在一起是一个好主意，但是我会在本教程中使语法更加简单，所以下面是示例的λ语言：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# this is a comment
+
+println(&amp;quot;Hello World!&amp;quot;);
+
+println(2 + 3 * 4);
+
+# functions are introduced with `lambda` or `λ`
+fib = lambda (n) if n &amp;lt; 2 then n else fib(n - 1) + fib(n - 2);
+
+println(fib(15));
+
+print-range = λ(a, b)             # `λ` is synonym to `lambda`
+                if a &amp;lt;= b then {  # `then` here is optional as you can see below
+                  print(a);
+                  if a + 1 &amp;lt;= b {
+                    print(&amp;quot;, &amp;quot;);
+                    print-range(a + 1, b);
+                  } else println(&amp;quot;&amp;quot;);        # newline
+                };
+print-range(1, 5);
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;em&gt;请注意，标识符名称可以包含负号字符（print-range）。这是个人品味的问题：我总是在操作符旁边放置空格，我不喜欢很多 camelCaseNames，而且短划线比下划线更好。编写自己的语言的好处是，你可以随心所欲地做到这一点。:)&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;输出是：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hello World!
+14
+610
+1, 2, 3, 4, 5
+&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+      <category term="javascript" scheme="http://annn.me/categorie/javascript/"/>
+    
+    
+      <category term="javascript" scheme="http://annn.me/tag/javascript/"/>
+    
+      <category term="parse" scheme="http://annn.me/tag/parse/"/>
+    
+      <category term="programming" scheme="http://annn.me/tag/programming/"/>
+    
+      <category term="language" scheme="http://annn.me/tag/language/"/>
+    
+      <category term="AST" scheme="http://annn.me/tag/AST/"/>
+    
+      <category term="compile" scheme="http://annn.me/tag/compile/"/>
+    
+  </entry>
+  
+  <entry>
     <title>前端开发如何让持续集成/持续部署(CI/CD)跑起来</title>
     <link href="http://annn.me/frontend-ci-cd/"/>
     <id>http://annn.me/frontend-ci-cd/</id>
     <published>2017-05-02T16:00:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>近几年，伴随着前端技术日新月异的发展，前端开发中前后端分离，工程化，自动化等现代化的开发模式越来普及，前端项目也引入了编译，构建，单元测试等现代软件工程化的标准环节。这样大提高了前端的开发效率和业务交付能力。但是，在代码集成，项目部署阶段，我们还需要引入 <a href="https://en.wikipedia.org/wiki/Continuous_integration" target="_blank" rel="external">CI</a> / <a href="https://en.wikipedia.org/wiki/Continuous_delivery" target="_blank" rel="external">CD</a> 等现代化的软件开发实践，来减少风险，重复过程，节省我们的时间。</p>
 <p>我们废话少说，这里不再对 持续集成/持续部署(CI/CD) 的概念做过多赘述，本文主要分享一下如何基于 <a href="https://about.gitlab.com/" target="_blank" rel="external">gitlab</a> 、 <a href="https://jenkins.io/" target="_blank" rel="external">jenkins</a> 让 CI/CD 跑起来。</p>
@@ -128,7 +261,7 @@
     <link href="http://annn.me/vue-spa-template/"/>
     <id>http://annn.me/vue-spa-template/</id>
     <published>2016-10-29T14:23:09.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>Github: <a href="https://github.com/annnhan/vue-spa-template" target="_blank">https://github.com/annnhan/vue-spa-template</a></p>
 <p>最近在给团队做前端技术改造，移动端方面主要使用 vue2.0 重构，这是基于 vue-cli 脚手架生成项目模板。我们做了一些改造，<br>加入了 vue-router ，vuex 等配套设施，本地 dev server 中加入了接口 mock 功能，还增加一个 build server 来预览 build 结果页面，前后端通过 spa 的方式实现分离，并相应做了分离后的联调，部署方案。<br>通过这个项目模板，可以快速搭建起用于前后端分离后的单页应用开发环境，项目主要包含：</p>
@@ -287,7 +420,7 @@ npm run dev -- --proxy=172.16.36.90/:8083
     <link href="http://annn.me/javascript-nginx/"/>
     <id>http://annn.me/javascript-nginx/</id>
     <published>2015-10-01T07:33:41.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>在上个月的 nginx.conf 2015 大会上， 官方宣布已经支持通过 javascript 代码来配置 nginx，并把这个实现称命名为——nginscript。使用 nginscript，可以很轻易得在 niginx 配置文件中通过 js 语法来实现自定义的服务器配置。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><pre><code># 下载最新版本的 nginx 并解压
@@ -402,7 +535,7 @@ $ make install
     <link href="http://annn.me/reres-googleapis/"/>
     <id>http://annn.me/reres-googleapis/</id>
     <published>2015-09-11T05:22:51.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>许多国外的网站都使用被墙掉的 googleapis.com 上的静态资源（如 font、js库 等），如果不爬墙，这些资源无法加载，导致网站无法正常访问。</p>
 <p>其实，360提供了一个国内的 googleapis.com 镜像仓库（<a href="http://libs.useso.com/" target="_blank" rel="external">libs.useso.com</a>）。我想，当遇到 googleapis 的请求时，浏览器能自动跳转到360的镜像，就能正常访问了。</p>
@@ -437,7 +570,7 @@ Response：http://$1.useso.com/$2
     <link href="http://annn.me/how-to-realize-cmd-loader/"/>
     <id>http://annn.me/how-to-realize-cmd-loader/</id>
     <published>2015-09-03T09:03:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>cmd 是阿里大神玉伯提出的基于浏览器的前端模块化规范，并在 seajs 中实现了这个规范。相对于另一个在国外比较流行的前端模块化规范 amd，cmd 对于 nodejs 的使用者来说更加友好，使得类似 commonJS 模块的写法可以在浏览器中使用，同时解决了浏览器中模块异步加载的困扰。<br>关于 cmd 更详细的内容可以移步 <a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="external">https://github.com/cmdjs/specification/blob/master/draft/module.md</a><br>今天，我们一起来学习如何实现一个浏览器端的简单的 cmd loader。</p>
 <h2 id="模块加载流程"><a href="#模块加载流程" class="headerlink" title="模块加载流程"></a>模块加载流程</h2><p>下图展示了一个 cmd loader 的模块加载大体流程：</p>
@@ -768,7 +901,7 @@ module.exports.async = function (ids, callback) {
     <link href="http://annn.me/fis-react/"/>
     <id>http://annn.me/fis-react/</id>
     <published>2015-08-23T07:24:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>fis 具有非常灵活的插件扩展机制，对于 react 的 jsx 也有现成的 parser 插件可用。<br>通过几条简单的配置，就可以在你的 fis 项目中使用 react 了。 但是在使用过程中，有一些小坑还是需要注意的，在此记录一下。</p>
 <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><pre><code>npm install fis-parser-react -g
@@ -818,7 +951,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/caniuse-cmd/"/>
     <id>http://annn.me/caniuse-cmd/</id>
     <published>2015-07-28T14:26:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>大名鼎鼎的 <a href="http://caniuse.com/" target="_blank" rel="external">caniuse.com</a> 相信每个前端同学都不陌生.<br>这款查询浏览器兼容性的利器, 现在可以在命令行下使用了. 相比每次打开网站查询, 命令行确实方便许多哦.</p>
 <p>首先,安装 caniuse 命令:</p>
@@ -846,7 +979,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/imitator/"/>
     <id>http://annn.me/imitator/</id>
     <published>2015-07-27T09:53:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。<br>使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。</p>
 <p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="external">https://github.com/hanan198501/imitator</a></p>
@@ -1048,7 +1181,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/smarty-assign/"/>
     <id>http://annn.me/smarty-assign/</id>
     <published>2015-06-21T14:23:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>使用Smarty内置函数{assign}，在模板运行时为模板变量赋值，也可以为数组元素赋值，和在赋值时使用一些表达式。{$var=…}是{assign}函数的简写版。该函数有三个属性(var、value和scope)和一个选项标签(nocache)，其中var和value是必须使用的属性，分别用来设置要分配值的变量名和分配的值。而scope是可选属性，用来指定分配的变量范围，可以指定parent、root和global三个值，用来设定变量的有效范围。{assign}函数使用如下所示：</p>
 <pre><code>{assign var=&quot;name&quot; value=&quot;brophp&quot;}  {*为变量$name赋值上brophp的值*}
@@ -1135,7 +1268,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/battery/"/>
     <id>http://annn.me/battery/</id>
     <published>2015-02-24T12:43:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>javascript Battery 接口允许你通过 javascript 来获取电池的状态。</p>
 <p><strong>navigator.getBattery()方法</strong></p>
@@ -1251,7 +1384,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/addjs/"/>
     <id>http://annn.me/addjs/</id>
     <published>2015-02-24T07:24:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>addJS是一个chrome插件。view in <a href="https://github.com/hanan198501/addjs" target="_blank" rel="external">github</a>。</p>
 <p>在浏览网站的时候，常常会想自己写js操作一下页面的内容(比如：抓图片，提取下载链接，屏蔽广告什么的)。于是，就有了这个插件。</p>
@@ -1332,7 +1465,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/ksend/"/>
     <id>http://annn.me/ksend/</id>
     <published>2015-01-03T05:24:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>昨天同事发了一本pdf格式的电子书，以往的方式，我都是登陆自己的qq邮箱，然后发pdf作为附件，推送到自己的kindle接收邮箱上。<br>突然觉得，其实nodejs应该有这样的命令行工具，可以一条命令搞定，于是在npm上搜索了一下，果然有一个叫“kindle”的包。<br>但是安装以后，总是推送失败，大概开了下源码，估计是作者使用的nodemailer组件做了不兼容升级导致。</p>
 <p>于是，为了以后传文件到kindle时偷个懒，就自己动手写了一个命令行工具，名叫ksend（ <a href="https://github.com/hanan198501/ksend" target="_blank">https://github.com/hanan198501/ksend</a> ），简单好用。 O(∩_∩)O~</p>
@@ -1380,7 +1513,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
     <link href="http://annn.me/cross-domain-local-storage/"/>
     <id>http://annn.me/cross-domain-local-storage/</id>
     <published>2014-09-07T12:38:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>HTML5 的 postMessage 为解决跨域页面通信提供了一套可控的机制， 而 localStorage 则提供了易用简洁的本地存储方案？<br>这两者结合起来，能否实现跨域本地存储呢 ？</p>
 <p>答案是可以的。假设有 a.com 和 b.com 两个页面。我们想通过 a 页面去修改 b 页面的本地数据。 我们需要做如下步奏：</p>
@@ -1584,7 +1717,7 @@ window.addEventListener(&apos;message&apos;, function (event) {
     <link href="http://annn.me/open-window-in-chrome/"/>
     <id>http://annn.me/open-window-in-chrome/</id>
     <published>2014-07-04T12:38:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>在chrome的安全机制里面，非用户触发的window.open方法，是会被拦截的。举个例子：</p>
 <pre><code>var btn = $(&apos;#btn&apos;);
@@ -1653,7 +1786,7 @@ btn.click(function () {
     <link href="http://annn.me/ecmascript6-promise/"/>
     <id>http://annn.me/ecmascript6-promise/</id>
     <published>2014-06-04T12:38:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>Promise最先是CommonJS工作组提出的一种规范之一，目的是为了解决js异步编程过程中，回调嵌套过深的问题。ECMAScript 6 规范化了Promise对象的语言接口，使其成了js的原生对象之一。</p>
 <p>如果你还不了解ECMAScript 6 中的Promise对象，建议阅读<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank">http://es6.ruanyifeng.com/#docs/promise</a>。ECMAScript 6 中的Promise对象与一些常用的promise库（如jquery，when.js）中的实现略有不同，本文讨论的实现，以ECMAScript 6 为准。<br>下面，我们来一起学习，如何在不支持ES6的浏览器上简单实现Promise，如有不对的地方，还请多多指正。</p>
@@ -1794,7 +1927,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/blog-move-to-github/"/>
     <id>http://annn.me/blog-move-to-github/</id>
     <published>2014-04-01T12:38:00.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>由于Wordpress主机到期，而且wp的markdown插件非常坑爹，经常把本来些的好好的md格式转得乱七八糟。于是花了一天时间，把Blog搬到github来了。使用了<a href="http://jekyllbootstrap.com" target="_blank" rel="external">Jekyll Bootstrap</a>框架，下面是折腾过程中的一些体会：</p>
 <ul>
@@ -1827,7 +1960,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/webstorm8/"/>
     <id>http://annn.me/webstorm8/</id>
     <published>2014-03-27T00:00:27.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="支持AngularJS"><a href="#支持AngularJS" class="headerlink" title="支持AngularJS"></a>支持AngularJS</h3><p>智能提示AngularJS指令（包括自定义指令），controller 和 application names以及花括号里边的数据绑定。 <img src="http://www.jetbrains.com/webstorm/whatsnew/screenshots/80/angularJSSupport.png" alt=""></p>
 <a id="more"></a>
@@ -1859,7 +1992,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/grunt-cptpl/"/>
     <id>http://annn.me/grunt-cptpl/</id>
     <published>2014-03-15T23:25:43.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="view-on-Github：https-github-com-hanan198501-grunt-cptpl"><a href="#view-on-Github：https-github-com-hanan198501-grunt-cptpl" class="headerlink" title="view on Github：https://github.com/hanan198501/grunt-cptpl"></a>view on Github：<a href="https://github.com/hanan198501/grunt-cptpl" target="_blank" rel="external">https://github.com/hanan198501/grunt-cptpl</a></h4><p>grunt-cptpl插件可以将您的文本模板文件编译成javascript文件。在前端开发的时候，模板文本我们一般存放在一个隐藏dom节点，再通过javascript去获取这个节点的内容，将其编译。或者在写javascript的时候，我们手动通过拼接字符串的方式储存模板文本。grunt-cptpl使前端开发也可以像后端一样，把模板文本存放在单独的文件中，使我们的开发工作从繁琐的dom操作和拼串中解放出来，提高我们的开发效率。最主要的，模板文件作为单独文件存放，可以使我们的项目代码逻辑更加清晰，更具可维护性。</p>
 <h5 id="grunt-cptpl都做了啥？"><a href="#grunt-cptpl都做了啥？" class="headerlink" title="grunt-cptpl都做了啥？"></a>grunt-cptpl都做了啥？</h5><p>grunt-cptpl会读取每个模板文件的文本内容，用指定模板引擎的预编译方法将其包裹起来，生成一个新的javascript文件。这个javascript文件文件里面的内容，其实就是模板引擎的预编译方法调用，传入的参数为模板文件的文本内容。这样我们就有了一个编译好的模板函数，要渲染的时候把数据传给它就好了。</p>
@@ -2002,7 +2135,7 @@ Promise.all = function (arr) {
     <link href="http://annn.me/popup-mask-ie6-bug/"/>
     <id>http://annn.me/popup-mask-ie6-bug/</id>
     <published>2014-03-12T02:02:08.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
+    <updated>2018-03-16T08:39:05.000Z</updated>
     
     <content type="html"><![CDATA[<p>我们在写一个popup组件时候，通常会加上一个元素作为mask层，用于遮盖住popup元素以外的页面内容。 而IE6下有个著名的bug就是select元素无法被遮盖，通常的做法，在IE6我们会在mask和和popup里面添加一个iframe来解决，一般的，iframe的css会是这样：</p>
 <pre><code>#iframe {
@@ -2035,94 +2168,6 @@ Promise.all = function (arr) {
       <category term="css" scheme="http://annn.me/tag/css/"/>
     
       <category term="iframe" scheme="http://annn.me/tag/iframe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>重温CSS 3D</title>
-    <link href="http://annn.me/review-css-3d/"/>
-    <id>http://annn.me/review-css-3d/</id>
-    <published>2014-03-07T20:26:07.000Z</published>
-    <updated>2017-11-06T09:20:09.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近开始折腾一些CSS3的东西，发现以前走马观花看过的CSS 3D相关的属性几乎忘记的差不多了，今天就来通过一个小立方体的效果来温习下：</p>
-<p>首先，我们来实现HTML布局，用一个div#arana作为“展台元素”，存放整个立方体容器div#box，div#box里面有6个子节点div.face，代表这个立方体的6个面。</p>
-<pre><code>&lt;div id=&quot;arena&quot;&gt;
-    &lt;div id=&quot;box&quot;&gt;
-        &lt;div class=&quot;face&quot;&gt;1&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;2&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;3&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;4&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;5&lt;/div&gt;
-        &lt;div class=&quot;face&quot;&gt;6&lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-</code></pre><p>最外层的div#arena的作用类似于一个“展台”，我们可以想象，在“展台”上，我们需要拜访一台摄像机，来拍摄这个立方体。那么，这个摄像机，我们称之为“视点”，视点和立方体的距离，就是div#arana的-webkit-perspective属性值， 它和我们在画画的时候“透视点”的概念有点像，只不过，“透视点”在屏幕的后方，而“视点”在屏幕的前方。在立方体旋转，偏移的时候，我们还需要知道一个“基点”，3D变换的元素， 都会基于这个点来变化，“基点”通过-webkit-perspective-origin属性来定义，的默认值是50% 50%，分别代表“基点”距离元素本身左边和顶部的距离。</p>
-<pre><code>#arena {
-    -webkit-perspective: 400;
-    -webkit-perspective-origin: 50% 50%;
-}
-</code></pre><p>第二个容器div#box实际上就是我们的立方体，通过-webkit–transition属性，定义了立方体在变化时候的过度动画效果。-webkit-transform-style属性用于定义3d元素的透视效果，它有2个值：其两个参数，flat|preserve-3d. 前者flat为默认值，表示平面的；后者preserve-3d表示3D透视。这个属性应该用在作为立方体的容器元素上，而不是它里面的6个作为6个面的子元素。</p>
-<pre><code>#box {
-    position: relative;
-    margin: 100px auto;
-    height: 200px;
-    width: 200px;
-    -webkit-transition: -webkit-transform 2s linear;
-    -webkit-transform-style: preserve-3d;
-}
-</code></pre><p>定义6个“面”元素共同的普通css属性，注意，这里通过position: absolute使6面的“基点”位置保持一致。</p>
-<pre><code>.face {
-    color: #FFF;
-    font-size: 30px;
-    font-weight: bold;
-    position: absolute;
-    background: rgba(50, 50, 50, 0.7);
-    width: 160px;
-    height: 160px;
-    padding: 20px;
-    border: 1px solid #333;
-}
-</code></pre><p>通过-webkit-transform属性分别设置六个面的偏移和旋转位置，使其刚好围成一个立方体。-webkit-transform属性有多种方法（函数），rotateX()、rotateY()、rotateZ()分别用于设置元素基于XYZ轴的旋转角度。translateX()、translateY()、translateZ()则分别用于设置元素偏离XYZ轴的距离。</p>
-<pre><code>.face:nth-child(1) {-webkit-transform: translateZ(100px);}
-.face:nth-child(2) {-webkit-transform: rotateY(90deg) translateZ(100px);}
-.face:nth-child(3) {-webkit-transform: rotateY(180deg) translateZ(100px);}
-.face:nth-child(4) {-webkit-transform: rotateY(270deg) translateZ(100px);}
-.face:nth-child(5) {-webkit-transform: rotateX(90deg) translateZ(100px);}
-.face:nth-child(6) {-webkit-transform: rotateX(270deg) translateZ(100px);}
-</code></pre><p>最后，我们通过js绑定keyup事件，来改变div#box的-webkit-transform值来达到旋转的目的。</p>
-<pre><code>var xAngle = 0, yAngle = 0;
-document.addEventListener(&apos;keydown&apos;, function(e){
-    switch (e.keyCode) {
-        case 65: // left
-            yAngle -= 90;
-            break;
-        case 87: // up
-            xAngle += 90;
-            break;
-        case 68: // right
-            yAngle += 90;
-            break;
-        case 83: // down
-            xAngle -= 90;
-            break;
-    };
-    var box = document.getElementById(&apos;box&apos;);
-    box.style.webkitTransform = &quot;rotateX(&quot;+xAngle+&quot;deg) rotateY(&quot;+yAngle+&quot;deg)&quot;;
-}, false);
-</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近开始折腾一些CSS3的东西，发现以前走马观花看过的CSS 3D相关的属性几乎忘记的差不多了，今天就来通过一个小立方体的效果来温习下：&lt;/p&gt;
-&lt;p&gt;首先，我们来实现HTML布局，用一个div#arana作为“展台元素”，存放整个立方体容器div#box，div#box里
-    
-    </summary>
-    
-      <category term="CSS" scheme="http://annn.me/categorie/CSS/"/>
-    
-    
-      <category term="css3" scheme="http://annn.me/tag/css3/"/>
     
   </entry>
   

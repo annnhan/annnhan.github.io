@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://og6593g2z.qnssl.com/fundebug.0.3.3.min.js" apikey="e4ebd1d8446798b665fed4258ebd75f1ee7489bda0832a94b9d5f2a6d07d2f4b"></script>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        如何使用 JavaScript 实现一门编程语言 |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！ 目标受众是普通的 JavaScript / NodeJS 程序员。">
+<meta name="keywords" content="javascript,parse,programming,language,AST,compile">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用 JavaScript 实现一门编程语言">
+<meta property="og:url" content="http://annn.me/implement-a-programming-language-in-javascript/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！ 目标受众是普通的 JavaScript / NodeJS 程序员。">
+<meta property="og:updated_time" content="2018-03-16T08:39:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言">
+<meta name="twitter:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！ 目标受众是普通的 JavaScript / NodeJS 程序员。">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-implement-a-programming-language-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/implement-a-programming-language-in-javascript/" class="article-date">
+  <time datetime="2018-03-15T16:00:00.000Z" itemprop="datePublished">2018-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      如何使用 JavaScript 实现一门编程语言
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！</p>
+<p>我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！</p>
+<p>目标受众是普通的 JavaScript / NodeJS 程序员。</p>
+<p>我们要学什么？</p>
+<ul>
+<li>什么是解析器，以及如何编写解析器。</li>
+<li>如何编写解释器。</li>
+<li>为什么它们很重要。</li>
+<li>编写一个编译器。</li>
+<li>如何将代码转换为延续传递样式。</li>
+<li>一些基本的优化技术。</li>
+<li>我们的语言使用普通的 J avaScript 带来了新的例子。</li>
+</ul>
+<p>在两者之间，我会争论为什么 Lisp 是一种优秀的编程语言。 但是，我们将要使用的语言不是 Lisp。它有一个更丰富的语法（每个人都知道的经典中缀符号），除宏之外，它的功能与 Scheme相当。<br>可悲的是，宏是 Lisp 的最终堡垒，其他语言无法克服（除非它们被称为 Lisp 方言）。</p>
+<h3 id="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"><a href="#但首先，让我们想想我们的要实现的编程语言应该是什么样子。" class="headerlink" title="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"></a>但首先，让我们想想我们的要实现的编程语言应该是什么样子。</h3><p>在此之前，我们应该清楚自己想要实现的目标。把语法的严格描述放在一起是一个好主意，但是我会在本教程中使语法更加简单，所以下面是示例的λ语言：</p>
+<pre><code># this is a comment
+
+println(&quot;Hello World!&quot;);
+
+println(2 + 3 * 4);
+
+# functions are introduced with `lambda` or `λ`
+fib = lambda (n) if n &lt; 2 then n else fib(n - 1) + fib(n - 2);
+
+println(fib(15));
+
+print-range = λ(a, b)             # `λ` is synonym to `lambda`
+                if a &lt;= b then {  # `then` here is optional as you can see below
+                  print(a);
+                  if a + 1 &lt;= b {
+                    print(&quot;, &quot;);
+                    print-range(a + 1, b);
+                  } else println(&quot;&quot;);        # newline
+                };
+print-range(1, 5);
+</code></pre><p><em>请注意，标识符名称可以包含负号字符（print-range）。这是个人品味的问题：我总是在操作符旁边放置空格，我不喜欢很多 camelCaseNames，而且短划线比下划线更好。编写自己的语言的好处是，你可以随心所欲地做到这一点。:)</em></p>
+<p>输出是：</p>
+<pre><code>Hello World!
+14
+610
+1, 2, 3, 4, 5
+</code></pre><a id="more"></a>
+<p>该语言看起来有点像 JavaScript，但它不同。首先，没有声明，只有表达。表达式返回一个值，可以用来代替任何其他表达式。分号需要在“序列”中分隔表达式。花括号{和}创建这样一个序列，它本身就是一个表达式。它的值是最后一个表达式返回的值。以下是一个有效的程序：</p>
+<pre><code>a = {
+  fib(10);  # has no side-effects, but it&apos;s computed anyway
+  fib(15)   # the last semicolon can be missing
+};
+print(a); # prints 610
+</code></pre><p>函数被引入其中一个关键字 lambda 或 λ（它们是同义词）。在关键字之后，必须有一个（可能为空的）用逗号分隔的变量名列表（可能为空），就像在 JavaScript 中一样 —— 这些是参数名称。函数体是一个单一的表达式，但它可以是一个包裹在{ … }中的序列。<br>没有 return 语句 - 在函数返回最后一个表达式给出的返回值。</p>
+<p>没有 var。要引入新变量，可以使用 JSer 称之为 “立即执行函数” 的方式。就像在 JavaScript 中一样，使用 a lambda，声明变量作为参数。变量具有函数作用域范围，函数是闭包。</p>
+<p>甚至 if 本身就是一种表达。在 JavaScript 中，您可以使用三元运算符获得该效果：</p>
+<pre><code>a = foo() ? bar() : baz();           // JavaScript
+a = if foo() then bar() else baz();  # λanguage
+</code></pre><p>当分支以一个花括号开始时， then 关键字是可选，你可以在 print-range 上面看到，否则它是必需的。<br>当替代分支存在时，else 关键字是必须的。再次，then 的 else 的分支主题为一个单一的表达式，但也可以花括号 “{}” 包含多个通过 “;” 分隔的表达式。<br>当 else 分支不存在并且 if 条件结果为 false，if 表达式的结果是 false。因此，false 是一个关键词，它表示我们的语言中唯一的 falsy 值：</p>
+<pre><code>if foo() then print(&quot;OK&quot;);
+</code></pre><p>当 foo() 的结果不是 false 是，这点程序将会打印 “OK”。还有一个用于表示”真”的关键字 true，不是所非 false（当使用 JavaScript中 === 运算符的时候）的值都被理解成 true （其中包括数字 0 和空字符串 “”）。</p>
+<p>还要注意，使用括号包裹 if 条件没有意义。不过，虽然它们是多余的，你添加它们也没有错误。</p>
+<p>整个程序被解析，就好像它被嵌入大括号中一样，因此，除了最后一个表达式，您需要在每个表达式后面放置一个分号。</p>
+<p>好了，这是就我们的小 λ 语言。它不一定是很完善的的。它的语法看起来很可爱，但也有陷阱。它有很多缺失的功能，如对象或数组; 我们并不关注这些缺失，因为对我们的旅程并不重要。只要你掌握了这个教程的所有内容，你可以轻松实现这些缺失的功能。</p>
+<p><strong>在下一节中，我们将为这个语言编写一个解析器。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/implement-a-programming-language-in-javascript/" data-id="cjetozan8003xu4f5ovjhehfx" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/frontend-ci-cd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">前端开发如何让持续集成/持续部署(CI/CD)跑起来</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="comments-containet"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'annnhan',
+    repo: window.githubRepository || 'gitment',
+    oauth: {
+      client_id: '0a05c848f85cc4fdc815',
+      client_secret: '6bfdb7c41012f8b3d28935e7e08b8e6c1504a325',
+    },
+  })
+  gitment.render('comments-containet')
+</script>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

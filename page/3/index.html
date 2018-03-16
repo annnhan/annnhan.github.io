@@ -103,6 +103,114 @@
   <!--首页-->
   
     
+    <article id="post-review-css-3d" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/review-css-3d/" class="article-date">
+  <time datetime="2014-03-07T20:26:07.000Z" itemprop="datePublished">2014-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/review-css-3d/">重温CSS 3D</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近开始折腾一些CSS3的东西，发现以前走马观花看过的CSS 3D相关的属性几乎忘记的差不多了，今天就来通过一个小立方体的效果来温习下：</p>
+<p>首先，我们来实现HTML布局，用一个div#arana作为“展台元素”，存放整个立方体容器div#box，div#box里面有6个子节点div.face，代表这个立方体的6个面。</p>
+<pre><code>&lt;div id=&quot;arena&quot;&gt;
+    &lt;div id=&quot;box&quot;&gt;
+        &lt;div class=&quot;face&quot;&gt;1&lt;/div&gt;
+        &lt;div class=&quot;face&quot;&gt;2&lt;/div&gt;
+        &lt;div class=&quot;face&quot;&gt;3&lt;/div&gt;
+        &lt;div class=&quot;face&quot;&gt;4&lt;/div&gt;
+        &lt;div class=&quot;face&quot;&gt;5&lt;/div&gt;
+        &lt;div class=&quot;face&quot;&gt;6&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre><p>最外层的div#arena的作用类似于一个“展台”，我们可以想象，在“展台”上，我们需要拜访一台摄像机，来拍摄这个立方体。那么，这个摄像机，我们称之为“视点”，视点和立方体的距离，就是div#arana的-webkit-perspective属性值， 它和我们在画画的时候“透视点”的概念有点像，只不过，“透视点”在屏幕的后方，而“视点”在屏幕的前方。在立方体旋转，偏移的时候，我们还需要知道一个“基点”，3D变换的元素， 都会基于这个点来变化，“基点”通过-webkit-perspective-origin属性来定义，的默认值是50% 50%，分别代表“基点”距离元素本身左边和顶部的距离。</p>
+<pre><code>#arena {
+    -webkit-perspective: 400;
+    -webkit-perspective-origin: 50% 50%;
+}
+</code></pre><p>第二个容器div#box实际上就是我们的立方体，通过-webkit–transition属性，定义了立方体在变化时候的过度动画效果。-webkit-transform-style属性用于定义3d元素的透视效果，它有2个值：其两个参数，flat|preserve-3d. 前者flat为默认值，表示平面的；后者preserve-3d表示3D透视。这个属性应该用在作为立方体的容器元素上，而不是它里面的6个作为6个面的子元素。</p>
+<pre><code>#box {
+    position: relative;
+    margin: 100px auto;
+    height: 200px;
+    width: 200px;
+    -webkit-transition: -webkit-transform 2s linear;
+    -webkit-transform-style: preserve-3d;
+}
+</code></pre><p>定义6个“面”元素共同的普通css属性，注意，这里通过position: absolute使6面的“基点”位置保持一致。</p>
+<pre><code>.face {
+    color: #FFF;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    background: rgba(50, 50, 50, 0.7);
+    width: 160px;
+    height: 160px;
+    padding: 20px;
+    border: 1px solid #333;
+}
+</code></pre><p>通过-webkit-transform属性分别设置六个面的偏移和旋转位置，使其刚好围成一个立方体。-webkit-transform属性有多种方法（函数），rotateX()、rotateY()、rotateZ()分别用于设置元素基于XYZ轴的旋转角度。translateX()、translateY()、translateZ()则分别用于设置元素偏离XYZ轴的距离。</p>
+<pre><code>.face:nth-child(1) {-webkit-transform: translateZ(100px);}
+.face:nth-child(2) {-webkit-transform: rotateY(90deg) translateZ(100px);}
+.face:nth-child(3) {-webkit-transform: rotateY(180deg) translateZ(100px);}
+.face:nth-child(4) {-webkit-transform: rotateY(270deg) translateZ(100px);}
+.face:nth-child(5) {-webkit-transform: rotateX(90deg) translateZ(100px);}
+.face:nth-child(6) {-webkit-transform: rotateX(270deg) translateZ(100px);}
+</code></pre><p>最后，我们通过js绑定keyup事件，来改变div#box的-webkit-transform值来达到旋转的目的。</p>
+<pre><code>var xAngle = 0, yAngle = 0;
+document.addEventListener(&apos;keydown&apos;, function(e){
+    switch (e.keyCode) {
+        case 65: // left
+            yAngle -= 90;
+            break;
+        case 87: // up
+            xAngle += 90;
+            break;
+        case 68: // right
+            yAngle += 90;
+            break;
+        case 83: // down
+            xAngle -= 90;
+            break;
+    };
+    var box = document.getElementById(&apos;box&apos;);
+    box.style.webkitTransform = &quot;rotateX(&quot;+xAngle+&quot;deg) rotateY(&quot;+yAngle+&quot;deg)&quot;;
+}, false);
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/review-css-3d/" data-id="cjetozaop006gu4f557vy7xi5" data-title="重温CSS 3D" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-create-start-program-in-ubuntu" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/create-start-program-in-ubuntu/" class="article-date">
@@ -146,7 +254,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cj9nzgy0g001c3af5gy8orajf" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cjetozam6001du4f50fjwxxd6" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/pycharm/">pycharm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ubuntu/">ubuntu</a></li></ul>
@@ -192,7 +300,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/pingru-meitang/" data-id="cj9nzgy28005x3af5ijt75zo4" data-title="一位92岁老人一生中最美好、最痛苦、最意外的事情……" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/pingru-meitang/" data-id="cjetozaoh0061u4f5s8ost4dd" data-title="一位92岁老人一生中最美好、最痛苦、最意外的事情……" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +351,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres/" data-id="cj9nzgy2n00683af5pldqc89a" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres/" data-id="cjetozaom006bu4f5na0gyhyr" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/response/">response</a></li></ul>
@@ -295,7 +403,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" data-id="cj9nzgy0o001v3af5s5w9sbxn" data-title="通过Visual Event查看页面元素的绑定事件" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" data-id="cjetozamg001yu4f51mle8e3z" data-title="通过Visual Event查看页面元素的绑定事件" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Event/">Event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/事件/">事件</a></li></ul>
@@ -340,7 +448,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/fiddler-stave/" data-id="cj9nzgy0w002g3af56b78be08" data-title="Stave——让Fiddler拥有路径映射功能。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/fiddler-stave/" data-id="cjetozamo002gu4f583rzupdd" data-title="Stave——让Fiddler拥有路径映射功能。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fiddler/">fiddler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/stave/">stave</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/调试工具/">调试工具</a></li></ul>
@@ -396,7 +504,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ecmascript6-arrow-function/" data-id="cj9nzgy0r00233af5csabrwj0" data-title="理解ECMAScript6中的箭头函数" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ecmascript6-arrow-function/" data-id="cjetozaml002bu4f5kt5vfbii" data-title="理解ECMAScript6中的箭头函数" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/函数/">函数</a></li></ul>
@@ -493,7 +601,7 @@ git reset --hard origin/master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/git-use/" data-id="cj9nzgy12002v3af5q24r2sxj" data-title="git 使用笔记" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/git-use/" data-id="cjetozamv002xu4f5ot15gfpv" data-title="git 使用笔记" class="article-share-link">Share</a>
       
       
     </footer>
@@ -548,7 +656,7 @@ git reset --hard origin/master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/mustache-array-index/" data-id="cj9nzgy23005j3af5hxf0ofj5" data-title="Mustache.js模板引擎无法获得数组内元素索引的解决办法" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/mustache-array-index/" data-id="cjetozanz005nu4f5c07bjcwh" data-title="Mustache.js模板引擎无法获得数组内元素索引的解决办法" class="article-share-link">Share</a>
       
       
     </footer>
@@ -604,53 +712,7 @@ git reset --hard origin/master
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/themes-for-chrome-developer-tools/" data-id="cj9nzgy2u006r3af5ptih1umf" data-title="为你的chrome开发者工具换个主题风格吧" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-javascript-wheel" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/javascript-wheel/" class="article-date">
-  <time datetime="2013-06-22T00:05:43.000Z" itemprop="datePublished">2013-06-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/javascript-wheel/">整理一下最近用到的优秀javascript轮子</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. Masonry</strong><br><a href="/wp-content/uploads/2013/06/masonry.png"><img src="/wp-content/uploads/2013/06/masonry.png" alt="masonry"></a><br>Masonry是一个网格布局的javascript库。它可以是对页面元素进行重新布局，以填充页面中的空白位置，通过Masonry，我们也实现多种流行的页面布局，例如瀑布流、 metro等效果。<br>url : <a href="http://masonry.desandro.com/" target="_blank" rel="external">http://masonry.desandro.com/</a></p>
-        
-          <p class="article-more-link">
-            <a href="/javascript-wheel/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-wheel/" data-id="cj9nzgy1n004i3af5v71f5sed" data-title="整理一下最近用到的优秀javascript轮子" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/themes-for-chrome-developer-tools/" data-id="cjetozar500f7u4f5a9sheiy2" data-title="为你的chrome开发者工具换个主题风格吧" class="article-share-link">Share</a>
       
       
     </footer>
@@ -662,7 +724,7 @@ git reset --hard origin/master
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -673,7 +735,7 @@ git reset --hard origin/master
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 阿安<br>
+      &copy; 2018 阿安<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

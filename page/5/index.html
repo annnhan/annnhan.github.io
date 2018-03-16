@@ -103,6 +103,73 @@
   <!--首页-->
   
     
+    <article id="post-jquery-viewport" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/jquery-viewport/" class="article-date">
+  <time datetime="2013-03-26T01:29:24.000Z" itemprop="datePublished">2013-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/jquery-viewport/">jQuery.viewport插件实现不同场景的数据异步加载</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>viewport是我同事<a href="http://www.jsbug.com/" target="_blank" rel="external">@吕哥</a>写的实现不同场景的图片异步加载的jq插件。想象一下，当服务器返回列表的数据项（或图片）非常多，而其数据项不用在页面回应时全部加载给浏览器，可以按需加载。那么通过将列表 viewport化，你就可以设置并知道知道哪些数据项被显示出来的时机，完成数据异步加载的操作。</p>
+<p>viewport非常适合应用于海量图片的查看器（神马轮播图，相册之类的），或者瀑布流的布局当中，此插件可以被绑定到 window 对象或任意以 block 方式显示的对象上，如：$(window).viewport() 或 $(“#container”).viewport()。</p>
+<p>两个demo:<br><a href="http://www.jsbug.com/tools/wall/" target="_blank" rel="external">http://www.jsbug.com/lab/samples/viewport/index.html#sample1</a><br><a href="http://www.jsbug.com/tools/wall/" target="_blank" rel="external">http://www.jsbug.com/tools/wall/</a></p>
+<p><strong>参数说明</strong></p>
+<ol>
+<li>id：可选，字符串类型。每个容器都可以执行 viewport 方法多次，也就是说，任何容器都可以被视口化多次，且同一容器的各视口间互不影响。</li>
+</ol>
+<ol>
+<li>targets：可选，在“视口”中查找的目标元素。</li>
+</ol>
+<ol>
+<li>includeHiddens：可选，当提供 targets 时才有效。用来控制是否查找视口内的隐藏目标元素，默认为 true。</li>
+</ol>
+<ol>
+<li>threshold：可选，当提供 targets 时才有效。通过此值你可以增大或减小视口检测的阈值范围。</li>
+</ol>
+<ol>
+<li>delay：可选，此参数用来控制 onViewChange 的触发频率，默认为 500 毫秒。</li>
+</ol>
+<ol>
+<li>onViewChange：可选，用户定义的回调事件，当“视口”被滚动或缩放后触发。</li>
+</ol>
+<ol>
+<li>thresholdBorderReaching：可选，此参数主要用来影响 onViewChange 回调中的 detail 参数，默认为 0。</li>
+</ol>
+<p>更详细的用法以及demo详见：<a href="http://www.jsbug.com/lab/samples/viewport/index.html" target="_blank" rel="external">http://www.jsbug.com/lab/samples/viewport/index.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/jquery-viewport/" data-id="cjetozann004zu4f5ddph7kz6" data-title="jQuery.viewport插件实现不同场景的数据异步加载" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-function-of-the-inertia-load" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/function-of-the-inertia-load/" class="article-date">
@@ -150,7 +217,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/function-of-the-inertia-load/" data-id="cj9nzgy10002p3af5e5lqetl6" data-title="利用函数的惰性载入提高javascript代码性能" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/function-of-the-inertia-load/" data-id="cjetozamq002nu4f5wq7b2ft1" data-title="利用函数的惰性载入提高javascript代码性能" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -198,7 +265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-linkgame/" data-id="cj9nzgy1k00493af5nh0rhub2" data-title="javascript连连看。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-linkgame/" data-id="cjetozanc0049u4f5d4fvnyku" data-title="javascript连连看。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/连连看/">连连看</a></li></ul>
@@ -247,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jquery1-9-removed-api/" data-id="cj9nzgy1u004z3af54nqkaprv" data-title="jQuery1.9中被删除的API" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jquery1-9-removed-api/" data-id="cjetozanp0055u4f5vx5evtzr" data-title="jQuery1.9中被删除的API" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -303,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cj9nzgy24005p3af5vq2acgo2" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cjetozao2005vu4f5crizyqql" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Link/">Link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/focus/">focus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/onhashchange/">onhashchange</a></li></ul>
@@ -351,7 +418,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/retina-css4/" data-id="cj9nzgy2o006a3af5qg0qgyxb" data-title="Retina屏幕与CSS4" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/retina-css4/" data-id="cjetozaon006du4f5ivlj5eh6" data-title="Retina屏幕与CSS4" class="article-share-link">Share</a>
       
       
     </footer>
@@ -398,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/presentation-top10/" data-id="cj9nzgy2a00633af5wj7fsyrx" data-title="世界十大经典presentation" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/presentation-top10/" data-id="cjetozaoj0066u4f5zp8802qy" data-title="世界十大经典presentation" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/presentation/">presentation</a></li></ul>
@@ -461,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/css3-ime-mode/" data-id="cj9nzgy0m001r3af56xwhpcx9" data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/css3-ime-mode/" data-id="cjetozamc001ru4f5ng665rq1" data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ime-mode/">ime-mode</a></li></ul>
@@ -534,7 +601,7 @@ console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/css-fontfamily-chinese/" data-id="cj9nzgy0j001k3af5uh093m5f" data-title="避免css中文字体在浏览器中解析成乱码" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/css-fontfamily-chinese/" data-id="cjetozam9001lu4f5hutap8i0" data-title="避免css中文字体在浏览器中解析成乱码" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chinese/">chinese</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/font-family/">font-family</a></li></ul>
@@ -578,7 +645,7 @@ console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/chrome-useragent/" data-id="cj9nzgy0b00163af5ei21lyki" data-title="发现一个小咪咪，chrome自带了修改user Agent的功能了。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/chrome-useragent/" data-id="cjetozam40017u4f5wola3gq0" data-title="发现一个小咪咪，chrome自带了修改user Agent的功能了。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/useragent/">useragent</a></li></ul>
@@ -590,59 +657,9 @@ console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1
 
 
   
-    
-    <article id="post-webstorm-phpstorm-remote-host" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/webstorm-phpstorm-remote-host/" class="article-date">
-  <time datetime="2012-11-24T23:56:40.000Z" itemprop="datePublished">2012-11-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/webstorm-phpstorm-remote-host/">使用WebStorm/Phpstorm实现remote host远程开发</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>如果你的开发环境是在远程主机上，webstorm可以提供通过ftp/ftps/sftp等方式实现远程同步开发。这样我们可以就抛弃ftp、winscp等工具，通过webstorm编辑远程文件以及部署，本文基于WebStorm5.04编写， Intellij IDEA或者PHPStorm使用方法基本相同，可参考之。并且还要感谢因特里基友群群主大猫的帮助。</p>
-<p>1、首先我们来创建一个基于远程主机的project，点击file&gt;new project from existing sources，打开了创建project的对话框，我们选择第四项，例如我们的远程主机通过ftp/sftp/ftps等方式传输文件，点击next。</p>
-<p><img src="/wp-content/uploads/webstorm/1.jpg" alt="">
-        
-          <p class="article-more-link">
-            <a href="/webstorm-phpstorm-remote-host/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/webstorm-phpstorm-remote-host/" data-id="cj9nzgy36007k3af5v8ak7vk8" data-title="使用WebStorm/Phpstorm实现remote host远程开发" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/host/">host</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/phpstorm/">phpstorm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/remote/">remote</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -653,7 +670,7 @@ console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 阿安<br>
+      &copy; 2018 阿安<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

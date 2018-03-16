@@ -103,6 +103,95 @@
   <!--首页-->
   
     
+    <article id="post-implement-a-programming-language-in-javascript" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/implement-a-programming-language-in-javascript/" class="article-date">
+  <time datetime="2018-03-15T16:00:00.000Z" itemprop="datePublished">2018-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/implement-a-programming-language-in-javascript/">如何使用 JavaScript 实现一门编程语言</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！</p>
+<p>我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！</p>
+<p>目标受众是普通的 JavaScript / NodeJS 程序员。</p>
+<p>我们要学什么？</p>
+<ul>
+<li>什么是解析器，以及如何编写解析器。</li>
+<li>如何编写解释器。</li>
+<li>为什么它们很重要。</li>
+<li>编写一个编译器。</li>
+<li>如何将代码转换为延续传递样式。</li>
+<li>一些基本的优化技术。</li>
+<li>我们的语言使用普通的 J avaScript 带来了新的例子。</li>
+</ul>
+<p>在两者之间，我会争论为什么 Lisp 是一种优秀的编程语言。 但是，我们将要使用的语言不是 Lisp。它有一个更丰富的语法（每个人都知道的经典中缀符号），除宏之外，它的功能与 Scheme相当。<br>可悲的是，宏是 Lisp 的最终堡垒，其他语言无法克服（除非它们被称为 Lisp 方言）。</p>
+<h3 id="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"><a href="#但首先，让我们想想我们的要实现的编程语言应该是什么样子。" class="headerlink" title="但首先，让我们想想我们的要实现的编程语言应该是什么样子。"></a>但首先，让我们想想我们的要实现的编程语言应该是什么样子。</h3><p>在此之前，我们应该清楚自己想要实现的目标。把语法的严格描述放在一起是一个好主意，但是我会在本教程中使语法更加简单，所以下面是示例的λ语言：</p>
+<pre><code># this is a comment
+
+println(&quot;Hello World!&quot;);
+
+println(2 + 3 * 4);
+
+# functions are introduced with `lambda` or `λ`
+fib = lambda (n) if n &lt; 2 then n else fib(n - 1) + fib(n - 2);
+
+println(fib(15));
+
+print-range = λ(a, b)             # `λ` is synonym to `lambda`
+                if a &lt;= b then {  # `then` here is optional as you can see below
+                  print(a);
+                  if a + 1 &lt;= b {
+                    print(&quot;, &quot;);
+                    print-range(a + 1, b);
+                  } else println(&quot;&quot;);        # newline
+                };
+print-range(1, 5);
+</code></pre><p><em>请注意，标识符名称可以包含负号字符（print-range）。这是个人品味的问题：我总是在操作符旁边放置空格，我不喜欢很多 camelCaseNames，而且短划线比下划线更好。编写自己的语言的好处是，你可以随心所欲地做到这一点。:)</em></p>
+<p>输出是：</p>
+<pre><code>Hello World!
+14
+610
+1, 2, 3, 4, 5
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/implement-a-programming-language-in-javascript/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/implement-a-programming-language-in-javascript/" data-id="cjetozan8003xu4f5ovjhehfx" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-frontend-ci-cd" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/frontend-ci-cd/" class="article-date">
@@ -166,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cj9nzgy0y002k3af5b2o90wcr" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjetozamq002lu4f5xb58zikk" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
@@ -221,7 +310,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/vue-spa-template/" data-id="cj9nzgy32007a3af5l01tfza4" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cjetozarg00fmu4f5acijajug" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>
@@ -283,7 +372,7 @@ $ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-nginx/" data-id="cj9nzgy1l004b3af583l6to1s" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-nginx/" data-id="cjetozanh004ku4f5ozp3v6ba" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li></ul>
@@ -334,7 +423,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres-googleapis/" data-id="cj9nzgy2m00653af5ik0tvk9k" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres-googleapis/" data-id="cjetozaok0068u4f55sq40aml" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/googleapis/">googleapis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -395,7 +484,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cj9nzgy1500323af5ie0w2nb3" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cjetozamx0034u4f57wiro333" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/loader/">loader</a></li></ul>
@@ -461,7 +550,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/fis-react/" data-id="cj9nzgy0x002i3af55yasnxhc" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/fis-react/" data-id="cjetozamp002iu4f5ehg5cxz8" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fis/">fis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/react/">react</a></li></ul>
@@ -510,7 +599,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/caniuse-cmd/" data-id="cj9nzgy07000s3af5luc351so" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/caniuse-cmd/" data-id="cjetozam0000tu4f5uw0mhe6v" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caniuse/">caniuse</a></li></ul>
@@ -577,7 +666,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/imitator/" data-id="cj9nzgy1e003s3af5u1o3mj2t" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/imitator/" data-id="cjetozan6003su4f5gqanz1cw" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/imitator/">imitator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/mock/">mock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/server/">server</a></li></ul>
@@ -647,7 +736,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/smarty-assign/" data-id="cj9nzgy2r006i3af5zfxsbl57" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/smarty-assign/" data-id="cjetozaor006lu4f5bcpete89" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/assigin/">assigin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/smarty/">smarty</a></li></ul>
@@ -659,64 +748,9 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
 
 
   
-    
-    <article id="post-battery" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/battery/" class="article-date">
-  <time datetime="2015-02-24T12:43:00.000Z" itemprop="datePublished">2015-02-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/battery/">新的 javascript Battery API</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>javascript Battery 接口允许你通过 javascript 来获取电池的状态。</p>
-<p><strong>navigator.getBattery()方法</strong></p>
-<p>在新的标准里，电池的状态信息是通过navigator.getBattery()方法获取的。<br>navigator.getBattery()是一个异步方法，会返回一个es6标准的<a href="/ecmascript6-promise/">promise</a>对象。<br>所以我们获取电池状态的回调方法，必须通过该promise对象的then方法来注册：</p>
-<pre><code>navigator.getBattery().then(function(result) {
-    console.log(result);
-});
-</code></pre><p><strong>BatteryManager接口</strong></p>
-<p>上个例子里的result是一个表示电池状态的对象， 它是由BatteryManager接口实现的，具有如下属性：</p>
-        
-          <p class="article-more-link">
-            <a href="/battery/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/battery/" data-id="cj9nzgy04000n3af5lf7f1l0r" data-title="新的 javascript Battery API" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AddJS/">AddJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chorme/">chorme</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -727,7 +761,7 @@ fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 阿安<br>
+      &copy; 2018 阿安<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
