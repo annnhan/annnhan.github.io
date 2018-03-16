@@ -19,17 +19,17 @@
     <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
-    <meta name="description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！ 目标受众是普通的 JavaScript / NodeJS 程序员。">
+    <meta name="description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。 如何">
 <meta name="keywords" content="javascript,parse,programming,language,AST,compile">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用 JavaScript 实现一门编程语言">
 <meta property="og:url" content="http://annn.me/implement-a-programming-language-in-javascript/index.html">
 <meta property="og:site_name" content="安·记">
-<meta property="og:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！ 目标受众是普通的 JavaScript / NodeJS 程序员。">
-<meta property="og:updated_time" content="2018-03-16T08:39:05.000Z">
+<meta property="og:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。 如何">
+<meta property="og:updated_time" content="2018-03-16T08:44:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言">
-<meta name="twitter:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！ 目标受众是普通的 JavaScript / NodeJS 程序员。">
+<meta name="twitter:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。 如何">
     
     <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
     
@@ -129,7 +129,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！</p>
-<p>我建议你不要跳过前进，除非你知道这个主题。如果你不了解某些东西，你总是可以回头看看。此外，非常感谢您的问题和反馈！</p>
 <p>目标受众是普通的 JavaScript / NodeJS 程序员。</p>
 <p>我们要学什么？</p>
 <ul>
@@ -188,11 +187,12 @@ a = if foo() then bar() else baz();  # λanguage
 <p>整个程序被解析，就好像它被嵌入大括号中一样，因此，除了最后一个表达式，您需要在每个表达式后面放置一个分号。</p>
 <p>好了，这是就我们的小 λ 语言。它不一定是很完善的的。它的语法看起来很可爱，但也有陷阱。它有很多缺失的功能，如对象或数组; 我们并不关注这些缺失，因为对我们的旅程并不重要。只要你掌握了这个教程的所有内容，你可以轻松实现这些缺失的功能。</p>
 <p><strong>在下一节中，我们将为这个语言编写一个解析器。</strong></p>
+<p><em>原文链接：<a href="http://lisperator.net/pltut/dream" target="_blank" rel="external">http://lisperator.net/pltut/dream</a></em></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-in-javascript/" data-id="cjetp0r29003uxaf50e9go6is" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-in-javascript/" data-id="cjetp6e2j003p5ef5q5ck0glw" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li></ul>
