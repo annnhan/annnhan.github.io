@@ -104,6 +104,219 @@
   <!--首页-->
   
     
+    <article id="post-img2txt-canvas" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/img2txt-canvas/" class="article-date">
+  <time datetime="2013-04-11T19:26:29.000Z" itemprop="datePublished">2013-04-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/img2txt-canvas/">基于canvas将图片转化成字符画</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/wp-content/uploads/2013/04/img2txt.jpg" alt="img2txt"><br>
+        
+          <p class="article-more-link">
+            <a href="/img2txt-canvas/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/img2txt-canvas/" data-id="cjf2c47gg003n5bf5f0og6hx2" data-title="基于canvas将图片转化成字符画" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/canvas/">canvas</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/html5/">html5</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/字符画/">字符画</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-vim" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/vim/" class="article-date">
+  <time datetime="2013-04-08T01:17:40.000Z" itemprop="datePublished">2013-04-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/vim/">vim备忘</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虽然平时写代码的时候都是用Intellij IDEA，但也偶尔通过ssh+vim远程修改文件，特此记录，以备时需。</p>
+<p><strong>标签命令</strong></p>
+<pre><code>:tabe fn     在一个新的标签页中编辑文件fn
+gt           切换到下一个标签页
+gT           切换到上一个标签页
+:tabr        切换到第一个标签页
+:tabl        切换到最后一个标签页
+:tabm [N]    把当前tab移动到第N个tab之后
+</code></pre><p><strong>窗口命令</strong></p>
+<pre><code>ctrl+w s     水平分割窗口
+ctrl+w w     切换窗口
+ctrl+w q     退出当前窗口(由于同时有多个文件，此命令不会影响其他窗口)
+ctrl+w v     垂直分割窗口
+:sp fn       分割窗口，并将fn加载到新的窗口中
+</code></pre><p>
+        
+          <p class="article-more-link">
+            <a href="/vim/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/vim/" data-id="cjf2c47ik007l5bf500ktsqk6" data-title="vim备忘" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vim/">vim</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-intellij-idea-ant" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/intellij-idea-ant/" class="article-date">
+  <time datetime="2013-04-07T09:22:59.000Z" itemprop="datePublished">2013-04-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/intellij-idea-ant/">在Intellij IDEA中使用Ant</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ant最初是为Java量身定做的工程构建工具，但因为其简单的XML语法和内置的任务，作为前端领域的构建工具也不失为一个明智的选择。关于Ant与前端，明河的教程有更详细的介绍：<a href="http://book.36ria.com/ant/index.html" target="_blank" rel="noopener">http://book.36ria.com/ant/index.html</a>，对于Ant的常规使用方法，新手请直接学习明河的教程。下面来说说Intellij IDEA，它内置了Ant，如果你不喜欢命令行，那么在Intellij IDEA中使用Ant是非常方便的，本文主要介绍windows下在Intellij IDEA中使用Ant进行前端构建的方法，如果你使用其他操作系统，也可以参考。</p>
+<p><strong>1、</strong>首先，确保你的系统已经安装了Java运行环境，如果你的机子已经安装jdk，那么请跳过这一步，如果没有，请移步至<a href="http://willerce.com/post/jdk" target="_blank" rel="noopener">http://willerce.com/post/jdk</a>。参照此教程安装好jdk。</p>
+<p><strong>2、</strong>配置project structure。点击File&gt;Project Structure(快捷键ctrl+alt+shift+s)，在Project SDK这一项中，如果显示的是“No SDK”，说明还木有设置运行环境，我们点击New，选择你的jdk安装目录，比如我的是C:\Program Files (x86)\Java\jdk1.6.0_10。设置好以后，会显示jdk的版本信息，如下图。</p>
+<p><img src="/wp-content/uploads/2013/04/1.jpg" alt="Intellij IDEA Project Structure"></p>
+<p>
+        
+          <p class="article-more-link">
+            <a href="/intellij-idea-ant/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/intellij-idea-ant/" data-id="cjf2c47h500485bf59263zgny" data-title="在Intellij IDEA中使用Ant" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Ant/">Ant</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Intellij-IDEA/">Intellij IDEA</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/build-xml/">build.xml</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-days-with-my-father" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/days-with-my-father/" class="article-date">
+  <time datetime="2013-03-28T09:53:50.000Z" itemprop="datePublished">2013-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/发现/">发现</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/days-with-my-father/">Days with my father.</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>半夜里，在拜读阮一峰老师的网志的时候，看到一个美国摄影师的作品。母亲去世后，他就拍他的父亲，还写下自己的感想。</p>
+<p>我被这组作品深深地感动了。儿子对父亲的爱与不舍、以及父亲在年老之际的孤独，都在其中得到了细腻的体现，非常感人，有时候，我们需要安静下来，给生命一个思考的时间。</p>
+<p>=============================================</p>
+<p><strong>与父亲在一起的日子</strong><br>作者：Phillip Toledano<br>译者：阮一峰<br>原文网址：<a href="http://www.dayswithmyfather.com" target="_blank" rel="noopener">http://www.dayswithmyfather.com</a></p>
+<p>1.<br><img src="http://image.beekka.com/blog/201106/bg2011062001.jpg" alt=""></p>
+<p>这是一份日记，记录我的父亲。<br>
+        
+          <p class="article-more-link">
+            <a href="/days-with-my-father/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/days-with-my-father/" data-id="cjf2c47fn001u5bf5ki7v3ac9" data-title="Days with my father." class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-jquery-viewport" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/jquery-viewport/" class="article-date">
@@ -160,7 +373,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jquery-viewport/" data-id="cjetsbeb10052ucf5ipxa0i0w" data-title="jQuery.viewport插件实现不同场景的数据异步加载" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jquery-viewport/" data-id="cjf2c47hm005a5bf5ehptf1kv" data-title="jQuery.viewport插件实现不同场景的数据异步加载" class="article-share-link">Share</a>
       
       
     </footer>
@@ -218,7 +431,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/function-of-the-inertia-load/" data-id="cjetsbea0002oucf592rh0weu" data-title="利用函数的惰性载入提高javascript代码性能" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/function-of-the-inertia-load/" data-id="cjf2c47fz002m5bf5p5ezm5r5" data-title="利用函数的惰性载入提高javascript代码性能" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -266,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-linkgame/" data-id="cjetsbeap0049ucf5zjyyddy9" data-title="javascript连连看。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-linkgame/" data-id="cjf2c47hb004l5bf5bk1wmmto" data-title="javascript连连看。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/连连看/">连连看</a></li></ul>
@@ -315,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jquery1-9-removed-api/" data-id="cjetsbeb30059ucf5hhgdsjdx" data-title="jQuery1.9中被删除的API" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jquery1-9-removed-api/" data-id="cjf2c47hn005c5bf5a0vipkpi" data-title="jQuery1.9中被删除的API" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -371,7 +584,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cjetsbebs005sucf5gnc832jq" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/onhashchange-improve-anchor-links/" data-id="cjf2c47i000645bf5atynbzj3" data-title="通过onhashchange优化“锚链接”" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Link/">Link</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/focus/">focus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/onhashchange/">onhashchange</a></li></ul>
@@ -419,238 +632,9 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/retina-css4/" data-id="cjetsbec1006cucf5yn8awlyo" data-title="Retina屏幕与CSS4" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/retina-css4/" data-id="cjf2c47i7006m5bf5ar83r1rp" data-title="Retina屏幕与CSS4" class="article-share-link">Share</a>
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-presentation-top10" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/presentation-top10/" class="article-date">
-  <time datetime="2013-01-03T02:05:56.000Z" itemprop="datePublished">2013-01-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/发现/">发现</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/presentation-top10/">世界十大经典presentation</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>1. Steve Jobs【1984年介绍Macintosh的演说】
-</strong>斯蒂夫·乔布斯，苹果CEO，无人不知的IT教父级人物，他的演说也是超一流，他很多的演说奉为经典，尤其是在运用幻灯片演说绝对的一流，就连PPT演说大师Garr对斯蒂夫·乔布斯佩服的五体投地。看看1984年的Steve Jobs是如何进行Macintonsh介绍演说的。<br><a href="http://video.google.com/videoplay?docid=8631701936876784775" target="_blank" rel="noopener">http://video.google.com/videoplay?docid=8631701936876784775</a><br>
-        
-          <p class="article-more-link">
-            <a href="/presentation-top10/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/presentation-top10/" data-id="cjetsbebx0063ucf57xk87mix" data-title="世界十大经典presentation" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/presentation/">presentation</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-css3-ime-mode" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/css3-ime-mode/" class="article-date">
-  <time datetime="2012-12-04T01:45:20.000Z" itemprop="datePublished">2012-12-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/css3-ime-mode/">通过ime-mode属性控制文本字段的输入法编辑器的状态</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ime-mode是CSS3中最新添加的属性，更准确点说，是CSS Basic User Interface Module Level 3 (CSS3 UI)规范新添加的属性，该属性可以控制文本字段的输入法编辑器的状态。IE浏览器从IE5开始就支持该属性，FireFox浏览器从FireFox3.0开始也支持该ime-mode属性。不过chrome、opera、Safari浏览器还没有开始支持该属性。</p>
-<p>名称: ime-mode<br>值: auto | normal | active | inactive | disabled | inherit<br>初始值: auto<br>应用元素: text fields（文本字段）<br>继承性: no</p>
-<p><strong>下面是ime-mode各个值的说明：</strong><br>auto : 默认值，不影响当前输入法编辑器的状态<br>normal : 输入法编辑器的状态应该是normal，这个值可以用于用户样式表来覆盖页面的设置。IE浏览器不支持该属性<br>active : 输入法编辑器的状态初始时是激活的；输入将一直使用该输入法直到用户切换输入法。该属性在Linux下不支持<br>inactive : 输入法编辑器的状态初始时是非激活状态；除非用户激活输入法<br>disabled : 禁用输入法编辑器；该输入法编辑器也许不会被用户激活</p>
-<pre><code>&lt;html&gt;
- &lt;head&gt;
-  &lt;title&gt; New Document &lt;/title&gt;
- &lt;style type=&quot;text/css&quot;&gt;
-    input {ime-mode: disabled; }
- &lt;/style&gt;
- &lt;/head&gt;
-
- &lt;body&gt;
-
-&lt;form action=&quot;&quot; name=&quot;form1&quot; method=&quot;post&quot;&gt;
-    &lt;input type=&quot;text&quot; name=&quot;textfield&quot;&gt;
-&lt;/form&gt;
- &lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>上面的例子在IE5+或者FireFox3+浏览器中运行，不允许输入中文。</p>
-<p>这个属性虽然很强大，但是在最新版的chrome、opera、safari浏览器中都不支持该属性，所以在这些浏览器中还需要通过javascript来实现当用户输入中文时无法输入到文本框中。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/css3-ime-mode/" data-id="cjetsbe9d001eucf5dnwavalb" data-title="通过ime-mode属性控制文本字段的输入法编辑器的状态" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ime-mode/">ime-mode</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-css-fontfamily-chinese" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/css-fontfamily-chinese/" class="article-date">
-  <time datetime="2012-12-03T10:03:46.000Z" itemprop="datePublished">2012-12-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/css-fontfamily-chinese/">避免css中文字体在浏览器中解析成乱码</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>许多童鞋在写CSS的时候，设置中文字体常常使用中文字符，例如font-family:”黑体”，这样我们在浏览器中看到的是什么样子的呢 ？</p>
-<p><a href="/wp-content/uploads/2012/12/111.jpg"><img src="/wp-content/uploads/2012/12/111.jpg" alt=""></a><br>如果不想自己写的界面在浏览器字体声明上有异常，建议在书写css样式规则的时候避免中文字符，使用Unicode编码集，对中文字符进行转码。常见的中文字符集转码如下表：</p>
-<p>中文名<br>UNICODE</p>
-<p>新细明体</p>
-<p>\65B0\7EC6\660E\4F53</p>
-<p>细明体</p>
-<p>\7EC6\660E\4F53</p>
-<p>标楷体</p>
-<p>\6807\6977\4F53</p>
-<p>黑体</p>
-<p>\9ED1\4F53</p>
-<p>宋体</p>
-<p>\5B8B\4F53</p>
-<p>新宋体</p>
-<p>\65B0\5B8B\4F53</p>
-<p>仿宋</p>
-<p>\4EFF\5B8B</p>
-<p>楷体</p>
-<p>\6977\4F53</p>
-<p>仿宋_GB2312</p>
-<p>\4EFF\5B8B_GB2312</p>
-<p>楷体_GB2312</p>
-<p>\6977\4F53_GB2312</p>
-<p>微软正黑体</p>
-<p>\5FAE\x8F6F\6B63\9ED1\4F53</p>
-<p>微软雅黑</p>
-<p>\5FAE\8F6F\96C5\9ED1</p>
-<p>如果你不知道某个中文字体的Unicode编码，可以使用通过JS如下方法进行转化：</p>
-<pre><code>function toUnicode (str) {return escape(str).toLocaleLowerCase().replace(/%u/gi, &apos;\\&apos;);}
-console.log(toUnicode (&apos;微软雅黑&apos;)); // &apos;\5fae\8f6f\96c5\9ed1&apos;
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/css-fontfamily-chinese/" data-id="cjetsbe9c001bucf57rxqr756" data-title="避免css中文字体在浏览器中解析成乱码" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chinese/">chinese</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/font-family/">font-family</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-chrome-useragent" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/chrome-useragent/" class="article-date">
-  <time datetime="2012-11-27T07:25:20.000Z" itemprop="datePublished">2012-11-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/发现/">发现</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/chrome-useragent/">发现一个小咪咪，chrome自带了修改user Agent的功能了。</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="/wp-content/uploads/2012/11/chrome-useragent.jpg"><img src="/wp-content/uploads/2012/11/chrome-useragent.jpg" alt=""></a><br>在chrome23的开发者工具中，发现了居然可以自定义user Agent，还有可视区域尺寸，这样更方便移动开发调试啦。。<br>妈妈再也不用担心我的移动开发！~~~</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/chrome-useragent/" data-id="cjetsbe980010ucf5vuauz9ng" data-title="发现一个小咪咪，chrome自带了修改user Agent的功能了。" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/useragent/">useragent</a></li></ul>
-
     </footer>
   </div>
   

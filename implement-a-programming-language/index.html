@@ -6,7 +6,7 @@
     
     <title>
         
-        如何使用 JavaScript 实现一门编程语言 |
+        如何使用 JavaScript 实现一门编程语言(1) —— 前言 |
         
         安·记</title>
     <script>
@@ -19,18 +19,18 @@
     <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
-    <meta name="description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。 如何">
-<meta name="keywords" content="javascript,parse,programming,language,AST,compile">
+    <meta name="description" content="这是一系列关于 如何实现编程语言 的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。">
+<meta name="keywords" content="javascript,parse,programming,language,AST,compile,编译原理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何使用 JavaScript 实现一门编程语言">
+<meta property="og:title" content="如何使用 JavaScript 实现一门编程语言(1) —— 前言">
 <meta property="og:url" content="http://annn.me/implement-a-programming-language/index.html">
 <meta property="og:site_name" content="安·记">
-<meta property="og:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。 如何">
+<meta property="og:description" content="这是一系列关于 如何实现编程语言 的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-16T09:57:17.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:48:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言">
-<meta name="twitter:description" content="这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。 如何">
+<meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(1) —— 前言">
+<meta name="twitter:description" content="这是一系列关于 如何实现编程语言 的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！ 目标受众是普通的 JavaScript / NodeJS 程序员。 我们要学什么？  什么是解析器，以及如何编写解析器。 如何编写解释器。 为什么它们很重要。 编写一个编译器。">
     
     <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
     
@@ -121,7 +121,7 @@
         
   
     <h2 class="article-title" itemprop="name">
-      如何使用 JavaScript 实现一门编程语言
+      如何使用 JavaScript 实现一门编程语言(1) —— 前言
     </h2>
   
 
@@ -129,7 +129,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这是一系列关于如何实现编程语言的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！</p>
+        <p>这是一系列关于 <a href="/tag/编译原理">如何实现编程语言</a> 的教程。如果你曾经写过一个解释器或编译器，那么这里可能没有什么新东西。但是，如果您使用正则表达式来“解析” 任何看起来像编程语言的东西，那么请至少阅读解析部分。让我们写出更少的错误代码！</p>
 <p>目标受众是普通的 JavaScript / NodeJS 程序员。</p>
 <p>我们要学什么？</p>
 <ul>
@@ -187,22 +187,39 @@ a = if foo() then bar() else baz();  # λanguage
 <p>还要注意，使用括号包裹 if 条件没有意义。不过，虽然它们是多余的，你添加它们也没有错误。</p>
 <p>整个程序被解析，就好像它被嵌入大括号中一样，因此，除了最后一个表达式，您需要在每个表达式后面放置一个分号。</p>
 <p>好了，这是就我们的小 λ 语言。它不一定是很完善的的。它的语法看起来很可爱，但也有陷阱。它有很多缺失的功能，如对象或数组; 我们并不关注这些缺失，因为对我们的旅程并不重要。只要你掌握了这个教程的所有内容，你可以轻松实现这些缺失的功能。</p>
-<p><strong>在下一节中，我们将为这个语言编写一个解析器。</strong></p>
+<p><strong>在下一节中， <a href="/implement-a-programming-language-2">我们将为这个语言编写一个解析器</a> 。</strong></p>
+<p><em>相关文章</em></p>
+<ul>
+<li><a href="/implement-a-programming-language">如何使用 JavaScript 实现一门编程语言(1)——前言</a></li>
+<li><a href="/implement-a-programming-language-2">如何使用 JavaScript 实现一门编程语言(2)——编写一个解析器</a></li>
+<li><a href="/implement-a-programming-language-3">如何使用 JavaScript 实现一门编程语言(3)——Input stream</a></li>
+<li><a href="/implement-a-programming-language-4">如何使用 JavaScript 实现一门编程语言(4)——Token stream</a></li>
+<li><a href="/implement-a-programming-language-5">如何使用 JavaScript 实现一门编程语言(5)——AST</a></li>
+</ul>
 <p><em>原文链接：<a href="http://lisperator.net/pltut/dream" target="_blank" rel="noopener">http://lisperator.net/pltut/dream</a></em></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjetsbeah003sucf5cakm38v2" data-title="如何使用 JavaScript 实现一门编程语言" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjf2c47h300435bf5tdmwizg1" data-title="如何使用 JavaScript 实现一门编程语言(1) —— 前言" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
 
     </footer>
   </div>
   
     
 <nav id="article-nav">
+  
+    <a href="/implement-a-programming-language-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器
+        
+      </div>
+    </a>
   
   
     <a href="/frontend-ci-cd/" id="article-nav-older" class="article-nav-link-wrap">

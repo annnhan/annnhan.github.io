@@ -104,6 +104,218 @@
   <!--首页-->
   
     
+    <article id="post-euclidean" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/euclidean/" class="article-date">
+  <time datetime="2012-10-28T07:49:58.000Z" itemprop="datePublished">2012-10-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/euclidean/">欧几里德算法</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="/wp-content/uploads/2012/10/euclidean.jpg" alt=""><br>今天在群里看到有朋友提出一道面试题，是如何求得2个数的最大公约数。在《Javascrit权威指南》一书曾今中有提到相关的例子,其原理是使用欧几里得算法求得。</p>
+<p>在数学中，欧几里得算法，又称辗转相除法，是求两个正整数的最大公约数的算法。辗转相除法首次出现于欧几里得的《几何原本》中，而在中国则可以追溯至东汉出现的《九章算术》。其定理为：</p>
+<p><strong>gcd(a,b) = gcd(b,a%b)</strong> </p>
+<p>即设两数为a、b，其中a&gt;b，a%b为a除以b以后的余数且a%b不为0，用gcd(a,b）表示a和b的最大公约数。也就是说，两个数的最大公约数=（较小的数）和（较大的数除以较小的数的余数）的最大公约数。</p>
+<p>基于上述等式，我们先来求 a=481 和 b=221 的最大公约数，解剖欧几里德算法计算过程：</p>
+<pre><code>假设f为a和b的最大公约数
+a除以b的余数 等于 481%221 等于 39
+
+根据公式，那么f也等于221和39的公约数，我们继续求模
+221除以39的余数 等于 221%39 等于 26
+
+根据公式，f也等于39和26的公约数 ，我们继续求模
+39除以26的余数数 等于 39%26 等于 13
+
+根据公式，f 也等于26和13公约数，我们继续求模
+26除以13的余数数 等于 39%26 等于 0
+
+到这一步，26可以13被整除，说明他们的最大公约数也就是13，即f=13。
+</code></pre><p>通过这个等式，我们可以一步一步地缩小与原始数公约数相同的的一对数字，最后直到找到较大数能被较小数整除为止，那么较小数就是他们的最大公约数。
+        
+          <p class="article-more-link">
+            <a href="/euclidean/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/euclidean/" data-id="cjf2c47fu002c5bf5nk27o509" data-title="欧几里德算法" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/最大公约数/">最大公约数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/欧几里德算法/">欧几里德算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/辗转相除法/">辗转相除法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-ecmascript5-new-array-method" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ecmascript5-new-array-method/" class="article-date">
+  <time datetime="2012-10-27T07:57:58.000Z" itemprop="datePublished">2012-10-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/ecmascript5-new-array-method/">ECMAScript 5中新增的数组方法</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>ECMAScript 5中定义了9个新的数组方法，用于遍历、映射、过滤、检测、简化和搜索数组。</p>
+<p>在开始介绍之前，很有必要对这几个新增的数组方法做一个概述。首先，大多数方法的第一个参数接收一个函数，并且对数组的每个元素（或者一些元素）调用一次该函数。如果是稀疏数组，对不存在的元素不调用传递的函数。在大多数情况下，调用提供的函数使用3个参数：数组元素、数组元素的索引值和数组本身。通常，知需要第一个参数，可忽略后面2个参数。大多数ECMAScript 5数组方法的第一个参数是一个函数，第二个参数是可选的。如果有第二个参数，则第一个参数（被调用的函数）会被看做是第二个参数的方法。也就是说，第一个参数（被调用的函数）的this关键字指向的是第二个参数。被调用的函数的返回值非常重要，但是不同的方法处理返回值的方式也不一样。ECMAScript 5中的数组方法都不会修改原始数组本身，但是，方法所传递的调用函数是可以改变原始数组本身的。
+        
+          <p class="article-more-link">
+            <a href="/ecmascript5-new-array-method/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ecmascript5-new-array-method/" data-id="cjf2c47fp001z5bf5f18tqpiy" data-title="ECMAScript 5中新增的数组方法" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ECMAScript/">ECMAScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/every/">every</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/filter/">filter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/forEach/">forEach</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/map/">map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/reduce/">reduce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/reduceRight/">reduceRight</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/some/">some</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-aptana3-chinese-zencoding-svn-jquery" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/aptana3-chinese-zencoding-svn-jquery/" class="article-date">
+  <time datetime="2012-09-29T02:44:42.000Z" itemprop="datePublished">2012-09-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/aptana3-chinese-zencoding-svn-jquery/">Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近老是换机器，每次安装Aptana时候都要网上找插件地址或者安装方法，于是记录一下，以便以后偷懒。</p>
+<p><strong>1、汉化</strong><br>打开<a href="http://www.eclipse.org/babel/downloads.php，复制Babel" target="_blank" rel="noopener">http://www.eclipse.org/babel/downloads.php，复制Babel</a> Language Pack Update Site for Helios下面的地址，如下图中的<a href="http://download.eclipse.org/technology/babel/update-site/R0.10.0/helios。" target="_blank" rel="noopener">http://download.eclipse.org/technology/babel/update-site/R0.10.0/helios。</a><br><a href="/wp-content/uploads/2012/09/chinese-aptana.jpg"><img src="/wp-content/uploads/2012/09/chinese-aptana-300x155.jpg" alt=""></a><br>然后Help &gt; Install New Software，粘贴，一路Next。
+        
+          <p class="article-more-link">
+            <a href="/aptana3-chinese-zencoding-svn-jquery/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/aptana3-chinese-zencoding-svn-jquery/" data-id="cjf2c47f1000h5bf5xpeu9mby" data-title="Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/aptana/">aptana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/svn/">svn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/zen-coding/">zen-coding</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-animat" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/animat/" class="article-date">
+  <time datetime="2012-09-26T20:34:24.000Z" itemprop="datePublished">2012-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/animat/">封装一个animat动画方法</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>jquery中的animat方法相信大家都经常用到，它的主要功能是以渐变的方式来改变属性值可以为数字的元素属性,通过设置时间来控制动画的速度。下面分享一个自己写的动画方法，起功能也类似于jquery中的animat，欢迎大家指点：
+        
+          <p class="article-more-link">
+            <a href="/animat/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/animat/" data-id="cjf2c47ew00095bf5qtrb1xmm" data-title="封装一个animat动画方法" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/animat/">animat</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-javascript-minesweeping" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/javascript-minesweeping/" class="article-date">
@@ -139,7 +351,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-minesweeping/" data-id="cjetsbeaz004zucf510p9q78e" data-title="JS扫雷游戏" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-minesweeping/" data-id="cjf2c47hf004r5bf52nxcx8ir" data-title="JS扫雷游戏" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JS扫雷/">JS扫雷</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/minesweeping/">minesweeping</a></li></ul>
@@ -215,7 +427,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/get-miss-number/" data-id="cjetsbea1002rucf5ut6dzf7h" data-title="一组数字，从1到n，从中减少了3个数，顺序打乱，放在n-3的数组里,找出丢失数字。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/get-miss-number/" data-id="cjf2c47g1002r5bf57rdcg1m6" data-title="一组数字，从1到n，从中减少了3个数，顺序打乱，放在n-3的数组里,找出丢失数字。" class="article-share-link">Share</a>
       
       
     </footer>
@@ -258,7 +470,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/background-color-opacity-content/" data-id="cjetsbe8y000jucf5ct56310r" data-title="背景透明，内容不透明CSS代码生成器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/background-color-opacity-content/" data-id="cjf2c47f2000k5bf5hvftcp6z" data-title="背景透明，内容不透明CSS代码生成器" class="article-share-link">Share</a>
       
       
     </footer>
@@ -312,7 +524,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/this-arguments-callee-caller/" data-id="cjetsbeca0071ucf5vopzbk3m" data-title="函数内部对象属性以及相关属性详解：arguments.callee、this、caller" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/this-arguments-callee-caller/" data-id="cjf2c47if00795bf5g2ddeamf" data-title="函数内部对象属性以及相关属性详解：arguments.callee、this、caller" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/arguments/">arguments</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/callee/">callee</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caller/">caller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/this/">this</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/函数对象/">函数对象</a></li></ul>
@@ -374,7 +586,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/" data-id="cjetsbeb20055ucf533k1namz" data-title="JS解小学奥数题：abcde*a=eeeeee" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/" data-id="cjf2c47ht005o5bf5huca6qyo" data-title="JS解小学奥数题：abcde*a=eeeeee" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/枚举法/">枚举法</a></li></ul>
@@ -425,224 +637,10 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/js-iframe/" data-id="cjetsbeb5005bucf5ao34cv2i" data-title="js中的iframe操作" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/js-iframe/" data-id="cjf2c47hp005e5bf5ycl0848s" data-title="js中的iframe操作" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/iframe/">iframe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-html5-w3c-whatwg" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/html5-w3c-whatwg/" class="article-date">
-  <time datetime="2012-07-22T18:46:29.000Z" itemprop="datePublished">2012-07-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/html5-w3c-whatwg/">HTML5? 你妈贵姓？W3C？还是WHATWG？</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>目前,这两个组织负责开发HTML已经决定在某种程度的分离,这意味着在未来将有两个版本的HTML5—— snapshot版本和living standard版本。</p>
-<p>万维网超文本应用技术工作组(WHATWG)是由万维网联盟(W3C)在未来的HTML推进进度缓慢而成立。当时，大多数用户想留在HTML,只不过想要它需要改进，但是事实上“W3C或多或少地放弃了在HTML而专注于XML和xhtml。</p>
-<p>自2004年以来，WHATWG接着负责将HTML标准向前推进。大约在2007年,W3C采用WHATWG的规范并取名为HTML5。这两个组织一直在名义上的共同努力指定HTML5，但是，他们在HTML5的一些方法一直存在分歧。多年来,这两个组织都倾向于更偏向他们的方法,现在这把分歧只是被形式化了。</p>
-<p>在一份WHATWG的邮件列表中，一名WHATWG标准的作者解释道：</p>
-<blockquote>
-<p><em>More recently, the goals of the W3C and the WHATWG on the HTML front have diverged a bit as well. The WHATWG effort is focused on developing the canonical description of HTML and related technologies, meaning fixing bugs as we find them adding new features as they become necessary and viable, and generally tracking implementations. The W3C effort, meanwhile, is now focused on creating a snapshot developed according to the venerable W3C process. This led to the chairs of the W3C HTML working group and myself deciding to split the work into two, with a different person responsible for editing the W3C HTML5, canvas, and microdata specifications than is editing the WHATWG specification.</em></p>
-</blockquote>
-<p>上面的文字大意就是WHATWG 致力于持续迭代的维护HTML5（Living Standard），W3C还是走自己的老路，维护现在已经成型的标准（snapshot），于是道不同不相为谋，就散伙呗。</p>
-<p>如果你认为两者分裂意味着将有两个HTML5版本，看情况是答案八九不离十啊。</p>
-<p>W3C打算创建一个独立的标准，就是WHATWG口中的“snapshot”。WHATWG这下就不同意了，所以想想，还是单干吧。目测摆脱了W3C的束缚之后，WHATWG的开发脚步会比以前更快。</p>
-<p>总而言之，对于开发者来说，这不像是一个好消息。以后HTML5到底是W3C的版本还是WHATWG的版本估计就再也说不清楚了。我的猜测是Chrome and Firefox会跟随WHATWG的步伐，然后Microsoft（IEs）会按照自己的喜好来耍（这点个人稍微不同意啊，感觉IEs和chrome这种高帅富，都会按照自己的意愿来耍，Firefox就屌丝点，老老实实吧）。</p>
-<p>原文地址：<a href="http://www.i-programmer.info/news/191-htmlcss/4531-which-html5-whatwg-and-w3c-split.html" target="_blank" rel="noopener">http://www.i-programmer.info/news/191-htmlcss/4531-which-html5-whatwg-and-w3c-split.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/html5-w3c-whatwg/" data-id="cjetsbea9003bucf5s3o1ovt5" data-title="HTML5? 你妈贵姓？W3C？还是WHATWG？" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/W3C/">W3C</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WHATWG/">WHATWG</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/html5/">html5</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-chrome-developer-tool" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/chrome-developer-tool/" class="article-date">
-  <time datetime="2012-06-03T23:07:31.000Z" itemprop="datePublished">2012-06-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/chrome-developer-tool/">Chrome开发人员工具使用技巧</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>转自：<a href="http://ued.taobao.com/blog/2012/06/03/debug-with-chrome-dev-tool/" target="_blank" rel="noopener">http://ued.taobao.com/blog/2012/06/03/debug-with-chrome-dev-tool/</a></p>
-<p>这篇文章是根据目前 chrome 稳定版(19.0.1084.52 m)写的, 因为 google 也在不断完善chrome developer tool, 所以 chrome 版本不同可能稍有差别. 一些快捷键也是 windows 上的, mac 下的应该大同小异.</p>
-<p>常规的断点相关的 breakpoint/conditional-breakpoint/call-stack/watch-expressions 等就不涉及了.</p>
-<h3 id="1-Beautify-javascript"><a href="#1-Beautify-javascript" class="headerlink" title="1. Beautify javascript"></a><strong>1. Beautify javascript</strong></h3><p>js 文件在上线前一般都会压缩下, 压缩的 javascript 几乎没有可读性, 几乎无法设定断点. 在 Scripts 面板下面有个 Pretty print 按钮(这种符号 {}), 点击会将压缩 js 文件格式化缩进规整的文件, 这时候在设定断点可读性就大大提高了.</p>
-<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-before.jpg" target="_blank" rel="noopener"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-before.jpg" alt=""></a></p>
-<p><a href="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-after.jpg" target="_blank" rel="noopener"><img src="http://ued.taobao.com/blog/wp-content/uploads/2012/06/script-pretty-after.jpg" alt="">
-        
-          <p class="article-more-link">
-            <a href="/chrome-developer-tool/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/chrome-developer-tool/" data-id="cjetsbe9b0017ucf529gwwc8k" data-title="Chrome开发人员工具使用技巧" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/开发人员工具/">开发人员工具</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-it-will-only-take-you-few-days-to-code" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/it-will-only-take-you-few-days-to-code/" class="article-date">
-  <time datetime="2012-05-27T18:49:13.000Z" itemprop="datePublished">2012-05-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/未分类/">未分类</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/it-will-only-take-you-few-days-to-code/">如果有人对你说：“这很简单，不会占用你多少时间。”</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>原文地址：<a href="http://danshipper.com/non-technical-people-cant-estimate-developmen" target="_blank" rel="noopener">http://danshipper.com/non-technical-people-cant-estimate-developmen</a></em></p>
-<p>　　“这个网站非常简单，所有你需要做的就是X，Y，Z。你看起来是技术很不错，所以，我相信，你不需要花费太多时间就能把它搭建起来。”</p>
-<p>　　我时不时的就会收到这样的Email。写这些邮件的人几乎都是跟技术不沾边的人，或正在研究他们的第一个产品。起初，当听到人们这样的话，我总是十分的恼怒。他们在跟谁辩论软件开发所需要的时间？但后来我意识到，即使我自己对自己的项目预测要花去多少开发时间，我也是一筹莫展。如果连我自己都做不好，我何必对那些人恼怒呢？</p>
-<p>　　真正让我郁闷的不是他们预估的错误。问题在于他们竟然认为自己可以做出正确的估计。作为开发人员，我们经常会发现，在软件开发的问题上，一个外行人会很自然的把复杂的事情估计的很简单。</p>
-<p>　　这并不是为我们的愤怒找借口。但这引起了另外一个有趣的问题：为什么我们天生的预测复杂性的能力在遇到编程问题时会失灵？为了回答这个问题，让我们来认识一下我们的大脑如何估计事情的。有些事情对于一些没有经验的人也很容易预估正确，但有些事情则不然。
-        
-          <p class="article-more-link">
-            <a href="/it-will-only-take-you-few-days-to-code/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/it-will-only-take-you-few-days-to-code/" data-id="cjetsbeam0042ucf535n54nka" data-title="如果有人对你说：“这很简单，不会占用你多少时间。”" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/产品经理/">产品经理</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/开发难度/">开发难度</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-ie6-iframe-crash" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/ie6-iframe-crash/" class="article-date">
-  <time datetime="2012-05-23T00:11:45.000Z" itemprop="datePublished">2012-05-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/ie6-iframe-crash/">嵌入iframe的页面在IE6下滚动时候出现花屏</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>和电信合作的一个项目，我们的页面做好了之后，嵌入到对方的iframe里面。这个时候，原本正常的网页，在滚动条滚动的时候出现了花屏的问题。</p>
-<p><img src="/wp-content/uploads/2012/05/ie6-crash-300x266.png" alt=""></p>
-<p>一步步排查下来，发现是body设置了背景图所导致。解决办法有下面几种：</p>
-<p>1、在body中加个div,变成:</p>
-<pre><code>&lt;body&gt;&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;&lt;/body&gt;
-</code></pre><p>在div#main里设置背景。</p>
-<pre><code>#main{margin:0px;background:url(../images/bg.jpg) repeat-x;}
-</code></pre><p>2、给body背景加了个默认背景颜色。</p>
-<pre><code>body{margin:0px;background:url(../images/bg.jpg) repeat-x #fff;}
-</code></pre><p>3、给body样式添加_zoom:1.0001</p>
-<pre><code>body{margin:0px;background:url(../images/bg.jpg) repeat-x; _zoom:1.0001;}
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/ie6-iframe-crash/" data-id="cjetsbeab003gucf5sf2f9s3l" data-title="嵌入iframe的页面在IE6下滚动时候出现花屏" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/IE6/">IE6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/iframe/">iframe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/花屏/">花屏</a></li></ul>
 
     </footer>
   </div>

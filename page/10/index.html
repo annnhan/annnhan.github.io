@@ -104,6 +104,209 @@
   <!--首页-->
   
     
+    <article id="post-get-ajax-chinese-garbled" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/get-ajax-chinese-garbled/" class="article-date">
+  <time datetime="2012-04-05T23:45:14.000Z" itemprop="datePublished">2012-04-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/get-ajax-chinese-garbled/">get方式在ajax中导致中文乱码问题的一些原因。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以前一直用get方式提交数据，对get和post方式并没有太深入研究，今天在一个项目中遇到了中文乱码问题如下：</p>
+<p><a href="/wp-content/uploads/2012/04/ajax.gif"><img src="/wp-content/uploads/2012/04/ajax.gif" alt=""></a><br>第一列是通过get方式提交的内容，提交到服务器后，取回来写入页面时是乱码，而第二列我换成post方式提交，问题解决。</p>
+<p>后来在查了一下资料，对这两种方式的乱码问题有了进一步了解，原来对于get请求（或凡涉及到url传递参数的），被传递的参数都要先经encodeURIComponent方法处理.如果没有用encodeURIComponent处理的话,也会产生乱码。</p>
+        
+          <p class="article-more-link">
+            <a href="/get-ajax-chinese-garbled/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/get-ajax-chinese-garbled/" data-id="cjf2c47g0002o5bf5glqm1l7c" data-title="get方式在ajax中导致中文乱码问题的一些原因。" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ajax/">ajax</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background/" class="article-date">
+  <time datetime="2011-10-08T01:30:39.000Z" itemprop="datePublished">2011-10-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background/">通过IE私有滤镜让IE6 7 8支持背景透明，内容不透明效果。</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>CSS3已经支持背景rgba的rgba透明度，这一方法可以避免元素内容也随背景一起变透明(详情请阅/css3-new-knowledge-student)。但是这一属性在低于IE9的版本中却不被支持，我们可以通过IE私有滤镜来实现背景透明效果。<br>rgba参数格式：(red,green.,blue,alpha),alpha值0-1。<br>ie滤镜参数#3363370b，前两位为16进制透明度，比如说值是上面用到的0.2，那么就是0.2×255＝51，再转换成16进制为33。<br>至于10进制转换16进制，请查阅js函数toString(16)</p>
+<pre><code>&lt;style type=&quot;text/css&quot;&gt;
+body{ background:url(http://gg.blueidea.com/2011/phpchina/phpchina_ad.gif)}
+#d1{width:300px; margin:100px auto; padding:50px;background:rgba(99, 55, 11, 0.2)}
+p{background-color:#fff; color:#000}
+#d2{background-color:#fff; width:600px; margin:0 auto; padding:10px; line-height:30px}
+&lt;/style&gt;
+
+&lt;div id=&quot;d1&quot;&gt;1、背景透明内容不透明&lt;p&gt;2、背景透明内容不透明&lt;/p&gt;&lt;/div&gt;
+&lt;div id=&quot;d2&quot;&gt;
+没有什么好解释的，rgba参数(red,green.,blue,alpha),alpha值0-1&lt;br&gt;&lt;/br&gt;
+ie滤镜参数#3363370b，前两位为16进制透明度，&lt;br&gt;&lt;/br&gt;
+比如说值是上面用到的0.2，那么就是0.2×255＝51，再转换成16进制为33&lt;br&gt;&lt;/br&gt;
+至于10进制转换16进制，请查阅js函数toString(16)
+&lt;/div&gt;
+</code></pre><p>如果懒惰的童鞋，可以使用下面的自动生成工具：<br><a href="/wp-content/uploads/2012/09/background-color-opacity.html">/wp-content/uploads/2012/09/background-color-opacity.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/through-the-ie-private-filter-let-ie6-ie7-ie8-support-transparent-background/" data-id="cjf2c47ig007c5bf52jfb74t1" data-title="通过IE私有滤镜让IE6 7 8支持背景透明，内容不透明效果。" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-css-sprites-useful-technology-or-potentia-trouble" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/css-sprites-useful-technology-or-potentia-trouble/" class="article-date">
+  <time datetime="2011-09-27T02:57:33.000Z" itemprop="datePublished">2011-09-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/css-sprites-useful-technology-or-potentia-trouble/">CSS Sprites: 有用的技术, 还是潜在的麻烦?</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>啊，无处不在的CSS Sprites——为数不多的网页设计技术，几乎瞬间，被评为最佳实践的CSS类之一。</p>
+<p>今天大多数Web开发人员都掌握了这种技术，并有过无数的教程上写的文章。几乎在每一个教程，都提出设计者和开发者应该使用CSS Sprites，为了尽量减少HTTP请求，并节省了宝贵的流量。这项技术迄今已被许多网站采取，包括现在使用大型Sprites的亚马逊。</p>
+<p>在这篇文章中，我将讨论的一些使用CSS sprites的优点和缺点，特别是对重点使用的“巨无霸型”的Sprites，为什么这些使用的Sprites在很多情况下是在浪费时间。<br>
+        
+          <p class="article-more-link">
+            <a href="/css-sprites-useful-technology-or-potentia-trouble/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/css-sprites-useful-technology-or-potentia-trouble/" data-id="cjf2c47fj001n5bf5850y1twu" data-title="CSS Sprites: 有用的技术, 还是潜在的麻烦?" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-css3-new-knowledge-student" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/css3-new-knowledge-student/" class="article-date">
+  <time datetime="2011-09-25T19:33:06.000Z" itemprop="datePublished">2011-09-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/css3-new-knowledge-student/">CSS3新属性基础学习</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>嗯，这里是是CSS3一些新的属性基本知识：文字阴影，盒阴影，边界半径。这些CSS3属性常用来加强布局和实现良好的效果：</p>
+<p>RGBA<br>前三个值是RGB颜色值和最后一个值是水平的透明度（0 =透明，1 =不透明）。<br><a href="/wp-content/uploads/2011/09/rgba.gif"><img src="/wp-content/uploads/2011/09/rgba.gif" alt=""></a></p>
+<p>RBGA可应用于任何与颜色相关的属性如字体颜色，边框颜色，背景颜色，阴影的颜色，等<br><a href="/wp-content/uploads/2011/09/rgba2.gif"><img src="/wp-content/uploads/2011/09/rgba2.gif" alt=""></a></p>
+        
+          <p class="article-more-link">
+            <a href="/css3-new-knowledge-student/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/css3-new-knowledge-student/" data-id="cjf2c47fm001s5bf5arxh0rkb" data-title="CSS3新属性基础学习" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-ie6-position-element-father-son" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/ie6-position-element-father-son/" class="article-date">
@@ -139,7 +342,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ie6-position-element-father-son/" data-id="cjetsbeae003jucf5ygcjn4fk" data-title="IE6下position定位子元素溢出，父元素被撑开的解决思路。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ie6-position-element-father-son/" data-id="cjf2c47gf003k5bf5tlrb8nkl" data-title="IE6下position定位子元素溢出，父元素被撑开的解决思路。" class="article-share-link">Share</a>
       
       
     </footer>
@@ -194,7 +397,7 @@ height:expression(document.body.clientHeight &gt; 200? “200px”: “auto” )
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ie6-max-width-max-height/" data-id="cjetsbeaa003ducf5e39ix7ns" data-title="让IE6支持max-width, max-height属性" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ie6-max-width-max-height/" data-id="cjf2c47ge003h5bf58zqfbaky" data-title="让IE6支持max-width, max-height属性" class="article-share-link">Share</a>
       
       
     </footer>
@@ -240,7 +443,7 @@ height:expression(document.body.clientHeight &gt; 200? “200px”: “auto” )
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/tuozhuai-zhaopian-demo/" data-id="cjetsbece0079ucf59n3nd8wf" data-title="可拖拽排列的照片墙效果，或是拼图效果？同页面多实例展示" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/tuozhuai-zhaopian-demo/" data-id="cjf2c47ih007g5bf57prfmol2" data-title="可拖拽排列的照片墙效果，或是拼图效果？同页面多实例展示" class="article-share-link">Share</a>
       
       
     </footer>
@@ -286,7 +489,7 @@ height:expression(document.body.clientHeight &gt; 200? “200px”: “auto” )
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/apple-ceo-steve-jobs/" data-id="cjetsbe8v000eucf5f3agnube" data-title="随笔：苹果CEO乔布斯的离开是一个特别的时代的终结" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/apple-ceo-steve-jobs/" data-id="cjf2c47ex000c5bf5s8psz0dl" data-title="随笔：苹果CEO乔布斯的离开是一个特别的时代的终结" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/乔布斯/">乔布斯</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/苹果/">苹果</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/辞职/">辞职</a></li></ul>
@@ -334,7 +537,7 @@ height:expression(document.body.clientHeight &gt; 200? “200px”: “auto” )
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-classname-firefox-class-css/" data-id="cjetsbeal0040ucf5jh2i5zr1" data-title="javascript修改className在firefox中无法加载新class的样式问题" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-classname-firefox-class-css/" data-id="cjf2c47h9004e5bf50l6pn4po" data-title="javascript修改className在firefox中无法加载新class的样式问题" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/className/">className</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -383,159 +586,11 @@ height:expression(document.body.clientHeight &gt; 200? “200px”: “auto” )
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/html5-form-element/" data-id="cjetsbea2002uucf539b46w4g" data-title="HTML5中一些新的“form”元素属性" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/html5-form-element/" data-id="cjf2c47g600355bf5h3dqx22e" data-title="HTML5中一些新的“form”元素属性" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/form/">form</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/html5/">html5</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="links-links" class="article article-type-links" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/links/" class="article-date">
-  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/links/">友情链接</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/links/" data-id="cjetsbebb005nucf5n75ufust" data-title="友情链接" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="tags-tags" class="article article-type-tags" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/tags/" class="article-date">
-  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/tags/">标签</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/tags/" data-id="cjetsbec8006vucf5bn9x3fq6" data-title="标签" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="categories-categories" class="article article-type-categories" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/categories/" class="article-date">
-  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/categories/">文章分类</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/categories/" data-id="cjetsbe96000uucf58az2r7x2" data-title="文章分类" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="archives-archives" class="article article-type-archives" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/archives/" class="article-date">
-  <time datetime="1999-12-31T16:00:00.000Z" itemprop="datePublished">2000-01-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/archives/">归档</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/archives/" data-id="cjetsbe8x000fucf5j5haqlci" data-title="归档" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   

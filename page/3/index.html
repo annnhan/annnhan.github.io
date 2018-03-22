@@ -104,6 +104,215 @@
   <!--首页-->
   
     
+    <article id="post-blog-move-to-github" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/blog-move-to-github/" class="article-date">
+  <time datetime="2014-04-01T12:38:00.000Z" itemprop="datePublished">2014-04-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/服务器/">服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/blog-move-to-github/">Blog迁移到Github</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>由于Wordpress主机到期，而且wp的markdown插件非常坑爹，经常把本来些的好好的md格式转得乱七八糟。于是花了一天时间，把Blog搬到github来了。使用了<a href="http://jekyllbootstrap.com" target="_blank" rel="noopener">Jekyll Bootstrap</a>框架，下面是折腾过程中的一些体会：</p>
+<ul>
+<li>文章迁移： wp后台把数据导出为xml文件，再用<a href="https://github.com/thomasf/exitwp" target="_blank" rel="noopener">exitwp</a>转成md。</li>
+<li>评论迁移： Jekyll自带的disqus不太符合国情， 于是选择了国产的<a href="http://duoshuo.com/" target="_blank" rel="noopener">多说</a>。</li>
+<li>代码高亮： 使用<a href="http://pygments.org/" target="_blank" rel="noopener">Pygments</a>。</li>
+<li>文章摘要： Jekyll自带的显示摘要功能对HTML支持非常不好，我只好全文输出到一个script标签，再通过JS来截取并显示。</li>
+<li>搜索文章： 尝试了google站内搜索，但是发现好多冗余的页面也被搜出来了，最后决定自己用JS来实现一个简单的，只针对文章标题进行匹配的搜索功能。</li>
+</ul>
+<p>迁移到Jekyll以后， 终于可以愉快地用md写blog了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/blog-move-to-github/" data-id="cjf2c47f6000p5bf5gweh3hit" data-title="Blog迁移到Github" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jekyll/">jekyll</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-webstorm8" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/webstorm8/" class="article-date">
+  <time datetime="2014-03-27T00:00:27.000Z" itemprop="datePublished">2014-03-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/webstorm8/">WebStorm 8 新功能一览</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="支持AngularJS"><a href="#支持AngularJS" class="headerlink" title="支持AngularJS"></a>支持AngularJS</h3><p>智能提示AngularJS指令（包括自定义指令），controller 和 application names以及花括号里边的数据绑定。 <img src="http://www.jetbrains.com/webstorm/whatsnew/screenshots/80/angularJSSupport.png" alt=""></p>
+        
+          <p class="article-more-link">
+            <a href="/webstorm8/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/webstorm8/" data-id="cjf2c47ir00835bf5jq3bm0p0" data-title="WebStorm 8 新功能一览" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-grunt-cptpl" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/grunt-cptpl/" class="article-date">
+  <time datetime="2014-03-15T23:25:43.000Z" itemprop="datePublished">2014-03-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/grunt-cptpl/">发布grunt-cptpl插件</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="view-on-Github：https-github-com-hanan198501-grunt-cptpl"><a href="#view-on-Github：https-github-com-hanan198501-grunt-cptpl" class="headerlink" title="view on Github：https://github.com/hanan198501/grunt-cptpl"></a>view on Github：<a href="https://github.com/hanan198501/grunt-cptpl" target="_blank" rel="noopener">https://github.com/hanan198501/grunt-cptpl</a></h4><p>grunt-cptpl插件可以将您的文本模板文件编译成javascript文件。在前端开发的时候，模板文本我们一般存放在一个隐藏dom节点，再通过javascript去获取这个节点的内容，将其编译。或者在写javascript的时候，我们手动通过拼接字符串的方式储存模板文本。grunt-cptpl使前端开发也可以像后端一样，把模板文本存放在单独的文件中，使我们的开发工作从繁琐的dom操作和拼串中解放出来，提高我们的开发效率。最主要的，模板文件作为单独文件存放，可以使我们的项目代码逻辑更加清晰，更具可维护性。</p>
+<h5 id="grunt-cptpl都做了啥？"><a href="#grunt-cptpl都做了啥？" class="headerlink" title="grunt-cptpl都做了啥？"></a>grunt-cptpl都做了啥？</h5><p>grunt-cptpl会读取每个模板文件的文本内容，用指定模板引擎的预编译方法将其包裹起来，生成一个新的javascript文件。这个javascript文件文件里面的内容，其实就是模板引擎的预编译方法调用，传入的参数为模板文件的文本内容。这样我们就有了一个编译好的模板函数，要渲染的时候把数据传给它就好了。</p>
+        
+          <p class="article-more-link">
+            <a href="/grunt-cptpl/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/grunt-cptpl/" data-id="cjf2c47g4002y5bf5weid3zdv" data-title="发布grunt-cptpl插件" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/grunt/">grunt</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-popup-mask-ie6-bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/popup-mask-ie6-bug/" class="article-date">
+  <time datetime="2014-03-12T02:02:08.000Z" itemprop="datePublished">2014-03-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/popup-mask-ie6-bug/">popup组件中mask层的IE6 bug和兼容办法</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我们在写一个popup组件时候，通常会加上一个元素作为mask层，用于遮盖住popup元素以外的页面内容。 而IE6下有个著名的bug就是select元素无法被遮盖，通常的做法，在IE6我们会在mask和和popup里面添加一个iframe来解决，一般的，iframe的css会是这样：</p>
+<pre><code>#iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    _filter: Alpha(opacity=0);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+}
+</code></pre><p>如果popup组件需要一个功能是：点击mask的时候，隐藏popup。 所以，我们会给mask加上click事件来完成这件事。但是，这个办法在IE6下却行不通，不管吧click添加在mask元素，还是添加到mask的iframe里面的document对象，都无法出发click事件。</p>
+<p>由于mask只有一个iframe，而iframe里面又没有然后内容，在IE下其实我们点击mask的时候是相当于点击了mask的iframe的window里。解决的办法是在mask里面再添加一个可以被“点击”到的元素，这个元素撑满mask。这样鼠标点击这个元素时候，事件自然会冒泡的mask上，保证了在IE6下mask的click也能正常被触发。</p>
+<pre><code>&lt;div id=&quot;mask&quot;&gt;
+    &lt;div style=&quot;height: 100%&quot;&gt;&lt;/div&gt;
+    &lt;iframe id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+</code></pre>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/popup-mask-ie6-bug/" data-id="cjf2c47i3006c5bf5rpi75poc" data-title="popup组件中mask层的IE6 bug和兼容办法" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/iframe/">iframe</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-review-css-3d" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/review-css-3d/" class="article-date">
@@ -199,7 +408,7 @@ document.addEventListener(&apos;keydown&apos;, function(e){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/review-css-3d/" data-id="cjetsbec6006oucf51sr09by0" data-title="重温CSS 3D" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/review-css-3d/" data-id="cjf2c47i8006p5bf5ua2k67pn" data-title="重温CSS 3D" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li></ul>
@@ -255,7 +464,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cjetsbe9f001jucf5vdecro59" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cjf2c47fe001b5bf5fzp5chqn" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/pycharm/">pycharm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ubuntu/">ubuntu</a></li></ul>
@@ -301,7 +510,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/pingru-meitang/" data-id="cjetsbebu005xucf5n3spfgph" data-title="一位92岁老人一生中最美好、最痛苦、最意外的事情……" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/pingru-meitang/" data-id="cjf2c47i200695bf599mkgrxw" data-title="一位92岁老人一生中最美好、最痛苦、最意外的事情……" class="article-share-link">Share</a>
       
       
     </footer>
@@ -352,7 +561,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres/" data-id="cjetsbec00069ucf5dx06200v" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres/" data-id="cjf2c47i6006j5bf5wbqs9ueh" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/response/">response</a></li></ul>
@@ -404,7 +613,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" data-id="cjetsbe9k001tucf5zgwdyft0" data-title="通过Visual Event查看页面元素的绑定事件" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" data-id="cjf2c47fo001x5bf59iked9n9" data-title="通过Visual Event查看页面元素的绑定事件" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Event/">Event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/事件/">事件</a></li></ul>
@@ -449,273 +658,11 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/fiddler-stave/" data-id="cjetsbe9t002ducf5q6fy8lhm" data-title="Stave——让Fiddler拥有路径映射功能。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/fiddler-stave/" data-id="cjf2c47fv002f5bf50q1zbo1h" data-title="Stave——让Fiddler拥有路径映射功能。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fiddler/">fiddler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/stave/">stave</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/调试工具/">调试工具</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-ecmascript6-arrow-function" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/ecmascript6-arrow-function/" class="article-date">
-  <time datetime="2013-09-11T11:35:50.000Z" itemprop="datePublished">2013-09-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/ecmascript6-arrow-function/">理解ECMAScript6中的箭头函数</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/wp-content/uploads/2013/09/arrow-tv.jpg" alt="enter image description here"></p>
-<p>箭头函数是ECMAScript6中最有趣的部分之一。正如其名字所暗示的一样，它是一种用新的语法，一个“箭头”（=&gt;）来定义的函数。然而，相对于传统的函数，箭头函数在一些重要的用途中会有一些不同的表现： </p>
-<ol>
-<li><strong>语法绑定this</strong> ——箭头函数中的this的值，在函数定义的时候就绑定了，而不是根据函数执行时机来绑定； </li>
-<li><strong>不能new</strong> ——箭头函数不能被当做构造函数来用，当通过new来调用时，会报错； </li>
-<li><strong>this不能被修改</strong> ——在箭头函数的整个生命周期内，this始终保持同一个值，无法被修改； </li>
-<li><strong>没有arguments对象</strong> ——在箭头函数内部，不能通过arguments来访问参数，你必须使用已命名的参数，或其他ES6功能。</li>
-</ol>
-<p>存在这些差是有一些原因的：首先，this的绑定是javascript中一种常见的错误来源，在函数内部，很容易把this的指向弄混淆，从而导致意想不到的后果。其次，箭头函数通过限制this为一个固定值来执行，javascript引擎可以更容易地优化这些操作（而不是传统的函数，它可能被用来作为一个构造器或以其他地方）</p>
-        
-          <p class="article-more-link">
-            <a href="/ecmascript6-arrow-function/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/ecmascript6-arrow-function/" data-id="cjetsbe9r0029ucf5mh2tcjvv" data-title="理解ECMAScript6中的箭头函数" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ECMAScript6/">ECMAScript6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/function/">function</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/函数/">函数</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-git-use" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/git-use/" class="article-date">
-  <time datetime="2013-09-06T20:11:00.000Z" itemprop="datePublished">2013-09-07</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/git-use/">git 使用笔记</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>公司的项目从svn迁移到git了， 只是一份简易的使用指南和笔记，不是很高深。</p>
-<p><strong>下载与安装</strong><br>OSX版：<a href="https://code.google.com/p/git-osx-installer/downloads/list?can=3" target="_blank" rel="noopener">https://code.google.com/p/git-osx-installer/downloads/list?can=3</a><br>LINUX版：<a href="http://git-scm.com/book/en/Getting-Started-Installing-Git" target="_blank" rel="noopener">http://git-scm.com/book/en/Getting-Started-Installing-Git</a><br>WINDOWS版：<a href="https://code.google.com/p/msysgit/downloads/list?can=3" target="_blank" rel="noopener">https://code.google.com/p/msysgit/downloads/list?can=3</a></p>
-<p><strong>创建新仓库</strong><br>创建新文件夹，打开，然后执行</p>
-<pre><code>git init
-</code></pre><p><strong>克隆仓库</strong><br>克隆本地仓库</p>
-<pre><code>git clone /path/to/repository
-</code></pre><p>克隆远程仓库</p>
-<pre><code>git clone username@host:/path/to/repository
-</code></pre><p><strong>工作流</strong><br>本地仓库由 git 维护的三棵“树”组成。第一个是<code>工作目录</code>，它持有实际文件；第二个是<code>缓存区（Index）</code>，它像个缓存区域，临时保存改动；最后是<code>HEAD</code>，指向最近一次提交后的结果。<br><img src="/wp-content/uploads/2013/09/trees.png" alt="trees"></p>
-<p><strong>添加与提交</strong><br>把计划要改动的文件添加到缓存区，这样git就会跟踪改动</p>
-<pre><code>git add filename
-</code></pre><p>使用如下命令提交改动</p>
-<pre><code>git commit -m &quot;提交的信息&quot;
-</code></pre><p>现在，改动已经提交到了HEAD，但是还没有到达远程仓库。</p>
-<p><strong>推送至远程仓库</strong><br>把本地仓库的改动推送至远程仓库</p>
-<pre><code>git push origin &lt;branch&gt;
-</code></pre><p>如果还没有克隆现有仓库，并欲将的仓库连接到某个远程服务器，可以使用如下命令添加：</p>
-<pre><code>git remote add origin &lt;server&gt;
-</code></pre><p>如此就能够将改动推送到所添加的服务器上去了。</p>
-<p><strong>分支</strong><br>分支是用来将特性开发绝缘开来的。在创建仓库的时候，master是“默认的”。在其他分支上进行开发，完成后再将它们合并到主分支上。<br><img src="/wp-content/uploads/2013/09/branches.png" alt="enter image description here"><br>创建一个叫做“feature_x”的分支，并切换过去：</p>
-<pre><code>git checkout -b feature_x
-</code></pre><p>切换回主分支：</p>
-<pre><code>git checkout master
-</code></pre><p>再把新建的分支删掉：</p>
-<pre><code>git branch -d feature_x
-</code></pre><p>除非将分支推送到远端仓库，不然该分支就是不为他人所见的：</p>
-<pre><code>git push origin &lt;branch&gt;
-</code></pre><p><strong>更新与合并</strong><br>要更新本地仓库至最新改动，执行：</p>
-<pre><code>git pull
-</code></pre><p>要合并其他分支到当前分支（例如 master），执行：</p>
-<pre><code>git merge &lt;branch&gt;
-</code></pre><p>两种情况下，git都会尝试去自动合并改动。不幸的是，自动合并并非次次都能成功，并可能导致 冲突（conflicts）。 这时候就需要修改这些文件来人肉合并这些冲突（conflicts）了。改完之后，需要执行如下命令以将它们标记为合并成功：</p>
-<pre><code>git add &lt;filename&gt;
-</code></pre><p>在合并改动之前，也可以使用如下命令查看diff信息：</p>
-<pre><code>git diff &lt;source_branch&gt; &lt;target_branch&gt;
-</code></pre><p><strong>标签</strong><br>在软件发布时创建标签，是被推荐的。这是个旧有概念，在SVN中也有。可以执行如下命令以创建一个叫做 1.0.0 的标签：</p>
-<pre><code>git tag 1.0.0 1b2e1d63ff
-</code></pre><p>1b2e1d63ff为想要标记的提交ID的前10位字符，当然也可以是少几位，只要它是唯一的。使用如下命令获取提交ID：</p>
-<pre><code>git log
-</code></pre><p><strong>替换本地改动</strong><br>假如做错事了，可以使用如下命令替换掉本地改动：</p>
-<pre><code>git checkout -- &lt;filename&gt;
-</code></pre><p>此命令会使用HEAD中的最新内容替换掉工作目录中的文件。已添加到缓存区的改动，以及新文件，都不受影响。 假如你想要丢弃所有的本地改动与提交，可以到服务器上获取最新的版本并将本地主分支指向到它：</p>
-<pre><code>git fetch origin
-git reset --hard origin/master
-</code></pre><p><strong>有用的贴士</strong><br>内建的图形化 git：</p>
-<pre><code>gitk
-</code></pre><p>彩色的 git 输出：</p>
-<pre><code>git config color.ui true
-</code></pre><p>显示历史记录时，只显示一行注释信息：</p>
-<pre><code>git config format.pretty oneline
-</code></pre><p>交互地添加文件至缓存区：</p>
-<pre><code>git add -i
-</code></pre><p>推荐图书： Pro Git: <a href="http://www.ppurl.com/?s=Pro+Git" target="_blank" rel="noopener">http://www.ppurl.com/?s=Pro+Git</a></p>
-<p>转自：<a href="http://rogerdudler.github.io/git-guide/index.html" target="_blank" rel="noopener">http://rogerdudler.github.io/git-guide/index.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/git-use/" data-id="cjetsbea4002yucf5xpj0w628" data-title="git 使用笔记" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-mustache-array-index" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/mustache-array-index/" class="article-date">
-  <time datetime="2013-08-02T08:10:50.000Z" itemprop="datePublished">2013-08-02</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/mustache-array-index/">Mustache.js模板引擎无法获得数组内元素索引的解决办法</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>公司某项目前端模板用的是Mustache.js！！！ 然后偶遇到个需求是需要渲染数组的时候输出其元素的索引值，比如以下数据：</p>
-<pre><code>var data = 
-{
-    title: &apos;Mustache.js模板引擎无法获得数组内元素索引的解决办法&apos;,
-    authors: [
-       { id: 20000, name: &apos;阿安&apos; },
-       { id: 20001, name: &apos;阿狗&apos; }
-    ]
-}
-</code></pre><p>这样却没有办法输出数组authors里面的元素的索引，只能输出里面元素的属性值，由于短期内更换一个模板引擎对于项目来说不太现实，只能采取其他办法。那就是对authors数组进行处理，给里面的每个元素增加一个index属性，其值就是元素自身的索引。</p>
-<pre><code>for(var i = 0, len = data.authors.length; i &lt; len; i++){
-    data.authors[i].index = i;
-}
-</code></pre><p>最后再渲染的时候输出就可以了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/mustache-array-index/" data-id="cjetsbeba005kucf513agdo97" data-title="Mustache.js模板引擎无法获得数组内元素索引的解决办法" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-themes-for-chrome-developer-tools" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/themes-for-chrome-developer-tools/" class="article-date">
-  <time datetime="2013-06-25T07:38:51.000Z" itemprop="datePublished">2013-06-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/themes-for-chrome-developer-tools/">为你的chrome开发者工具换个主题风格吧</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="/wp-content/uploads/2013/06/chrome-tool-theme.jpg" alt="chrome-tool-theme"></p>
-<p>是不是觉得chrome的开发者工具样式不够炫呢？ 其实，这个样式是可以定制的（如上图），我们可以通过修改一个css文件来个性化我们的chrome开发者工具，这个css文件名为Custom.css，在不同的系统里它存放的位置如下：</p>
-<p><strong>Mac:</strong></p>
-<pre><code>&lt;code&gt;~/Library/Application\ Support/Google/Chrome/Default/User\ StyleSheets/Custom.css
-&lt;/code&gt;
-</code></pre><p><strong>Ubuntu (Chromium):</strong></p>
-<pre><code>&lt;code&gt;~/.config/chromium/Default/User\ StyleSheets/Custom.css
-&lt;/code&gt;
-</code></pre><p><strong>PC:</strong></p>
-<pre><code>&lt;code&gt;%APPDATA%\..\Local\Google\Chrome\User Data\Default\User StyleSheets\Custom.css
-&lt;/code&gt;
-</code></pre><p><strong>PC (Windows XP):</strong></p>
-<pre><code>&lt;code&gt;C:\Documents and Settings\YourUsername\Local Settings\Application Data\Google\Chrome\User Data\Default\User StyleSheets\Custom.css
-&lt;/code&gt;
-</code></pre><p>当然，知道了自定义样式的css文件是哪个，我们可能不想自己去写，有没有现成的样式可用呢？ 当然！下面这个网站提供了一些常用的开发工具主题，包括sublime text2、vim、chrome developer tools等，我们可以直接在上面选择自己喜欢的样式，然后替换掉Custom.css即可，你也可以在此基础上进行一番修改，写一个你喜欢的主题样式出来。 地址： <a href="http://devthemez.com/themes/chrome-developer-tools" target="_blank" rel="noopener">http://devthemez.com/themes/chrome-developer-tools</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/themes-for-chrome-developer-tools/" data-id="cjetsbec7006sucf5tjkfdys7" data-title="为你的chrome开发者工具换个主题风格吧" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   

@@ -104,6 +104,258 @@
   <!--首页-->
   
     
+    <article id="post-fis-react" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/fis-react/" class="article-date">
+  <time datetime="2015-08-23T07:24:00.000Z" itemprop="datePublished">2015-08-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/fis-react/">在 fis 项目中使用 react.js</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>fis 具有非常灵活的插件扩展机制，对于 react 的 jsx 也有现成的 parser 插件可用。<br>通过几条简单的配置，就可以在你的 fis 项目中使用 react 了。 但是在使用过程中，有一些小坑还是需要注意的，在此记录一下。</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><pre><code>npm install fis-parser-react -g
+</code></pre><p>注意，如果你使用的 react 版本是 0.13.x， 则要安装另一个版本的插件：</p>
+<pre><code>npm install fis-parser-react-0.13.x -g
+</code></pre><h2 id="编译配置"><a href="#编译配置" class="headerlink" title="编译配置"></a>编译配置</h2><p>编辑 fis-conf.js 文件， 加入以下内容：</p>
+<pre><code>// 将 jsx 文件作为文本处理
+fis.config.set(&apos;project.fileType.text&apos;, &apos;jsx&apos;);
+
+// 后缀名为 jsx 的文件用 fis-parser-react 插件编译
+// 如果你使用的 react 版本是 0.13.x，将下面第二个参数换成 &apos;react-0.13.x&apos;
+fis.config.set(&apos;modules.parser.jsx&apos;, &apos;react&apos;);
+
+// 将 jsx 文件编译结果输出为 js 文件
+fis.config.set(&apos;roadmap.ext.jsx&apos;, &apos;js&apos;);
+</code></pre><h2 id="模块化配置"><a href="#模块化配置" class="headerlink" title="模块化配置"></a>模块化配置</h2><p>默认情况，fis 不会将 widget 目录下的 jsx 文件包裹成 cmd 模块， 而是直接输出编译后的 js 文件。<br>但是我们更希望遵循 fis 的目录规范，将 widget 目录下的 jsx 文件也输出为 module， 所以我们还需要配置一下 roadmap.path。<br>编辑 fis-conf.js 文件， 加入以下内容：</p>
+<pre><code>fis.config.set(&apos;roadmap.path&apos;, [{
+    reg: /^\/widget\/(.*)\.jsx$/i,
+    useMap: true,
+    useHash: true,
+    isMod: true,
+    release: &apos;${statics}/${namespace}/widget/$1.js&apos;
+}].concat(fis.config.get(&apos;roadmap.path&apos;, [])));
+</code></pre><p>最后执行 fis release 就可以看到所有的 jsx 都可以被正确编译和引用到了~</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/fis-react/" data-id="cjf2c47fw002h5bf5akfusx3n" data-title="在 fis 项目中使用 react.js" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fis/">fis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/react/">react</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-caniuse-cmd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/caniuse-cmd/" class="article-date">
+  <time datetime="2015-07-28T14:26:00.000Z" itemprop="datePublished">2015-07-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/工具/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/caniuse-cmd/">caniuse 命令行工具</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大名鼎鼎的 <a href="http://caniuse.com/" target="_blank" rel="noopener">caniuse.com</a> 相信每个前端同学都不陌生.<br>这款查询浏览器兼容性的利器, 现在可以在命令行下使用了. 相比每次打开网站查询, 命令行确实方便许多哦.</p>
+<p>首先,安装 caniuse 命令:</p>
+<pre><code>npm install -g caniuse-cmd
+</code></pre><p>然后在命令行就可以使用 caniuse 这一命令了, 后面跟你要查询的特性就行:</p>
+<p><img src="/assets/img/caniuse1.png" alt="caniuse"></p>
+<p>附项目的github: <a href="https://github.com/sgentle/caniuse-cmd" target="_blank" rel="noopener">https://github.com/sgentle/caniuse-cmd</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/caniuse-cmd/" data-id="cjf2c47f7000s5bf5o75wu94t" data-title="caniuse 命令行工具" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caniuse/">caniuse</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-imitator" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/imitator/" class="article-date">
+  <time datetime="2015-07-27T09:53:00.000Z" itemprop="datePublished">2015-07-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/imitator/">使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>imitator 是一个简单易用的 nodejs 服务器, 主要用于模拟 HTTP 接口数据, 请求代理与转发 。<br>使用imitator，可以解决前后端分离开发中的痛点之一：数据模拟，也可以作为代理服务器与静态资源服务器使用。</p>
+<p>github: <a href="https://github.com/hanan198501/imitator" target="_blank" rel="noopener">https://github.com/hanan198501/imitator</a></p>
+<h3 id="为什么会有-imitator？"><a href="#为什么会有-imitator？" class="headerlink" title="为什么会有 imitator？"></a>为什么会有 imitator？</h3><p>最近几个java（前后端都在一个工程里）项目交接过来，没时间重构成fis项目，组里好多前端同学想搞分离开发。<br>我推荐了 nginx，有童鞋反应配置文件相对前端来说还是不够友好，而且有些个性的接口格式无法满足。<br>于是写了 imitator，使用 nodejs 并基于 express.js 实现， 配置文件相当简单， 而且易于订制，前端同学使用起来非常顺手。</p>
+<h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><ol>
+<li><p>安装——首先你要先安装 nodejs 和 npm， 然后全局安装imitator。</p>
+<pre><code>npm install imitator -g
+</code></pre></li>
+<li><p>编写配置文件——在你的用户目录(比如我的是/User/hanan)下新建一个名为 Imitatorfile.js 的文件（这是 imitator 的默认配置文件）， 内容如下。</p>
+<pre><code>module.exports = function(imitator) {
+    // 返回一个json
+    imitator(&apos;/json&apos;, {name: &apos;hello world&apos;});
+}
+</code></pre></li>
+<li><p>启动服务——命令行输入以下命令，启动 imitator server.</p>
+<pre><code>imitator
+</code></pre></li>
+<li><p>浏览器访问 127.0.0.1:8888/json ， 将会看到：</p>
+<pre><code>{&quot;name&quot;:&quot;hello world&quot;}
+</code></pre></li>
+</ol>
+        
+          <p class="article-more-link">
+            <a href="/imitator/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/imitator/" data-id="cjf2c47gi003r5bf5r66nin1s" data-title="使用 imitator 实现前后端分离开发中的数据模拟与静态资源映射" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/imitator/">imitator</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/json/">json</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/mock/">mock</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nodejs/">nodejs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/server/">server</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-smarty-assign" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/smarty-assign/" class="article-date">
+  <time datetime="2015-06-21T14:23:00.000Z" itemprop="datePublished">2015-06-21</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/php/">php</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/smarty-assign/">smarty 模板模板中的 assigin 函数</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用Smarty内置函数{assign}，在模板运行时为模板变量赋值，也可以为数组元素赋值，和在赋值时使用一些表达式。{$var=…}是{assign}函数的简写版。该函数有三个属性(var、value和scope)和一个选项标签(nocache)，其中var和value是必须使用的属性，分别用来设置要分配值的变量名和分配的值。而scope是可选属性，用来指定分配的变量范围，可以指定parent、root和global三个值，用来设定变量的有效范围。{assign}函数使用如下所示：</p>
+<pre><code>{assign var=&quot;name&quot; value=&quot;brophp&quot;}  {*为变量$name赋值上brophp的值*}
+{assign &quot;name&quot; &quot;brophp&quot;}            {*这是assign函数属性的简写*}
+{$name=&quot;brophp&quot;}                    {*这是assign函数的简写，也是为变量$name赋值上brophp的值*}
+</code></pre><p>在模板中声明的变量和从PHP中分配给模板中给模板的变量具有相同的使用方式。上例是在模板中声明一个$name变量三中书写方式：第一种是Smarty模板中标准函数的方式;第二种是省略属性名称简写的方式;第三种也是一种简写方法，更像是PHP变量的声明。除了上面简单声明一个变量以外，还可以为变量赋一些相对复杂的值，如使用数组和表达式，如下所示：</p>
+<pre><code>{*定义数组*}
+{assign var=foo value=[1,2,3]}          {*为变量$foo赋上一个索引数组值*}
+{assign var=foo value=[&apos;y&apos;=&gt;&apos;yellow&apos;]}  {*为变量$foo赋上一个关联数组值*}
+{assign var=foo value=[1,[9,8],3]}      {*可以使用嵌套声明多维数组*}
+{assign var=foo value=$x+$y}            {*可以在属性中使用变量*}
+{assign var=&quot;foo&quot; value=&quot;&apos;$foo+$bar&apos;&quot;}  {*可以在属性值的字符串中使用变量及表达式*}
+
+{*短变量分配*}
+{$foo=$bar+2}                       {*短变量分配值的方式*}
+{$foo = strlen($bar)}               {*PHP函数在变量值中使用*}
+{$foo = myfunct(($x+$y)*3)}         {*作为函数参数*}
+{$foo.bar=1}                        {*数组元素赋值*}
+{$foo.bar.baz=1}                    {*多维数组元素的赋值*}
+{$foo[]=1}                          {*为数组添加新元素*}
+{$foo[$x+3]}                        {*变量作为数组索引*}
+{$foo={counter}+3}                  {*在标签里嵌套标签*}
+{$foo=&quot;this is message{counter}&quot;}   {*在引号里使用标签*}
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/smarty-assign/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/smarty-assign/" data-id="cjf2c47ib006w5bf57f5ke7oq" data-title="smarty 模板模板中的 assigin 函数" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/assigin/">assigin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/smarty/">smarty</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-battery" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/battery/" class="article-date">
@@ -146,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/battery/" data-id="cjetsbe8z000lucf5pmfzo7id" data-title="新的 javascript Battery API" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/battery/" data-id="cjf2c47f3000n5bf5g84uhwqc" data-title="新的 javascript Battery API" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AddJS/">AddJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chorme/">chorme</a></li></ul>
@@ -200,7 +452,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/addjs/" data-id="cjetsbe8p0005ucf5zvnvzxec" data-title="使用 AddJS 为网页自动添加自定义javascript脚本" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/addjs/" data-id="cjf2c47eu00055bf5vc7h36qh" data-title="使用 AddJS 为网页自动添加自定义javascript脚本" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AddJS/">AddJS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chorme/">chorme</a></li></ul>
@@ -267,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ksend/" data-id="cjetsbeb8005ducf5jm95fw1b" data-title="命令行推送个人文档至kindle" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ksend/" data-id="cjf2c47hu005q5bf5lgap49lb" data-title="命令行推送个人文档至kindle" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/kindle/">kindle</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ksend/">ksend</a></li></ul>
@@ -325,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/cross-domain-local-storage/" data-id="cjetsbe9i001pucf5cirlmep3" data-title="基于 postMessage 和 localStorage 的跨域本地存储方案" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/cross-domain-local-storage/" data-id="cjf2c47fg001f5bf5m8i8s7by" data-title="基于 postMessage 和 localStorage 的跨域本地存储方案" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cross/">cross</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/domain/">domain</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/local/">local</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/postMessage/">postMessage</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/storage/">storage</a></li></ul>
@@ -406,7 +658,7 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/open-window-in-chrome/" data-id="cjetsbebt005uucf5e3txmk34" data-title="如何绕过chrome的弹窗拦截机制" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/open-window-in-chrome/" data-id="cjf2c47i100675bf5x2smtvbl" data-title="如何绕过chrome的弹窗拦截机制" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/chrome/">chrome</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/window/">window</a></li></ul>
@@ -470,219 +722,10 @@ btn.click(function () {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ecmascript6-promise/" data-id="cjetsbe9q0026ucf55vy9kd8w" data-title="如何实现一个ECMAScript 6 的promise补丁" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ecmascript6-promise/" data-id="cjf2c47fs00255bf5hxop74m9" data-title="如何实现一个ECMAScript 6 的promise补丁" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ecmascript/">ecmascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/promise/">promise</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-blog-move-to-github" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/blog-move-to-github/" class="article-date">
-  <time datetime="2014-04-01T12:38:00.000Z" itemprop="datePublished">2014-04-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/服务器/">服务器</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/blog-move-to-github/">Blog迁移到Github</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>由于Wordpress主机到期，而且wp的markdown插件非常坑爹，经常把本来些的好好的md格式转得乱七八糟。于是花了一天时间，把Blog搬到github来了。使用了<a href="http://jekyllbootstrap.com" target="_blank" rel="noopener">Jekyll Bootstrap</a>框架，下面是折腾过程中的一些体会：</p>
-<ul>
-<li>文章迁移： wp后台把数据导出为xml文件，再用<a href="https://github.com/thomasf/exitwp" target="_blank" rel="noopener">exitwp</a>转成md。</li>
-<li>评论迁移： Jekyll自带的disqus不太符合国情， 于是选择了国产的<a href="http://duoshuo.com/" target="_blank" rel="noopener">多说</a>。</li>
-<li>代码高亮： 使用<a href="http://pygments.org/" target="_blank" rel="noopener">Pygments</a>。</li>
-<li>文章摘要： Jekyll自带的显示摘要功能对HTML支持非常不好，我只好全文输出到一个script标签，再通过JS来截取并显示。</li>
-<li>搜索文章： 尝试了google站内搜索，但是发现好多冗余的页面也被搜出来了，最后决定自己用JS来实现一个简单的，只针对文章标题进行匹配的搜索功能。</li>
-</ul>
-<p>迁移到Jekyll以后， 终于可以愉快地用md写blog了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/blog-move-to-github/" data-id="cjetsbe91000pucf55shx0re8" data-title="Blog迁移到Github" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jekyll/">jekyll</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-webstorm8" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/webstorm8/" class="article-date">
-  <time datetime="2014-03-27T00:00:27.000Z" itemprop="datePublished">2014-03-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/webstorm8/">WebStorm 8 新功能一览</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="支持AngularJS"><a href="#支持AngularJS" class="headerlink" title="支持AngularJS"></a>支持AngularJS</h3><p>智能提示AngularJS指令（包括自定义指令），controller 和 application names以及花括号里边的数据绑定。 <img src="http://www.jetbrains.com/webstorm/whatsnew/screenshots/80/angularJSSupport.png" alt=""></p>
-        
-          <p class="article-more-link">
-            <a href="/webstorm8/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/webstorm8/" data-id="cjetsbecl007pucf5to69xd1h" data-title="WebStorm 8 新功能一览" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-grunt-cptpl" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/grunt-cptpl/" class="article-date">
-  <time datetime="2014-03-15T23:25:43.000Z" itemprop="datePublished">2014-03-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/grunt-cptpl/">发布grunt-cptpl插件</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="view-on-Github：https-github-com-hanan198501-grunt-cptpl"><a href="#view-on-Github：https-github-com-hanan198501-grunt-cptpl" class="headerlink" title="view on Github：https://github.com/hanan198501/grunt-cptpl"></a>view on Github：<a href="https://github.com/hanan198501/grunt-cptpl" target="_blank" rel="noopener">https://github.com/hanan198501/grunt-cptpl</a></h4><p>grunt-cptpl插件可以将您的文本模板文件编译成javascript文件。在前端开发的时候，模板文本我们一般存放在一个隐藏dom节点，再通过javascript去获取这个节点的内容，将其编译。或者在写javascript的时候，我们手动通过拼接字符串的方式储存模板文本。grunt-cptpl使前端开发也可以像后端一样，把模板文本存放在单独的文件中，使我们的开发工作从繁琐的dom操作和拼串中解放出来，提高我们的开发效率。最主要的，模板文件作为单独文件存放，可以使我们的项目代码逻辑更加清晰，更具可维护性。</p>
-<h5 id="grunt-cptpl都做了啥？"><a href="#grunt-cptpl都做了啥？" class="headerlink" title="grunt-cptpl都做了啥？"></a>grunt-cptpl都做了啥？</h5><p>grunt-cptpl会读取每个模板文件的文本内容，用指定模板引擎的预编译方法将其包裹起来，生成一个新的javascript文件。这个javascript文件文件里面的内容，其实就是模板引擎的预编译方法调用，传入的参数为模板文件的文本内容。这样我们就有了一个编译好的模板函数，要渲染的时候把数据传给它就好了。</p>
-        
-          <p class="article-more-link">
-            <a href="/grunt-cptpl/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/grunt-cptpl/" data-id="cjetsbea50031ucf5kpsdcjr8" data-title="发布grunt-cptpl插件" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/grunt/">grunt</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-popup-mask-ie6-bug" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/popup-mask-ie6-bug/" class="article-date">
-  <time datetime="2014-03-12T02:02:08.000Z" itemprop="datePublished">2014-03-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/CSS/">CSS</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/popup-mask-ie6-bug/">popup组件中mask层的IE6 bug和兼容办法</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我们在写一个popup组件时候，通常会加上一个元素作为mask层，用于遮盖住popup元素以外的页面内容。 而IE6下有个著名的bug就是select元素无法被遮盖，通常的做法，在IE6我们会在mask和和popup里面添加一个iframe来解决，一般的，iframe的css会是这样：</p>
-<pre><code>#iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    _filter: Alpha(opacity=0);
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: -1;
-}
-</code></pre><p>如果popup组件需要一个功能是：点击mask的时候，隐藏popup。 所以，我们会给mask加上click事件来完成这件事。但是，这个办法在IE6下却行不通，不管吧click添加在mask元素，还是添加到mask的iframe里面的document对象，都无法出发click事件。</p>
-<p>由于mask只有一个iframe，而iframe里面又没有然后内容，在IE下其实我们点击mask的时候是相当于点击了mask的iframe的window里。解决的办法是在mask里面再添加一个可以被“点击”到的元素，这个元素撑满mask。这样鼠标点击这个元素时候，事件自然会冒泡的mask上，保证了在IE6下mask的click也能正常被触发。</p>
-<pre><code>&lt;div id=&quot;mask&quot;&gt;
-    &lt;div style=&quot;height: 100%&quot;&gt;&lt;/div&gt;
-    &lt;iframe id=&quot;iframe&quot;&gt;&lt;/iframe&gt;
-&lt;/div&gt;
-</code></pre>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/popup-mask-ie6-bug/" data-id="cjetsbebw0060ucf5gzokn309" data-title="popup组件中mask层的IE6 bug和兼容办法" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/iframe/">iframe</a></li></ul>
 
     </footer>
   </div>
