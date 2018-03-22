@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="这是最简单的部分。我们将创建一个“流对象”，它提供了从字符串中读取字符的操作。其中4个方法：  peek() - 返回下一个值，但不从流中移除它。 next() - 返回下一个值，并将其从流中丢弃。 eof() - 当且仅当流中没有更多值时才返回true。 croak(msg) - throw new Error(msg)  之所以包括最后一个，是因为流可以很容易地跟踪当前位置（即行/列），这对于">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-22T11:34:30.000Z">
+<meta property="og:updated_time" content="2018-03-22T11:39:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(3) —— Input stream">
 <meta name="twitter:description" content="这是最简单的部分。我们将创建一个“流对象”，它提供了从字符串中读取字符的操作。其中4个方法：  peek() - 返回下一个值，但不从流中移除它。 next() - 返回下一个值，并将其从流中丢弃。 eof() - 当且仅当流中没有更多值时才返回true。 croak(msg) - throw new Error(msg)  之所以包括最后一个，是因为流可以很容易地跟踪当前位置（即行/列），这对于">
@@ -165,7 +165,7 @@
     }
 }
 </code></pre><p>请注意，它不是标准的通过类创建的对象（通过 new 关键字调用）。您只需要通过 <code>var stream = InputStream(string)</code> 即可得到流对象。</p>
-<p>接下来，我们将在这个对象之上编写另一个抽象： <a href="/implement-a-programming-language-3">tokenizer</a> 。</p>
+<p>接下来，我们将在这个对象之上编写另一个抽象： <a href="/implement-a-programming-language-4">tokenizer</a> 。</p>
 <p><em>相关文章</em></p>
 <ul>
 <li><a href="/implement-a-programming-language">如何使用 JavaScript 实现一门编程语言(1)——前言</a></li>
