@@ -334,161 +334,11 @@
 <li>如果以上都不是，那就抛出错误了。input.croak()</li>
 </ol>
 <p>“read_next”函数作为tokenizer的核心部分 ，它实现了上面的内容：</p>
-<pre><code>function read_next() {
-    read_while(is_whitespace);
-    if (input.eof()) return null;
-    var ch = input.peek();
-    if (ch == &quot;#&quot;) {
-        skip_comment();
-        return read_next();
-    }
-    if (ch == &apos;&quot;&apos;) return read_string();
-    if (is_digit(ch)) return read_number();
-    if (is_id_start(ch)) return read_ident();
-    if (is_punc(ch)) return {
-        type  : &quot;punc&quot;,
-        value : input.next()
-    };
-    if (is_op_char(ch)) return {
-        type  : &quot;op&quot;,
-        value : read_while(is_op_char)
-    };
-    input.croak(&quot;Can&apos;t handle character: &quot; + ch);
-}
-</code></pre><p>这是一个充当了调度员觉得的函数，它将next()调用以获取下一个token。请注意，它使用许多专注于特定token类型的函数，例如read_string()，read_number()等等。使用这些函数的代码而导致调度程序复杂化是没有意义的，即使我们从不在别处调用它们。</p>
-<p>另外需要注意的是，我们并没有在一个步骤中消耗所有的输入流。解析器每次调用下一个token时，我们都会读取一个token。如果出现分析错误，我们甚至不会到达流的末尾。</p>
-<p>字符只要它们被允许作为标识符（is_id）的一部分，read_ident()就会读取他们。标识符必须以字母、λ或_开头，并且可以包含更多这样的字符或数字，或者以下之一：？！ - &lt;&gt; =。因此，foo-bar不会被看作是三个token，而是作为一个单一的标识符（一个token）。这条规则的原因是我希望能够定义名为is-pair或者string&gt;=的函数（对不起，这就是我的Lisper）。</p>
-<p>此外，read_ident()函数将检查已知关键字列表中的标识符，如果它存在，它将返回一个”kw”令牌.</p>
-<p>这里是我们语言的完整tokenizer：</p>
-<pre><code>function TokenStream(input) {
-    var current = null;
-    var keywords = &quot; if then else lambda λ true false &quot;;
-    return {
-        next  : next,
-        peek  : peek,
-        eof   : eof,
-        croak : input.croak
-    };
-    function is_keyword(x) {
-        return keywords.indexOf(&quot; &quot; + x + &quot; &quot;) &gt;= 0;
-    }
-    function is_digit(ch) {
-        return /[0-9]/i.test(ch);
-    }
-    function is_id_start(ch) {
-        return /[a-zλ_]/i.test(ch);
-    }
-    function is_id(ch) {
-        return is_id_start(ch) || &quot;?!-&lt;&gt;=0123456789&quot;.indexOf(ch) &gt;= 0;
-    }
-    function is_op_char(ch) {
-        return &quot;+-*/%=&amp;|&lt;&gt;!&quot;.indexOf(ch) &gt;= 0;
-    }
-    function is_punc(ch) {
-        return &quot;,;(){}[]&quot;.indexOf(ch) &gt;= 0;
-    }
-    function is_whitespace(ch) {
-        return &quot; \t\n&quot;.indexOf(ch) &gt;= 0;
-    }
-    function read_while(predicate) {
-        var str = &quot;&quot;;
-        while (!input.eof() &amp;&amp; predicate(input.peek()))
-            str += input.next();
-        return str;
-    }
-    function read_number() {
-        var has_dot = false;
-        var number = read_while(function(ch){
-            if (ch == &quot;.&quot;) {
-                if (has_dot) return false;
-                has_dot = true;
-                return true;
-            }
-            return is_digit(ch);
-        });
-        return { type: &quot;num&quot;, value: parseFloat(number) };
-    }
-    function read_ident() {
-        var id = read_while(is_id);
-        return {
-            type  : is_keyword(id) ? &quot;kw&quot; : &quot;var&quot;,
-            value : id
-        };
-    }
-    function read_escaped(end) {
-        var escaped = false, str = &quot;&quot;;
-        input.next();
-        while (!input.eof()) {
-            var ch = input.next();
-            if (escaped) {
-                str += ch;
-                escaped = false;
-            } else if (ch == &quot;\\&quot;) {
-                escaped = true;
-            } else if (ch == end) {
-                break;
-            } else {
-                str += ch;
-            }
-        }
-        return str;
-    }
-    function read_string() {
-        return { type: &quot;str&quot;, value: read_escaped(&apos;&quot;&apos;) };
-    }
-    function skip_comment() {
-        read_while(function(ch){ return ch != &quot;\n&quot; });
-        input.next();
-    }
-    function read_next() {
-        read_while(is_whitespace);
-        if (input.eof()) return null;
-        var ch = input.peek();
-        if (ch == &quot;#&quot;) {
-            skip_comment();
-            return read_next();
-        }
-        if (ch == &apos;&quot;&apos;) return read_string();
-        if (is_digit(ch)) return read_number();
-        if (is_id_start(ch)) return read_ident();
-        if (is_punc(ch)) return {
-            type  : &quot;punc&quot;,
-            value : input.next()
-        };
-        if (is_op_char(ch)) return {
-            type  : &quot;op&quot;,
-            value : read_while(is_op_char)
-        };
-        input.croak(&quot;Can&apos;t handle character: &quot; + ch);
-    }
-    function peek() {
-        return current || (current = read_next());
-    }
-    function next() {
-        var tok = current;
-        current = null;
-        return tok || read_next();
-    }
-    function eof() {
-        return peek() == null;
-    }
-}
-</code></pre><ul>
-<li>该next()函数并不总是调用read_next()，因为它可能在之前被peek过（在这种情况下，read_next（）已经被调用并且stream被提前）。因此我们需要一个current变量跟踪当前token。</li>
-<li>我们只支持十进制数与通常的符号（没有1E5的东西，没有十六进制，没有八进制）。但是如果我们需要更多，这些更改只能在read_number（）中进行，并且很容易实现。</li>
-<li>与JavaScript不同，唯一不能在字符串中引用的字符是引号字符本身和反斜杠。你需要反斜杠转义他们。而且，字符串可能包含换行符，制表符等。我们太长不会解析像\n，\t等的转义。</li>
-</ul>
-<p>现在，我们有足够强大的工具来方便地编写解析器（parser）了，但我建议您首先看下 <a href="/implement-a-programming-language-5">AST</a> 的描述。</p>
-<p><em>相关文章</em></p>
-<ul>
-<li><a href="/implement-a-programming-language">如何使用 JavaScript 实现一门编程语言(1)——前言</a></li>
-<li><a href="/implement-a-programming-language-2">如何使用 JavaScript 实现一门编程语言(2)——编写一个解析器</a></li>
-<li><a href="/implement-a-programming-language-3">如何使用 JavaScript 实现一门编程语言(3)——Input stream</a></li>
-<li><a href="/implement-a-programming-language-4">如何使用 JavaScript 实现一门编程语言(4)——Token stream</a></li>
-<li><a href="/implement-a-programming-language-5">如何使用 JavaScript 实现一门编程语言(5)——AST</a></li>
-</ul>
-<p><em>原文链接：<a href="http://lisperator.net/pltut/dream" target="_blank" rel="noopener">http://lisperator.net/pltut/dream</a></em></p>
-
+        
+          <p class="article-more-link">
+            <a href="/implement-a-programming-language-4/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -541,42 +391,11 @@
 <p>之所以包括最后一个，是因为流可以很容易地跟踪当前位置（即行/列），这对于显示错误消息很重要。</p>
 <p>您可以根据您的需求随意添加更多的方法在流对象中，但对于我的教程这些就足够了。</p>
 <p>因为流对象主要用来处理字符，所以 next()/ peek() 方法返回的值也是字符（JS没有char类型，它们是包含一个单一字符的字符串）。</p>
-<p>这里是这个对象的完整代码，我将称之为“InputStream”。它足够简单，理解起来很容易：</p>
-<pre><code>function InputStream(input) {
-    var pos = 0, line = 1, col = 0;
-    return {
-        next  : next,
-        peek  : peek,
-        eof   : eof,
-        croak : croak,
-    };
-    function next() {
-        var ch = input.charAt(pos++);
-        if (ch == &quot;\n&quot;) line++, col = 0; else col++;
-        return ch;
-    }
-    function peek() {
-        return input.charAt(pos);
-    }
-    function eof() {
-        return peek() == &quot;&quot;;
-    }
-    function croak(msg) {
-        throw new Error(msg + &quot; (&quot; + line + &quot;:&quot; + col + &quot;)&quot;);
-    }
-}
-</code></pre><p>请注意，它不是标准的通过类创建的对象（通过 new 关键字调用）。您只需要通过 <code>var stream = InputStream(string)</code> 即可得到流对象。</p>
-<p>接下来，我们将在这个对象之上编写另一个抽象： <a href="/implement-a-programming-language-3">tokenizer</a> 。</p>
-<p><em>相关文章</em></p>
-<ul>
-<li><a href="/implement-a-programming-language">如何使用 JavaScript 实现一门编程语言(1)——前言</a></li>
-<li><a href="/implement-a-programming-language-2">如何使用 JavaScript 实现一门编程语言(2)——编写一个解析器</a></li>
-<li><a href="/implement-a-programming-language-3">如何使用 JavaScript 实现一门编程语言(3)——Input stream</a></li>
-<li><a href="/implement-a-programming-language-4">如何使用 JavaScript 实现一门编程语言(4)——Token stream</a></li>
-<li><a href="/implement-a-programming-language-5">如何使用 JavaScript 实现一门编程语言(5)——AST</a></li>
-</ul>
-<p><em>原文链接：<a href="http://lisperator.net/pltut/dream" target="_blank" rel="noopener">http://lisperator.net/pltut/dream</a></em></p>
-
+        
+          <p class="article-more-link">
+            <a href="/implement-a-programming-language-3/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">
@@ -625,59 +444,12 @@
   a + b;
 };
 print(sum(1, 2));
-</code></pre><p>我们的解析器将生成以下AST，其实也就是一个JavaScript对象：</p>
-<pre><code>{
-  type: &quot;prog&quot;,
-  prog: [
-    // first line:
-    {
-      type: &quot;assign&quot;,
-      operator: &quot;=&quot;,
-      left: { type: &quot;var&quot;, value: &quot;sum&quot; },
-      right: {
-        type: &quot;lambda&quot;,
-        vars: [ &quot;a&quot;, &quot;b&quot; ],
-        body: {
-          // the body should be a &quot;prog&quot;, but because
-          // it contains a single expression, our parser
-          // reduces it to the expression itself.
-          type: &quot;binary&quot;,
-          operator: &quot;+&quot;,
-          left: { type: &quot;var&quot;, value: &quot;a&quot; },
-          right: { type: &quot;var&quot;, value: &quot;b&quot; }
-        }
-      }
-    },
-    // second line:
-    {
-      type: &quot;call&quot;,
-      func: { type: &quot;var&quot;, value: &quot;print&quot; },
-      args: [{
-        type: &quot;call&quot;,
-        func: { type: &quot;var&quot;, value: &quot;sum&quot; },
-        args: [ { type: &quot;num&quot;, value: 1 },
-                { type: &quot;num&quot;, value: 2 } ]
-      }]
-    }
-  ]
-}
-</code></pre><p>编写解析器的主要困难在于不能正确地组织代码。解析器是一种更高级的处理字符串的方式。关于如何保持解析器复杂度的可管理性的，我有几点建议：</p>
-<ul>
-<li>编写多个功能模块并将它们保持较少的逻辑。在每一项功能模块中中，做好一件事！</li>
-<li>不要尝试使用正则表达式进行解析。他们并不能派上用场，虽然正则对词法分析器有所帮助，但我建议将它们限制在做非常简单的事情上。</li>
-<li>不要试图猜测代码的意图。如果不确定如何解析某些内容，请抛出错误消息，并确保该消息包含错误的位置（行/列）。</li>
-</ul>
-<p>为了简单起见，我将代码分为三部分，它们又分为许多小函数：<a href="/implement-a-programming-language-3">Input stream</a>、<a href="/implement-a-programming-language-4">Token stream</a>、<a href="/implement-a-programming-language-5">AST</a></p>
-<p><em>相关文章</em></p>
-<ul>
-<li><a href="/implement-a-programming-language">如何使用 JavaScript 实现一门编程语言(1)——前言</a></li>
-<li><a href="/implement-a-programming-language-2">如何使用 JavaScript 实现一门编程语言(2)——编写一个解析器</a></li>
-<li><a href="/implement-a-programming-language-3">如何使用 JavaScript 实现一门编程语言(3)——Input stream</a></li>
-<li><a href="/implement-a-programming-language-4">如何使用 JavaScript 实现一门编程语言(4)——Token stream</a></li>
-<li><a href="/implement-a-programming-language-5">如何使用 JavaScript 实现一门编程语言(5)——AST</a></li>
-</ul>
-<p><em>原文链接：<a href="http://lisperator.net/pltut/dream" target="_blank" rel="noopener">http://lisperator.net/pltut/dream</a></em></p>
-
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/implement-a-programming-language-2/#more">Read More</a>
+          </p>
+        
       
     </div>
     <footer class="article-footer">

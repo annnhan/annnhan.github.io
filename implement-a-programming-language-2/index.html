@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="编写语言解析器是一项适度复杂的任务。实质上，它必须将一段代码（我们所看到的一堆字符）转换为“抽象语法树”（AST）。AST是程序在内存中一种结构化的表达方式，它是“抽象”的，因为它不关心源代码是由哪些字符组成的，而是忠实地表示它的语义。我写了一个单独的页面来描述我们的AST。 例如，对于以下程序文本： sum = lambda(a, b) {   a + b; }; print(sum(1, 2)">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-22T09:48:44.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:51:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器">
 <meta name="twitter:description" content="编写语言解析器是一项适度复杂的任务。实质上，它必须将一段代码（我们所看到的一堆字符）转换为“抽象语法树”（AST）。AST是程序在内存中一种结构化的表达方式，它是“抽象”的，因为它不关心源代码是由哪些字符组成的，而是忠实地表示它的语义。我写了一个单独的页面来描述我们的AST。 例如，对于以下程序文本： sum = lambda(a, b) {   a + b; }; print(sum(1, 2)">
@@ -135,7 +135,8 @@
   a + b;
 };
 print(sum(1, 2));
-</code></pre><p>我们的解析器将生成以下AST，其实也就是一个JavaScript对象：</p>
+</code></pre><a id="more"></a>
+<p>我们的解析器将生成以下AST，其实也就是一个JavaScript对象：</p>
 <pre><code>{
   type: &quot;prog&quot;,
   prog: [

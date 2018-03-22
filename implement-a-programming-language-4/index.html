@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="tokenizer(标记器, 也称为“词法分析器”), 对 字符输入流 进行操作，并返回具有相同接口的流对象，但由 peek()/next() 返回的值一个个token。token是具有两个属性的对象：type和value。以下是我们所支持的token的一些示例： {  type：“ punc ”，value：“ （”  }            // 标点符号：parens，逗号，分号等等 {">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-22T09:48:44.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:51:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(4) —— Token stream">
 <meta name="twitter:description" content="tokenizer(标记器, 也称为“词法分析器”), 对 字符输入流 进行操作，并返回具有相同接口的流对象，但由 peek()/next() 返回的值一个个token。token是具有两个属性的对象：type和value。以下是我们所支持的token的一些示例： {  type：“ punc ”，value：“ （”  }            // 标点符号：parens，逗号，分号等等 {">
@@ -150,6 +150,7 @@
 <li>如果以上都不是，那就抛出错误了。input.croak()</li>
 </ol>
 <p>“read_next”函数作为tokenizer的核心部分 ，它实现了上面的内容：</p>
+<a id="more"></a>
 <pre><code>function read_next() {
     read_while(is_whitespace);
     if (input.eof()) return null;

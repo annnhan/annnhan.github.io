@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="这是最简单的部分。我们将创建一个“流对象”，它提供了从字符串中读取字符的操作。其中4个方法：  peek() - 返回下一个值，但不从流中移除它。 next() - 返回下一个值，并将其从流中丢弃。 eof() - 当且仅当流中没有更多值时才返回true。 croak(msg) - throw new Error(msg)  之所以包括最后一个，是因为流可以很容易地跟踪当前位置（即行/列），这对于">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-22T09:48:44.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:51:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(3) —— Input stream">
 <meta name="twitter:description" content="这是最简单的部分。我们将创建一个“流对象”，它提供了从字符串中读取字符的操作。其中4个方法：  peek() - 返回下一个值，但不从流中移除它。 next() - 返回下一个值，并将其从流中丢弃。 eof() - 当且仅当流中没有更多值时才返回true。 croak(msg) - throw new Error(msg)  之所以包括最后一个，是因为流可以很容易地跟踪当前位置（即行/列），这对于">
@@ -139,6 +139,7 @@
 <p>之所以包括最后一个，是因为流可以很容易地跟踪当前位置（即行/列），这对于显示错误消息很重要。</p>
 <p>您可以根据您的需求随意添加更多的方法在流对象中，但对于我的教程这些就足够了。</p>
 <p>因为流对象主要用来处理字符，所以 next()/ peek() 方法返回的值也是字符（JS没有char类型，它们是包含一个单一字符的字符串）。</p>
+<a id="more"></a>
 <p>这里是这个对象的完整代码，我将称之为“InputStream”。它足够简单，理解起来很容易：</p>
 <pre><code>function InputStream(input) {
     var pos = 0, line = 1, col = 0;
