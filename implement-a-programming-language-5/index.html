@@ -19,18 +19,18 @@
     <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache, must-revalidate">
-    <meta name="description" content="在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的节">
+    <meta name="description" content="在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。 之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的">
 <meta name="keywords" content="javascript,parse,programming,language,AST,compile,编译原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何使用 JavaScript 实现一门编程语言(5) —— AST">
 <meta property="og:url" content="http://annn.me/implement-a-programming-language-5/index.html">
 <meta property="og:site_name" content="安·记">
-<meta property="og:description" content="在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的节">
+<meta property="og:description" content="在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。 之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-22T09:48:44.000Z">
+<meta property="og:updated_time" content="2018-03-22T09:53:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(5) —— AST">
-<meta name="twitter:description" content="在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的节">
+<meta name="twitter:description" content="在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。 之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的">
     
     <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
     
@@ -129,7 +129,10 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。<br>之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的节点，还有一些附加信息，附加信息的值可能因 type 而异。<br>下面是我们语言所有 AST 节点列表：</p>
+        <p>在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。</p>
+<p>之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的节点，还有一些附加信息，附加信息的值可能因 type 而异。</p>
+<p>下面是我们语言所有 AST 节点列表：</p>
+<a id="more"></a>
 <pre><code>[
     /**
      * 数字(num)
@@ -273,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-5/" data-id="cjf2c47h200415bf5v8mlwtcp" data-title="如何使用 JavaScript 实现一门编程语言(5) —— AST" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-5/" data-id="cjf2c9nmk003ygaf5owrjbjtq" data-title="如何使用 JavaScript 实现一门编程语言(5) —— AST" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -284,10 +287,19 @@
     
 <nav id="article-nav">
   
+    <a href="/implement-a-programming-language-4/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          如何使用 JavaScript 实现一门编程语言(4) —— Token stream
+        
+      </div>
+    </a>
   
-    <a href="/implement-a-programming-language-4/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/implement-a-programming-language-3/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">如何使用 JavaScript 实现一门编程语言(4) —— Token stream</div>
+      <div class="article-nav-title">如何使用 JavaScript 实现一门编程语言(3) —— Input stream</div>
     </a>
   
 </nav>

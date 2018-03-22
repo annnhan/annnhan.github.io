@@ -104,189 +104,6 @@
   <!--首页-->
   
     
-    <article id="post-implement-a-programming-language-5" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/implement-a-programming-language-5/" class="article-date">
-  <time datetime="2018-03-23T16:00:00.000Z" itemprop="datePublished">2018-03-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/implement-a-programming-language-5/">如何使用 JavaScript 实现一门编程语言(5) —— AST</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。<br>之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的节点，还有一些附加信息，附加信息的值可能因 type 而异。<br>下面是我们语言所有 AST 节点列表：</p>
-<pre><code>[
-    /**
-     * 数字(num)
-     * 比如: 123.5
-     */
-    { type: &quot;num&quot;, value: 123.5 },
-
-    /**
-     * 字符串(str)
-     * 比如: &quot;Hello World!&quot;
-     */
-    { type: &quot;str&quot;, value: &quot;Hello World!&quot; },
-
-    /**
-     * 布尔值(bool)
-     * 比如: true、false
-     */
-    { type: &quot;bool&quot;, value: true },
-    { type: &quot;bool&quot;, value: false },
-
-    /**
-     * 标识符(var)
-     * 比如: x
-     */
-    { type: &quot;var&quot;, value: &quot;x&quot; },
-
-    /**
-     * 函数表达式(lambda or λ)
-     * 比如: lambda (x) 10 或者 λ (x) 10
-     */
-    {
-        type: &quot;lambda&quot;,
-        vars: [&quot;x&quot;],
-        body: { type: &quot;num&quot;, value: 10 }
-    },
-
-    /**
-     * 函数调用(call)
-     * 比如：foo(a, 1)
-     */
-    {
-        type: &quot;call&quot;,
-        func: { type: &quot;var&quot;, value: &quot;foo&quot; },
-        args: [
-            { type: &quot;var&quot;, value: &quot;a&quot; },
-            { type: &quot;num&quot;, &quot;value&quot;: 1 }
-        ]
-    },
-
-    /**
-     * 条件语句（if）
-     * 比如：if foo then bar else baz
-     */
-    {
-        type: &quot;if&quot;,
-        cond: { type: &quot;var&quot;, value: &quot;foo&quot; },
-        then: { type: &quot;var&quot;, value: &quot;bar&quot; },
-        else: { type: &quot;var&quot;, value: &quot;baz&quot; }
-    },
-    // 注：else分支是可选的
-    // 比如：if foo then bar
-    {
-        type: &quot;if&quot;,
-        cond: { type: &quot;var&quot;, value: &quot;foo&quot; },
-        then: { type: &quot;var&quot;, value: &quot;bar&quot; }
-    },
-
-    /**
-     *  赋值表达式（assign）
-     *  比如：a = 10
-     */
-    {
-        type: &quot;assign&quot;,
-        operator: &quot;=&quot;,
-        left: { type: &quot;var&quot;, value: &quot;a&quot; },
-        right: { type: &quot;num&quot;, value: 10 }
-    },
-
-    /**
-     * 二元表达式（binary）
-     * 比如：x + y * z
-     */
-    {
-        type: &quot;binary&quot;,
-        operator: &quot;+&quot;,
-        left: { type: &quot;var&quot;, value: &quot;x&quot; },
-        right: {
-            type: &quot;binary&quot;,
-            operator: &quot;*&quot;,
-            left: { type: &quot;var&quot;, value: &quot;y&quot; },
-            right: { type: &quot;var&quot;, value: &quot;z&quot; }
-        }
-    },
-
-    /**
-     * 表达式序列（prog）
-     * 比如：
-     * {
-          a = 5;
-          b = a * 2;
-          a + b;
-        }
-     */
-    {
-        type: &quot;prog&quot;,
-        prog: [{
-            type: &quot;assign&quot;,
-            operator: &quot;=&quot;,
-            left: { type: &quot;var&quot;, value: &quot;a&quot; },
-            right: { type: &quot;num&quot;, value: 5 }
-        },
-        {
-            type: &quot;assign&quot;,
-            operator: &quot;=&quot;,
-            left: { type: &quot;var&quot;, value: &quot;b&quot; },
-            right: {
-                type: &quot;binary&quot;,
-                operator: &quot;*&quot;,
-                left: { type: &quot;var&quot;, value: &quot;a&quot; },
-                right: { type: &quot;num&quot;, value: 2 }
-            }
-        },
-        {
-            type: &quot;binary&quot;,
-            operator: &quot;+&quot;,
-            left: { type: &quot;var&quot;, value: &quot;a&quot; },
-            right: { type: &quot;var&quot;, value: &quot;b&quot; }
-        }]
-    }
-]
-</code></pre><p><em>相关文章</em></p>
-<ul>
-<li><a href="/implement-a-programming-language">如何使用 JavaScript 实现一门编程语言(1)——前言</a></li>
-<li><a href="/implement-a-programming-language-2">如何使用 JavaScript 实现一门编程语言(2)——编写一个解析器</a></li>
-<li><a href="/implement-a-programming-language-3">如何使用 JavaScript 实现一门编程语言(3)——Input stream</a></li>
-<li><a href="/implement-a-programming-language-4">如何使用 JavaScript 实现一门编程语言(4)——Token stream</a></li>
-<li><a href="/implement-a-programming-language-5">如何使用 JavaScript 实现一门编程语言(5)——AST</a></li>
-</ul>
-<p><em>原文链接：<a href="http://lisperator.net/pltut/dream" target="_blank" rel="noopener">http://lisperator.net/pltut/dream</a></em></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-5/" data-id="cjf2c47h200415bf5v8mlwtcp" data-title="如何使用 JavaScript 实现一门编程语言(5) —— AST" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
     <article id="post-implement-a-programming-language-4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/implement-a-programming-language-4/" class="article-date">
@@ -342,7 +159,57 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-4/" data-id="cjf2c47h1003y5bf52lfx2blo" data-title="如何使用 JavaScript 实现一门编程语言(4) —— Token stream" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-4/" data-id="cjf2c9nmm0041gaf5v2c9ob9j" data-title="如何使用 JavaScript 实现一门编程语言(4) —— Token stream" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-implement-a-programming-language-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/implement-a-programming-language-5/" class="article-date">
+  <time datetime="2018-03-23T16:00:00.000Z" itemprop="datePublished">2018-03-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/implement-a-programming-language-5/">如何使用 JavaScript 实现一门编程语言(5) —— AST</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在计算机科学中，抽象语法树（Abstract Syntax Tree，AST），或简称语法树（Syntax tree），是源代码语法结构的一种抽象表示。它以树状的形式表现编程语言的语法结构，树上的每个节点都表示源代码中的一种结构。</p>
+<p>之前我们讲过，parser将构建一个忠实地表示程序语义的数据结构。这里的AST节点则是一个普通的JavaScript对象，它具有一个type属性，用于指定它是什么类型的节点，还有一些附加信息，附加信息的值可能因 type 而异。</p>
+<p>下面是我们语言所有 AST 节点列表：</p>
+        
+          <p class="article-more-link">
+            <a href="/implement-a-programming-language-5/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/implement-a-programming-language-5/" data-id="cjf2c9nmk003ygaf5owrjbjtq" data-title="如何使用 JavaScript 实现一门编程语言(5) —— AST" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -399,7 +266,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-3/" data-id="cjf2c47gz003w5bf5hved1pev" data-title="如何使用 JavaScript 实现一门编程语言(3) —— Input stream" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-3/" data-id="cjf2c9nmi003wgaf5rsvgjvqp" data-title="如何使用 JavaScript 实现一门编程语言(3) —— Input stream" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -453,7 +320,7 @@ print(sum(1, 2));
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-2/" data-id="cjf2c47gj003t5bf5xt5qwahk" data-title="如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-2/" data-id="cjf2c9nmh003tgaf58z947tgh" data-title="如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -541,7 +408,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjf2c47h300435bf5tdmwizg1" data-title="如何使用 JavaScript 实现一门编程语言(1) —— 前言" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjf2c9nmp0043gaf59678em0h" data-title="如何使用 JavaScript 实现一门编程语言(1) —— 前言" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -617,7 +484,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjf2c47fy002j5bf5ukl53oop" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjf2c9nlv002jgaf5bkwuxz3q" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
@@ -672,7 +539,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/vue-spa-template/" data-id="cjf2c47il007p5bf5sliruqw5" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cjf2c9npb007pgaf5kizt9ch4" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>
@@ -734,7 +601,7 @@ $ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-nginx/" data-id="cjf2c47hg004u5bf5gcjelncv" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-nginx/" data-id="cjf2c9nn3004ugaf5ok16q8og" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li></ul>
@@ -785,7 +652,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres-googleapis/" data-id="cjf2c47i5006h5bf53s8ch4yq" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres-googleapis/" data-id="cjf2c9no2006hgaf5rxxo7mwa" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/googleapis/">googleapis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
@@ -846,7 +713,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cjf2c47g500315bf5idd4y6l2" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/how-to-realize-cmd-loader/" data-id="cjf2c9nm30031gaf56hm702xm" data-title="如何实现一个 CMD 模块加载器" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/cmd/">cmd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/loader/">loader</a></li></ul>
