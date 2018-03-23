@@ -104,64 +104,10 @@
   <!--首页-->
   
     
-    <article id="post-implement-a-programming-language-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/implement-a-programming-language-2/" class="article-date">
-  <time datetime="2018-03-22T16:00:00.000Z" itemprop="datePublished">2018-03-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/implement-a-programming-language-2/">如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>编写语言解析器是一项适度复杂的任务。实质上，它必须将一段代码（我们所看到的一堆字符）转换为“抽象语法树”（AST）。<br>AST是程序在内存中一种结构化的表达方式，它是“抽象”的，因为它不关心源代码是由哪些字符组成的，而是忠实地表示它的语义。我写了一个单独的页面来描述我们的AST。</p>
-<p>例如，对于以下程序文本：</p>
-<pre><code>sum = lambda(a, b) {
-  a + b;
-};
-print(sum(1, 2));
-</code></pre>
-        
-          <p class="article-more-link">
-            <a href="/implement-a-programming-language-2/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-2/" data-id="cjf3o38fu003sdsf5ui1nw6xv" data-title="如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
     <article id="post-implement-a-programming-language-6" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/implement-a-programming-language-6/" class="article-date">
-  <time datetime="2018-03-22T02:00:02.000Z" itemprop="datePublished">2018-03-22</time>
+  <time datetime="2018-03-23T02:00:02.000Z" itemprop="datePublished">2018-03-23</time>
 </a>
     
   <div class="article-category">
@@ -189,49 +135,7 @@ print(sum(1, 2));
 </code></pre><p>获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。</p>
 <p><strong>执行环境</strong></p>
 <p>正确执行表达式的关键是正确维护执行环境 - 一个拥有绑定变量的上下文。它将作为参数传递给我们的evaluate函数。每次我们进入”lambda”节点时，我们都必须用新变量（函数的参数）扩展环境，并用运行时传递的值对它们进行初始化。如果一个参数影响了外部作用域的变量，我们必须小心地在离开函数时恢复先前的值。</p>
-<p>实现这个最简单的方法是使用JavaScript的原型继承。当我们输入一个函数时，我们将创建一个新的环境。这种方式当我们退出时，我们不需要做任何事情 - 外部env已经包含在对象本身。</p>
-<p>以下是Environment对象的定义：</p>
-<pre><code>function Environment(parent) {
-    this.vars = Object.create(parent ? parent.vars : null);
-    this.parent = parent;
-}
-Environment.prototype = {
-    extend: function() {
-        return new Environment(this);
-    },
-    lookup: function(name) {
-        var scope = this;
-        while (scope) {
-            if (Object.prototype.hasOwnProperty.call(scope.vars, name))
-                return scope;
-            scope = scope.parent;
-        }
-    },
-    get: function(name) {
-        if (name in this.vars)
-            return this.vars[name];
-        throw new Error(&quot;Undefined variable &quot; + name);
-    },
-    set: function(name, value) {
-        var scope = this.lookup(name);
-        // let&apos;s not allow defining globals from a nested environment
-        if (!scope &amp;&amp; this.parent)
-            throw new Error(&quot;Undefined variable &quot; + name);
-        return (scope || this).vars[name] = value;
-    },
-    def: function(name, value) {
-        return this.vars[name] = value;
-    }
-};
-</code></pre><p>一个Environment对象有一个parent属性指向父作用域。在全局作用域下parent为null。它有一个vars属性保存绑定的变量。</p>
-<p>有以下方法：</p>
-<ul>
-<li>extend() - 创建一个子作用域。</li>
-<li>lookup(name) - 查找具有给定名称的变量的作用域。</li>
-<li>get(name) - 获取变量的当前值。如果变量未定义，则会抛出错误。</li>
-<li>set(name, value) - 设置变量的值。这需要查找变量定义的实际作用域。如果找不到并且我们不在全局范围内，则抛出错误。</li>
-<li>def(name, value) - 这会在当前范围内创建（或覆盖）一个变量。</li>
-</ul>
+<p>实现这个最简单的方法是使用JavaScript的原型继承。当我们输入一个函数时，我们将创建一个新的环境。这种方式当我们退出时，我们不需要做任何事情——外部env已经包含在对象本身。</p>
         
           <p class="article-more-link">
             <a href="/implement-a-programming-language-6/#more">Read More</a>
@@ -240,7 +144,7 @@ Environment.prototype = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-6/" data-id="cjf3o38g00042dsf5yxrdqf2b" data-title="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-6/" data-id="cjf3o8k7p0044lhf57r9rqhjo" data-title="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -290,7 +194,7 @@ Environment.prototype = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-5/" data-id="cjf3o38fy0040dsf5ijw47chl" data-title="如何使用 JavaScript 实现一门编程语言(5) —— AST" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-5/" data-id="cjf3o8k7n0040lhf5ppbg15pe" data-title="如何使用 JavaScript 实现一门编程语言(5) —— AST" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -358,7 +262,7 @@ Environment.prototype = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-4/" data-id="cjf3o38fw003xdsf505cla7lf" data-title="如何使用 JavaScript 实现一门编程语言(4) —— Token stream" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-4/" data-id="cjf3o8k7m003ylhf57k9xjfht" data-title="如何使用 JavaScript 实现一门编程语言(4) —— Token stream" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -415,7 +319,61 @@ Environment.prototype = {
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-3/" data-id="cjf3o38fv003vdsf55v7e3ev1" data-title="如何使用 JavaScript 实现一门编程语言(3) —— Input stream" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-3/" data-id="cjf3o8k7l003wlhf51xi9kuld" data-title="如何使用 JavaScript 实现一门编程语言(3) —— Input stream" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
+    <article id="post-implement-a-programming-language-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/implement-a-programming-language-2/" class="article-date">
+  <time datetime="2018-03-21T16:00:00.000Z" itemprop="datePublished">2018-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/implement-a-programming-language-2/">如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>编写语言解析器是一项适度复杂的任务。实质上，它必须将一段代码（我们所看到的一堆字符）转换为“抽象语法树”（AST）。<br>AST是程序在内存中一种结构化的表达方式，它是“抽象”的，因为它不关心源代码是由哪些字符组成的，而是忠实地表示它的语义。我写了一个单独的页面来描述我们的AST。</p>
+<p>例如，对于以下程序文本：</p>
+<pre><code>sum = lambda(a, b) {
+  a + b;
+};
+print(sum(1, 2));
+</code></pre>
+        
+          <p class="article-more-link">
+            <a href="/implement-a-programming-language-2/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/implement-a-programming-language-2/" data-id="cjf3o8k7j003tlhf5dgm8c6ti" data-title="如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -502,7 +460,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjf3o38g10045dsf5hfnm40ma" data-title="如何使用 JavaScript 实现一门编程语言(1) —— 前言" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language/" data-id="cjf3o8k7q0047lhf5x51f7h8d" data-title="如何使用 JavaScript 实现一门编程语言(1) —— 前言" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -578,7 +536,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjf3o38fb002jdsf5a90yarty" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/frontend-ci-cd/" data-id="cjf3o8k6y002llhf50twx6j5p" data-title="前端开发如何让持续集成/持续部署(CI/CD)跑起来" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/CD/">CD</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/gitlab/">gitlab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jenkins/">jenkins</a></li></ul>
@@ -633,7 +591,7 @@ print-range(1, 5);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/vue-spa-template/" data-id="cjf3o38hv007sdsf5hf4jodnh" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/vue-spa-template/" data-id="cjf3o8k9k007ulhf5kcjtkq5u" data-title="基于 vue 全家桶的 spa 项目模板" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/spa/">spa</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-router/">vue-router</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vue-js/">vue.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/vuex/">vuex</a></li></ul>
@@ -695,7 +653,7 @@ $ make install
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-nginx/" data-id="cjf3o38gc004ydsf5bhw322lt" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-nginx/" data-id="cjf3o8k810050lhf5twh28jp8" data-title="使用 javascript 配置 nginx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li></ul>
@@ -746,7 +704,7 @@ Response：http://$1.useso.com/$2
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres-googleapis/" data-id="cjf3o38h6006sdsf5rmsbwp44" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres-googleapis/" data-id="cjf3o8k95006mlhf50k1n5osw" data-title="无梯子如何正常访问使用了 googleapis 的网站" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/googleapis/">googleapis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>

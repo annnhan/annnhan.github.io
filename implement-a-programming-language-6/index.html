@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作： var  ast = parse （TokenStream （InputStream （code ））） ; 获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。 执行环境 正确执行表">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-23T08:11:45.000Z">
+<meta property="og:updated_time" content="2018-03-23T08:16:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter">
 <meta name="twitter:description" content="到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作： var  ast = parse （TokenStream （InputStream （code ））） ; 获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。 执行环境 正确执行表">
@@ -106,7 +106,7 @@
         <section id="main"><article id="post-implement-a-programming-language-6" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/implement-a-programming-language-6/" class="article-date">
-  <time datetime="2018-03-22T02:00:02.000Z" itemprop="datePublished">2018-03-22</time>
+  <time datetime="2018-03-23T02:00:02.000Z" itemprop="datePublished">2018-03-23</time>
 </a>
     
   <div class="article-category">
@@ -134,7 +134,8 @@
 </code></pre><p>获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。</p>
 <p><strong>执行环境</strong></p>
 <p>正确执行表达式的关键是正确维护执行环境 - 一个拥有绑定变量的上下文。它将作为参数传递给我们的evaluate函数。每次我们进入”lambda”节点时，我们都必须用新变量（函数的参数）扩展环境，并用运行时传递的值对它们进行初始化。如果一个参数影响了外部作用域的变量，我们必须小心地在离开函数时恢复先前的值。</p>
-<p>实现这个最简单的方法是使用JavaScript的原型继承。当我们输入一个函数时，我们将创建一个新的环境。这种方式当我们退出时，我们不需要做任何事情 - 外部env已经包含在对象本身。</p>
+<p>实现这个最简单的方法是使用JavaScript的原型继承。当我们输入一个函数时，我们将创建一个新的环境。这种方式当我们退出时，我们不需要做任何事情——外部env已经包含在对象本身。</p>
+<a id="more"></a>
 <p>以下是Environment对象的定义：</p>
 <pre><code>function Environment(parent) {
     this.vars = Object.create(parent ? parent.vars : null);
@@ -177,7 +178,6 @@ Environment.prototype = {
 <li>set(name, value) - 设置变量的值。这需要查找变量定义的实际作用域。如果找不到并且我们不在全局范围内，则抛出错误。</li>
 <li>def(name, value) - 这会在当前范围内创建（或覆盖）一个变量。</li>
 </ul>
-<a id="more"></a>
 <p><strong>evaluate函数</strong></p>
 <p>有了执行环境，我们就可以回到我们的主要问题（编写Interpreter）中来，这个evaluate函数包含了一个大switch循环，按节点类型执行不同的逻辑，下面是每个节点的说明：</p>
 <pre><code>function evaluate(exp, env) {
@@ -301,7 +301,7 @@ evaluate(ast, globalEnv); // will print 5
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-6/" data-id="cjf3o38g00042dsf5yxrdqf2b" data-title="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-6/" data-id="cjf3o8k7p0044lhf57r9rqhjo" data-title="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
@@ -311,15 +311,6 @@ evaluate(ast, globalEnv); // will print 5
   
     
 <nav id="article-nav">
-  
-    <a href="/implement-a-programming-language-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器
-        
-      </div>
-    </a>
   
   
     <a href="/implement-a-programming-language-5/" id="article-nav-older" class="article-nav-link-wrap">
