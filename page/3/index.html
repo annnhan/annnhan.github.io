@@ -104,6 +104,70 @@
   <!--首页-->
   
     
+    <article id="post-ecmascript6-promise" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/ecmascript6-promise/" class="article-date">
+  <time datetime="2014-06-04T12:38:00.000Z" itemprop="datePublished">2014-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/ecmascript6-promise/">如何实现一个ECMAScript 6 的promise补丁</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Promise最先是CommonJS工作组提出的一种规范之一，目的是为了解决js异步编程过程中，回调嵌套过深的问题。ECMAScript 6 规范化了Promise对象的语言接口，使其成了js的原生对象之一。</p>
+<p>如果你还不了解ECMAScript 6 中的Promise对象，建议阅读<a href="http://es6.ruanyifeng.com/#docs/promise" target="_blank">http://es6.ruanyifeng.com/#docs/promise</a>。ECMAScript 6 中的Promise对象与一些常用的promise库（如jquery，when.js）中的实现略有不同，本文讨论的实现，以ECMAScript 6 为准。<br>下面，我们来一起学习，如何在不支持ES6的浏览器上简单实现Promise，如有不对的地方，还请多多指正。</p>
+<h4 id="首先，我们来看看Promise构造函数。"><a href="#首先，我们来看看Promise构造函数。" class="headerlink" title="首先，我们来看看Promise构造函数。"></a>首先，我们来看看Promise构造函数。</h4><pre><code>var Promise = function (fun) {
+        var me = this,
+            resolve = function (val) {
+                me.resolve(val);
+            },
+            reject = function (val) {
+                me.reject(val);
+            }
+        me._st = &apos;pending&apos;;
+        me._rsq = null;
+        me._rjq = null;
+        (typeof fun === &apos;function&apos;) &amp;&amp; fun(resolve, reject);
+    },
+    fn = Promise.prototype;
+</code></pre><p>构造函数接受一个异步的回调函数，并调用，回调函数的2个参数，分别为异步操作成功和失败时候要调用的改变Promise实例状态的方法。<br>_st用于存放当前实例的状态，初始值为”pending”，异步操作成功为”resolve”，失败为”reject”。_rsq用于存放异步操作成功的回调，_rjq用于存放异步操作失败的回调。<br>同时，把Promise.prototype挂在变量fn上，接下我们只要给fn添加方法就可以了。</p>
+        
+          <p class="article-more-link">
+            <a href="/ecmascript6-promise/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/ecmascript6-promise/" data-id="cjf3o38f50025dsf5uzt37ett" data-title="如何实现一个ECMAScript 6 的promise补丁" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ecmascript/">ecmascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/promise/">promise</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-blog-move-to-github" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/blog-move-to-github/" class="article-date">
@@ -143,7 +207,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/blog-move-to-github/" data-id="cjf2fw24k000nhwf555qdfetd" data-title="Blog迁移到Github" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/blog-move-to-github/" data-id="cjf3o38e9000pdsf5tzfzafch" data-title="Blog迁移到Github" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/github/">github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/jekyll/">jekyll</a></li></ul>
@@ -191,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/webstorm8/" data-id="cjf2fw28l0083hwf5cym4enw7" data-title="WebStorm 8 新功能一览" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/webstorm8/" data-id="cjf3o38i10087dsf5ggxqbj9w" data-title="WebStorm 8 新功能一览" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/WebStorm/">WebStorm</a></li></ul>
@@ -240,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/grunt-cptpl/" data-id="cjf2fw25y002yhwf5l94wybm4" data-title="发布grunt-cptpl插件" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/grunt-cptpl/" data-id="cjf3o38fj0031dsf5061175ye" data-title="发布grunt-cptpl插件" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/grunt/">grunt</a></li></ul>
@@ -300,7 +364,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/popup-mask-ie6-bug/" data-id="cjf2fw27k006chwf50ah879tu" data-title="popup组件中mask层的IE6 bug和兼容办法" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/popup-mask-ie6-bug/" data-id="cjf3o38h0006edsf5ggds40qs" data-title="popup组件中mask层的IE6 bug和兼容办法" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css/">css</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/iframe/">iframe</a></li></ul>
@@ -408,7 +472,7 @@ document.addEventListener(&apos;keydown&apos;, function(e){
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/review-css-3d/" data-id="cjf2fw27p006phwf5sul1pr71" data-title="重温CSS 3D" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/review-css-3d/" data-id="cjf3o38h5006pdsf58mbwokf1" data-title="重温CSS 3D" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/css3/">css3</a></li></ul>
@@ -464,7 +528,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cjf2fw24v001bhwf54y2vlp9i" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/create-start-program-in-ubuntu/" data-id="cjf3o38eh001bdsf5huxzenrt" data-title="ubuntu下创建启动器程序的方法。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/pycharm/">pycharm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ubuntu/">ubuntu</a></li></ul>
@@ -510,7 +574,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/pingru-meitang/" data-id="cjf2fw27j0069hwf5uuf07b7r" data-title="一位92岁老人一生中最美好、最痛苦、最意外的事情……" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/pingru-meitang/" data-id="cjf3o38gz006cdsf55pgsnu4s" data-title="一位92岁老人一生中最美好、最痛苦、最意外的事情……" class="article-share-link">Share</a>
       
       
     </footer>
@@ -561,7 +625,7 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/reres/" data-id="cjf2fw27n006jhwf538zdld40" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/reres/" data-id="cjf3o38h2006jdsf5henciqut" data-title="通过ReRes让chrome拥有路径映射的autoResponse功能。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ReRes/">ReRes</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/request/">request</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/response/">response</a></li></ul>
@@ -613,55 +677,10 @@ StartupWMClass=jetbrains-pycharm
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" data-id="cjf2fw256001xhwf53xjjktjz" data-title="通过Visual Event查看页面元素的绑定事件" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/e9809ae8bf87visual-evente69fa5e79c8be9a1b5e99da2e58583e7b4a0e79a84e7bb91e5ae9ae4ba8be4bbb6/" data-id="cjf3o38er001xdsf5h85vv2y9" data-title="通过Visual Event查看页面元素的绑定事件" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Event/">Event</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/事件/">事件</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-fiddler-stave" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/fiddler-stave/" class="article-date">
-  <time datetime="2013-12-03T22:01:12.000Z" itemprop="datePublished">2013-12-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/工具/">工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/fiddler-stave/">Stave——让Fiddler拥有路径映射功能。</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Stave是一个基于Fiddler调试工具的插件，Fiddler在前端开发中应用得越来越广泛。其中的AutoResponder——用本地文件映射网络文件是大家最喜欢用的功能，这对调试线上代码、处理线上bug都十分有用。不过，AutoResponder只能针对单个文件做映射， 在文件数目较多的时候，使用起来不是很方便，以前，我只能在本地搭一个nginx做反向代理来实现，有了Stave， 就完全可以抛弃nginx了，Stave最大亮点在于能够实现针对路径映射， 这样在多文件调试的时候赶脚非常不错。<br> <a href="/wp-content/uploads/2013/12/Stave.jpg"><img src="/wp-content/uploads/2013/12/Stave.jpg" alt="Stave"></a></p>
-<p>下载地址： <a href="https://code.google.com/p/stave/" target="_blank" rel="noopener">https://code.google.com/p/stave/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/fiddler-stave/" data-id="cjf2fw25q002fhwf5c2i88d49" data-title="Stave——让Fiddler拥有路径映射功能。" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/fiddler/">fiddler</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/stave/">stave</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/调试工具/">调试工具</a></li></ul>
 
     </footer>
   </div>

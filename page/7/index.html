@@ -104,6 +104,67 @@
   <!--首页-->
   
     
+    <article id="post-windows-nginx-php" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/windows-nginx-php/" class="article-date">
+  <time datetime="2012-11-04T05:17:46.000Z" itemprop="datePublished">2012-11-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/服务器/">服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 itemprop="name">
+      <a class="article-title" href="/windows-nginx-php/">windows下配置nginx+php</a>
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、首先需要准备的应用程序包。</p>
+<p>　　nginx：<a href="http://nginx.org/download/nginx-1.0.4.zip" target="_blank" rel="noopener">nginx/Windows-1.0.4</a></p>
+<p>　　php：<a href="http://windows.php.net/downloads/releases/archives/php-5.2.16-nts-Win32-VC6-x86.zip" target="_blank" rel="noopener">php-5.2.16-nts-Win32-VC6-x86.zip</a> （nginx下php是以FastCGI的方式运行，所以我们下载非线程安全也就是nts的php包）</p>
+<p>　　（还会用到）RunHiddenConsole：<a href="http://redmine.lighttpd.net/attachments/660/RunHiddenConsole.zip" target="_blank" rel="noopener">RunHiddenConsole.zip</a></p>
+<p>2、安装与配置。</p>
+<p>　1）php的安装与配置。</p>
+<p>　　直接解压下载好的php包，到D盘wnmp目录（D:\wnmp），这里把解压出来的文件夹重命名成php5。进入文件夹修改php.ini-recommended文件为php.ini，并用Editplus或者Notepad++打开来。找到</p>
+<pre><code>extension_dir = &quot;./ext&quot;
+</code></pre><p>更改为</p>
+<pre><code>extension_dir = &quot;D:/wnmp/php5/ext&quot;
+</code></pre><p>往下看，再找到</p>
+<pre><code>;extension=php_mysql.dll
+;extension=php_mysqli.dll
+</code></pre><p>前面指定了php的ext路径后，只要把需要的扩展包前面所对应的“;”去掉，就可以了。这里打开php_mysql.dll和php_mysqli.dll，让php支持mysql。当然不要忘掉很重要的一步就是，把php5目录下的libmysql.dll文件复制到C:\Windows目录下，也可以在系统变量里面指定路径，当然这里我选择了更为方便的方法^_^。
+        
+          <p class="article-more-link">
+            <a href="/windows-nginx-php/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/windows-nginx-php/" data-id="cjf3o38i3008bdsf5vl7l4swl" data-title="windows下配置nginx+php" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/Windows/">Windows</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/nginx/">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/php/">php</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    
     <article id="post-euclidean" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/euclidean/" class="article-date">
@@ -157,7 +218,7 @@ a除以b的余数 等于 481%221 等于 39
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/euclidean/" data-id="cjf2fw25o002chwf54olmpn5u" data-title="欧几里德算法" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/euclidean/" data-id="cjf3o38f7002cdsf58yvih033" data-title="欧几里德算法" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/最大公约数/">最大公约数</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/欧几里德算法/">欧几里德算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/辗转相除法/">辗转相除法</a></li></ul>
@@ -206,7 +267,7 @@ a除以b的余数 等于 481%221 等于 39
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/ecmascript5-new-array-method/" data-id="cjf2fw2580020hwf5yb1g6q4f" data-title="ECMAScript 5中新增的数组方法" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/ecmascript5-new-array-method/" data-id="cjf3o38f2001zdsf5yhvb1reu" data-title="ECMAScript 5中新增的数组方法" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/ECMAScript/">ECMAScript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/every/">every</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/filter/">filter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/forEach/">forEach</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/map/">map</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/reduce/">reduce</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/reduceRight/">reduceRight</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/some/">some</a></li></ul>
@@ -255,7 +316,7 @@ a除以b的余数 等于 481%221 等于 39
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/aptana3-chinese-zencoding-svn-jquery/" data-id="cjf2fw24g000ehwf5p1361829" data-title="Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/aptana3-chinese-zencoding-svn-jquery/" data-id="cjf3o38e2000edsf5288ewn50" data-title="Aptana Studio 3常用配置：汉化，zen-coding，SVN，jquery提示。" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JQuery/">JQuery</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/aptana/">aptana</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/svn/">svn</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/zen-coding/">zen-coding</a></li></ul>
@@ -303,7 +364,7 @@ a除以b的余数 等于 481%221 等于 39
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/animat/" data-id="cjf2fw24e000chwf52cmgd7t9" data-title="封装一个animat动画方法" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/animat/" data-id="cjf3o38dz0009dsf5apl1ge2b" data-title="封装一个animat动画方法" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/animat/">animat</a></li></ul>
@@ -351,7 +412,7 @@ a除以b的余数 等于 481%221 等于 39
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/javascript-minesweeping/" data-id="cjf2fw26u004uhwf5q40wlerc" data-title="JS扫雷游戏" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/javascript-minesweeping/" data-id="cjf3o38ga004udsf5i826tcw1" data-title="JS扫雷游戏" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/JS扫雷/">JS扫雷</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/minesweeping/">minesweeping</a></li></ul>
@@ -427,7 +488,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/get-miss-number/" data-id="cjf2fw25w002rhwf5n1n3mkfh" data-title="一组数字，从1到n，从中减少了3个数，顺序打乱，放在n-3的数组里,找出丢失数字。" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/get-miss-number/" data-id="cjf3o38ff002rdsf5syneurs0" data-title="一组数字，从1到n，从中减少了3个数，顺序打乱，放在n-3的数组里,找出丢失数字。" class="article-share-link">Share</a>
       
       
     </footer>
@@ -470,7 +531,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/background-color-opacity-content/" data-id="cjf2fw24j000khwf52vvrbxg8" data-title="背景透明，内容不透明CSS代码生成器" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/background-color-opacity-content/" data-id="cjf3o38e5000kdsf5hmtwblsi" data-title="背景透明，内容不透明CSS代码生成器" class="article-share-link">Share</a>
       
       
     </footer>
@@ -524,7 +585,7 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/this-arguments-callee-caller/" data-id="cjf2fw27x0079hwf5h0j3hymy" data-title="函数内部对象属性以及相关属性详解：arguments.callee、this、caller" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/this-arguments-callee-caller/" data-id="cjf3o38hq007cdsf5pyyfgkpc" data-title="函数内部对象属性以及相关属性详解：arguments.callee、this、caller" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/arguments/">arguments</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/callee/">callee</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/caller/">caller</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/this/">this</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/函数对象/">函数对象</a></li></ul>
@@ -586,61 +647,10 @@ console.log(&apos;计算结果: &apos; + mis);
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/" data-id="cjf2fw27a005ohwf5mn4ozsbw" data-title="JS解小学奥数题：abcde*a=eeeeee" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/jse8a7a3e5b08fe5ada6e5a5a5e695b0e9a298efbc9aabcdeaeeeeee/" data-id="cjf3o38gq005qdsf5e7h4suac" data-title="JS解小学奥数题：abcde*a=eeeeee" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/枚举法/">枚举法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    
-    <article id="post-js-iframe" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/js-iframe/" class="article-date">
-  <time datetime="2012-08-24T00:51:08.000Z" itemprop="datePublished">2012-08-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h2 itemprop="name">
-      <a class="article-title" href="/js-iframe/">js中的iframe操作</a>
-    </h2>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在项目整合中相信用到最多的是iframe了，下面整理了相关常用操作，作为笔记！</p>
-<h3 id="1-获得iframe的window对象"><a href="#1-获得iframe的window对象" class="headerlink" title="1. 获得iframe的window对象"></a>1. 获得iframe的window对象</h3><p>存在跨域访问限制。</p>
-<p>chrome：iframeElement. contentWindow<br>firefox： iframeElement.contentWindow<br>ie6：iframeElement.contentWindow</p>
-<p>文章<a href="http://www.nczonline.net/blog/2009/09/15/iframes-onload-and-documentdomain/" target="_blank" rel="noopener">Iframes, onload, and document.domain</a>中说“he iframe element object has a property called contentDocument that contains the iframe’s document object, so you can use the parentWindow property to retrieve the window object.”意思就是一些浏览器可以通过iframeElement.contentDocument.parentWindow获得iframe的window对象。但经过测试firefox、chrome的element.contentDocument对象没有parentWindow属性。</p>
-        
-          <p class="article-more-link">
-            <a href="/js-iframe/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://annn.me/js-iframe/" data-id="cjf2fw275005ehwf55vr84hr0" data-title="js中的iframe操作" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/iframe/">iframe</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li></ul>
 
     </footer>
   </div>

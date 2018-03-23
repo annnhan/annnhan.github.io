@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://og6593g2z.qnssl.com/fundebug.0.3.3.min.js" apikey="e4ebd1d8446798b665fed4258ebd75f1ee7489bda0832a94b9d5f2a6d07d2f4b"></script>
+    <meta charset="utf-8">
+    
+    <title>
+        
+        如何使用 JavaScript 实现一门编程语言(6) —— Interpreter |
+        
+        安·记</title>
+    <script>
+        if (location.host.indexOf('cssha.com') >= 0) {
+            location.href = location.href.replace('cssha.com', 'annn.me');
+        }
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta property="wb:webmaster" content="35db845a3f9d1692"/>
+    <meta name="baidu-site-verification" content="VdeWu2EHCz"/>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate">
+    <meta name="description" content="到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作： var  ast = parse （TokenStream （InputStream （code ））） ; 获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。 执行环境 正确执行表">
+<meta name="keywords" content="javascript,parse,programming,language,AST,compile,编译原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter">
+<meta property="og:url" content="http://annn.me/implement-a-programming-language-6/index.html">
+<meta property="og:site_name" content="安·记">
+<meta property="og:description" content="到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作： var  ast = parse （TokenStream （InputStream （code ））） ; 获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。 执行环境 正确执行表">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-03-23T08:11:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter">
+<meta name="twitter:description" content="到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作： var  ast = parse （TokenStream （InputStream （code ））） ; 获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。 执行环境 正确执行表">
+    
+    <link rel="alternative" href="/atom.xml" title="安·记" type="application/rss+xm">
+    
+    
+    <link rel="icon" href="/favicon.ico">
+    
+    <link href="/css/fonts/source-code-pro.woff2" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/style.css">
+    
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?3e1fabf44865ddfe8b31fa9d84cbe4c9";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <!--<div id="header-title" class="inner">-->
+      <!--<h1 id="logo-wrap">-->
+        <!--<a href="/" id="logo">安·记</a>-->
+      <!--</h1>-->
+      <!---->
+    <!--</div>-->
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        <h1 class="main-nav-link"><a href="/">安·记</a></h1>
+        
+          
+          <a class="main-nav-link" href="/archives" target="">归档</a>
+        
+          
+          <a class="main-nav-link" href="/categories" target="">分类</a>
+        
+          
+          <a class="main-nav-link" href="/tags" target="">标签</a>
+        
+          
+          <a class="main-nav-link" href="/links" target="">链接</a>
+        
+          
+          <a class="main-nav-link" href="https://500px.com/annnhan" target="_blank">摄影</a>
+        
+          
+          <a class="main-nav-link" href="/about" target="">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://annn.me"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-implement-a-programming-language-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/implement-a-programming-language-6/" class="article-date">
+  <time datetime="2018-03-22T02:00:02.000Z" itemprop="datePublished">2018-03-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categorie/javascript/">javascript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h2 class="article-title" itemprop="name">
+      如何使用 JavaScript 实现一门编程语言(6) —— Interpreter
+    </h2>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作：</p>
+<pre><code>var  ast = parse （TokenStream （InputStream （code ））） ;
+</code></pre><p>获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。</p>
+<p><strong>执行环境</strong></p>
+<p>正确执行表达式的关键是正确维护执行环境 - 一个拥有绑定变量的上下文。它将作为参数传递给我们的evaluate函数。每次我们进入”lambda”节点时，我们都必须用新变量（函数的参数）扩展环境，并用运行时传递的值对它们进行初始化。如果一个参数影响了外部作用域的变量，我们必须小心地在离开函数时恢复先前的值。</p>
+<p>实现这个最简单的方法是使用JavaScript的原型继承。当我们输入一个函数时，我们将创建一个新的环境。这种方式当我们退出时，我们不需要做任何事情 - 外部env已经包含在对象本身。</p>
+<p>以下是Environment对象的定义：</p>
+<pre><code>function Environment(parent) {
+    this.vars = Object.create(parent ? parent.vars : null);
+    this.parent = parent;
+}
+Environment.prototype = {
+    extend: function() {
+        return new Environment(this);
+    },
+    lookup: function(name) {
+        var scope = this;
+        while (scope) {
+            if (Object.prototype.hasOwnProperty.call(scope.vars, name))
+                return scope;
+            scope = scope.parent;
+        }
+    },
+    get: function(name) {
+        if (name in this.vars)
+            return this.vars[name];
+        throw new Error(&quot;Undefined variable &quot; + name);
+    },
+    set: function(name, value) {
+        var scope = this.lookup(name);
+        // let&apos;s not allow defining globals from a nested environment
+        if (!scope &amp;&amp; this.parent)
+            throw new Error(&quot;Undefined variable &quot; + name);
+        return (scope || this).vars[name] = value;
+    },
+    def: function(name, value) {
+        return this.vars[name] = value;
+    }
+};
+</code></pre><p>一个Environment对象有一个parent属性指向父作用域。在全局作用域下parent为null。它有一个vars属性保存绑定的变量。</p>
+<p>有以下方法：</p>
+<ul>
+<li>extend() - 创建一个子作用域。</li>
+<li>lookup(name) - 查找具有给定名称的变量的作用域。</li>
+<li>get(name) - 获取变量的当前值。如果变量未定义，则会抛出错误。</li>
+<li>set(name, value) - 设置变量的值。这需要查找变量定义的实际作用域。如果找不到并且我们不在全局范围内，则抛出错误。</li>
+<li>def(name, value) - 这会在当前范围内创建（或覆盖）一个变量。</li>
+</ul>
+<a id="more"></a>
+<p><strong>evaluate函数</strong></p>
+<p>有了执行环境，我们就可以回到我们的主要问题（编写Interpreter）中来，这个evaluate函数包含了一个大switch循环，按节点类型执行不同的逻辑，下面是每个节点的说明：</p>
+<pre><code>function evaluate(exp, env) {
+switch (exp.type) {
+</code></pre><p>常量节点，我们只返回它们的值：</p>
+<pre><code>case &quot;num&quot;:
+    case &quot;str&quot;:
+    case &quot;bool&quot;:
+        return exp.value;
+</code></pre><p>变量是从环境中提取的。请记住，”var” token，其value属性包含变量名称名称：</p>
+<pre><code>case &quot;var&quot;:
+        return env.get(exp.value);
+</code></pre><p>对于赋值，我们需要检查左侧是否是一个 “var” token（如果不是，则抛出一个错误;现在我们不支持赋值给其他任何东西）。然后我们使用env.set设置值。<br>请注意，该值需要首先通过evaluate递归调用来计算。</p>
+<pre><code>case &quot;assign&quot;:
+        if (exp.left.type != &quot;var&quot;)
+            throw new Error(&quot;Cannot assign to &quot; + JSON.stringify(exp.left));
+        return env.set(exp.left.value, evaluate(exp.right, env));
+</code></pre><p>一个”binary”节点需要用到两个操作数。我们稍后会写这个apply_op函数，这很简单。同样，我们需要递归调用evaluator来计算left和right操作数</p>
+<pre><code>case &quot;binary&quot;:
+        return apply_op(exp.operator,
+                        evaluate(exp.left, env),
+                        evaluate(exp.right, env));
+</code></pre><p>一个”lambda”节点实际上会产生一个JavaScript闭包，所以它就像普通函数一样可以从JavaScript中调用。我写了一个make_lambda函数，将在后面定义它：</p>
+<pre><code>case &quot;lambda&quot;:
+        return make_lambda(env, exp);
+</code></pre><p>评估if节点很简单：首先评估if条件。如果不成立，则评估then分支并返回其值。最后如果存在else分支，就评估，否则返回false.</p>
+<pre><code>case &quot;if&quot;:
+        var cond = evaluate(exp.cond, env);
+        if (cond !== false) return evaluate(exp.then, env);
+        return exp.else ? evaluate(exp.else, env) : false;
+</code></pre><p>“prog”节点是一系列表达式。我们只是按顺序评估它们并返回最后一个的值。对于一个空序列，返回值默认为false。</p>
+<pre><code>case &quot;prog&quot;:
+        var val = false;
+        exp.prog.forEach(function(exp){ val = evaluate(exp, env) });
+        return val;
+</code></pre><p>对于一个”call”节点，我们需要调用evaluate计算func函数。首先我们评估一下，它应该返回一个正常的JS函数，然后我们评估并应用该函数。</p>
+<pre><code>case &quot;call&quot;:
+        var func = evaluate(exp.func, env);
+        return func.apply(null, exp.args.map(function(arg){
+            return evaluate(arg, env);
+        }));
+</code></pre><p>我们的程序不应该到下面这一步，但是为了防止在解析器中添加新的节点类型，并且忘记更新评估程序，让我们抛出一个明确的错误。</p>
+<pre><code>default:
+        throw new Error(&quot;I don&apos;t know how to evaluate &quot; + exp.type);
+    }
+}
+</code></pre><p>这是evaluate函数的核心，你可以看到它非常简单。我们仍然需要编写两个函数，让我们从最简单的apply_op函数开始：</p>
+<pre><code>function apply_op(op, a, b) {
+    function num(x) {
+        if (typeof x != &quot;number&quot;)
+            throw new Error(&quot;Expected number but got &quot; + x);
+        return x;
+    }
+    function div(x) {
+        if (num(x) == 0)
+            throw new Error(&quot;Divide by zero&quot;);
+        return x;
+    }
+    switch (op) {
+      case &quot;+&quot;  : return num(a) + num(b);
+      case &quot;-&quot;  : return num(a) - num(b);
+      case &quot;*&quot;  : return num(a) * num(b);
+      case &quot;/&quot;  : return num(a) / div(b);
+      case &quot;%&quot;  : return num(a) % div(b);
+      case &quot;&amp;&amp;&quot; : return a !== false &amp;&amp; b;
+      case &quot;||&quot; : return a !== false ? a : b;
+      case &quot;&lt;&quot;  : return num(a) &lt; num(b);
+      case &quot;&gt;&quot;  : return num(a) &gt; num(b);
+      case &quot;&lt;=&quot; : return num(a) &lt;= num(b);
+      case &quot;&gt;=&quot; : return num(a) &gt;= num(b);
+      case &quot;==&quot; : return a === b;
+      case &quot;!=&quot; : return a !== b;
+    }
+    throw new Error(&quot;Can&apos;t apply operator &quot; + op);
+}
+</code></pre><p>它接收运算符和其中需要运算的2个数，然后执行并返回而已。与JavaScript不同，我们只要求运算符的操作数为数字，并且使用num和div函数来检查。对于字符串我们会定义其他的东西。</p>
+<p>而make_lambda有点微妙：</p>
+<pre><code>function make_lambda(env, exp) {
+    function lambda() {
+        var names = exp.vars;
+        var scope = env.extend();
+        for (var i = 0; i &lt; names.length; ++i)
+            scope.def(names[i], i &lt; arguments.length ? arguments[i] : false);
+        return evaluate(exp.body, scope);
+    }
+    return lambda;
+}
+</code></pre><p>正如你所看到的，它返回一个简单的JavaScript函数，包含环境和表达式进行评估。<br>重点是，创建这个闭包时什么都不会发生，但是当它被调用时，它会创建时的环境所使用的参数/值（如果传递的值少于函数的参数列表，缺少的部分默认为false）。 最后evaluate其函数体。</p>
+<p><strong>原始功能</strong></p>
+<p>如你所见，我们的语言没有提供任何方式与外界进行交流。<br>在一些代码示例中，我使用了一些print和println函数，但它们没有在任何地方定义。<br>这些必须被定义为原始函数（也就是说，我们将用JavaScript编写它们并将它们插入到全局环境中）。</p>
+<p>现在把它放在一起，这里有一个测试程序：</p>
+<pre><code>// some test code here
+var code = &quot;sum = lambda(x, y) x + y; print(sum(2, 3));&quot;;
+
+// remember, parse takes a TokenStream which takes an InputStream
+var ast = parse(TokenStream(InputStream(code)));
+
+// create the global environment
+var globalEnv = new Environment();
+
+// define the &quot;print&quot; primitive function
+globalEnv.def(&quot;print&quot;, function(txt){
+  console.log(txt);
+});
+
+// run the evaluator
+evaluate(ast, globalEnv); // will print 5
+</code></pre><p>您可以 <a href="/assets/download/lambda-eval1.js">下载</a> 我们迄今为止编写的代码。它可以在NodeJS中运行——，例如：</p>
+<pre><code>echo &apos;sum = lambda(x, y) x + y; println(sum(2, 3));&apos; | node lambda-eval1.js
+</code></pre><p><em>相关文章</em></p>
+<ul>
+<li><a href="/implement-a-programming-language">如何使用 JavaScript 实现一门编程语言(1)——前言</a></li>
+<li><a href="/implement-a-programming-language-2">如何使用 JavaScript 实现一门编程语言(2)——编写一个解析器</a></li>
+<li><a href="/implement-a-programming-language-3">如何使用 JavaScript 实现一门编程语言(3)——Input stream</a></li>
+<li><a href="/implement-a-programming-language-4">如何使用 JavaScript 实现一门编程语言(4)——Token stream</a></li>
+<li><a href="/implement-a-programming-language-5">如何使用 JavaScript 实现一门编程语言(5)——AST</a></li>
+<li><a href="/implement-a-programming-language-6">如何使用 JavaScript 实现一门编程语言(6)——Interpreter</a></li>
+</ul>
+<p><em>原文链接：<a href="http://lisperator.net/pltut/dream" target="_blank" rel="noopener">http://lisperator.net/pltut/dream</a></em></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://annn.me/implement-a-programming-language-6/" data-id="cjf3o38g00042dsf5yxrdqf2b" data-title="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/implement-a-programming-language-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          如何使用 JavaScript 实现一门编程语言(2) —— 编写一个解析器
+        
+      </div>
+    </a>
+  
+  
+    <a href="/implement-a-programming-language-5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">如何使用 JavaScript 实现一门编程语言(5) —— AST</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <div id="comments-containet"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+  var gitment = new Gitment({
+    owner: 'annnhan',
+    repo: window.githubRepository || 'gitment',
+    oauth: {
+      client_id: '0a05c848f85cc4fdc815',
+      client_secret: '6bfdb7c41012f8b3d28935e7e08b8e6c1504a325',
+    },
+  })
+  gitment.render('comments-containet')
+</script>
+  </div>
+</section>
+</section>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 阿安<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+    <a href="/categories" class="mobile-nav-link">分类</a>
+  
+    <a href="/tags" class="mobile-nav-link">标签</a>
+  
+    <a href="/links" class="mobile-nav-link">链接</a>
+  
+    <a href="https://500px.com/annnhan" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+
+<script src="/js/libs/jquery.2.0.3.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
