@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="安·记">
 <meta property="og:description" content="到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作： var  ast = parse （TokenStream （InputStream （code ））） ; 获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。 执行环境 正确执行表">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-03-23T08:16:00.000Z">
+<meta property="og:updated_time" content="2018-03-23T08:20:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter">
 <meta name="twitter:description" content="到目前为止，我们写了3个函数：InputStream，TokenStream 和 parse。为了从一段代码中获取AST，我们可以执行以下操作： var  ast = parse （TokenStream （InputStream （code ））） ; 获取AST后就可以编写Interpreter（解释器）了，这比写parser容易。我们只需走AST，以正常顺序执行表达式。 执行环境 正确执行表">
@@ -224,7 +224,7 @@ switch (exp.type) {
         throw new Error(&quot;I don&apos;t know how to evaluate &quot; + exp.type);
     }
 }
-</code></pre><p>这是evaluate函数的核心，你可以看到它非常简单。我们仍然需要编写两个函数，让我们从最简单的apply_op函数开始：</p>
+</code></pre><p>这是evaluate函数的核心，你可以看到它非常简单。最后，我们还需要编写两个函数，先从最简单的apply_op函数开始：</p>
 <pre><code>function apply_op(op, a, b) {
     function num(x) {
         if (typeof x != &quot;number&quot;)
@@ -254,7 +254,7 @@ switch (exp.type) {
     throw new Error(&quot;Can&apos;t apply operator &quot; + op);
 }
 </code></pre><p>它接收运算符和其中需要运算的2个数，然后执行并返回而已。与JavaScript不同，我们只要求运算符的操作数为数字，并且使用num和div函数来检查。对于字符串我们会定义其他的东西。</p>
-<p>而make_lambda有点微妙：</p>
+<p>而make_lambda则有点微妙：</p>
 <pre><code>function make_lambda(env, exp) {
     function lambda() {
         var names = exp.vars;
@@ -265,7 +265,7 @@ switch (exp.type) {
     }
     return lambda;
 }
-</code></pre><p>正如你所看到的，它返回一个简单的JavaScript函数，包含环境和表达式进行评估。<br>重点是，创建这个闭包时什么都不会发生，但是当它被调用时，它会创建时的环境所使用的参数/值（如果传递的值少于函数的参数列表，缺少的部分默认为false）。 最后evaluate其函数体。</p>
+</code></pre><p>正如你所看到的，它返回一个简单的JavaScript函数，包含环境和表达式进行执行。<br>重点是，创建这个函数时什么都不会发生，但是当它被调用时，它会创建时的环境所使用的参数/值（如果传递的值少于函数的参数列表，缺少的部分默认为false）。 最后evaluate其函数体。</p>
 <p><strong>原始功能</strong></p>
 <p>如你所见，我们的语言没有提供任何方式与外界进行交流。<br>在一些代码示例中，我使用了一些print和println函数，但它们没有在任何地方定义。<br>这些必须被定义为原始函数（也就是说，我们将用JavaScript编写它们并将它们插入到全局环境中）。</p>
 <p>现在把它放在一起，这里有一个测试程序：</p>
@@ -301,7 +301,7 @@ evaluate(ast, globalEnv); // will print 5
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://annn.me/implement-a-programming-language-6/" data-id="cjf3o8k7p0044lhf57r9rqhjo" data-title="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter" class="article-share-link">Share</a>
+      <a data-url="http://annn.me/implement-a-programming-language-6/" data-id="cjf3oea3s0044stf5083yuquz" data-title="如何使用 JavaScript 实现一门编程语言(6) —— Interpreter" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/AST/">AST</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/compile/">compile</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/javascript/">javascript</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/language/">language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/parse/">parse</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/programming/">programming</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tag/编译原理/">编译原理</a></li></ul>
